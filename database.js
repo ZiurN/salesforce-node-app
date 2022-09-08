@@ -64,8 +64,10 @@ const updateAccountsLocally = (accountsToUpdate) => {
             account.Id = accountToUpdate.Id;
           }
         });
-        db.write();
       });
+	  let updatedAccounts = accounts.filter(account => account.Id);
+	  db.data.accounts = updatedAccounts;
+	  db.write();
     }).catch(error => {console.log(error)});
 }
 

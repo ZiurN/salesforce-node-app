@@ -45,7 +45,6 @@ const insertAccountsInSfQuestion = () => {
           result = result.filter(account => !account.Id);
             if (result.length > 0) {
               console.log('Accounts To Create in SF: ' + result.length);
-              console.log(result);
               insertAccounts(result).then(accounts => {
                 updateAccountsLocally(accounts);
               }).catch(error => console.log(error));
