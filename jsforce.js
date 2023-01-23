@@ -1,7 +1,7 @@
 import jsforce from 'jsforce';
-import { UnicomerDev1, UnicomerHVSDEV, UnicomerHVSTST } from './oauth.js';
+import { UnicomerDev1, UnicomerTest, UnicomerHVSTST } from './oauth.js';
 
-const currentSfEnv = UnicomerDev1;
+const currentSfEnv = UnicomerTest;
 
 const insertAccounts = (accountsToinsert) => {
   return new Promise((resolve, reject) => {
