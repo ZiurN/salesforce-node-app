@@ -1,158 +1,166 @@
-import { addAccounts, addContacts, addCases, addOpportunities, getContacts, getAccounts, getCases, getOpportunities, updateAccountsLocally, getCounts } from "./database.js";
-import { createFakeAccouts, createFakeBusinessAccount, createFakeContacts, createFakeCases, createFakeOpportunities } from "./fakeData.js";
+import { createRecords, getAllRecords, getCounts } from "./database.js";
+import { createFakeBusinessAccount, createFakeContacts, createFakeCases, createFakeOpportunities } from "./fakeData.js";
 import { insertAccounts, insertContacts, insertCases, insertOpportunities, getCasesFromSFFromStart } from "./jsforce.js";
 
 const createAccountsLocally = (numberOfAccountsToCreate) => {
-  let accounts = createFakeBusinessAccount(numberOfAccountsToCreate);
-  addAccounts(accounts).then(() => {
-    console.log('OK');
+  let accountsToCreate = createFakeBusinessAccount(numberOfAccountsToCreate);
+  createRecords(accountsToCreate, 'accounts', 'au_External_Id__c').then((results) => {
+    if (results.length > 0) {
+      console.log('Created ' + results.length + ' accounts');
+    } else {
+      console.log('No accounts created');
+    }
   }).catch((error) => {
     console.log(error);
   });
 }
 const createContactsForAccountsLocally = () => {
-  getAccounts()
-    .then((accounts) => {
-      getContacts()
-        .then((contacts) => {
-          let accountsWhichContactAreGoingToBeCreated = accounts.filter(account => {
-            let accountHasNotContacts = false;
-            if (account.Id && contacts && contacts.length > 0) {
-              let filteredContacts = contacts.filter(contact => {
-                contact.AccountId == account.Id
-              });
-              accountHasNotContacts = !(filteredContacts.length > 0);
-            } else if (account.Id) {
-              accountHasNotContacts = true;
-            }
-            return accountHasNotContacts;
+	getAllRecords('accounts').then((accounts) => {
+    getAllRecords('contacts').then((contacts) => {
+      let accountsWhichContactAreGoingToBeCreated = accounts.filter(account => {
+        let accountHasNotContacts = false;
+        if (account.Id && contacts && contacts.length > 0) {
+          let filteredContacts = contacts.filter(contact => {
+            contact.AccountId == account.Id
           });
-          if (accountsWhichContactAreGoingToBeCreated.length > 0) {
-            let relatedAccountsInfo = new Map();
-            accounts.forEach(account => {
-              relatedAccountsInfo.set(account.Id, Math.floor(Math.random()*4) + 1);
-            });
-            let contactsToCreate = createFakeContacts(relatedAccountsInfo);
-            addContacts(contactsToCreate)
-              .then((contacts) => {
-                console.log(contacts);
-              })
-              .catch((error) => {
-                console.log(error);
-              });
-          } else {
-            console.log("No accounts without contacts to create");
-          }
-        })
-        .catch((error) => {
-          console.log(error);
+          accountHasNotContacts = !(filteredContacts.length > 0);
+        } else if (account.Id) {
+          accountHasNotContacts = true;
+        }
+        return accountHasNotContacts;
+      });
+      if (accountsWhichContactAreGoingToBeCreated.length > 0) {
+        let relatedAccountsInfo = new Map();
+        accounts.forEach(account => {
+          relatedAccountsInfo.set(account.Id, Math.floor(Math.random()*4) + 1);
         });
-    })
-    .catch((error) => {
-      console.log(error);
-    });
-}
-const createCasesForAccountsLocally = () => {
-  getAccounts()
-    .then((accounts) => {
-      getContacts()
-        .then((contacts) => {
-          let relatedAccountsInfo = [];
-          accounts.forEach((account) => {
-            if (account.Id) {
-              let accountContacts = contacts.filter((contact) => {
-                return contact.AccountId == account.Id
-              });
-              console.log(accountContacts);
-              if (accountContacts && accountContacts.length > 0) {
-                let relatedAccountInfo = {};
-                relatedAccountInfo.accountId = account.Id;
-                let relatedContactsInfo = new Map();
-                accountContacts.forEach(contact => {
-                  relatedContactsInfo.set(contact.Id, Math.floor(Math.random()*4) + 1);
-                });
-                relatedAccountInfo.relatedContactsInfo = relatedContactsInfo;
-                relatedAccountsInfo.push(relatedAccountInfo);
-              }
-            }
-          });
-          if (relatedAccountsInfo.length > 0) {
-            let casesToAdd = createFakeCases(relatedAccountsInfo);
-            addCases(casesToAdd)
-            .then((cases) => {
-              console.log(cases);
-            })
-            .catch((error) => {
-              console.log(error);
-            });
+        let contactsToCreate = createFakeContacts(relatedAccountsInfo);
+        createRecords(contactsToCreate, 'contacts', 'au_External_Id__c').then((results) => {
+          if (results.length > 0) {
+            console.log('Created ' + results.length + ' contacts');
           } else {
-            console.log('??');
+            console.log('No contacts created');
           }
-        })
-        .catch((error) => {
-          console.log(error);
-        });
-    })
-    .catch((error) => {
-      console.log(error);
-    });
-}
-const createOpportunitiesForAccountsLocally = () => {
-  getAccounts()
-    .then((accounts) => {
-      getContacts()
-        .then((contacts) => {
-          let relatedAccountsAndContactsInfo = [];
-          accounts.forEach((account) => {
-            if (account.Id) {
-              let accountContacts = contacts.filter((contact) => {
-                return contact.AccountId == account.Id
-              });
-              if (accountContacts && accountContacts.length > 0) {
-                accountContacts.forEach(contact => {
-                  let relatedAccountAndContactInfo = {
-                    account,
-                    contact,
-                    numberOfOpportunities: Math.floor(Math.random()*4) + 1
-                  };
-                  relatedAccountsAndContactsInfo.push(relatedAccountAndContactInfo);
-                });
-              }
-            }
-          });
-          if (relatedAccountsAndContactsInfo.length > 0) {
-            let casesToAdd = createFakeOpportunities(relatedAccountsAndContactsInfo);
-            addOpportunities(casesToAdd)
-            .then((opportunities) => {
-              console.log(opportunities);
-            })
-            .catch((error) => {
-              console.log(error);
-            });
-          } else {
-            console.log('??');
-          }
-        })
-        .catch((error) => {
-          console.log(error);
-        });
-    })
-    .catch((error) => {
-      console.log(error);
-    });
-}
-const upsertAccountsInSalesforce = () => {
-  getAccounts()
-    .then((accounts) => {
-      insertAccounts(accounts)
-        .then((result) => {
-          console.log('Cuentas insertadas?');
         }).catch((error) => {
           console.log(error);
         });
+      } else {
+        console.log("No accounts without contacts to create");
+      }
     }).catch((error) => {
       console.log(error);
     });
+  })
+  .catch((error) => {
+    console.log(error);
+  });
+}
+const createCasesForAccountsLocally = () => {
+  getAllRecords('accounts').then((accounts) => {
+    getAllRecords('contacts').then((contacts) => {
+      let relatedAccountsInfo = [];
+      accounts.forEach((account) => {
+        if (account.Id) {
+          let accountContacts = contacts.filter((contact) => {
+            return contact.AccountId == account.Id
+          });
+          console.log(accountContacts);
+          if (accountContacts && accountContacts.length > 0) {
+            let relatedAccountInfo = {};
+            relatedAccountInfo.accountId = account.Id;
+            let relatedContactsInfo = new Map();
+            accountContacts.forEach(contact => {
+              relatedContactsInfo.set(contact.Id, Math.floor(Math.random()*4) + 1);
+            });
+            relatedAccountInfo.relatedContactsInfo = relatedContactsInfo;
+            relatedAccountsInfo.push(relatedAccountInfo);
+          }
+        }
+      });
+      if (relatedAccountsInfo.length > 0) {
+        let casesToCreate = createFakeCases(relatedAccountsInfo);
+        createRecords(casesToCreate, 'cases', 'Case_ExternalId__c').then((results) => {
+          if (results.length > 0) {
+            console.log('Created ' + results.length + '  cases');
+          } else {
+            console.log('No cases created');
+          }
+        }).catch((error) => {
+          console.log(error);
+        });
+      } else {
+        console.log('There are no related accounts or contacts to create cases for');
+      }
+    }).catch((error) => {
+      console.log(error);
+    });
+  }).catch((error) => {
+    console.log(error);
+  });
+}
+const createOpportunitiesForAccountsLocally = () => {
+  getAllRecords('accounts').then((accounts) => {
+    getAllRecords('contacts').then((contacts) => {
+      let relatedAccountsAndContactsInfo = [];
+      accounts.forEach((account) => {
+        if (account.Id) {
+          let accountContacts = contacts.filter((contact) => {
+            return contact.AccountId == account.Id
+          });
+          if (accountContacts && accountContacts.length > 0) {
+            accountContacts.forEach(contact => {
+              let relatedAccountAndContactInfo = {
+                account,
+                contact,
+                numberOfOpportunities: Math.floor(Math.random()*4) + 1
+              };
+              relatedAccountsAndContactsInfo.push(relatedAccountAndContactInfo);
+            });
+          }
+        }
+      });
+      if (relatedAccountsAndContactsInfo.length > 0) {
+        let opportunitiesToCreate = createFakeOpportunities(relatedAccountsAndContactsInfo);
+        addOpportunities(opportunitiesToCreate).then((results) => {
+          if (results.length > 0) {
+            console.log('Created ' + results.length + '  cases');
+          } else {
+            console.log('No cases created');
+          }
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+      } else {
+        console.log('There are no related accounts or contacts to create opportunities for');
+      }
+    }).catch((error) => {
+      console.log(error);
+    });
+  }).catch((error) => {
+    console.log(error);
+  });
+}
+const insertAccountsInSalesforce = () => {
+  getAllRecords('accounts').then((accounts) => {
+    let accountsToInsert = accounts.filter(account => !account.Id);
+    if (accountsToInsert.length > 0) {
+      insertAccounts(accountsToInsert).then((results) => {
+        if (results.errors.length > 0) {
+          results.errors.forEach(error => console.log("error:" + error.error));
+        }
+        console.log(results.ids.length + ' accounts inserted');
+      }).catch((error) => {
+        if (error && error.length > 0) {
+          error.forEach(error => console.log(error));
+        } else { console.log(error); }
+      });
+    } else {
+      console.log('No accounts to insert in Salesforce');
+    }
+  }).catch((error) => {
+    console.log(error);
+  });
 }
 const upsertContactsInSalesforce = () => {
   getContacts()
@@ -212,7 +220,7 @@ const getInfo = () => {
 }
 export {
   createAccountsLocally,
-  upsertAccountsInSalesforce,
+  insertAccountsInSalesforce,
   createContactsForAccountsLocally,
   upsertContactsInSalesforce,
   createCasesForAccountsLocally,

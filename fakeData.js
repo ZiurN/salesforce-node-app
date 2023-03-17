@@ -295,8 +295,7 @@ const createFakeBusinessAccount = (numberOfAccounts) => {
       NumberofLocations__c: null,
       UpsellOpportunity__c: null,
       SLASerialNumber__c: null,
-      SLAExpirationDate__c: null,
-      Segment__c: null
+      SLAExpirationDate__c: null
     }
     accountsToCreate.push(account);
   }
