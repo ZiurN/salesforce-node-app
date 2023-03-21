@@ -74,6 +74,25 @@ const updateRecordsWithoutId = (recordsToUpdate, tableName, idField) => {
     console.log(error);
   });
 }
+const updateRecordsLocally = (recordsToUpdate, tableName, idField) => {
+  db.read().then(() => {
+    console.log(idField);
+    const records = db.data[tableName];
+    let updatedRecords = records.map(record => {
+      for (let i = 0 ; i < recordsToUpdate.length ; i++) {
+        if (record[idField] === recordsToUpdate[i][idField]) {
+          record = {...record,...recordsToUpdate[i]}
+          break;
+        }
+      }
+      return record;
+    });
+    db.data[tableName] = updatedRecords;
+    db.write();
+  }).catch(error => {
+    console.log(error);
+  });
+}
 const getCounts = () => {
   return new Promise((resolve, reject) => {
     db.read().then(() => {
@@ -84,4 +103,4 @@ const getCounts = () => {
     }).catch(error => {console.log(error); reject(error)})
   });
 }
-export { createRecords, getAllRecords, updateRecordsWithoutId, getCounts }
+export { createRecords, getAllRecords, updateRecordsWithoutId, updateRecordsLocally, getCounts }

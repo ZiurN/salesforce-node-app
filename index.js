@@ -1,6 +1,13 @@
-import { createRecords, getAllRecords, getCounts } from "./database.js";
+import { createRecords, getAllRecords, updateRecordsLocally } from "./database.js";
 import { createFakeBusinessAccount, createFakeContacts, createFakeCases, createFakeOpportunities } from "./fakeData.js";
-import { insertAccounts, insertContacts, insertCases, insertOpportunities, getCasesFromSFFromStart } from "./jsforce.js";
+import { insertAccounts, insertContacts, insertCases, insertOpportunities, getRecordsByIdList } from "./jsforce.js";
+import { CASE, OPPORTUNITY } from "./sfMetadata.js";
+
+const today = new Date();
+const metadata = {
+  Case: CASE,
+  Opportunity: OPPORTUNITY
+}
 /*
   * Local Actions
 */
@@ -150,7 +157,6 @@ import { insertAccounts, insertContacts, insertCases, insertOpportunities, getCa
       let recordsToInsert = records.filter(record => !record.Id);
       if (recordsToInsert.length > 0) {
         promise(recordsToInsert).then((results) => {
-          console.log(results);
           if (results.errors.length > 0) {
             results.errors.forEach(error => console.log("error:" + error.error));
           }
@@ -179,6 +185,48 @@ import { insertAccounts, insertContacts, insertCases, insertOpportunities, getCa
   const insertOpportunitiesInSalesforce = () => {
     insertRecordsInSalesforce('opportunities', insertOpportunities);
   }
+  const updateRecordsFromSalesforce = (tableName, sObjectName, recordsToUpdate) => {
+    let ids = [];
+    recordsToUpdate.forEach((recordToUpdate) => {
+      ids.push(recordToUpdate.Id);
+    });
+    let fields = {
+      LastModifiedDate: 1
+    }
+    metadata[sObjectName].tracked_fields.forEach(field => {
+      fields[field] = 1
+    });
+    fields.Id = 1
+    getRecordsByIdList(sObjectName, ids, fields).then((records) => {
+      updateRecordsLocally(records, tableName, 'Id');
+    }).catch((error) => {
+      console.log(error);
+    });
+  }
+  const updateAllRecordsFromSalesforce = (tableName, sObjectName) => {
+    getAllRecords(tableName).then((localRecords) => {
+      updateRecordsFromSalesforce(tableName, sObjectName, localRecords);
+    }).catch((error) => {
+      console.log(error);
+    })
+  }
+  const updateAllCasesFromSalesforce = () => {
+    updateAllRecordsFromSalesforce('cases', 'Case');
+  }
+  const updateAllOpportunitiesFromSalesforce = () => {
+    getAllRecords('opportunities').then((localRecords) => {
+      let numberOfBatches = Math.floor(localRecords.length/300) + 1;
+      let batches = [];
+      for (let i = 0; i < numberOfBatches; i++) {
+        batches.push(localRecords.slice(i*300, (i+1)*300));
+      }
+      if (batches.length > 0) {
+        batches.forEach(batch => {
+          updateRecordsFromSalesforce('opportunities', 'Opportunity', batch);
+        });
+      }
+    });
+  }
 export {
   createAccountsLocally,
   createContactsForAccountsLocally,
@@ -187,5 +235,7 @@ export {
   insertAccountsInSalesforce,
   insertContactsInSalesforce,
   insertCasesInSalesforce,
-  insertOpportunitiesInSalesforce
+  insertOpportunitiesInSalesforce,
+  updateAllCasesFromSalesforce,
+  updateAllOpportunitiesFromSalesforce
 }

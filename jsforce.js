@@ -1,8 +1,8 @@
 import jsforce from 'jsforce';
-import { ziurfreelance } from './oauth.js';
+import { aureumTest } from './oauth.js';
 import { updateRecordsWithoutId } from './database.js';
 
-const currentSfEnv = ziurfreelance;
+const currentSfEnv = aureumTest;
 /*
 * General Salesforce API methods
 */
@@ -57,6 +57,18 @@ const currentSfEnv = ziurfreelance;
         reject(err);
       });
     });
+  }
+  const getRecordsByIdList = (sObjectName, idList, fields) => {
+    return new Promise((resolve, reject) => {
+		login().then((conn) => {
+		  conn.sobject(sObjectName).find({Id: {$in: idList} }, fields).execute((err, records) => {
+			if (err) { reject(console.error(err)); }
+			resolve(records);
+		  });
+		}).catch((err) => {
+		  reject(err);
+		});
+	  });
   }
 /*
 * Account CRUD methods
@@ -222,4 +234,4 @@ const getCasesFromSFFromStart = (ids) => {
   });
 }
 
-export { insertAccounts, insertContacts, insertCases, insertOpportunities, getCasesFromSFFromStart }
+export { insertAccounts, insertContacts, insertCases, insertOpportunities, getRecordsByIds, getRecordsByIdList }
