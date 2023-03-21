@@ -24365,7 +24365,7 @@
       "Description": null,
       "IsEscalated": true,
       "EngineeringReqNumber__c": null,
-      "Product__c": null,
+      "Product__c": "GC3020",
       "PotentialLiability__c": null,
       "CSAT__c": 105,
       "Case_ExternalId__c": "ekc4pqivh",
@@ -24378,7 +24378,7 @@
         "type": "Case",
         "url": "/services/data/v42.0/sobjects/Case/500Dm000002IyldIAC"
       },
-      "LastModifiedDate": "2023-03-09T13:09:37.000+0000",
+      "LastModifiedDate": "2023-03-21T23:12:32.000+0000",
       "OwnerId": "005Dm000001m0DaIAI",
       "IsStopped": false
     },
@@ -24413,7 +24413,7 @@
         "type": "Case",
         "url": "/services/data/v42.0/sobjects/Case/500Dm000002IyleIAC"
       },
-      "LastModifiedDate": "2023-03-09T13:09:37.000+0000",
+      "LastModifiedDate": "2023-03-21T23:12:32.000+0000",
       "OwnerId": "005Dm000001m0DaIAI",
       "IsStopped": false
     },
@@ -24448,7 +24448,7 @@
         "type": "Case",
         "url": "/services/data/v42.0/sobjects/Case/500Dm000002IylfIAC"
       },
-      "LastModifiedDate": "2023-03-09T13:09:37.000+0000",
+      "LastModifiedDate": "2023-03-21T23:12:32.000+0000",
       "OwnerId": "005Dm000001m0DaIAI",
       "IsStopped": false
     },
@@ -24483,7 +24483,7 @@
         "type": "Case",
         "url": "/services/data/v42.0/sobjects/Case/500Dm000002IylgIAC"
       },
-      "LastModifiedDate": "2023-03-09T13:09:37.000+0000",
+      "LastModifiedDate": "2023-03-21T23:12:32.000+0000",
       "OwnerId": "005Dm000001m0DaIAI",
       "IsStopped": false
     },
@@ -24505,7 +24505,7 @@
       "Description": null,
       "IsEscalated": true,
       "EngineeringReqNumber__c": null,
-      "Product__c": null,
+      "Product__c": "GC1040",
       "PotentialLiability__c": null,
       "CSAT__c": 105,
       "Case_ExternalId__c": "xblapqzm1",
@@ -24518,7 +24518,7 @@
         "type": "Case",
         "url": "/services/data/v42.0/sobjects/Case/500Dm000002IylhIAC"
       },
-      "LastModifiedDate": "2023-03-09T13:09:37.000+0000",
+      "LastModifiedDate": "2023-03-21T23:12:32.000+0000",
       "OwnerId": "005Dm000001m0DaIAI",
       "IsStopped": false
     },
@@ -24553,7 +24553,7 @@
         "type": "Case",
         "url": "/services/data/v42.0/sobjects/Case/500Dm000002IyliIAC"
       },
-      "LastModifiedDate": "2023-03-09T13:09:37.000+0000",
+      "LastModifiedDate": "2023-03-21T23:12:32.000+0000",
       "OwnerId": "005Dm000001m0DaIAI",
       "IsStopped": false
     },
@@ -24588,7 +24588,7 @@
         "type": "Case",
         "url": "/services/data/v42.0/sobjects/Case/500Dm000002IyljIAC"
       },
-      "LastModifiedDate": "2023-03-09T13:09:37.000+0000",
+      "LastModifiedDate": "2023-03-21T23:12:32.000+0000",
       "OwnerId": "005Dm000001m0DaIAI",
       "IsStopped": false
     },
@@ -24623,7 +24623,7 @@
         "type": "Case",
         "url": "/services/data/v42.0/sobjects/Case/500Dm000002IylkIAC"
       },
-      "LastModifiedDate": "2023-03-09T13:09:37.000+0000",
+      "LastModifiedDate": "2023-03-21T23:12:32.000+0000",
       "OwnerId": "005Dm000001m0DaIAI",
       "IsStopped": false
     },
@@ -24658,7 +24658,7 @@
         "type": "Case",
         "url": "/services/data/v42.0/sobjects/Case/500Dm000002IyllIAC"
       },
-      "LastModifiedDate": "2023-03-09T13:09:37.000+0000",
+      "LastModifiedDate": "2023-03-21T23:12:32.000+0000",
       "OwnerId": "005Dm000001m0DaIAI",
       "IsStopped": false
     },
@@ -24693,7 +24693,7 @@
         "type": "Case",
         "url": "/services/data/v42.0/sobjects/Case/500Dm000002IylmIAC"
       },
-      "LastModifiedDate": "2023-03-09T13:09:37.000+0000",
+      "LastModifiedDate": "2023-03-21T23:12:32.000+0000",
       "OwnerId": "005Dm000001m0DaIAI",
       "IsStopped": false
     },
@@ -24706,7 +24706,7 @@
       "SuppliedEmail": null,
       "SuppliedPhone": null,
       "SuppliedCompany": null,
-      "Type": null,
+      "Type": "Structural",
       "Status": "New",
       "Reason": "Equipment Design",
       "Origin": "Phone",
@@ -24728,7 +24728,7 @@
         "type": "Case",
         "url": "/services/data/v42.0/sobjects/Case/500Dm000002IylnIAC"
       },
-      "LastModifiedDate": "2023-03-09T13:09:37.000+0000",
+      "LastModifiedDate": "2023-03-21T23:31:31.000+0000",
       "OwnerId": "005Dm000001m0DaIAI",
       "IsStopped": false
     },
@@ -24763,7 +24763,7 @@
         "type": "Case",
         "url": "/services/data/v42.0/sobjects/Case/500Dm000002IypbIAC"
       },
-      "LastModifiedDate": "2023-03-09T13:48:14.000+0000",
+      "LastModifiedDate": "2023-03-21T23:31:31.000+0000",
       "OwnerId": "005Dm000001m0DaIAI",
       "IsStopped": false
     },
@@ -24776,7 +24776,7 @@
       "SuppliedEmail": null,
       "SuppliedPhone": null,
       "SuppliedCompany": null,
-      "Type": null,
+      "Type": "Mechanical",
       "Status": "New",
       "Reason": "Performance",
       "Origin": "Web",
@@ -24798,7 +24798,7 @@
         "type": "Case",
         "url": "/services/data/v42.0/sobjects/Case/500Dm000002IypcIAC"
       },
-      "LastModifiedDate": "2023-03-09T13:48:14.000+0000",
+      "LastModifiedDate": "2023-03-21T23:31:31.000+0000",
       "OwnerId": "005Dm000001m0DaIAI",
       "IsStopped": false
     },
@@ -24833,7 +24833,7 @@
         "type": "Case",
         "url": "/services/data/v42.0/sobjects/Case/500Dm000002IypdIAC"
       },
-      "LastModifiedDate": "2023-03-09T13:48:14.000+0000",
+      "LastModifiedDate": "2023-03-21T23:31:31.000+0000",
       "OwnerId": "005Dm000001m0DaIAI",
       "IsStopped": false
     },
@@ -24846,7 +24846,7 @@
       "SuppliedEmail": null,
       "SuppliedPhone": null,
       "SuppliedCompany": null,
-      "Type": null,
+      "Type": "Structural",
       "Status": "New",
       "Reason": "Other",
       "Origin": "Phone",
@@ -24868,7 +24868,7 @@
         "type": "Case",
         "url": "/services/data/v42.0/sobjects/Case/500Dm000002IypeIAC"
       },
-      "LastModifiedDate": "2023-03-09T13:48:14.000+0000",
+      "LastModifiedDate": "2023-03-21T23:31:31.000+0000",
       "OwnerId": "005Dm000001m0DaIAI",
       "IsStopped": false
     },
@@ -24903,7 +24903,7 @@
         "type": "Case",
         "url": "/services/data/v42.0/sobjects/Case/500Dm000002IypfIAC"
       },
-      "LastModifiedDate": "2023-03-09T13:48:14.000+0000",
+      "LastModifiedDate": "2023-03-21T23:31:31.000+0000",
       "OwnerId": "005Dm000001m0DaIAI",
       "IsStopped": false
     },
@@ -24938,7 +24938,7 @@
         "type": "Case",
         "url": "/services/data/v42.0/sobjects/Case/500Dm000002IypgIAC"
       },
-      "LastModifiedDate": "2023-03-09T13:48:14.000+0000",
+      "LastModifiedDate": "2023-03-21T23:31:31.000+0000",
       "OwnerId": "005Dm000001m0DaIAI",
       "IsStopped": false
     },
@@ -24973,7 +24973,7 @@
         "type": "Case",
         "url": "/services/data/v42.0/sobjects/Case/500Dm000002IyphIAC"
       },
-      "LastModifiedDate": "2023-03-09T13:48:14.000+0000",
+      "LastModifiedDate": "2023-03-21T23:31:31.000+0000",
       "OwnerId": "005Dm000001m0DaIAI",
       "IsStopped": false
     },
@@ -25008,7 +25008,7 @@
         "type": "Case",
         "url": "/services/data/v42.0/sobjects/Case/500Dm000002IypiIAC"
       },
-      "LastModifiedDate": "2023-03-09T13:48:14.000+0000",
+      "LastModifiedDate": "2023-03-21T23:31:31.000+0000",
       "OwnerId": "005Dm000001m0DaIAI",
       "IsStopped": false
     },
@@ -25021,7 +25021,7 @@
       "SuppliedEmail": null,
       "SuppliedPhone": null,
       "SuppliedCompany": null,
-      "Type": null,
+      "Type": "Electrical",
       "Status": "New",
       "Reason": "Performance",
       "Origin": "Email",
@@ -25043,7 +25043,7 @@
         "type": "Case",
         "url": "/services/data/v42.0/sobjects/Case/500Dm000002IypjIAC"
       },
-      "LastModifiedDate": "2023-03-09T13:48:14.000+0000",
+      "LastModifiedDate": "2023-03-21T23:31:31.000+0000",
       "OwnerId": "005Dm000001m0DaIAI",
       "IsStopped": false
     },
@@ -25057,7 +25057,7 @@
       "SuppliedPhone": null,
       "SuppliedCompany": null,
       "Type": null,
-      "Status": "New",
+      "Status": "Working",
       "Reason": "Breakdown",
       "Origin": "Phone",
       "Subject": "Case about Tasty Chair",
@@ -25078,7 +25078,7 @@
         "type": "Case",
         "url": "/services/data/v42.0/sobjects/Case/500Dm000002IypkIAC"
       },
-      "LastModifiedDate": "2023-03-09T13:48:14.000+0000",
+      "LastModifiedDate": "2023-03-21T23:34:05.000+0000",
       "OwnerId": "005Dm000001m0DaIAI",
       "IsStopped": false
     },
@@ -25113,7 +25113,7 @@
         "type": "Case",
         "url": "/services/data/v42.0/sobjects/Case/500Dm000002IyplIAC"
       },
-      "LastModifiedDate": "2023-03-09T13:48:14.000+0000",
+      "LastModifiedDate": "2023-03-21T23:34:05.000+0000",
       "OwnerId": "005Dm000001m0DaIAI",
       "IsStopped": false
     },
@@ -25127,7 +25127,7 @@
       "SuppliedPhone": null,
       "SuppliedCompany": null,
       "Type": null,
-      "Status": "New",
+      "Status": "Working",
       "Reason": "Breakdown",
       "Origin": "Web",
       "Subject": "Case about Small Cheese",
@@ -25148,7 +25148,7 @@
         "type": "Case",
         "url": "/services/data/v42.0/sobjects/Case/500Dm000002IypmIAC"
       },
-      "LastModifiedDate": "2023-03-09T13:48:14.000+0000",
+      "LastModifiedDate": "2023-03-21T23:34:05.000+0000",
       "OwnerId": "005Dm000001m0DaIAI",
       "IsStopped": false
     },
@@ -25183,7 +25183,7 @@
         "type": "Case",
         "url": "/services/data/v42.0/sobjects/Case/500Dm000002IypnIAC"
       },
-      "LastModifiedDate": "2023-03-09T13:48:14.000+0000",
+      "LastModifiedDate": "2023-03-21T23:34:05.000+0000",
       "OwnerId": "005Dm000001m0DaIAI",
       "IsStopped": false
     },
@@ -25197,7 +25197,7 @@
       "SuppliedPhone": null,
       "SuppliedCompany": null,
       "Type": null,
-      "Status": "New",
+      "Status": "Working",
       "Reason": "Feedback",
       "Origin": "Phone",
       "Subject": "Case about Small Shoes",
@@ -25218,7 +25218,7 @@
         "type": "Case",
         "url": "/services/data/v42.0/sobjects/Case/500Dm000002IypoIAC"
       },
-      "LastModifiedDate": "2023-03-09T13:48:14.000+0000",
+      "LastModifiedDate": "2023-03-21T23:34:05.000+0000",
       "OwnerId": "005Dm000001m0DaIAI",
       "IsStopped": false
     },
@@ -25253,7 +25253,7 @@
         "type": "Case",
         "url": "/services/data/v42.0/sobjects/Case/500Dm000002IyppIAC"
       },
-      "LastModifiedDate": "2023-03-09T13:48:14.000+0000",
+      "LastModifiedDate": "2023-03-21T23:34:05.000+0000",
       "OwnerId": "005Dm000001m0DaIAI",
       "IsStopped": false
     },
@@ -25288,7 +25288,7 @@
         "type": "Case",
         "url": "/services/data/v42.0/sobjects/Case/500Dm000002IypqIAC"
       },
-      "LastModifiedDate": "2023-03-09T13:48:14.000+0000",
+      "LastModifiedDate": "2023-03-21T23:34:05.000+0000",
       "OwnerId": "005Dm000001m0DaIAI",
       "IsStopped": false
     },
@@ -25323,7 +25323,7 @@
         "type": "Case",
         "url": "/services/data/v42.0/sobjects/Case/500Dm000002IyprIAC"
       },
-      "LastModifiedDate": "2023-03-09T13:48:14.000+0000",
+      "LastModifiedDate": "2023-03-21T23:34:05.000+0000",
       "OwnerId": "005Dm000001m0DaIAI",
       "IsStopped": false
     },
@@ -25358,7 +25358,7 @@
         "type": "Case",
         "url": "/services/data/v42.0/sobjects/Case/500Dm000002IypsIAC"
       },
-      "LastModifiedDate": "2023-03-09T13:48:14.000+0000",
+      "LastModifiedDate": "2023-03-21T23:34:05.000+0000",
       "OwnerId": "005Dm000001m0DaIAI",
       "IsStopped": false
     },
@@ -25393,7 +25393,7 @@
         "type": "Case",
         "url": "/services/data/v42.0/sobjects/Case/500Dm000002IyptIAC"
       },
-      "LastModifiedDate": "2023-03-09T13:48:14.000+0000",
+      "LastModifiedDate": "2023-03-21T23:34:05.000+0000",
       "OwnerId": "005Dm000001m0DaIAI",
       "IsStopped": false
     },
@@ -25415,7 +25415,7 @@
       "Description": null,
       "IsEscalated": true,
       "EngineeringReqNumber__c": null,
-      "Product__c": null,
+      "Product__c": "GC5060",
       "PotentialLiability__c": null,
       "CSAT__c": 105,
       "Case_ExternalId__c": "xi22y4riv",
@@ -25428,7 +25428,7 @@
         "type": "Case",
         "url": "/services/data/v42.0/sobjects/Case/500Dm000002IypuIAC"
       },
-      "LastModifiedDate": "2023-03-09T13:48:14.000+0000",
+      "LastModifiedDate": "2023-03-21T23:42:30.000+0000",
       "OwnerId": "005Dm000001m0DaIAI",
       "IsStopped": false
     },
@@ -25463,7 +25463,7 @@
         "type": "Case",
         "url": "/services/data/v42.0/sobjects/Case/500Dm000002IypvIAC"
       },
-      "LastModifiedDate": "2023-03-09T13:48:14.000+0000",
+      "LastModifiedDate": "2023-03-21T23:42:30.000+0000",
       "OwnerId": "005Dm000001m0DaIAI",
       "IsStopped": false
     },
@@ -25498,7 +25498,7 @@
         "type": "Case",
         "url": "/services/data/v42.0/sobjects/Case/500Dm000002IypwIAC"
       },
-      "LastModifiedDate": "2023-03-09T13:48:14.000+0000",
+      "LastModifiedDate": "2023-03-21T23:42:30.000+0000",
       "OwnerId": "005Dm000001m0DaIAI",
       "IsStopped": false
     },
@@ -25520,7 +25520,7 @@
       "Description": null,
       "IsEscalated": true,
       "EngineeringReqNumber__c": null,
-      "Product__c": null,
+      "Product__c": "GC5040",
       "PotentialLiability__c": null,
       "CSAT__c": 105,
       "Case_ExternalId__c": "zsxxgmmsj",
@@ -25533,7 +25533,7 @@
         "type": "Case",
         "url": "/services/data/v42.0/sobjects/Case/500Dm000002IypxIAC"
       },
-      "LastModifiedDate": "2023-03-09T13:48:14.000+0000",
+      "LastModifiedDate": "2023-03-21T23:42:30.000+0000",
       "OwnerId": "005Dm000001m0DaIAI",
       "IsStopped": false
     },
@@ -25568,7 +25568,7 @@
         "type": "Case",
         "url": "/services/data/v42.0/sobjects/Case/500Dm000002IypyIAC"
       },
-      "LastModifiedDate": "2023-03-09T13:48:14.000+0000",
+      "LastModifiedDate": "2023-03-21T23:42:30.000+0000",
       "OwnerId": "005Dm000001m0DaIAI",
       "IsStopped": false
     },
@@ -25603,7 +25603,7 @@
         "type": "Case",
         "url": "/services/data/v42.0/sobjects/Case/500Dm000002IypzIAC"
       },
-      "LastModifiedDate": "2023-03-09T13:48:14.000+0000",
+      "LastModifiedDate": "2023-03-21T23:42:30.000+0000",
       "OwnerId": "005Dm000001m0DaIAI",
       "IsStopped": false
     },
@@ -25638,7 +25638,7 @@
         "type": "Case",
         "url": "/services/data/v42.0/sobjects/Case/500Dm000002Iyq0IAC"
       },
-      "LastModifiedDate": "2023-03-09T13:48:14.000+0000",
+      "LastModifiedDate": "2023-03-21T23:42:30.000+0000",
       "OwnerId": "005Dm000001m0DaIAI",
       "IsStopped": false
     },
@@ -25673,7 +25673,7 @@
         "type": "Case",
         "url": "/services/data/v42.0/sobjects/Case/500Dm000002Iyq1IAC"
       },
-      "LastModifiedDate": "2023-03-09T13:48:14.000+0000",
+      "LastModifiedDate": "2023-03-21T23:42:30.000+0000",
       "OwnerId": "005Dm000001m0DaIAI",
       "IsStopped": false
     },
@@ -25708,7 +25708,7 @@
         "type": "Case",
         "url": "/services/data/v42.0/sobjects/Case/500Dm000002Iyq2IAC"
       },
-      "LastModifiedDate": "2023-03-09T13:48:14.000+0000",
+      "LastModifiedDate": "2023-03-21T23:42:30.000+0000",
       "OwnerId": "005Dm000001m0DaIAI",
       "IsStopped": false
     },
@@ -25743,7 +25743,7 @@
         "type": "Case",
         "url": "/services/data/v42.0/sobjects/Case/500Dm000002Iyq3IAC"
       },
-      "LastModifiedDate": "2023-03-09T13:48:14.000+0000",
+      "LastModifiedDate": "2023-03-21T23:42:30.000+0000",
       "OwnerId": "005Dm000001m0DaIAI",
       "IsStopped": false
     },
@@ -25778,7 +25778,7 @@
         "type": "Case",
         "url": "/services/data/v42.0/sobjects/Case/500Dm000002Iyq4IAC"
       },
-      "LastModifiedDate": "2023-03-09T13:48:14.000+0000",
+      "LastModifiedDate": "2023-03-21T23:42:30.000+0000",
       "OwnerId": "005Dm000001m0DaIAI",
       "IsStopped": false
     },
@@ -25800,7 +25800,7 @@
       "Description": null,
       "IsEscalated": true,
       "EngineeringReqNumber__c": null,
-      "Product__c": null,
+      "Product__c": "GC5020",
       "PotentialLiability__c": null,
       "CSAT__c": 105,
       "Case_ExternalId__c": "5epyycs6z",
@@ -25813,7 +25813,7 @@
         "type": "Case",
         "url": "/services/data/v42.0/sobjects/Case/500Dm000002Iyq5IAC"
       },
-      "LastModifiedDate": "2023-03-09T13:48:14.000+0000",
+      "LastModifiedDate": "2023-03-21T23:42:30.000+0000",
       "OwnerId": "005Dm000001m0DaIAI",
       "IsStopped": false
     },
@@ -25835,7 +25835,7 @@
       "Description": null,
       "IsEscalated": true,
       "EngineeringReqNumber__c": null,
-      "Product__c": null,
+      "Product__c": "GC1020",
       "PotentialLiability__c": null,
       "CSAT__c": 105,
       "Case_ExternalId__c": "un72pzby7",
@@ -25848,7 +25848,7 @@
         "type": "Case",
         "url": "/services/data/v42.0/sobjects/Case/500Dm000002Iyq6IAC"
       },
-      "LastModifiedDate": "2023-03-09T13:48:14.000+0000",
+      "LastModifiedDate": "2023-03-21T23:42:30.000+0000",
       "OwnerId": "005Dm000001m0DaIAI",
       "IsStopped": false
     },
@@ -25883,7 +25883,7 @@
         "type": "Case",
         "url": "/services/data/v42.0/sobjects/Case/500Dm000002Iyq7IAC"
       },
-      "LastModifiedDate": "2023-03-09T13:48:14.000+0000",
+      "LastModifiedDate": "2023-03-21T23:42:30.000+0000",
       "OwnerId": "005Dm000001m0DaIAI",
       "IsStopped": false
     },
@@ -25918,7 +25918,7 @@
         "type": "Case",
         "url": "/services/data/v42.0/sobjects/Case/500Dm000002Iyq8IAC"
       },
-      "LastModifiedDate": "2023-03-09T13:48:14.000+0000",
+      "LastModifiedDate": "2023-03-21T23:42:30.000+0000",
       "OwnerId": "005Dm000001m0DaIAI",
       "IsStopped": false
     },
@@ -25953,7 +25953,7 @@
         "type": "Case",
         "url": "/services/data/v42.0/sobjects/Case/500Dm000002Iyq9IAC"
       },
-      "LastModifiedDate": "2023-03-09T13:48:14.000+0000",
+      "LastModifiedDate": "2023-03-21T23:42:30.000+0000",
       "OwnerId": "005Dm000001m0DaIAI",
       "IsStopped": false
     },
@@ -25988,7 +25988,7 @@
         "type": "Case",
         "url": "/services/data/v42.0/sobjects/Case/500Dm000002IyqAIAS"
       },
-      "LastModifiedDate": "2023-03-09T13:48:14.000+0000",
+      "LastModifiedDate": "2023-03-21T23:42:30.000+0000",
       "OwnerId": "005Dm000001m0DaIAI",
       "IsStopped": false
     },
@@ -26023,7 +26023,7 @@
         "type": "Case",
         "url": "/services/data/v42.0/sobjects/Case/500Dm000002IyqBIAS"
       },
-      "LastModifiedDate": "2023-03-09T13:48:14.000+0000",
+      "LastModifiedDate": "2023-03-21T23:42:30.000+0000",
       "OwnerId": "005Dm000001m0DaIAI",
       "IsStopped": false
     },
@@ -26058,7 +26058,7 @@
         "type": "Case",
         "url": "/services/data/v42.0/sobjects/Case/500Dm000002IyqCIAS"
       },
-      "LastModifiedDate": "2023-03-09T13:48:14.000+0000",
+      "LastModifiedDate": "2023-03-21T23:42:30.000+0000",
       "OwnerId": "005Dm000001m0DaIAI",
       "IsStopped": false
     },
@@ -26093,7 +26093,7 @@
         "type": "Case",
         "url": "/services/data/v42.0/sobjects/Case/500Dm000002IyqDIAS"
       },
-      "LastModifiedDate": "2023-03-09T13:48:14.000+0000",
+      "LastModifiedDate": "2023-03-21T23:42:30.000+0000",
       "OwnerId": "005Dm000001m0DaIAI",
       "IsStopped": false
     },
@@ -26128,7 +26128,7 @@
         "type": "Case",
         "url": "/services/data/v42.0/sobjects/Case/500Dm000002IyqEIAS"
       },
-      "LastModifiedDate": "2023-03-09T13:48:14.000+0000",
+      "LastModifiedDate": "2023-03-21T23:42:30.000+0000",
       "OwnerId": "005Dm000001m0DaIAI",
       "IsStopped": false
     },
@@ -26163,7 +26163,7 @@
         "type": "Case",
         "url": "/services/data/v42.0/sobjects/Case/500Dm000002IyqFIAS"
       },
-      "LastModifiedDate": "2023-03-09T13:48:14.000+0000",
+      "LastModifiedDate": "2023-03-21T23:42:30.000+0000",
       "OwnerId": "005Dm000001m0DaIAI",
       "IsStopped": false
     },
@@ -26198,7 +26198,7 @@
         "type": "Case",
         "url": "/services/data/v42.0/sobjects/Case/500Dm000002IyqGIAS"
       },
-      "LastModifiedDate": "2023-03-09T13:48:14.000+0000",
+      "LastModifiedDate": "2023-03-21T23:42:30.000+0000",
       "OwnerId": "005Dm000001m0DaIAI",
       "IsStopped": false
     },
@@ -26233,7 +26233,7 @@
         "type": "Case",
         "url": "/services/data/v42.0/sobjects/Case/500Dm000002IyqHIAS"
       },
-      "LastModifiedDate": "2023-03-09T13:48:14.000+0000",
+      "LastModifiedDate": "2023-03-21T23:42:30.000+0000",
       "OwnerId": "005Dm000001m0DaIAI",
       "IsStopped": false
     },
@@ -26268,7 +26268,7 @@
         "type": "Case",
         "url": "/services/data/v42.0/sobjects/Case/500Dm000002IyqIIAS"
       },
-      "LastModifiedDate": "2023-03-09T13:48:14.000+0000",
+      "LastModifiedDate": "2023-03-21T23:42:30.000+0000",
       "OwnerId": "005Dm000001m0DaIAI",
       "IsStopped": false
     },
@@ -26303,7 +26303,7 @@
         "type": "Case",
         "url": "/services/data/v42.0/sobjects/Case/500Dm000002IyqJIAS"
       },
-      "LastModifiedDate": "2023-03-09T13:48:14.000+0000",
+      "LastModifiedDate": "2023-03-21T23:42:30.000+0000",
       "OwnerId": "005Dm000001m0DaIAI",
       "IsStopped": false
     },
@@ -26325,7 +26325,7 @@
       "Description": null,
       "IsEscalated": true,
       "EngineeringReqNumber__c": null,
-      "Product__c": null,
+      "Product__c": "GC5040",
       "PotentialLiability__c": null,
       "CSAT__c": 105,
       "Case_ExternalId__c": "jb05elxvq",
@@ -26338,7 +26338,7 @@
         "type": "Case",
         "url": "/services/data/v42.0/sobjects/Case/500Dm000002IyqKIAS"
       },
-      "LastModifiedDate": "2023-03-09T13:48:14.000+0000",
+      "LastModifiedDate": "2023-03-21T23:42:30.000+0000",
       "OwnerId": "005Dm000001m0DaIAI",
       "IsStopped": false
     },
@@ -26373,7 +26373,7 @@
         "type": "Case",
         "url": "/services/data/v42.0/sobjects/Case/500Dm000002IyqLIAS"
       },
-      "LastModifiedDate": "2023-03-09T13:48:14.000+0000",
+      "LastModifiedDate": "2023-03-21T23:42:30.000+0000",
       "OwnerId": "005Dm000001m0DaIAI",
       "IsStopped": false
     },
@@ -26408,7 +26408,7 @@
         "type": "Case",
         "url": "/services/data/v42.0/sobjects/Case/500Dm000002IyqMIAS"
       },
-      "LastModifiedDate": "2023-03-09T13:48:14.000+0000",
+      "LastModifiedDate": "2023-03-21T23:42:30.000+0000",
       "OwnerId": "005Dm000001m0DaIAI",
       "IsStopped": false
     },
@@ -26443,7 +26443,7 @@
         "type": "Case",
         "url": "/services/data/v42.0/sobjects/Case/500Dm000002IyqNIAS"
       },
-      "LastModifiedDate": "2023-03-09T13:48:14.000+0000",
+      "LastModifiedDate": "2023-03-21T23:42:30.000+0000",
       "OwnerId": "005Dm000001m0DaIAI",
       "IsStopped": false
     },
@@ -26478,7 +26478,7 @@
         "type": "Case",
         "url": "/services/data/v42.0/sobjects/Case/500Dm000002IyqOIAS"
       },
-      "LastModifiedDate": "2023-03-09T13:48:14.000+0000",
+      "LastModifiedDate": "2023-03-21T23:42:30.000+0000",
       "OwnerId": "005Dm000001m0DaIAI",
       "IsStopped": false
     },
@@ -26513,7 +26513,7 @@
         "type": "Case",
         "url": "/services/data/v42.0/sobjects/Case/500Dm000002IyqPIAS"
       },
-      "LastModifiedDate": "2023-03-09T13:48:14.000+0000",
+      "LastModifiedDate": "2023-03-21T23:42:30.000+0000",
       "OwnerId": "005Dm000001m0DaIAI",
       "IsStopped": false
     },
@@ -26548,7 +26548,7 @@
         "type": "Case",
         "url": "/services/data/v42.0/sobjects/Case/500Dm000002IyqQIAS"
       },
-      "LastModifiedDate": "2023-03-09T13:48:14.000+0000",
+      "LastModifiedDate": "2023-03-21T23:42:30.000+0000",
       "OwnerId": "005Dm000001m0DaIAI",
       "IsStopped": false
     },
@@ -26570,7 +26570,7 @@
       "Description": null,
       "IsEscalated": true,
       "EngineeringReqNumber__c": null,
-      "Product__c": null,
+      "Product__c": "GC5040",
       "PotentialLiability__c": null,
       "CSAT__c": 105,
       "Case_ExternalId__c": "30a42480t",
@@ -26583,7 +26583,7 @@
         "type": "Case",
         "url": "/services/data/v42.0/sobjects/Case/500Dm000002IyqRIAS"
       },
-      "LastModifiedDate": "2023-03-09T13:48:14.000+0000",
+      "LastModifiedDate": "2023-03-21T23:42:30.000+0000",
       "OwnerId": "005Dm000001m0DaIAI",
       "IsStopped": false
     },
@@ -26618,7 +26618,7 @@
         "type": "Case",
         "url": "/services/data/v42.0/sobjects/Case/500Dm000002IyqSIAS"
       },
-      "LastModifiedDate": "2023-03-09T13:48:14.000+0000",
+      "LastModifiedDate": "2023-03-21T23:42:30.000+0000",
       "OwnerId": "005Dm000001m0DaIAI",
       "IsStopped": false
     },
@@ -26653,7 +26653,7 @@
         "type": "Case",
         "url": "/services/data/v42.0/sobjects/Case/500Dm000002IyqTIAS"
       },
-      "LastModifiedDate": "2023-03-09T13:48:14.000+0000",
+      "LastModifiedDate": "2023-03-21T23:42:30.000+0000",
       "OwnerId": "005Dm000001m0DaIAI",
       "IsStopped": false
     },
@@ -26688,7 +26688,7 @@
         "type": "Case",
         "url": "/services/data/v42.0/sobjects/Case/500Dm000002IyqUIAS"
       },
-      "LastModifiedDate": "2023-03-09T13:48:14.000+0000",
+      "LastModifiedDate": "2023-03-21T23:42:30.000+0000",
       "OwnerId": "005Dm000001m0DaIAI",
       "IsStopped": false
     },
@@ -26723,7 +26723,7 @@
         "type": "Case",
         "url": "/services/data/v42.0/sobjects/Case/500Dm000002IyqVIAS"
       },
-      "LastModifiedDate": "2023-03-09T13:48:14.000+0000",
+      "LastModifiedDate": "2023-03-21T23:42:30.000+0000",
       "OwnerId": "005Dm000001m0DaIAI",
       "IsStopped": false
     },
@@ -26758,7 +26758,7 @@
         "type": "Case",
         "url": "/services/data/v42.0/sobjects/Case/500Dm000002IyqWIAS"
       },
-      "LastModifiedDate": "2023-03-09T13:48:14.000+0000",
+      "LastModifiedDate": "2023-03-21T23:42:30.000+0000",
       "OwnerId": "005Dm000001m0DaIAI",
       "IsStopped": false
     },
@@ -26793,7 +26793,7 @@
         "type": "Case",
         "url": "/services/data/v42.0/sobjects/Case/500Dm000002IyqXIAS"
       },
-      "LastModifiedDate": "2023-03-09T13:48:14.000+0000",
+      "LastModifiedDate": "2023-03-21T23:42:30.000+0000",
       "OwnerId": "005Dm000001m0DaIAI",
       "IsStopped": false
     },
@@ -26815,7 +26815,7 @@
       "Description": null,
       "IsEscalated": true,
       "EngineeringReqNumber__c": null,
-      "Product__c": null,
+      "Product__c": "GC5020",
       "PotentialLiability__c": null,
       "CSAT__c": 105,
       "Case_ExternalId__c": "r1inaoyfy",
@@ -26828,7 +26828,7 @@
         "type": "Case",
         "url": "/services/data/v42.0/sobjects/Case/500Dm000002IyqYIAS"
       },
-      "LastModifiedDate": "2023-03-09T13:48:14.000+0000",
+      "LastModifiedDate": "2023-03-21T23:42:30.000+0000",
       "OwnerId": "005Dm000001m0DaIAI",
       "IsStopped": false
     },
@@ -26863,7 +26863,7 @@
         "type": "Case",
         "url": "/services/data/v42.0/sobjects/Case/500Dm000002IyrrIAC"
       },
-      "LastModifiedDate": "2023-03-09T13:48:14.000+0000",
+      "LastModifiedDate": "2023-03-21T23:42:30.000+0000",
       "OwnerId": "005Dm000001m0DaIAI",
       "IsStopped": false
     },
@@ -26885,7 +26885,7 @@
       "Description": null,
       "IsEscalated": true,
       "EngineeringReqNumber__c": null,
-      "Product__c": null,
+      "Product__c": "GC3020",
       "PotentialLiability__c": null,
       "CSAT__c": 105,
       "Case_ExternalId__c": "ussyvy2i4",
@@ -26898,7 +26898,7 @@
         "type": "Case",
         "url": "/services/data/v42.0/sobjects/Case/500Dm000002IyrsIAC"
       },
-      "LastModifiedDate": "2023-03-09T13:48:14.000+0000",
+      "LastModifiedDate": "2023-03-21T23:42:30.000+0000",
       "OwnerId": "005Dm000001m0DaIAI",
       "IsStopped": false
     },
@@ -26933,7 +26933,7 @@
         "type": "Case",
         "url": "/services/data/v42.0/sobjects/Case/500Dm000002IyrtIAC"
       },
-      "LastModifiedDate": "2023-03-09T13:48:14.000+0000",
+      "LastModifiedDate": "2023-03-21T23:42:30.000+0000",
       "OwnerId": "005Dm000001m0DaIAI",
       "IsStopped": false
     },
@@ -26968,7 +26968,7 @@
         "type": "Case",
         "url": "/services/data/v42.0/sobjects/Case/500Dm000002IyruIAC"
       },
-      "LastModifiedDate": "2023-03-09T13:48:14.000+0000",
+      "LastModifiedDate": "2023-03-21T23:42:30.000+0000",
       "OwnerId": "005Dm000001m0DaIAI",
       "IsStopped": false
     },
@@ -27003,7 +27003,7 @@
         "type": "Case",
         "url": "/services/data/v42.0/sobjects/Case/500Dm000002IyrvIAC"
       },
-      "LastModifiedDate": "2023-03-09T13:48:14.000+0000",
+      "LastModifiedDate": "2023-03-21T23:42:30.000+0000",
       "OwnerId": "005Dm000001m0DaIAI",
       "IsStopped": false
     },
@@ -27038,7 +27038,7 @@
         "type": "Case",
         "url": "/services/data/v42.0/sobjects/Case/500Dm000002IyrwIAC"
       },
-      "LastModifiedDate": "2023-03-09T13:48:14.000+0000",
+      "LastModifiedDate": "2023-03-21T23:42:30.000+0000",
       "OwnerId": "005Dm000001m0DaIAI",
       "IsStopped": false
     },
@@ -27073,7 +27073,7 @@
         "type": "Case",
         "url": "/services/data/v42.0/sobjects/Case/500Dm000002IyrxIAC"
       },
-      "LastModifiedDate": "2023-03-09T13:48:14.000+0000",
+      "LastModifiedDate": "2023-03-21T23:42:30.000+0000",
       "OwnerId": "005Dm000001m0DaIAI",
       "IsStopped": false
     },
@@ -27108,7 +27108,7 @@
         "type": "Case",
         "url": "/services/data/v42.0/sobjects/Case/500Dm000002IyryIAC"
       },
-      "LastModifiedDate": "2023-03-09T13:48:14.000+0000",
+      "LastModifiedDate": "2023-03-21T23:42:30.000+0000",
       "OwnerId": "005Dm000001m0DaIAI",
       "IsStopped": false
     },
@@ -27143,7 +27143,7 @@
         "type": "Case",
         "url": "/services/data/v42.0/sobjects/Case/500Dm000002IyrzIAC"
       },
-      "LastModifiedDate": "2023-03-09T13:48:14.000+0000",
+      "LastModifiedDate": "2023-03-21T23:42:30.000+0000",
       "OwnerId": "005Dm000001m0DaIAI",
       "IsStopped": false
     },
@@ -27178,7 +27178,7 @@
         "type": "Case",
         "url": "/services/data/v42.0/sobjects/Case/500Dm000002Iys0IAC"
       },
-      "LastModifiedDate": "2023-03-09T13:48:14.000+0000",
+      "LastModifiedDate": "2023-03-21T23:42:30.000+0000",
       "OwnerId": "005Dm000001m0DaIAI",
       "IsStopped": false
     },
@@ -27213,7 +27213,7 @@
         "type": "Case",
         "url": "/services/data/v42.0/sobjects/Case/500Dm000002Iys1IAC"
       },
-      "LastModifiedDate": "2023-03-09T13:48:14.000+0000",
+      "LastModifiedDate": "2023-03-21T23:42:30.000+0000",
       "OwnerId": "005Dm000001m0DaIAI",
       "IsStopped": false
     },
@@ -27248,7 +27248,7 @@
         "type": "Case",
         "url": "/services/data/v42.0/sobjects/Case/500Dm000002Iys2IAC"
       },
-      "LastModifiedDate": "2023-03-09T13:48:14.000+0000",
+      "LastModifiedDate": "2023-03-21T23:42:30.000+0000",
       "OwnerId": "005Dm000001m0DaIAI",
       "IsStopped": false
     },
@@ -27283,7 +27283,7 @@
         "type": "Case",
         "url": "/services/data/v42.0/sobjects/Case/500Dm000002Iys3IAC"
       },
-      "LastModifiedDate": "2023-03-09T13:48:14.000+0000",
+      "LastModifiedDate": "2023-03-21T23:42:30.000+0000",
       "OwnerId": "005Dm000001m0DaIAI",
       "IsStopped": false
     },
@@ -27318,7 +27318,7 @@
         "type": "Case",
         "url": "/services/data/v42.0/sobjects/Case/500Dm000002Iys4IAC"
       },
-      "LastModifiedDate": "2023-03-09T13:48:14.000+0000",
+      "LastModifiedDate": "2023-03-21T23:42:30.000+0000",
       "OwnerId": "005Dm000001m0DaIAI",
       "IsStopped": false
     },
@@ -27353,7 +27353,7 @@
         "type": "Case",
         "url": "/services/data/v42.0/sobjects/Case/500Dm000002Iys5IAC"
       },
-      "LastModifiedDate": "2023-03-09T13:48:14.000+0000",
+      "LastModifiedDate": "2023-03-21T23:42:30.000+0000",
       "OwnerId": "005Dm000001m0DaIAI",
       "IsStopped": false
     },
@@ -27388,7 +27388,7 @@
         "type": "Case",
         "url": "/services/data/v42.0/sobjects/Case/500Dm000002Iys6IAC"
       },
-      "LastModifiedDate": "2023-03-09T13:48:14.000+0000",
+      "LastModifiedDate": "2023-03-21T23:42:30.000+0000",
       "OwnerId": "005Dm000001m0DaIAI",
       "IsStopped": false
     },
@@ -27423,7 +27423,7 @@
         "type": "Case",
         "url": "/services/data/v42.0/sobjects/Case/500Dm000002Iys7IAC"
       },
-      "LastModifiedDate": "2023-03-09T13:48:14.000+0000",
+      "LastModifiedDate": "2023-03-21T23:42:30.000+0000",
       "OwnerId": "005Dm000001m0DaIAI",
       "IsStopped": false
     },
@@ -27458,7 +27458,7 @@
         "type": "Case",
         "url": "/services/data/v42.0/sobjects/Case/500Dm000002Iys8IAC"
       },
-      "LastModifiedDate": "2023-03-09T13:48:14.000+0000",
+      "LastModifiedDate": "2023-03-21T23:42:30.000+0000",
       "OwnerId": "005Dm000001m0DaIAI",
       "IsStopped": false
     },
@@ -27493,7 +27493,7 @@
         "type": "Case",
         "url": "/services/data/v42.0/sobjects/Case/500Dm000002Iys9IAC"
       },
-      "LastModifiedDate": "2023-03-09T13:48:14.000+0000",
+      "LastModifiedDate": "2023-03-21T23:42:30.000+0000",
       "OwnerId": "005Dm000001m0DaIAI",
       "IsStopped": false
     },
@@ -27528,7 +27528,7 @@
         "type": "Case",
         "url": "/services/data/v42.0/sobjects/Case/500Dm000002IysAIAS"
       },
-      "LastModifiedDate": "2023-03-09T13:48:14.000+0000",
+      "LastModifiedDate": "2023-03-21T23:42:30.000+0000",
       "OwnerId": "005Dm000001m0DaIAI",
       "IsStopped": false
     },
@@ -27550,7 +27550,7 @@
       "Description": null,
       "IsEscalated": true,
       "EngineeringReqNumber__c": null,
-      "Product__c": null,
+      "Product__c": "GC5020",
       "PotentialLiability__c": null,
       "CSAT__c": 105,
       "Case_ExternalId__c": "apq60aa5j",
@@ -27563,7 +27563,7 @@
         "type": "Case",
         "url": "/services/data/v42.0/sobjects/Case/500Dm000002IysBIAS"
       },
-      "LastModifiedDate": "2023-03-09T13:48:14.000+0000",
+      "LastModifiedDate": "2023-03-21T23:42:30.000+0000",
       "OwnerId": "005Dm000001m0DaIAI",
       "IsStopped": false
     },
@@ -27598,7 +27598,7 @@
         "type": "Case",
         "url": "/services/data/v42.0/sobjects/Case/500Dm000002IysCIAS"
       },
-      "LastModifiedDate": "2023-03-09T13:48:14.000+0000",
+      "LastModifiedDate": "2023-03-21T23:42:30.000+0000",
       "OwnerId": "005Dm000001m0DaIAI",
       "IsStopped": false
     },
@@ -27633,7 +27633,7 @@
         "type": "Case",
         "url": "/services/data/v42.0/sobjects/Case/500Dm000002IysDIAS"
       },
-      "LastModifiedDate": "2023-03-09T13:48:14.000+0000",
+      "LastModifiedDate": "2023-03-21T23:42:30.000+0000",
       "OwnerId": "005Dm000001m0DaIAI",
       "IsStopped": false
     },
@@ -27668,7 +27668,7 @@
         "type": "Case",
         "url": "/services/data/v42.0/sobjects/Case/500Dm000002IysEIAS"
       },
-      "LastModifiedDate": "2023-03-09T13:48:14.000+0000",
+      "LastModifiedDate": "2023-03-21T23:42:30.000+0000",
       "OwnerId": "005Dm000001m0DaIAI",
       "IsStopped": false
     },
@@ -27703,7 +27703,7 @@
         "type": "Case",
         "url": "/services/data/v42.0/sobjects/Case/500Dm000002IysFIAS"
       },
-      "LastModifiedDate": "2023-03-09T13:48:14.000+0000",
+      "LastModifiedDate": "2023-03-21T23:42:30.000+0000",
       "OwnerId": "005Dm000001m0DaIAI",
       "IsStopped": false
     },
@@ -27738,7 +27738,7 @@
         "type": "Case",
         "url": "/services/data/v42.0/sobjects/Case/500Dm000002IysGIAS"
       },
-      "LastModifiedDate": "2023-03-09T13:48:14.000+0000",
+      "LastModifiedDate": "2023-03-21T23:42:30.000+0000",
       "OwnerId": "005Dm000001m0DaIAI",
       "IsStopped": false
     },
@@ -27773,7 +27773,7 @@
         "type": "Case",
         "url": "/services/data/v42.0/sobjects/Case/500Dm000002IysHIAS"
       },
-      "LastModifiedDate": "2023-03-09T13:48:14.000+0000",
+      "LastModifiedDate": "2023-03-21T23:42:30.000+0000",
       "OwnerId": "005Dm000001m0DaIAI",
       "IsStopped": false
     },
@@ -27808,7 +27808,7 @@
         "type": "Case",
         "url": "/services/data/v42.0/sobjects/Case/500Dm000002IysIIAS"
       },
-      "LastModifiedDate": "2023-03-09T13:48:14.000+0000",
+      "LastModifiedDate": "2023-03-21T23:42:30.000+0000",
       "OwnerId": "005Dm000001m0DaIAI",
       "IsStopped": false
     },
@@ -27843,7 +27843,7 @@
         "type": "Case",
         "url": "/services/data/v42.0/sobjects/Case/500Dm000002IysJIAS"
       },
-      "LastModifiedDate": "2023-03-09T13:48:14.000+0000",
+      "LastModifiedDate": "2023-03-21T23:42:30.000+0000",
       "OwnerId": "005Dm000001m0DaIAI",
       "IsStopped": false
     },
@@ -27878,7 +27878,7 @@
         "type": "Case",
         "url": "/services/data/v42.0/sobjects/Case/500Dm000002IysKIAS"
       },
-      "LastModifiedDate": "2023-03-09T13:48:14.000+0000",
+      "LastModifiedDate": "2023-03-21T23:42:30.000+0000",
       "OwnerId": "005Dm000001m0DaIAI",
       "IsStopped": false
     },
@@ -27913,7 +27913,7 @@
         "type": "Case",
         "url": "/services/data/v42.0/sobjects/Case/500Dm000002IysLIAS"
       },
-      "LastModifiedDate": "2023-03-09T13:48:14.000+0000",
+      "LastModifiedDate": "2023-03-21T23:42:30.000+0000",
       "OwnerId": "005Dm000001m0DaIAI",
       "IsStopped": false
     },
@@ -27948,7 +27948,7 @@
         "type": "Case",
         "url": "/services/data/v42.0/sobjects/Case/500Dm000002IysMIAS"
       },
-      "LastModifiedDate": "2023-03-09T13:48:14.000+0000",
+      "LastModifiedDate": "2023-03-21T23:42:30.000+0000",
       "OwnerId": "005Dm000001m0DaIAI",
       "IsStopped": false
     },
@@ -27983,7 +27983,7 @@
         "type": "Case",
         "url": "/services/data/v42.0/sobjects/Case/500Dm000002IysNIAS"
       },
-      "LastModifiedDate": "2023-03-09T13:48:14.000+0000",
+      "LastModifiedDate": "2023-03-21T23:42:30.000+0000",
       "OwnerId": "005Dm000001m0DaIAI",
       "IsStopped": false
     },
@@ -28018,7 +28018,7 @@
         "type": "Case",
         "url": "/services/data/v42.0/sobjects/Case/500Dm000002IysOIAS"
       },
-      "LastModifiedDate": "2023-03-09T13:48:14.000+0000",
+      "LastModifiedDate": "2023-03-21T23:42:30.000+0000",
       "OwnerId": "005Dm000001m0DaIAI",
       "IsStopped": false
     },
@@ -28053,7 +28053,7 @@
         "type": "Case",
         "url": "/services/data/v42.0/sobjects/Case/500Dm000002IysPIAS"
       },
-      "LastModifiedDate": "2023-03-09T13:48:14.000+0000",
+      "LastModifiedDate": "2023-03-21T23:42:30.000+0000",
       "OwnerId": "005Dm000001m0DaIAI",
       "IsStopped": false
     },
@@ -28088,7 +28088,7 @@
         "type": "Case",
         "url": "/services/data/v42.0/sobjects/Case/500Dm000002IysQIAS"
       },
-      "LastModifiedDate": "2023-03-09T13:48:14.000+0000",
+      "LastModifiedDate": "2023-03-21T23:42:30.000+0000",
       "OwnerId": "005Dm000001m0DaIAI",
       "IsStopped": false
     },
@@ -28123,7 +28123,7 @@
         "type": "Case",
         "url": "/services/data/v42.0/sobjects/Case/500Dm000002IysRIAS"
       },
-      "LastModifiedDate": "2023-03-09T13:48:14.000+0000",
+      "LastModifiedDate": "2023-03-21T23:42:30.000+0000",
       "OwnerId": "005Dm000001m0DaIAI",
       "IsStopped": false
     },
@@ -28158,7 +28158,7 @@
         "type": "Case",
         "url": "/services/data/v42.0/sobjects/Case/500Dm000002IysSIAS"
       },
-      "LastModifiedDate": "2023-03-09T13:48:14.000+0000",
+      "LastModifiedDate": "2023-03-21T23:42:30.000+0000",
       "OwnerId": "005Dm000001m0DaIAI",
       "IsStopped": false
     },
@@ -28193,7 +28193,7 @@
         "type": "Case",
         "url": "/services/data/v42.0/sobjects/Case/500Dm000002IysTIAS"
       },
-      "LastModifiedDate": "2023-03-09T13:48:14.000+0000",
+      "LastModifiedDate": "2023-03-21T23:42:30.000+0000",
       "OwnerId": "005Dm000001m0DaIAI",
       "IsStopped": false
     },
@@ -28228,7 +28228,7 @@
         "type": "Case",
         "url": "/services/data/v42.0/sobjects/Case/500Dm000002IysUIAS"
       },
-      "LastModifiedDate": "2023-03-09T13:48:14.000+0000",
+      "LastModifiedDate": "2023-03-21T23:42:30.000+0000",
       "OwnerId": "005Dm000001m0DaIAI",
       "IsStopped": false
     },
@@ -28263,7 +28263,7 @@
         "type": "Case",
         "url": "/services/data/v42.0/sobjects/Case/500Dm000002IysVIAS"
       },
-      "LastModifiedDate": "2023-03-09T13:48:17.000+0000",
+      "LastModifiedDate": "2023-03-21T23:42:30.000+0000",
       "OwnerId": "005Dm000001m0DaIAI",
       "IsStopped": false
     },
@@ -28298,7 +28298,7 @@
         "type": "Case",
         "url": "/services/data/v42.0/sobjects/Case/500Dm000002IysWIAS"
       },
-      "LastModifiedDate": "2023-03-09T13:48:17.000+0000",
+      "LastModifiedDate": "2023-03-21T23:42:30.000+0000",
       "OwnerId": "005Dm000001m0DaIAI",
       "IsStopped": false
     },
@@ -28333,7 +28333,7 @@
         "type": "Case",
         "url": "/services/data/v42.0/sobjects/Case/500Dm000002IysXIAS"
       },
-      "LastModifiedDate": "2023-03-09T13:48:17.000+0000",
+      "LastModifiedDate": "2023-03-21T23:42:30.000+0000",
       "OwnerId": "005Dm000001m0DaIAI",
       "IsStopped": false
     },
@@ -28368,7 +28368,7 @@
         "type": "Case",
         "url": "/services/data/v42.0/sobjects/Case/500Dm000002IysYIAS"
       },
-      "LastModifiedDate": "2023-03-09T13:48:17.000+0000",
+      "LastModifiedDate": "2023-03-21T23:42:30.000+0000",
       "OwnerId": "005Dm000001m0DaIAI",
       "IsStopped": false
     },
@@ -28403,7 +28403,7 @@
         "type": "Case",
         "url": "/services/data/v42.0/sobjects/Case/500Dm000002IysZIAS"
       },
-      "LastModifiedDate": "2023-03-09T13:48:17.000+0000",
+      "LastModifiedDate": "2023-03-21T23:42:30.000+0000",
       "OwnerId": "005Dm000001m0DaIAI",
       "IsStopped": false
     },
@@ -28425,7 +28425,7 @@
       "Description": null,
       "IsEscalated": true,
       "EngineeringReqNumber__c": null,
-      "Product__c": null,
+      "Product__c": "GC5040",
       "PotentialLiability__c": null,
       "CSAT__c": 105,
       "Case_ExternalId__c": "cv9wm1jf0",
@@ -28438,7 +28438,7 @@
         "type": "Case",
         "url": "/services/data/v42.0/sobjects/Case/500Dm000002IysaIAC"
       },
-      "LastModifiedDate": "2023-03-09T13:48:17.000+0000",
+      "LastModifiedDate": "2023-03-21T23:42:30.000+0000",
       "OwnerId": "005Dm000001m0DaIAI",
       "IsStopped": false
     },
@@ -28473,7 +28473,7 @@
         "type": "Case",
         "url": "/services/data/v42.0/sobjects/Case/500Dm000002IysbIAC"
       },
-      "LastModifiedDate": "2023-03-09T13:48:17.000+0000",
+      "LastModifiedDate": "2023-03-21T23:42:30.000+0000",
       "OwnerId": "005Dm000001m0DaIAI",
       "IsStopped": false
     },
@@ -28508,7 +28508,7 @@
         "type": "Case",
         "url": "/services/data/v42.0/sobjects/Case/500Dm000002IyscIAC"
       },
-      "LastModifiedDate": "2023-03-09T13:48:17.000+0000",
+      "LastModifiedDate": "2023-03-21T23:42:30.000+0000",
       "OwnerId": "005Dm000001m0DaIAI",
       "IsStopped": false
     },
@@ -28543,7 +28543,7 @@
         "type": "Case",
         "url": "/services/data/v42.0/sobjects/Case/500Dm000002IysdIAC"
       },
-      "LastModifiedDate": "2023-03-09T13:48:17.000+0000",
+      "LastModifiedDate": "2023-03-21T23:42:30.000+0000",
       "OwnerId": "005Dm000001m0DaIAI",
       "IsStopped": false
     },
@@ -28578,7 +28578,7 @@
         "type": "Case",
         "url": "/services/data/v42.0/sobjects/Case/500Dm000002IyseIAC"
       },
-      "LastModifiedDate": "2023-03-09T13:48:17.000+0000",
+      "LastModifiedDate": "2023-03-21T23:42:30.000+0000",
       "OwnerId": "005Dm000001m0DaIAI",
       "IsStopped": false
     },
@@ -28613,7 +28613,7 @@
         "type": "Case",
         "url": "/services/data/v42.0/sobjects/Case/500Dm000002IysfIAC"
       },
-      "LastModifiedDate": "2023-03-09T13:48:17.000+0000",
+      "LastModifiedDate": "2023-03-21T23:42:30.000+0000",
       "OwnerId": "005Dm000001m0DaIAI",
       "IsStopped": false
     },
@@ -28648,7 +28648,7 @@
         "type": "Case",
         "url": "/services/data/v42.0/sobjects/Case/500Dm000002IysgIAC"
       },
-      "LastModifiedDate": "2023-03-09T13:48:17.000+0000",
+      "LastModifiedDate": "2023-03-21T23:42:30.000+0000",
       "OwnerId": "005Dm000001m0DaIAI",
       "IsStopped": false
     },
@@ -28683,7 +28683,7 @@
         "type": "Case",
         "url": "/services/data/v42.0/sobjects/Case/500Dm000002IyshIAC"
       },
-      "LastModifiedDate": "2023-03-09T13:48:17.000+0000",
+      "LastModifiedDate": "2023-03-21T23:42:30.000+0000",
       "OwnerId": "005Dm000001m0DaIAI",
       "IsStopped": false
     },
@@ -28718,7 +28718,7 @@
         "type": "Case",
         "url": "/services/data/v42.0/sobjects/Case/500Dm000002IysiIAC"
       },
-      "LastModifiedDate": "2023-03-09T13:48:17.000+0000",
+      "LastModifiedDate": "2023-03-21T23:42:30.000+0000",
       "OwnerId": "005Dm000001m0DaIAI",
       "IsStopped": false
     },
@@ -28753,7 +28753,7 @@
         "type": "Case",
         "url": "/services/data/v42.0/sobjects/Case/500Dm000002IysjIAC"
       },
-      "LastModifiedDate": "2023-03-09T13:48:17.000+0000",
+      "LastModifiedDate": "2023-03-21T23:42:30.000+0000",
       "OwnerId": "005Dm000001m0DaIAI",
       "IsStopped": false
     },
@@ -28788,7 +28788,7 @@
         "type": "Case",
         "url": "/services/data/v42.0/sobjects/Case/500Dm000002IyskIAC"
       },
-      "LastModifiedDate": "2023-03-09T13:48:17.000+0000",
+      "LastModifiedDate": "2023-03-21T23:42:30.000+0000",
       "OwnerId": "005Dm000001m0DaIAI",
       "IsStopped": false
     },
@@ -28823,7 +28823,7 @@
         "type": "Case",
         "url": "/services/data/v42.0/sobjects/Case/500Dm000002IyslIAC"
       },
-      "LastModifiedDate": "2023-03-09T13:48:17.000+0000",
+      "LastModifiedDate": "2023-03-21T23:42:30.000+0000",
       "OwnerId": "005Dm000001m0DaIAI",
       "IsStopped": false
     },
@@ -28858,7 +28858,7 @@
         "type": "Case",
         "url": "/services/data/v42.0/sobjects/Case/500Dm000002IysmIAC"
       },
-      "LastModifiedDate": "2023-03-09T13:48:17.000+0000",
+      "LastModifiedDate": "2023-03-21T23:42:30.000+0000",
       "OwnerId": "005Dm000001m0DaIAI",
       "IsStopped": false
     },
@@ -28893,7 +28893,7 @@
         "type": "Case",
         "url": "/services/data/v42.0/sobjects/Case/500Dm000002IysnIAC"
       },
-      "LastModifiedDate": "2023-03-09T13:48:17.000+0000",
+      "LastModifiedDate": "2023-03-21T23:42:30.000+0000",
       "OwnerId": "005Dm000001m0DaIAI",
       "IsStopped": false
     },
@@ -28928,7 +28928,7 @@
         "type": "Case",
         "url": "/services/data/v42.0/sobjects/Case/500Dm000002IysoIAC"
       },
-      "LastModifiedDate": "2023-03-09T13:48:17.000+0000",
+      "LastModifiedDate": "2023-03-21T23:42:30.000+0000",
       "OwnerId": "005Dm000001m0DaIAI",
       "IsStopped": false
     },
@@ -28963,7 +28963,7 @@
         "type": "Case",
         "url": "/services/data/v42.0/sobjects/Case/500Dm000002Iyu3IAC"
       },
-      "LastModifiedDate": "2023-03-09T13:48:17.000+0000",
+      "LastModifiedDate": "2023-03-21T23:42:30.000+0000",
       "OwnerId": "005Dm000001m0DaIAI",
       "IsStopped": false
     },
@@ -28998,7 +28998,7 @@
         "type": "Case",
         "url": "/services/data/v42.0/sobjects/Case/500Dm000002Iyu4IAC"
       },
-      "LastModifiedDate": "2023-03-09T13:48:17.000+0000",
+      "LastModifiedDate": "2023-03-21T23:42:30.000+0000",
       "OwnerId": "005Dm000001m0DaIAI",
       "IsStopped": false
     },
@@ -29033,7 +29033,7 @@
         "type": "Case",
         "url": "/services/data/v42.0/sobjects/Case/500Dm000002Iyu5IAC"
       },
-      "LastModifiedDate": "2023-03-09T13:48:17.000+0000",
+      "LastModifiedDate": "2023-03-21T23:42:30.000+0000",
       "OwnerId": "005Dm000001m0DaIAI",
       "IsStopped": false
     },
@@ -29055,7 +29055,7 @@
       "Description": null,
       "IsEscalated": true,
       "EngineeringReqNumber__c": null,
-      "Product__c": null,
+      "Product__c": "GC3060",
       "PotentialLiability__c": null,
       "CSAT__c": 105,
       "Case_ExternalId__c": "76iv6qnug",
@@ -29068,7 +29068,7 @@
         "type": "Case",
         "url": "/services/data/v42.0/sobjects/Case/500Dm000002Iyu6IAC"
       },
-      "LastModifiedDate": "2023-03-09T13:48:17.000+0000",
+      "LastModifiedDate": "2023-03-21T23:42:30.000+0000",
       "OwnerId": "005Dm000001m0DaIAI",
       "IsStopped": false
     },
@@ -29103,7 +29103,7 @@
         "type": "Case",
         "url": "/services/data/v42.0/sobjects/Case/500Dm000002Iyu7IAC"
       },
-      "LastModifiedDate": "2023-03-09T13:48:17.000+0000",
+      "LastModifiedDate": "2023-03-21T23:42:30.000+0000",
       "OwnerId": "005Dm000001m0DaIAI",
       "IsStopped": false
     },
@@ -29138,7 +29138,7 @@
         "type": "Case",
         "url": "/services/data/v42.0/sobjects/Case/500Dm000002Iyu8IAC"
       },
-      "LastModifiedDate": "2023-03-09T13:48:17.000+0000",
+      "LastModifiedDate": "2023-03-21T23:42:30.000+0000",
       "OwnerId": "005Dm000001m0DaIAI",
       "IsStopped": false
     },
@@ -29173,7 +29173,7 @@
         "type": "Case",
         "url": "/services/data/v42.0/sobjects/Case/500Dm000002Iyu9IAC"
       },
-      "LastModifiedDate": "2023-03-09T13:48:17.000+0000",
+      "LastModifiedDate": "2023-03-21T23:42:30.000+0000",
       "OwnerId": "005Dm000001m0DaIAI",
       "IsStopped": false
     },
@@ -29208,7 +29208,7 @@
         "type": "Case",
         "url": "/services/data/v42.0/sobjects/Case/500Dm000002IyuAIAS"
       },
-      "LastModifiedDate": "2023-03-09T13:48:17.000+0000",
+      "LastModifiedDate": "2023-03-21T23:42:30.000+0000",
       "OwnerId": "005Dm000001m0DaIAI",
       "IsStopped": false
     },
@@ -29243,7 +29243,7 @@
         "type": "Case",
         "url": "/services/data/v42.0/sobjects/Case/500Dm000002IyuBIAS"
       },
-      "LastModifiedDate": "2023-03-09T13:48:17.000+0000",
+      "LastModifiedDate": "2023-03-21T23:42:30.000+0000",
       "OwnerId": "005Dm000001m0DaIAI",
       "IsStopped": false
     },
@@ -29278,7 +29278,7 @@
         "type": "Case",
         "url": "/services/data/v42.0/sobjects/Case/500Dm000002IyuCIAS"
       },
-      "LastModifiedDate": "2023-03-09T13:48:17.000+0000",
+      "LastModifiedDate": "2023-03-21T23:42:30.000+0000",
       "OwnerId": "005Dm000001m0DaIAI",
       "IsStopped": false
     },
@@ -29313,7 +29313,7 @@
         "type": "Case",
         "url": "/services/data/v42.0/sobjects/Case/500Dm000002IyuDIAS"
       },
-      "LastModifiedDate": "2023-03-09T13:48:17.000+0000",
+      "LastModifiedDate": "2023-03-21T23:42:30.000+0000",
       "OwnerId": "005Dm000001m0DaIAI",
       "IsStopped": false
     },
@@ -29348,7 +29348,7 @@
         "type": "Case",
         "url": "/services/data/v42.0/sobjects/Case/500Dm000002IyuEIAS"
       },
-      "LastModifiedDate": "2023-03-09T13:48:17.000+0000",
+      "LastModifiedDate": "2023-03-21T23:42:30.000+0000",
       "OwnerId": "005Dm000001m0DaIAI",
       "IsStopped": false
     },
@@ -29383,7 +29383,7 @@
         "type": "Case",
         "url": "/services/data/v42.0/sobjects/Case/500Dm000002IyuFIAS"
       },
-      "LastModifiedDate": "2023-03-09T13:48:17.000+0000",
+      "LastModifiedDate": "2023-03-21T23:42:30.000+0000",
       "OwnerId": "005Dm000001m0DaIAI",
       "IsStopped": false
     },
@@ -29418,7 +29418,7 @@
         "type": "Case",
         "url": "/services/data/v42.0/sobjects/Case/500Dm000002IyuGIAS"
       },
-      "LastModifiedDate": "2023-03-09T13:48:17.000+0000",
+      "LastModifiedDate": "2023-03-21T23:42:30.000+0000",
       "OwnerId": "005Dm000001m0DaIAI",
       "IsStopped": false
     },
@@ -29453,7 +29453,7 @@
         "type": "Case",
         "url": "/services/data/v42.0/sobjects/Case/500Dm000002IyuHIAS"
       },
-      "LastModifiedDate": "2023-03-09T13:48:17.000+0000",
+      "LastModifiedDate": "2023-03-21T23:42:30.000+0000",
       "OwnerId": "005Dm000001m0DaIAI",
       "IsStopped": false
     },
@@ -29488,7 +29488,7 @@
         "type": "Case",
         "url": "/services/data/v42.0/sobjects/Case/500Dm000002IyuIIAS"
       },
-      "LastModifiedDate": "2023-03-09T13:48:17.000+0000",
+      "LastModifiedDate": "2023-03-21T23:42:30.000+0000",
       "OwnerId": "005Dm000001m0DaIAI",
       "IsStopped": false
     },
@@ -29523,7 +29523,7 @@
         "type": "Case",
         "url": "/services/data/v42.0/sobjects/Case/500Dm000002IyuJIAS"
       },
-      "LastModifiedDate": "2023-03-09T13:48:17.000+0000",
+      "LastModifiedDate": "2023-03-21T23:42:30.000+0000",
       "OwnerId": "005Dm000001m0DaIAI",
       "IsStopped": false
     },
@@ -29558,7 +29558,7 @@
         "type": "Case",
         "url": "/services/data/v42.0/sobjects/Case/500Dm000002IyuKIAS"
       },
-      "LastModifiedDate": "2023-03-09T13:48:17.000+0000",
+      "LastModifiedDate": "2023-03-21T23:42:30.000+0000",
       "OwnerId": "005Dm000001m0DaIAI",
       "IsStopped": false
     },
@@ -29593,7 +29593,7 @@
         "type": "Case",
         "url": "/services/data/v42.0/sobjects/Case/500Dm000002IyuLIAS"
       },
-      "LastModifiedDate": "2023-03-09T13:48:17.000+0000",
+      "LastModifiedDate": "2023-03-21T23:42:30.000+0000",
       "OwnerId": "005Dm000001m0DaIAI",
       "IsStopped": false
     },
@@ -29628,7 +29628,7 @@
         "type": "Case",
         "url": "/services/data/v42.0/sobjects/Case/500Dm000002IyuMIAS"
       },
-      "LastModifiedDate": "2023-03-09T13:48:17.000+0000",
+      "LastModifiedDate": "2023-03-21T23:42:30.000+0000",
       "OwnerId": "005Dm000001m0DaIAI",
       "IsStopped": false
     },
@@ -29650,7 +29650,7 @@
       "Description": null,
       "IsEscalated": true,
       "EngineeringReqNumber__c": null,
-      "Product__c": null,
+      "Product__c": "GC3060",
       "PotentialLiability__c": null,
       "CSAT__c": 105,
       "Case_ExternalId__c": "rygr8r1ia",
@@ -29663,7 +29663,7 @@
         "type": "Case",
         "url": "/services/data/v42.0/sobjects/Case/500Dm000002IyuNIAS"
       },
-      "LastModifiedDate": "2023-03-09T13:48:17.000+0000",
+      "LastModifiedDate": "2023-03-21T23:42:30.000+0000",
       "OwnerId": "005Dm000001m0DaIAI",
       "IsStopped": false
     },
@@ -29698,7 +29698,7 @@
         "type": "Case",
         "url": "/services/data/v42.0/sobjects/Case/500Dm000002IyuOIAS"
       },
-      "LastModifiedDate": "2023-03-09T13:48:17.000+0000",
+      "LastModifiedDate": "2023-03-21T23:42:30.000+0000",
       "OwnerId": "005Dm000001m0DaIAI",
       "IsStopped": false
     },
@@ -29720,7 +29720,7 @@
       "Description": null,
       "IsEscalated": true,
       "EngineeringReqNumber__c": null,
-      "Product__c": null,
+      "Product__c": "GC1020",
       "PotentialLiability__c": null,
       "CSAT__c": 105,
       "Case_ExternalId__c": "poueqbtgu",
@@ -29733,7 +29733,7 @@
         "type": "Case",
         "url": "/services/data/v42.0/sobjects/Case/500Dm000002IyuPIAS"
       },
-      "LastModifiedDate": "2023-03-09T13:48:17.000+0000",
+      "LastModifiedDate": "2023-03-21T23:42:30.000+0000",
       "OwnerId": "005Dm000001m0DaIAI",
       "IsStopped": false
     },
@@ -29768,7 +29768,7 @@
         "type": "Case",
         "url": "/services/data/v42.0/sobjects/Case/500Dm000002IyuQIAS"
       },
-      "LastModifiedDate": "2023-03-09T13:48:17.000+0000",
+      "LastModifiedDate": "2023-03-21T23:42:30.000+0000",
       "OwnerId": "005Dm000001m0DaIAI",
       "IsStopped": false
     },
@@ -29803,7 +29803,7 @@
         "type": "Case",
         "url": "/services/data/v42.0/sobjects/Case/500Dm000002IyuRIAS"
       },
-      "LastModifiedDate": "2023-03-09T13:48:17.000+0000",
+      "LastModifiedDate": "2023-03-21T23:42:30.000+0000",
       "OwnerId": "005Dm000001m0DaIAI",
       "IsStopped": false
     },
@@ -29838,7 +29838,7 @@
         "type": "Case",
         "url": "/services/data/v42.0/sobjects/Case/500Dm000002IyuSIAS"
       },
-      "LastModifiedDate": "2023-03-09T13:48:17.000+0000",
+      "LastModifiedDate": "2023-03-21T23:42:30.000+0000",
       "OwnerId": "005Dm000001m0DaIAI",
       "IsStopped": false
     },
@@ -29873,7 +29873,7 @@
         "type": "Case",
         "url": "/services/data/v42.0/sobjects/Case/500Dm000002IyuTIAS"
       },
-      "LastModifiedDate": "2023-03-09T13:48:17.000+0000",
+      "LastModifiedDate": "2023-03-21T23:42:30.000+0000",
       "OwnerId": "005Dm000001m0DaIAI",
       "IsStopped": false
     },
@@ -29908,7 +29908,7 @@
         "type": "Case",
         "url": "/services/data/v42.0/sobjects/Case/500Dm000002IyuUIAS"
       },
-      "LastModifiedDate": "2023-03-09T13:48:17.000+0000",
+      "LastModifiedDate": "2023-03-21T23:42:30.000+0000",
       "OwnerId": "005Dm000001m0DaIAI",
       "IsStopped": false
     },
@@ -29943,7 +29943,7 @@
         "type": "Case",
         "url": "/services/data/v42.0/sobjects/Case/500Dm000002IyuVIAS"
       },
-      "LastModifiedDate": "2023-03-09T13:48:17.000+0000",
+      "LastModifiedDate": "2023-03-21T23:42:30.000+0000",
       "OwnerId": "005Dm000001m0DaIAI",
       "IsStopped": false
     },
@@ -29978,7 +29978,7 @@
         "type": "Case",
         "url": "/services/data/v42.0/sobjects/Case/500Dm000002IyuWIAS"
       },
-      "LastModifiedDate": "2023-03-09T13:48:17.000+0000",
+      "LastModifiedDate": "2023-03-21T23:42:30.000+0000",
       "OwnerId": "005Dm000001m0DaIAI",
       "IsStopped": false
     },
@@ -30013,7 +30013,7 @@
         "type": "Case",
         "url": "/services/data/v42.0/sobjects/Case/500Dm000002IyuXIAS"
       },
-      "LastModifiedDate": "2023-03-09T13:48:17.000+0000",
+      "LastModifiedDate": "2023-03-21T23:42:30.000+0000",
       "OwnerId": "005Dm000001m0DaIAI",
       "IsStopped": false
     },
@@ -30035,7 +30035,7 @@
       "Description": null,
       "IsEscalated": true,
       "EngineeringReqNumber__c": null,
-      "Product__c": null,
+      "Product__c": "GC3060",
       "PotentialLiability__c": null,
       "CSAT__c": 105,
       "Case_ExternalId__c": "gs922y7jt",
@@ -30048,7 +30048,7 @@
         "type": "Case",
         "url": "/services/data/v42.0/sobjects/Case/500Dm000002IyuYIAS"
       },
-      "LastModifiedDate": "2023-03-09T13:48:17.000+0000",
+      "LastModifiedDate": "2023-03-21T23:42:30.000+0000",
       "OwnerId": "005Dm000001m0DaIAI",
       "IsStopped": false
     },
@@ -30083,7 +30083,7 @@
         "type": "Case",
         "url": "/services/data/v42.0/sobjects/Case/500Dm000002IyuZIAS"
       },
-      "LastModifiedDate": "2023-03-09T13:48:17.000+0000",
+      "LastModifiedDate": "2023-03-21T23:42:30.000+0000",
       "OwnerId": "005Dm000001m0DaIAI",
       "IsStopped": false
     },
@@ -30118,7 +30118,7 @@
         "type": "Case",
         "url": "/services/data/v42.0/sobjects/Case/500Dm000002IyuaIAC"
       },
-      "LastModifiedDate": "2023-03-09T13:48:17.000+0000",
+      "LastModifiedDate": "2023-03-21T23:42:30.000+0000",
       "OwnerId": "005Dm000001m0DaIAI",
       "IsStopped": false
     },
@@ -30153,7 +30153,7 @@
         "type": "Case",
         "url": "/services/data/v42.0/sobjects/Case/500Dm000002IyubIAC"
       },
-      "LastModifiedDate": "2023-03-09T13:48:17.000+0000",
+      "LastModifiedDate": "2023-03-21T23:42:30.000+0000",
       "OwnerId": "005Dm000001m0DaIAI",
       "IsStopped": false
     },
@@ -30188,7 +30188,7 @@
         "type": "Case",
         "url": "/services/data/v42.0/sobjects/Case/500Dm000002IyucIAC"
       },
-      "LastModifiedDate": "2023-03-09T13:48:17.000+0000",
+      "LastModifiedDate": "2023-03-21T23:42:30.000+0000",
       "OwnerId": "005Dm000001m0DaIAI",
       "IsStopped": false
     },
@@ -30223,7 +30223,7 @@
         "type": "Case",
         "url": "/services/data/v42.0/sobjects/Case/500Dm000002IyudIAC"
       },
-      "LastModifiedDate": "2023-03-09T13:48:17.000+0000",
+      "LastModifiedDate": "2023-03-21T23:42:30.000+0000",
       "OwnerId": "005Dm000001m0DaIAI",
       "IsStopped": false
     },
@@ -30258,7 +30258,7 @@
         "type": "Case",
         "url": "/services/data/v42.0/sobjects/Case/500Dm000002IyueIAC"
       },
-      "LastModifiedDate": "2023-03-09T13:48:17.000+0000",
+      "LastModifiedDate": "2023-03-21T23:42:30.000+0000",
       "OwnerId": "005Dm000001m0DaIAI",
       "IsStopped": false
     },
@@ -30293,7 +30293,7 @@
         "type": "Case",
         "url": "/services/data/v42.0/sobjects/Case/500Dm000002IyufIAC"
       },
-      "LastModifiedDate": "2023-03-09T13:48:17.000+0000",
+      "LastModifiedDate": "2023-03-21T23:42:30.000+0000",
       "OwnerId": "005Dm000001m0DaIAI",
       "IsStopped": false
     },
@@ -30328,7 +30328,7 @@
         "type": "Case",
         "url": "/services/data/v42.0/sobjects/Case/500Dm000002IyugIAC"
       },
-      "LastModifiedDate": "2023-03-09T13:48:17.000+0000",
+      "LastModifiedDate": "2023-03-21T23:42:30.000+0000",
       "OwnerId": "005Dm000001m0DaIAI",
       "IsStopped": false
     },
@@ -30363,7 +30363,7 @@
         "type": "Case",
         "url": "/services/data/v42.0/sobjects/Case/500Dm000002IyuhIAC"
       },
-      "LastModifiedDate": "2023-03-09T13:48:17.000+0000",
+      "LastModifiedDate": "2023-03-21T23:42:30.000+0000",
       "OwnerId": "005Dm000001m0DaIAI",
       "IsStopped": false
     },
@@ -30398,7 +30398,7 @@
         "type": "Case",
         "url": "/services/data/v42.0/sobjects/Case/500Dm000002IyuiIAC"
       },
-      "LastModifiedDate": "2023-03-09T13:48:17.000+0000",
+      "LastModifiedDate": "2023-03-21T23:42:30.000+0000",
       "OwnerId": "005Dm000001m0DaIAI",
       "IsStopped": false
     },
@@ -30420,7 +30420,7 @@
       "Description": null,
       "IsEscalated": true,
       "EngineeringReqNumber__c": null,
-      "Product__c": null,
+      "Product__c": "GC5020",
       "PotentialLiability__c": null,
       "CSAT__c": 105,
       "Case_ExternalId__c": "exbrbbv2p",
@@ -30433,7 +30433,7 @@
         "type": "Case",
         "url": "/services/data/v42.0/sobjects/Case/500Dm000002IyujIAC"
       },
-      "LastModifiedDate": "2023-03-09T13:48:17.000+0000",
+      "LastModifiedDate": "2023-03-21T23:42:30.000+0000",
       "OwnerId": "005Dm000001m0DaIAI",
       "IsStopped": false
     },
@@ -30468,7 +30468,7 @@
         "type": "Case",
         "url": "/services/data/v42.0/sobjects/Case/500Dm000002IyukIAC"
       },
-      "LastModifiedDate": "2023-03-09T13:48:17.000+0000",
+      "LastModifiedDate": "2023-03-21T23:42:30.000+0000",
       "OwnerId": "005Dm000001m0DaIAI",
       "IsStopped": false
     },
@@ -30503,7 +30503,7 @@
         "type": "Case",
         "url": "/services/data/v42.0/sobjects/Case/500Dm000002IyulIAC"
       },
-      "LastModifiedDate": "2023-03-09T13:48:17.000+0000",
+      "LastModifiedDate": "2023-03-21T23:42:30.000+0000",
       "OwnerId": "005Dm000001m0DaIAI",
       "IsStopped": false
     },
@@ -30538,7 +30538,7 @@
         "type": "Case",
         "url": "/services/data/v42.0/sobjects/Case/500Dm000002IyumIAC"
       },
-      "LastModifiedDate": "2023-03-09T13:48:17.000+0000",
+      "LastModifiedDate": "2023-03-21T23:42:30.000+0000",
       "OwnerId": "005Dm000001m0DaIAI",
       "IsStopped": false
     },
@@ -30573,7 +30573,7 @@
         "type": "Case",
         "url": "/services/data/v42.0/sobjects/Case/500Dm000002IyunIAC"
       },
-      "LastModifiedDate": "2023-03-09T13:48:17.000+0000",
+      "LastModifiedDate": "2023-03-21T23:42:30.000+0000",
       "OwnerId": "005Dm000001m0DaIAI",
       "IsStopped": false
     },
@@ -30608,7 +30608,7 @@
         "type": "Case",
         "url": "/services/data/v42.0/sobjects/Case/500Dm000002IyuoIAC"
       },
-      "LastModifiedDate": "2023-03-09T13:48:17.000+0000",
+      "LastModifiedDate": "2023-03-21T23:42:30.000+0000",
       "OwnerId": "005Dm000001m0DaIAI",
       "IsStopped": false
     },
@@ -30643,7 +30643,7 @@
         "type": "Case",
         "url": "/services/data/v42.0/sobjects/Case/500Dm000002IyupIAC"
       },
-      "LastModifiedDate": "2023-03-09T13:48:17.000+0000",
+      "LastModifiedDate": "2023-03-21T23:42:30.000+0000",
       "OwnerId": "005Dm000001m0DaIAI",
       "IsStopped": false
     },
@@ -30678,7 +30678,7 @@
         "type": "Case",
         "url": "/services/data/v42.0/sobjects/Case/500Dm000002IyuqIAC"
       },
-      "LastModifiedDate": "2023-03-09T13:48:17.000+0000",
+      "LastModifiedDate": "2023-03-21T23:42:30.000+0000",
       "OwnerId": "005Dm000001m0DaIAI",
       "IsStopped": false
     },
@@ -30713,7 +30713,7 @@
         "type": "Case",
         "url": "/services/data/v42.0/sobjects/Case/500Dm000002IyurIAC"
       },
-      "LastModifiedDate": "2023-03-09T13:48:17.000+0000",
+      "LastModifiedDate": "2023-03-21T23:42:30.000+0000",
       "OwnerId": "005Dm000001m0DaIAI",
       "IsStopped": false
     },
@@ -30748,7 +30748,7 @@
         "type": "Case",
         "url": "/services/data/v42.0/sobjects/Case/500Dm000002IyusIAC"
       },
-      "LastModifiedDate": "2023-03-09T13:48:17.000+0000",
+      "LastModifiedDate": "2023-03-21T23:42:30.000+0000",
       "OwnerId": "005Dm000001m0DaIAI",
       "IsStopped": false
     },
@@ -30770,7 +30770,7 @@
       "Description": null,
       "IsEscalated": true,
       "EngineeringReqNumber__c": null,
-      "Product__c": null,
+      "Product__c": "GC3060",
       "PotentialLiability__c": null,
       "CSAT__c": 105,
       "Case_ExternalId__c": "0q1c2lk95",
@@ -30783,7 +30783,7 @@
         "type": "Case",
         "url": "/services/data/v42.0/sobjects/Case/500Dm000002IyutIAC"
       },
-      "LastModifiedDate": "2023-03-09T13:48:17.000+0000",
+      "LastModifiedDate": "2023-03-21T23:42:30.000+0000",
       "OwnerId": "005Dm000001m0DaIAI",
       "IsStopped": false
     },
@@ -30818,7 +30818,7 @@
         "type": "Case",
         "url": "/services/data/v42.0/sobjects/Case/500Dm000002IyuuIAC"
       },
-      "LastModifiedDate": "2023-03-09T13:48:17.000+0000",
+      "LastModifiedDate": "2023-03-21T23:42:30.000+0000",
       "OwnerId": "005Dm000001m0DaIAI",
       "IsStopped": false
     },
@@ -30853,7 +30853,7 @@
         "type": "Case",
         "url": "/services/data/v42.0/sobjects/Case/500Dm000002IyuvIAC"
       },
-      "LastModifiedDate": "2023-03-09T13:48:17.000+0000",
+      "LastModifiedDate": "2023-03-21T23:42:30.000+0000",
       "OwnerId": "005Dm000001m0DaIAI",
       "IsStopped": false
     },
@@ -30875,7 +30875,7 @@
       "Description": null,
       "IsEscalated": true,
       "EngineeringReqNumber__c": null,
-      "Product__c": null,
+      "Product__c": "GC1060",
       "PotentialLiability__c": null,
       "CSAT__c": 105,
       "Case_ExternalId__c": "q6qkcniwq",
@@ -30888,7 +30888,7 @@
         "type": "Case",
         "url": "/services/data/v42.0/sobjects/Case/500Dm000002IyuwIAC"
       },
-      "LastModifiedDate": "2023-03-09T13:48:17.000+0000",
+      "LastModifiedDate": "2023-03-21T23:42:30.000+0000",
       "OwnerId": "005Dm000001m0DaIAI",
       "IsStopped": false
     },
@@ -30923,7 +30923,7 @@
         "type": "Case",
         "url": "/services/data/v42.0/sobjects/Case/500Dm000002IyuxIAC"
       },
-      "LastModifiedDate": "2023-03-09T13:48:17.000+0000",
+      "LastModifiedDate": "2023-03-21T23:42:30.000+0000",
       "OwnerId": "005Dm000001m0DaIAI",
       "IsStopped": false
     },
@@ -30958,7 +30958,7 @@
         "type": "Case",
         "url": "/services/data/v42.0/sobjects/Case/500Dm000002IyuyIAC"
       },
-      "LastModifiedDate": "2023-03-09T13:48:17.000+0000",
+      "LastModifiedDate": "2023-03-21T23:42:30.000+0000",
       "OwnerId": "005Dm000001m0DaIAI",
       "IsStopped": false
     },
@@ -30980,7 +30980,7 @@
       "Description": null,
       "IsEscalated": true,
       "EngineeringReqNumber__c": null,
-      "Product__c": null,
+      "Product__c": "GC5040",
       "PotentialLiability__c": null,
       "CSAT__c": 105,
       "Case_ExternalId__c": "w6cfauwpl",
@@ -30993,7 +30993,7 @@
         "type": "Case",
         "url": "/services/data/v42.0/sobjects/Case/500Dm000002IyuzIAC"
       },
-      "LastModifiedDate": "2023-03-09T13:48:17.000+0000",
+      "LastModifiedDate": "2023-03-21T23:42:30.000+0000",
       "OwnerId": "005Dm000001m0DaIAI",
       "IsStopped": false
     },
@@ -31028,7 +31028,7 @@
         "type": "Case",
         "url": "/services/data/v42.0/sobjects/Case/500Dm000002Iyv0IAC"
       },
-      "LastModifiedDate": "2023-03-09T13:48:17.000+0000",
+      "LastModifiedDate": "2023-03-21T23:42:30.000+0000",
       "OwnerId": "005Dm000001m0DaIAI",
       "IsStopped": false
     },
@@ -31050,7 +31050,7 @@
       "Description": null,
       "IsEscalated": true,
       "EngineeringReqNumber__c": null,
-      "Product__c": null,
+      "Product__c": "GC3020",
       "PotentialLiability__c": null,
       "CSAT__c": 105,
       "Case_ExternalId__c": "h772bw3c5",
@@ -31063,7 +31063,7 @@
         "type": "Case",
         "url": "/services/data/v42.0/sobjects/Case/500Dm000002IywJIAS"
       },
-      "LastModifiedDate": "2023-03-09T13:48:19.000+0000",
+      "LastModifiedDate": "2023-03-21T23:42:30.000+0000",
       "OwnerId": "005Dm000001m0DaIAI",
       "IsStopped": false
     },
@@ -31098,7 +31098,7 @@
         "type": "Case",
         "url": "/services/data/v42.0/sobjects/Case/500Dm000002IywKIAS"
       },
-      "LastModifiedDate": "2023-03-09T13:48:19.000+0000",
+      "LastModifiedDate": "2023-03-21T23:42:30.000+0000",
       "OwnerId": "005Dm000001m0DaIAI",
       "IsStopped": false
     },
@@ -31133,7 +31133,7 @@
         "type": "Case",
         "url": "/services/data/v42.0/sobjects/Case/500Dm000002IywLIAS"
       },
-      "LastModifiedDate": "2023-03-09T13:48:19.000+0000",
+      "LastModifiedDate": "2023-03-21T23:42:30.000+0000",
       "OwnerId": "005Dm000001m0DaIAI",
       "IsStopped": false
     },
@@ -31155,7 +31155,7 @@
       "Description": null,
       "IsEscalated": true,
       "EngineeringReqNumber__c": null,
-      "Product__c": null,
+      "Product__c": "GC5020",
       "PotentialLiability__c": null,
       "CSAT__c": 105,
       "Case_ExternalId__c": "9k5stiac4",
@@ -31168,7 +31168,7 @@
         "type": "Case",
         "url": "/services/data/v42.0/sobjects/Case/500Dm000002IywMIAS"
       },
-      "LastModifiedDate": "2023-03-09T13:48:19.000+0000",
+      "LastModifiedDate": "2023-03-21T23:42:30.000+0000",
       "OwnerId": "005Dm000001m0DaIAI",
       "IsStopped": false
     },
@@ -31203,7 +31203,7 @@
         "type": "Case",
         "url": "/services/data/v42.0/sobjects/Case/500Dm000002IywNIAS"
       },
-      "LastModifiedDate": "2023-03-09T13:48:19.000+0000",
+      "LastModifiedDate": "2023-03-21T23:42:30.000+0000",
       "OwnerId": "005Dm000001m0DaIAI",
       "IsStopped": false
     },
@@ -31225,7 +31225,7 @@
       "Description": null,
       "IsEscalated": true,
       "EngineeringReqNumber__c": null,
-      "Product__c": null,
+      "Product__c": "GC1060",
       "PotentialLiability__c": null,
       "CSAT__c": 105,
       "Case_ExternalId__c": "e8jg4bhth",
@@ -31238,7 +31238,7 @@
         "type": "Case",
         "url": "/services/data/v42.0/sobjects/Case/500Dm000002IywOIAS"
       },
-      "LastModifiedDate": "2023-03-09T13:48:19.000+0000",
+      "LastModifiedDate": "2023-03-21T23:42:30.000+0000",
       "OwnerId": "005Dm000001m0DaIAI",
       "IsStopped": false
     },
@@ -31273,7 +31273,7 @@
         "type": "Case",
         "url": "/services/data/v42.0/sobjects/Case/500Dm000002IywPIAS"
       },
-      "LastModifiedDate": "2023-03-09T13:48:19.000+0000",
+      "LastModifiedDate": "2023-03-21T23:42:30.000+0000",
       "OwnerId": "005Dm000001m0DaIAI",
       "IsStopped": false
     },
@@ -31308,7 +31308,7 @@
         "type": "Case",
         "url": "/services/data/v42.0/sobjects/Case/500Dm000002IywQIAS"
       },
-      "LastModifiedDate": "2023-03-09T13:48:19.000+0000",
+      "LastModifiedDate": "2023-03-21T23:42:30.000+0000",
       "OwnerId": "005Dm000001m0DaIAI",
       "IsStopped": false
     },
@@ -31343,7 +31343,7 @@
         "type": "Case",
         "url": "/services/data/v42.0/sobjects/Case/500Dm000002IywRIAS"
       },
-      "LastModifiedDate": "2023-03-09T13:48:19.000+0000",
+      "LastModifiedDate": "2023-03-21T23:42:30.000+0000",
       "OwnerId": "005Dm000001m0DaIAI",
       "IsStopped": false
     },
@@ -31378,7 +31378,7 @@
         "type": "Case",
         "url": "/services/data/v42.0/sobjects/Case/500Dm000002IywSIAS"
       },
-      "LastModifiedDate": "2023-03-09T13:48:19.000+0000",
+      "LastModifiedDate": "2023-03-21T23:42:30.000+0000",
       "OwnerId": "005Dm000001m0DaIAI",
       "IsStopped": false
     },
@@ -31413,7 +31413,7 @@
         "type": "Case",
         "url": "/services/data/v42.0/sobjects/Case/500Dm000002IywTIAS"
       },
-      "LastModifiedDate": "2023-03-09T13:48:19.000+0000",
+      "LastModifiedDate": "2023-03-21T23:42:30.000+0000",
       "OwnerId": "005Dm000001m0DaIAI",
       "IsStopped": false
     },
@@ -31448,7 +31448,7 @@
         "type": "Case",
         "url": "/services/data/v42.0/sobjects/Case/500Dm000002IywUIAS"
       },
-      "LastModifiedDate": "2023-03-09T13:48:19.000+0000",
+      "LastModifiedDate": "2023-03-21T23:42:30.000+0000",
       "OwnerId": "005Dm000001m0DaIAI",
       "IsStopped": false
     },
@@ -31483,7 +31483,7 @@
         "type": "Case",
         "url": "/services/data/v42.0/sobjects/Case/500Dm000002IywVIAS"
       },
-      "LastModifiedDate": "2023-03-09T13:48:19.000+0000",
+      "LastModifiedDate": "2023-03-21T23:42:30.000+0000",
       "OwnerId": "005Dm000001m0DaIAI",
       "IsStopped": false
     },
@@ -31518,7 +31518,7 @@
         "type": "Case",
         "url": "/services/data/v42.0/sobjects/Case/500Dm000002IywWIAS"
       },
-      "LastModifiedDate": "2023-03-09T13:48:19.000+0000",
+      "LastModifiedDate": "2023-03-21T23:42:30.000+0000",
       "OwnerId": "005Dm000001m0DaIAI",
       "IsStopped": false
     },
@@ -31553,7 +31553,7 @@
         "type": "Case",
         "url": "/services/data/v42.0/sobjects/Case/500Dm000002IywXIAS"
       },
-      "LastModifiedDate": "2023-03-09T13:48:19.000+0000",
+      "LastModifiedDate": "2023-03-21T23:42:30.000+0000",
       "OwnerId": "005Dm000001m0DaIAI",
       "IsStopped": false
     },
@@ -31575,7 +31575,7 @@
       "Description": null,
       "IsEscalated": true,
       "EngineeringReqNumber__c": null,
-      "Product__c": null,
+      "Product__c": "GC1020",
       "PotentialLiability__c": null,
       "CSAT__c": 105,
       "Case_ExternalId__c": "5m165xg3e",
@@ -31588,7 +31588,7 @@
         "type": "Case",
         "url": "/services/data/v42.0/sobjects/Case/500Dm000002IywYIAS"
       },
-      "LastModifiedDate": "2023-03-09T13:48:19.000+0000",
+      "LastModifiedDate": "2023-03-21T23:42:30.000+0000",
       "OwnerId": "005Dm000001m0DaIAI",
       "IsStopped": false
     },
@@ -31623,7 +31623,7 @@
         "type": "Case",
         "url": "/services/data/v42.0/sobjects/Case/500Dm000002IywZIAS"
       },
-      "LastModifiedDate": "2023-03-09T13:48:19.000+0000",
+      "LastModifiedDate": "2023-03-21T23:42:30.000+0000",
       "OwnerId": "005Dm000001m0DaIAI",
       "IsStopped": false
     },
@@ -31658,7 +31658,7 @@
         "type": "Case",
         "url": "/services/data/v42.0/sobjects/Case/500Dm000002IywaIAC"
       },
-      "LastModifiedDate": "2023-03-09T13:48:19.000+0000",
+      "LastModifiedDate": "2023-03-21T23:42:30.000+0000",
       "OwnerId": "005Dm000001m0DaIAI",
       "IsStopped": false
     },
@@ -31693,7 +31693,7 @@
         "type": "Case",
         "url": "/services/data/v42.0/sobjects/Case/500Dm000002IywbIAC"
       },
-      "LastModifiedDate": "2023-03-09T13:48:19.000+0000",
+      "LastModifiedDate": "2023-03-21T23:42:30.000+0000",
       "OwnerId": "005Dm000001m0DaIAI",
       "IsStopped": false
     },
@@ -31728,7 +31728,7 @@
         "type": "Case",
         "url": "/services/data/v42.0/sobjects/Case/500Dm000002IywcIAC"
       },
-      "LastModifiedDate": "2023-03-09T13:48:19.000+0000",
+      "LastModifiedDate": "2023-03-21T23:42:30.000+0000",
       "OwnerId": "005Dm000001m0DaIAI",
       "IsStopped": false
     },
@@ -31763,7 +31763,7 @@
         "type": "Case",
         "url": "/services/data/v42.0/sobjects/Case/500Dm000002IywdIAC"
       },
-      "LastModifiedDate": "2023-03-09T13:48:19.000+0000",
+      "LastModifiedDate": "2023-03-21T23:42:30.000+0000",
       "OwnerId": "005Dm000001m0DaIAI",
       "IsStopped": false
     },
@@ -31798,7 +31798,7 @@
         "type": "Case",
         "url": "/services/data/v42.0/sobjects/Case/500Dm000002IyweIAC"
       },
-      "LastModifiedDate": "2023-03-09T13:48:19.000+0000",
+      "LastModifiedDate": "2023-03-21T23:42:30.000+0000",
       "OwnerId": "005Dm000001m0DaIAI",
       "IsStopped": false
     },
@@ -31833,7 +31833,7 @@
         "type": "Case",
         "url": "/services/data/v42.0/sobjects/Case/500Dm000002IywfIAC"
       },
-      "LastModifiedDate": "2023-03-09T13:48:19.000+0000",
+      "LastModifiedDate": "2023-03-21T23:42:30.000+0000",
       "OwnerId": "005Dm000001m0DaIAI",
       "IsStopped": false
     },
@@ -31868,7 +31868,7 @@
         "type": "Case",
         "url": "/services/data/v42.0/sobjects/Case/500Dm000002IywgIAC"
       },
-      "LastModifiedDate": "2023-03-09T13:48:19.000+0000",
+      "LastModifiedDate": "2023-03-21T23:42:30.000+0000",
       "OwnerId": "005Dm000001m0DaIAI",
       "IsStopped": false
     },
@@ -31903,7 +31903,7 @@
         "type": "Case",
         "url": "/services/data/v42.0/sobjects/Case/500Dm000002IywhIAC"
       },
-      "LastModifiedDate": "2023-03-09T13:48:19.000+0000",
+      "LastModifiedDate": "2023-03-21T23:42:30.000+0000",
       "OwnerId": "005Dm000001m0DaIAI",
       "IsStopped": false
     },
@@ -31938,7 +31938,7 @@
         "type": "Case",
         "url": "/services/data/v42.0/sobjects/Case/500Dm000002IywiIAC"
       },
-      "LastModifiedDate": "2023-03-09T13:48:19.000+0000",
+      "LastModifiedDate": "2023-03-21T23:42:30.000+0000",
       "OwnerId": "005Dm000001m0DaIAI",
       "IsStopped": false
     },
@@ -31960,7 +31960,7 @@
       "Description": null,
       "IsEscalated": true,
       "EngineeringReqNumber__c": null,
-      "Product__c": null,
+      "Product__c": "GC1020",
       "PotentialLiability__c": null,
       "CSAT__c": 105,
       "Case_ExternalId__c": "goaalh05r",
@@ -31973,7 +31973,7 @@
         "type": "Case",
         "url": "/services/data/v42.0/sobjects/Case/500Dm000002IywjIAC"
       },
-      "LastModifiedDate": "2023-03-09T13:48:19.000+0000",
+      "LastModifiedDate": "2023-03-21T23:42:30.000+0000",
       "OwnerId": "005Dm000001m0DaIAI",
       "IsStopped": false
     },
@@ -32008,7 +32008,7 @@
         "type": "Case",
         "url": "/services/data/v42.0/sobjects/Case/500Dm000002IywkIAC"
       },
-      "LastModifiedDate": "2023-03-09T13:48:19.000+0000",
+      "LastModifiedDate": "2023-03-21T23:42:30.000+0000",
       "OwnerId": "005Dm000001m0DaIAI",
       "IsStopped": false
     },
@@ -32043,7 +32043,7 @@
         "type": "Case",
         "url": "/services/data/v42.0/sobjects/Case/500Dm000002IywlIAC"
       },
-      "LastModifiedDate": "2023-03-09T13:48:19.000+0000",
+      "LastModifiedDate": "2023-03-21T23:42:30.000+0000",
       "OwnerId": "005Dm000001m0DaIAI",
       "IsStopped": false
     },
@@ -32078,7 +32078,7 @@
         "type": "Case",
         "url": "/services/data/v42.0/sobjects/Case/500Dm000002IywmIAC"
       },
-      "LastModifiedDate": "2023-03-09T13:48:19.000+0000",
+      "LastModifiedDate": "2023-03-21T23:42:30.000+0000",
       "OwnerId": "005Dm000001m0DaIAI",
       "IsStopped": false
     },
@@ -32100,7 +32100,7 @@
       "Description": null,
       "IsEscalated": true,
       "EngineeringReqNumber__c": null,
-      "Product__c": null,
+      "Product__c": "GC5060",
       "PotentialLiability__c": null,
       "CSAT__c": 105,
       "Case_ExternalId__c": "5meu86ob4",
@@ -32113,7 +32113,7 @@
         "type": "Case",
         "url": "/services/data/v42.0/sobjects/Case/500Dm000002IywnIAC"
       },
-      "LastModifiedDate": "2023-03-09T13:48:19.000+0000",
+      "LastModifiedDate": "2023-03-21T23:42:30.000+0000",
       "OwnerId": "005Dm000001m0DaIAI",
       "IsStopped": false
     },
@@ -32148,7 +32148,7 @@
         "type": "Case",
         "url": "/services/data/v42.0/sobjects/Case/500Dm000002IywoIAC"
       },
-      "LastModifiedDate": "2023-03-09T13:48:19.000+0000",
+      "LastModifiedDate": "2023-03-21T23:42:30.000+0000",
       "OwnerId": "005Dm000001m0DaIAI",
       "IsStopped": false
     },
@@ -32183,7 +32183,7 @@
         "type": "Case",
         "url": "/services/data/v42.0/sobjects/Case/500Dm000002IywpIAC"
       },
-      "LastModifiedDate": "2023-03-09T13:48:19.000+0000",
+      "LastModifiedDate": "2023-03-21T23:42:30.000+0000",
       "OwnerId": "005Dm000001m0DaIAI",
       "IsStopped": false
     },
@@ -32218,7 +32218,7 @@
         "type": "Case",
         "url": "/services/data/v42.0/sobjects/Case/500Dm000002IywqIAC"
       },
-      "LastModifiedDate": "2023-03-09T13:48:19.000+0000",
+      "LastModifiedDate": "2023-03-21T23:42:30.000+0000",
       "OwnerId": "005Dm000001m0DaIAI",
       "IsStopped": false
     },
@@ -32240,7 +32240,7 @@
       "Description": null,
       "IsEscalated": true,
       "EngineeringReqNumber__c": null,
-      "Product__c": null,
+      "Product__c": "GC3020",
       "PotentialLiability__c": null,
       "CSAT__c": 105,
       "Case_ExternalId__c": "3tmaj94de",
@@ -32253,7 +32253,7 @@
         "type": "Case",
         "url": "/services/data/v42.0/sobjects/Case/500Dm000002IywrIAC"
       },
-      "LastModifiedDate": "2023-03-09T13:48:19.000+0000",
+      "LastModifiedDate": "2023-03-21T23:42:30.000+0000",
       "OwnerId": "005Dm000001m0DaIAI",
       "IsStopped": false
     },
@@ -32288,7 +32288,7 @@
         "type": "Case",
         "url": "/services/data/v42.0/sobjects/Case/500Dm000002IywsIAC"
       },
-      "LastModifiedDate": "2023-03-09T13:48:19.000+0000",
+      "LastModifiedDate": "2023-03-21T23:42:30.000+0000",
       "OwnerId": "005Dm000001m0DaIAI",
       "IsStopped": false
     },
@@ -32323,7 +32323,7 @@
         "type": "Case",
         "url": "/services/data/v42.0/sobjects/Case/500Dm000002IywtIAC"
       },
-      "LastModifiedDate": "2023-03-09T13:48:19.000+0000",
+      "LastModifiedDate": "2023-03-21T23:42:30.000+0000",
       "OwnerId": "005Dm000001m0DaIAI",
       "IsStopped": false
     },
@@ -32358,7 +32358,7 @@
         "type": "Case",
         "url": "/services/data/v42.0/sobjects/Case/500Dm000002IywuIAC"
       },
-      "LastModifiedDate": "2023-03-09T13:48:19.000+0000",
+      "LastModifiedDate": "2023-03-21T23:42:30.000+0000",
       "OwnerId": "005Dm000001m0DaIAI",
       "IsStopped": false
     },
@@ -32393,7 +32393,7 @@
         "type": "Case",
         "url": "/services/data/v42.0/sobjects/Case/500Dm000002IywvIAC"
       },
-      "LastModifiedDate": "2023-03-09T13:48:19.000+0000",
+      "LastModifiedDate": "2023-03-21T23:42:30.000+0000",
       "OwnerId": "005Dm000001m0DaIAI",
       "IsStopped": false
     },

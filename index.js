@@ -1,6 +1,6 @@
 import { createRecords, getAllRecords, updateRecordsLocally } from "./database.js";
-import { createFakeBusinessAccount, createFakeContacts, createFakeCases, createFakeOpportunities } from "./fakeData.js";
-import { insertAccounts, insertContacts, insertCases, insertOpportunities, getRecordsByIdList } from "./jsforce.js";
+import { createFakeBusinessAccount, createFakeContacts, createFakeCases, createFakeOpportunities, fakeUpdateCases } from "./fakeData.js";
+import { insertAccounts, insertContacts, insertCases, insertOpportunities, updateCases, getRecordsByIdList } from "./jsforce.js";
 import { CASE, OPPORTUNITY } from "./sfMetadata.js";
 
 const today = new Date();
@@ -9,7 +9,7 @@ const metadata = {
   Opportunity: OPPORTUNITY
 }
 /*
-  * Local Actions
+  * Local Actions - Create Records Locally
 */
   const createAccountsLocally = (numberOfAccountsToCreate) => {
     let accountsToCreate = createFakeBusinessAccount(numberOfAccountsToCreate);
@@ -149,8 +149,9 @@ const metadata = {
       console.log(error);
     });
   }
+
 /*
-  * Salesforce Actions
+  * Salesforce Actions - Insert IN Salesforce
 */
   const insertRecordsInSalesforce = (tableName, promise) => {
     getAllRecords(tableName).then((records) => {
@@ -185,6 +186,9 @@ const metadata = {
   const insertOpportunitiesInSalesforce = () => {
     insertRecordsInSalesforce('opportunities', insertOpportunities);
   }
+/*
+  * Salesforce Actions - Update FROM Salesforce
+*/
   const updateRecordsFromSalesforce = (tableName, sObjectName, recordsToUpdate) => {
     let ids = [];
     recordsToUpdate.forEach((recordToUpdate) => {
@@ -227,6 +231,42 @@ const metadata = {
       }
     });
   }
+/*
+  * Salesforce Actions - Update IN Salesforce
+*/
+  const updateCasesRandomly = (quantity) => {
+    getAllRecords('cases').then((records) => {
+      let recordsToUpdate = records.filter(record => {
+        let lastModifiedDate = new Date(record.LastModifiedDate);
+        let yesteday = new Date(today.getFullYear(), today.getMonth(), today.getDate() - 1);
+        return yesteday >= lastModifiedDate;
+      });
+      if (recordsToUpdate
+          && recordsToUpdate.length > 0
+          && recordsToUpdate.length > quantity) {
+        recordsToUpdate = recordsToUpdate.slice(0, quantity);
+      }
+      if (recordsToUpdate && recordsToUpdate.length > 0) {
+        let updatedRecords = fakeUpdateCases(recordsToUpdate);
+        if (updatedRecords && updatedRecords.length > 0) {
+          updateCases(updatedRecords).then((results) => {
+            if (results.errors.length > 0) {
+              results.errors.forEach(error => console.log("error:" + error.error));
+            }
+            console.log(`${results.ids.length} cases updated`);
+          }).catch((error) => {
+            if (error && error.length > 0) {
+              error.forEach(error => console.log(error.error));
+            } else { console.log(error); }
+          });
+        }
+      } else {
+        console.log('No cases to update');
+      }
+    }).catch((error) => {
+      console.log(error);
+    })
+  }
 export {
   createAccountsLocally,
   createContactsForAccountsLocally,
@@ -237,5 +277,6 @@ export {
   insertCasesInSalesforce,
   insertOpportunitiesInSalesforce,
   updateAllCasesFromSalesforce,
-  updateAllOpportunitiesFromSalesforce
+  updateAllOpportunitiesFromSalesforce,
+  updateCasesRandomly
 }

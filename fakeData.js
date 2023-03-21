@@ -1,6 +1,10 @@
 import { Faker, faker } from '@faker-js/faker';
+import { CASE, OPPORTUNITY } from "./sfMetadata.js";
 
 var branches;
+const returnRandomIndex = (array) => {
+  return Math.floor(Math.random()*array.length);
+}
 const type = [
   "Prospect",
   "Customer - Direct",
@@ -111,6 +115,29 @@ const opportunityForeCastCategoryNames = {
   Forecast: "Commit",
   Closed: "Closed"
 }
+const owneIds = [
+  "005Dm000001m0DmIAI",
+  "005Dm000001m0DqIAI",
+  "005Dm000001m0DaIAI",
+  "005Dm000001m0DbIAI",
+  "005Dm000001m0DcIAI",
+  "005Dm000001m0DdIAI",
+  "005Dm000001m0DeIAI",
+  "005Dm000001m0DfIAI",
+  "005Dm000001m0DgIAI",
+  "005Dm000001m0DhIAI",
+  "005Dm000001m0DiIAI",
+  "005Dm000001m0DjIAI",
+  "005Dm000001m0DkIAI",
+  "005Dm000001m0DlIAI",
+  "005Dm000001m0DnIAI",
+  "005Dm000001m0DoIAI",
+  "005Dm000001m0DpIAI",
+  "005Dm000001m0DrIAI",
+  "005Dm000001m0DtIAI",
+  "005Dm000001ZcCxIAK",
+  "005Dm000001m0DZIAY"
+];
 const date = new Date();
 const setPastDate = (monthsAgo) => {
   let yearsAgo = Math.floor(monthsAgo/12);
@@ -135,7 +162,7 @@ const createFakeEmail = (firstName, lastName) => {
 }
 const assignBranch = () => {
   if (branches.length > 0) {
-    return branches[Math.floor(Math.random() * (branches.length - 1))].Branch_Code__c;
+    return branches[returnRandomIndex(branches)].Branch_Code__c;
   } else return null;
 }
 const isCustomerRetentionCreditRenewal = (isCustomerRetentionCreditRenewal) => {
@@ -249,7 +276,7 @@ const createFakeBusinessAccount = (numberOfAccounts) => {
     let account = {
       au_External_Id__c: externalId,
       Name: faker.company.name() + ' ' + faker.company.companySuffix(),
-      Type: type[Math.floor(Math.random()*type.length)],
+      Type: type[returnRandomIndex(type)],
       ParentId: null,
       BillingStreet: null,
       BillingCity: null,
@@ -272,7 +299,7 @@ const createFakeBusinessAccount = (numberOfAccounts) => {
       AccountNumber: null,
       Website: null,
       Sic: 1610,
-      Industry: industries[Math.floor(Math.random()*industries.length)],
+      Industry: industries[returnRandomIndex(industries)],
       AnnualRevenue: 1000000.0,
       NumberOfEmployees: 5000,
       Ownership: null,
@@ -281,7 +308,7 @@ const createFakeBusinessAccount = (numberOfAccounts) => {
       Rating: null,
       Site: null,
       Jigsaw: null,
-      AccountSource: accountSources[Math.floor(Math.random()*accountSources.length)],
+      AccountSource: accountSources[returnRandomIndex(accountSources)],
       DunsNumber: null,
       Tradestyle: null,
       NaicsCode: null,
@@ -377,8 +404,8 @@ const createFakeCases = (relatedAccountInfo) => {
           SuppliedCompany: null,
           Type: null,
           Status: "New",
-          Reason: caseReasons[Math.floor(Math.random()*caseReasons.length)],
-          Origin: caseOrigins[Math.floor(Math.random()*caseOrigins.length)],
+          Reason: caseReasons[returnRandomIndex(caseReasons)],
+          Origin: caseOrigins[returnRandomIndex(caseOrigins)],
           Subject: "Case about " + faker.commerce.productAdjective() + " " + faker.commerce.product(),
           Priority: "Low",
           Description: null,
@@ -389,7 +416,7 @@ const createFakeCases = (relatedAccountInfo) => {
           CSAT__c: 105.0,
           Case_ExternalId__c: externalId,
           FCR__c: false,
-          Product_Family_KB__c: productFamilies[Math.floor(Math.random()*productFamilies.length)],
+          Product_Family_KB__c: productFamilies[returnRandomIndex(productFamilies)],
           SLAViolation__c: "Compliant",
           SLA_Type__c: "Basic"
         }
@@ -406,7 +433,7 @@ const createFakeOpportunities = (relatedAccountsAndContactsInfo) => {
     let probability = Math.random();
     let amount = faker.finance.amount(250, 950000, 0);
     let totalOpportunityQuantity = faker.finance.amount(0, 5000, 0);
-    let forecastCategory = opportunityForeCastCategories[Math.floor(Math.random()*opportunityForeCastCategories.length)];
+    let forecastCategory = opportunityForeCastCategories[returnRandomIndex(opportunityForeCastCategories)];
     let forecastCateroryName = opportunityForeCastCategoryNames[forecastCategory];
     let opportunity = {
       AccountId: info.account.Id,
@@ -414,13 +441,13 @@ const createFakeOpportunities = (relatedAccountsAndContactsInfo) => {
       IsPrivate: false,
       Name: "The " + info.contact.LastName + " Opportunity ",
       Description: "Opportunity created by Aureum",
-      StageName: opportunityStage[Math.floor(Math.random()*opportunityStage.length)],
+      StageName: opportunityStage[returnRandomIndex(opportunityStage)],
       Amount: Number(amount),
       Probability: Math.floor(probability*100),
       TotalOpportunityQuantity: totalOpportunityQuantity > 150 ? totalOpportunityQuantity: null,
       CloseDate: null,
-      Type: opportunityTypes[Math.floor(Math.random()*opportunityTypes.length)],
-      LeadSource: opportunityLeadSources[Math.floor(Math.random()*opportunityLeadSources.length)],
+      Type: opportunityTypes[returnRandomIndex(opportunityTypes)],
+      LeadSource: opportunityLeadSources[returnRandomIndex(opportunityLeadSources)],
       ForecastCategoryName: forecastCateroryName,
       CloseDate: setFutureDate(Math.floor(Math.random()*60))
     }
@@ -429,10 +456,51 @@ const createFakeOpportunities = (relatedAccountsAndContactsInfo) => {
   });
   return opportunitiesToCreate;
 }
+const fakeUpdateCases = (casesToUpdate) => {
+  let fields = CASE.fields;
+  let updatedCases = [];
+  let fieldsToChoose = CASE.tracked_fields;
+  let noPickListOptions = {
+    OwnerId: owneIds[returnRandomIndex(owneIds)],
+    Description: 'The ' + new Date() + ' get invoice details'
+  }
+  let statusOptions = {
+    New: "Working",
+    Working: "Escalated",
+    Escalated: "Working",
+    Closed: "Closed"
+  }
+  casesToUpdate.forEach(caseToUpdate => {
+    let fieldToUpdate = fieldsToChoose[returnRandomIndex(fieldsToChoose)];
+    let currentValue = caseToUpdate[fieldToUpdate];
+    let updatedCase = {};
+    updatedCase.Id = caseToUpdate.Id,
+    updatedCase[fieldToUpdate] = function () {
+      if (typeof currentValue === 'boolean') {
+        return !currentValue
+      } else {
+        let field = fields.find(field => field.name === fieldToUpdate);
+        let isPickListField = field && field.picklistValues.length > 0;
+        let isNotPickListField = field && field.picklistValues.length === 0;
+        if (isPickListField && fieldToUpdate !== 'Status') {
+          let otherValues = field.picklistValues.filter(pickListValue => pickListValue.value !== currentValue);
+          return otherValues[returnRandomIndex(otherValues)].value;
+        } else if (isPickListField && fieldToUpdate === 'Status') {
+          return statusOptions[currentValue];
+        } else if (isNotPickListField) {
+          return noPickListOptions[fieldToUpdate];
+        }
+      }
+    }()
+    updatedCases.push(updatedCase);
+  });
+  return updatedCases
+}
 export {
   createFakeAccouts,
   createFakeBusinessAccount,
   createFakeContacts,
   createFakeCases,
-  createFakeOpportunities
+  createFakeOpportunities,
+  fakeUpdateCases
 }

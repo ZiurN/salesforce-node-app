@@ -1,6 +1,6 @@
 import jsforce from 'jsforce';
 import { aureumTest } from './oauth.js';
-import { updateRecordsWithoutId } from './database.js';
+import { updateRecordsWithoutId, updateRecordsLocally } from './database.js';
 
 const currentSfEnv = aureumTest;
 /*
@@ -19,7 +19,7 @@ const currentSfEnv = aureumTest;
       });
     });
   }
-  const insertRecords = (sObjectName, CRUDOperation, records) => {
+  const CRUDRecords = (sObjectName, CRUDOperation, records) => {
     return new Promise((resolve, reject) => {
       login().then((conn) => {
         let results = {};
@@ -75,7 +75,7 @@ const currentSfEnv = aureumTest;
 */
   const insertAccounts = (accountsToinsert) => {
     return new Promise((resolve, reject) => {
-      insertRecords('Account', 'insert', accountsToinsert).then((results) => {
+      CRUDRecords('Account', 'insert', accountsToinsert).then((results) => {
         if (results.ids.length > 0) {
           let fields = { Id: 1, au_External_ID__c: 1 }
           let ids = results.ids.filter(id => id.Id);
@@ -105,7 +105,7 @@ const currentSfEnv = aureumTest;
 */
   const insertContacts = (contactsToInsert) => {
     return new Promise((resolve, reject) => {
-      insertRecords('Contact', 'insert', contactsToInsert).then((results) => {
+      CRUDRecords('Contact', 'insert', contactsToInsert).then((results) => {
         if (results.ids.length > 0) {
           let fields = { Id: 1, au_External_ID__c: 1 }
           let ids = results.ids.filter(id => id.Id);
@@ -134,7 +134,7 @@ const currentSfEnv = aureumTest;
 */
   const insertCases = (casesToInsert) => {
     return new Promise((resolve, reject) => {
-      insertRecords('Case', 'insert', casesToInsert).then((results) => {
+      CRUDRecords('Case', 'insert', casesToInsert).then((results) => {
         if (results.ids.length > 0) {
           let fields = { Id: 1, Case_ExternalId__c: 1 }
           let ids = results.ids.filter(id => id.Id);
@@ -156,12 +156,50 @@ const currentSfEnv = aureumTest;
       });
     });
   }
+  const updateCases = (casesToUpdate) => {
+    return new Promise((resolve, reject) => {
+      CRUDRecords('Case', 'update', casesToUpdate).then((results) => {
+		console.log(results);
+        if (results.ids.length > 0) {
+          let fields = {
+			Id: 1,
+			LastModifiedDate: 1,
+			OwnerId: 1,
+			Reason: 1,
+			Priority: 1,
+			Product__c: 1,
+			Status: 1,
+			IsStopped: 1,
+			Type: 1,
+			Description: 1
+		  }
+          let ids = results.ids.filter(id => id.Id);
+          if (ids.length > 0) {
+            getRecordsByIds('Case', ids, fields).then((records) => {
+              if (records.length > 0) {
+                updateRecordsLocally(records, 'cases', 'Id');
+                resolve(results);
+              }
+            }).catch((err) => {
+              reject(err);
+            });
+          } else {
+            reject('There are not cases to look for');
+          }
+        } else if (results.ids.length == 0 && results.errors.length > 0){
+			reject(results.errors);
+		}
+      }).catch((err) => {
+        reject(err);
+      });
+    });
+  }
 /*
 * Opportunity CRUD methods
 */
   const insertOpportunities = (opportunitiesToInsert) => {
     return new Promise((resolve, reject) => {
-      insertRecords('Opportunity', 'insert', opportunitiesToInsert).then((results) => {
+      CRUDRecords('Opportunity', 'insert', opportunitiesToInsert).then((results) => {
         if (results.ids.length > 0) {
           let fields = { Id: 1, TrackingNumber__c: 1 }
           let ids = results.ids.filter(id => id.Id);
@@ -184,54 +222,4 @@ const currentSfEnv = aureumTest;
     });
   }
 
-const getCasesFromSF = (conn, ids) => {
-  console.log(ids);
-  return new Promise((resolve, reject) => {
-    conn.sobject('Case').find(
-      {$or: ids},
-      { Id: 1, Case_ExternalId__c: 1 }).execute((err, cases) => {
-        if (err) { reject(console.error(err)); }
-        updateCasesCreatedLocally(cases).them((result) => {
-          console.log('result');
-          console.log(result);
-        }).catch((error) => {
-          console.log('error');
-          console.log(error);
-        });
-      });
-  })
-}
-const getOpportunitiesFromSF = (conn, ids) => {
-  console.log(ids);
-  return new Promise((resolve, reject) => {
-    conn.sobject('Opportunity').find(
-    {$or: ids},
-    { Id: 1, TrackingNumber__c: 1 }).execute((err, opportunities) => {
-      if (err) { reject(console.error(err)); }
-      updateOpportunitiesCreatedLocally(opportunities).them((result) => {
-      console.log('result');
-      }).catch((error) => {
-      console.log('error');
-      console.log(error);
-      });
-    });
-  })
-}
-const getCasesFromSFFromStart = (ids) => {
-  return new Promise((resolve, reject) => {
-    var conn = new jsforce.Connection(currentSfEnv.oauth2);
-    conn.login(currentSfEnv.username, currentSfEnv.password, function(err, userInfo) {
-      if (err) { return console.error(err); }
-      // Now you can get the access token and instance URL information.
-      // Save them to establish connection next time.
-      console.log(conn.accessToken);
-      console.log(conn.instanceUrl);
-      // logged in user property
-      console.log("User ID: " + userInfo.id);
-      console.log("Org ID: " + userInfo.organizationId);
-      getCasesFromSF(conn, ids).then(result => {resolve(result);}).catch(error => {reject(error)});
-      });
-  });
-}
-
-export { insertAccounts, insertContacts, insertCases, insertOpportunities, getRecordsByIds, getRecordsByIdList }
+export { insertAccounts, insertContacts, insertCases, insertOpportunities, updateCases, getRecordsByIds, getRecordsByIdList }
