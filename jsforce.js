@@ -221,5 +221,45 @@ const currentSfEnv = aureumTest;
       });
     });
   }
+  const updateOpportunities = (opportunitiesToUpdate) => {
+    return new Promise((resolve, reject) => {
+      CRUDRecords('Opportunity', 'update', opportunitiesToUpdate).then((results) => {
+		console.log(results);
+        if (results.ids.length > 0) {
+          let fields = {
+			Id: 1,
+			LastModifiedDate: 1,
+			Amount: 1,
+			ForecastCategoryName: 1,
+			NextStep: 1,
+			OwnerId: 1,
+			Opportunity_Source__c: 1,
+			Probability: 1,
+			TotalOpportunityQuantity: 1,
+			StageName: 1,
+			Type: 1,
+			Description: 1
+		  }
+          let ids = results.ids.filter(id => id.Id);
+          if (ids.length > 0) {
+            getRecordsByIds('Opportunity', ids, fields).then((records) => {
+              if (records.length > 0) {
+                updateRecordsLocally(records, 'opportunities', 'Id');
+                resolve(results);
+              }
+            }).catch((err) => {
+              reject(err);
+            });
+          } else {
+            reject('There are not opportunities to look for');
+          }
+        } else if (results.ids.length == 0 && results.errors.length > 0){
+			reject(results.errors);
+		}
+      }).catch((err) => {
+        reject(err);
+      });
+    });
+  }
 
-export { insertAccounts, insertContacts, insertCases, insertOpportunities, updateCases, getRecordsByIds, getRecordsByIdList }
+export { insertAccounts, insertContacts, insertCases, insertOpportunities, updateCases, updateOpportunities, getRecordsByIds, getRecordsByIdList }

@@ -1,6 +1,6 @@
 import { createRecords, getAllRecords, updateRecordsLocally } from "./database.js";
-import { createFakeBusinessAccount, createFakeContacts, createFakeCases, createFakeOpportunities, fakeUpdateCases } from "./fakeData.js";
-import { insertAccounts, insertContacts, insertCases, insertOpportunities, updateCases, getRecordsByIdList } from "./jsforce.js";
+import { createFakeBusinessAccount, createFakeContacts, createFakeCases, createFakeOpportunities, fakeUpdateCases, fakeUpdateOpportunities } from "./fakeData.js";
+import { insertAccounts, insertContacts, insertCases, insertOpportunities, updateCases, updateOpportunities, getRecordsByIdList } from "./jsforce.js";
 import { CASE, OPPORTUNITY } from "./sfMetadata.js";
 
 const today = new Date();
@@ -234,8 +234,8 @@ const metadata = {
 /*
   * Salesforce Actions - Update IN Salesforce
 */
-  const updateCasesRandomly = (quantity) => {
-    getAllRecords('cases').then((records) => {
+  const updateRecordsRandomly = (tableName, promise, fakeFunction, quantity) => {
+    getAllRecords(tableName).then((records) => {
       let recordsToUpdate = records.filter(record => {
         let lastModifiedDate = new Date(record.LastModifiedDate);
         let yesteday = new Date(today.getFullYear(), today.getMonth(), today.getDate() - 1);
@@ -247,13 +247,14 @@ const metadata = {
         recordsToUpdate = recordsToUpdate.slice(0, quantity);
       }
       if (recordsToUpdate && recordsToUpdate.length > 0) {
-        let updatedRecords = fakeUpdateCases(recordsToUpdate);
+        let updatedRecords = fakeFunction(recordsToUpdate);
         if (updatedRecords && updatedRecords.length > 0) {
-          updateCases(updatedRecords).then((results) => {
+          console.log(updatedRecords);
+          promise(updatedRecords).then((results) => {
             if (results.errors.length > 0) {
-              results.errors.forEach(error => console.log("error:" + error.error));
+              results.errors.forEach(error => console.log("error:" + error.or));
             }
-            console.log(`${results.ids.length} cases updated`);
+            console.log(`${results.ids.length} ${tableName} updated`);
           }).catch((error) => {
             if (error && error.length > 0) {
               error.forEach(error => console.log(error.error));
@@ -261,11 +262,17 @@ const metadata = {
           });
         }
       } else {
-        console.log('No cases to update');
+        console.log(`No ${tableName} to updated`);
       }
     }).catch((error) => {
       console.log(error);
     })
+  }
+  const updateCasesRandomly = (quantity) => {
+    updateRecordsRandomly('cases', updateCases, fakeUpdateCases, quantity);
+  }
+  const updateOpportunitiesRandomly = (quantity) => {
+    updateRecordsRandomly('opportunities', updateOpportunities, fakeUpdateOpportunities, quantity);
   }
 export {
   createAccountsLocally,
@@ -278,5 +285,6 @@ export {
   insertOpportunitiesInSalesforce,
   updateAllCasesFromSalesforce,
   updateAllOpportunitiesFromSalesforce,
-  updateCasesRandomly
+  updateCasesRandomly,
+  updateOpportunitiesRandomly
 }

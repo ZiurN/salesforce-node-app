@@ -1,5 +1,6 @@
 import { Faker, faker } from '@faker-js/faker';
 import { CASE, OPPORTUNITY } from "./sfMetadata.js";
+import random from 'random'
 
 var branches;
 const returnRandomIndex = (array) => {
@@ -115,6 +116,12 @@ const opportunityForeCastCategoryNames = {
   Forecast: "Commit",
   Closed: "Closed"
 }
+const opportunitySources = [
+  "Marketing",
+  "BDR",
+  "Alliances",
+  "AE"
+]
 const owneIds = [
   "005Dm000001m0DmIAI",
   "005Dm000001m0DqIAI",
@@ -460,10 +467,6 @@ const fakeUpdateCases = (casesToUpdate) => {
   let fields = CASE.fields;
   let updatedCases = [];
   let fieldsToChoose = CASE.tracked_fields;
-  let noPickListOptions = {
-    OwnerId: owneIds[returnRandomIndex(owneIds)],
-    Description: 'The ' + new Date() + ' get invoice details'
-  }
   let statusOptions = {
     New: "Working",
     Working: "Escalated",
@@ -471,6 +474,10 @@ const fakeUpdateCases = (casesToUpdate) => {
     Closed: "Closed"
   }
   casesToUpdate.forEach(caseToUpdate => {
+    let noPickListOptions = {
+      OwnerId: owneIds[returnRandomIndex(owneIds)],
+      Description: 'The ' + new Date() + ' get invoice details'
+    }
     let fieldToUpdate = fieldsToChoose[returnRandomIndex(fieldsToChoose)];
     let currentValue = caseToUpdate[fieldToUpdate];
     let updatedCase = {};
@@ -491,10 +498,75 @@ const fakeUpdateCases = (casesToUpdate) => {
           return noPickListOptions[fieldToUpdate];
         }
       }
-    }()
+    }();
     updatedCases.push(updatedCase);
   });
   return updatedCases
+}
+const fakeUpdateOpportunities = (opportunitiesToUpdate) => {
+  let updatedOpportunities = [];
+  let fields = OPPORTUNITY.fields;
+  let fieldsToChoose = OPPORTUNITY.tracked_fields;
+  let stageList = [
+    "Qualification",
+    "Needs Analysis",
+    "Value Proposition",
+    "Id. Decision Makers",
+    "Perception Analysis",
+    "Proposal/Price Quote"
+  ];
+  let stageOptions = {
+    "Prospecting": "Qualification",
+    "Qualification": "Needs Analysis",
+    "Needs Analysis": "Value Proposition",
+    "Value Proposition": "Id. Decision Makers",
+    "Id. Decision Makers": "Perception Analysis",
+    "Perception Analysis": "Proposal/Price Quote",
+    "Proposal/Price Quote": "Negotiation/Review",
+    "Negotiation/Review": stageList[returnRandomIndex(stageList)],
+    "Closed Won": "Closed Won",
+    "Closed Lost": "Closed Lost"
+  }
+  opportunitiesToUpdate.forEach(opportunityToUpdate => {
+    let fieldToUpdate = fieldsToChoose[returnRandomIndex(fieldsToChoose)];
+    let currentValue = opportunityToUpdate[fieldToUpdate];
+    let updatedOpportunity = {};
+    let newProbability = function (lastValue) {
+      if (typeof lastValue === 'number') {
+        let newValue = Math.floor(lastValue*random.float(0.8, 1.3));
+        return newValue > 100? 100 : newValue;
+      } else return lastValue;
+    };
+    let noPickListOptions = {
+      OwnerId: owneIds[returnRandomIndex(owneIds)],
+      Description: 'The ' + new Date() + ' get invoice details',
+      Amount: typeof currentValue === 'number' ? Math.floor(currentValue*random.float(0.9, 1.2)) : currentValue,
+      NextStep: 'The next step will be discussed at ' + new Date(),
+      Opportunity_Source__c: opportunitySources[returnRandomIndex(opportunitySources)],
+      Probability: newProbability(currentValue),
+      TotalOpportunityQuantity: typeof currentValue === 'number' ? Math.floor(currentValue*random.float(0.9, 1.2)) : currentValue
+    }
+    updatedOpportunity.Id = opportunityToUpdate.Id,
+    updatedOpportunity[fieldToUpdate] = function () {
+      if (typeof currentValue === 'boolean') {
+        return !currentValue
+      } else {
+        let field = fields.find(field => field.name === fieldToUpdate);
+        let isPickListField = field && field.picklistValues.length > 0;
+        let isNotPickListField = field && field.picklistValues.length === 0;
+        if (isPickListField && fieldToUpdate !== 'StageName') {
+          let otherValues = field.picklistValues.filter(pickListValue => pickListValue.value !== currentValue);
+          return otherValues[returnRandomIndex(otherValues)].value;
+        } else if (isPickListField && fieldToUpdate === 'StageName') {
+          return stageOptions[currentValue];
+        } else if (isNotPickListField) {
+          return noPickListOptions[fieldToUpdate];
+        }
+      }
+    }();
+    updatedOpportunities.push(updatedOpportunity);
+  });
+  return updatedOpportunities;
 }
 export {
   createFakeAccouts,
@@ -502,5 +574,6 @@ export {
   createFakeContacts,
   createFakeCases,
   createFakeOpportunities,
-  fakeUpdateCases
+  fakeUpdateCases,
+  fakeUpdateOpportunities
 }
