@@ -296,7 +296,6 @@ const CASE = {
     "OwnerId",
     "Reason",
     "Priority",
-    "Product__c",
     "Status",
     "IsStopped",
     "Type",
