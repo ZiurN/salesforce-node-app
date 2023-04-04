@@ -304,14 +304,14 @@ const metadata = {
     metadata.Case.tracked_fields.forEach(field => {
       fields[field] = 1;
     });
-    updateRecordsRandomly('Case', jsForce.CRUDRecords, fakeUpdateCases, quantity, fields);
+    updateRecordsRandomly('Case', jsForce.CRUDRecords, fakeData.fakeUpdateCases, quantity, fields);
   }
   const updateOpportunitiesRandomly = (quantity) => {
     let fields = {Id: 1};
     metadata.Opportunity.tracked_fields.forEach(field => {
       fields[field] = 1;
     });
-    updateRecordsRandomly('Opportunity', jsForce.CRUDRecords, fakeUpdateOpportunities, quantity, fields);
+    updateRecordsRandomly('Opportunity', jsForce.CRUDRecords, fakeData.fakeUpdateOpportunities, quantity, fields);
   }
 export {
   createAccountsLocally,

@@ -55,7 +55,7 @@ class AureumFakeData {
     "Transportation",
     "Utilities",
     "Other"
-    ];
+  ];
   caseReasons = [
     "Installation",
     "Equipment Complexity",
@@ -122,7 +122,7 @@ class AureumFakeData {
     "Alliances",
     "AE"
   ]
-  owneIds = [
+  ownerIds = [
     "005Dm000001m0DmIAI",
     "005Dm000001m0DqIAI",
     "005Dm000001m0DaIAI",
@@ -154,7 +154,7 @@ class AureumFakeData {
       let account = {
         au_External_Id__c: externalId,
         Name: faker.company.name() + ' ' + faker.company.companySuffix(),
-        Type: type[fakeData.returnRandomIndex(type)],
+        Type: this.type[fakeData.returnRandomIndex(this.type)],
         ParentId: null,
         BillingStreet: null,
         BillingCity: null,
@@ -177,7 +177,7 @@ class AureumFakeData {
         AccountNumber: null,
         Website: null,
         Sic: 1610,
-        Industry: industries[fakeData.returnRandomIndex(industries)],
+        Industry: this.industries[fakeData.returnRandomIndex(this.industries)],
         AnnualRevenue: 1000000.0,
         NumberOfEmployees: 5000,
         Ownership: null,
@@ -186,7 +186,7 @@ class AureumFakeData {
         Rating: null,
         Site: null,
         Jigsaw: null,
-        AccountSource: accountSources[fakeData.returnRandomIndex(accountSources)],
+        AccountSource: this.accountSources[fakeData.returnRandomIndex(this.accountSources)],
         DunsNumber: null,
         Tradestyle: null,
         NaicsCode: null,
@@ -282,8 +282,8 @@ class AureumFakeData {
             SuppliedCompany: null,
             Type: null,
             Status: "New",
-            Reason: caseReasons[fakeData.returnRandomIndex(caseReasons)],
-            Origin: caseOrigins[fakeData.returnRandomIndex(caseOrigins)],
+            Reason: this.caseReasons[fakeData.returnRandomIndex(this.caseReasons)],
+            Origin: this.caseOrigins[fakeData.returnRandomIndex(this.caseOrigins)],
             Subject: "Case about " + faker.commerce.productAdjective() + " " + faker.commerce.product(),
             Priority: "Low",
             Description: null,
@@ -293,7 +293,7 @@ class AureumFakeData {
             CSAT__c: 105.0,
             Case_ExternalId__c: externalId,
             FCR__c: false,
-            Product_Family_KB__c: productFamilies[fakeData.returnRandomIndex(productFamilies)],
+            Product_Family_KB__c: this.productFamilies[fakeData.returnRandomIndex(this.productFamilies)],
             SLAViolation__c: "Compliant",
             SLA_Type__c: "Basic"
           }
@@ -310,21 +310,21 @@ class AureumFakeData {
       let probability = Math.random();
       let amount = faker.finance.amount(250, 950000, 0);
       let totalOpportunityQuantity = faker.finance.amount(0, 5000, 0);
-      let forecastCategory = opportunityForeCastCategories[fakeData.returnRandomIndex(opportunityForeCastCategories)];
-      let forecastCateroryName = opportunityForeCastCategoryNames[forecastCategory];
+      let forecastCategory = this.opportunityForeCastCategories[fakeData.returnRandomIndex(this.opportunityForeCastCategories)];
+      let forecastCateroryName = this.opportunityForeCastCategoryNames[forecastCategory];
       let opportunity = {
         AccountId: info.account.Id,
         TrackingNumber__c: faker.random.alphaNumeric(7),
         IsPrivate: false,
         Name: "The " + info.contact.LastName + " Opportunity ",
         Description: "Opportunity created by Aureum",
-        StageName: opportunityStage[fakeData.returnRandomIndex(opportunityStage)],
+        StageName: this.opportunityStage[fakeData.returnRandomIndex(this.opportunityStage)],
         Amount: Number(amount),
         Probability: Math.floor(probability*100),
         TotalOpportunityQuantity: totalOpportunityQuantity > 150 ? totalOpportunityQuantity: null,
         CloseDate: null,
-        Type: opportunityTypes[fakeData.returnRandomIndex(opportunityTypes)],
-        LeadSource: opportunityLeadSources[fakeData.returnRandomIndex(opportunityLeadSources)],
+        Type: this.opportunityTypes[fakeData.returnRandomIndex(this.opportunityTypes)],
+        LeadSource: this.opportunityLeadSources[fakeData.returnRandomIndex(this.opportunityLeadSources)],
         ForecastCategoryName: forecastCateroryName,
         CloseDate: fakeData.setFutureDate(Math.floor(Math.random()*60))
       }
@@ -345,7 +345,7 @@ class AureumFakeData {
     }
     casesToUpdate.forEach(caseToUpdate => {
       let noPickListOptions = {
-        OwnerId: owneIds[fakeData.returnRandomIndex(owneIds)],
+        OwnerId: this.ownerIds[fakeData.returnRandomIndex(this.ownerIds)],
         Description: 'The ' + new Date() + ' get invoice details'
       }
       let fieldToUpdate = fieldsToChoose[fakeData.returnRandomIndex(fieldsToChoose)];
@@ -408,11 +408,11 @@ class AureumFakeData {
         } else return lastValue;
       };
       let noPickListOptions = {
-        OwnerId: owneIds[fakeData.returnRandomIndex(owneIds)],
+        OwnerId: this.ownerIds[fakeData.returnRandomIndex(this.ownerIds)],
         Description: 'The ' + new Date() + ' get invoice details',
         Amount: typeof currentValue === 'number' ? Math.floor(currentValue*random.float(0.9, 1.2)) : currentValue,
         NextStep: 'The next step will be discussed at ' + new Date(),
-        Opportunity_Source__c: opportunitySources[fakeData.returnRandomIndex(opportunitySources)],
+        Opportunity_Source__c: this.opportunitySources[fakeData.returnRandomIndex(this.opportunitySources)],
         Probability: newProbability(currentValue),
         TotalOpportunityQuantity: typeof currentValue === 'number' ? Math.floor(currentValue*random.float(0.9, 1.2)) : currentValue
       }
