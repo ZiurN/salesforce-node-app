@@ -1,14 +1,13 @@
 import { Database } from "./database.js";
 import { OAuht2 } from "./oauth.js";
 import { JSForce } from "./jsforce.js";
-
-import { createFakeBusinessAccount, createFakeContacts, createFakeCases, createFakeOpportunities, fakeUpdateCases, fakeUpdateOpportunities } from "./fakeData/aureumTest.js";
-
+import { AureumFakeData } from "./fakeData/aureumTest.js";
 import { CASE, OPPORTUNITY } from "./metadata/aureumTest.js";
 
 const today = new Date();
 const oauth2 = new OAuht2();
 const jsForce = new JSForce(oauth2.aureumTest);
+const fakeData = new AureumFakeData();
 const database = new Database('aureumTest');
 const metadata = {
   Case: CASE,
@@ -18,7 +17,7 @@ const metadata = {
   * Local Actions - Create Records Locally
 */
   const createAccountsLocally = (numberOfAccountsToCreate) => {
-    let accountsToCreate = createFakeBusinessAccount(numberOfAccountsToCreate);
+    let accountsToCreate = fakeData.createFakeBusinessAccount(numberOfAccountsToCreate);
     database.createRecords(accountsToCreate, 'Account', 'au_External_Id__c').then((results) => {
       if (results.length > 0) {
         console.log('Created ' + results.length + ' accounts');
@@ -49,8 +48,8 @@ const metadata = {
           accounts.forEach(account => {
             relatedAccountsInfo.set(account.Id, Math.floor(Math.random()*4) + 1);
           });
-          let contactsToCreate = createFakeContacts(relatedAccountsInfo);
-          createRecords(contactsToCreate, 'Contact', 'au_External_Id__c').then((results) => {
+          let contactsToCreate = fakeData.createFakeContacts(relatedAccountsInfo);
+          database.createRecords(contactsToCreate, 'Contact', 'au_External_Id__c').then((results) => {
             if (results.length > 0) {
               console.log('Created ' + results.length + ' contacts');
             } else {
@@ -134,8 +133,8 @@ const metadata = {
           }
         });
         if (relatedAccountsAndContactsInfo.length > 0) {
-          let opportunitiesToCreate = createFakeOpportunities(relatedAccountsAndContactsInfo);
-          createRecords(opportunitiesToCreate, 'opportunities', 'TrackingNumber__c').then((results) => {
+          let opportunitiesToCreate = fakeData.createFakeOpportunities(relatedAccountsAndContactsInfo);
+          database.createRecords(opportunitiesToCreate, 'opportunities', 'TrackingNumber__c').then((results) => {
             if (results.length > 0) {
               console.log('Created ' + results.length + ' opportunities');
             } else {
@@ -155,7 +154,6 @@ const metadata = {
       console.log(error);
     });
   }
-
 /*
   * Salesforce Actions - Insert IN Salesforce
 */
