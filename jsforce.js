@@ -62,7 +62,19 @@ class JSForce {
     getRecordsByIdList = (sObjectName, idList, fields) => {
       return new Promise((resolve, reject) => {
         this.login().then((conn) => {
-          conn.sobject(sObjectName).find({Id: {$in: idList} }, fields).execute((err, records) => {
+          conn.sobject(sObjectName).find({Id: {$in: idList}}, fields).execute((err, records) => {
+          if (err) { reject(console.error(err)); }
+          resolve(records);
+          });
+        }).catch((err) => {
+          reject(err);
+        });
+      });
+    }
+    getRecordsByFieldsList = (sObjectName, queryfielsdList, fields) => {
+      return new Promise((resolve, reject) => {
+        this.login().then((conn) => {
+          conn.sobject(sObjectName).find(queryfielsdList, fields).execute((err, records) => {
           if (err) { reject(console.error(err)); }
           resolve(records);
           });
