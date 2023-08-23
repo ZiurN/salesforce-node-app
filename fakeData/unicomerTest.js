@@ -8,7 +8,7 @@ class unicomerFakeData {
   constructor (database) {
     this.database = database;
   }
-  createFakePersonAccouts = (numberOfAccounts, isCustomerRetentionCreditRenewal, monthsInactive) => {
+  createFakePersonAccouts = (numberOfAccounts, isCustomerRetentionCreditRenewal, flagForPreApproved, monthsInactive) => {
     return new Promise ((resolve, reject) => {
       this.database.getAllRecords('Branch__c').then(result => {
         branches = result;
@@ -33,7 +33,7 @@ class unicomerFakeData {
             External_ID__c: externalId,
           };
           let existingCustomerRefData = {
-            Flag_for_pre_approved__c: true,
+            Flag_for_pre_approved__c: flagForPreApproved = (flagForPreApproved === 'true'),
             Existing_Customer__c: false,
           };
           let customerRetentionCreditRenewalRefData = customerRetentionCreditRenewalInformation(isCustomerRetentionCreditRenewal);
@@ -45,13 +45,14 @@ class unicomerFakeData {
             ...customerRetentionCreditRenewalRefData,
             ...DisappearingCustomerInformation,
             'RecordType.Name': 'Person Account Jamaica',
-            'Branch__r.Branch_Code__c' : assignBranch(),
+            'Branch__r.Branch_Code__c' : 875,
             PersonLeadSource: 'Integration',
             AccountSource: 'Integration',
             Approve_spending_limit__c: 258000.0,
             ISO__c: 'JM',
             Last_salary_info_updated__c: 70000.0,
-            Net_disposable_income_Ndi__c: 70000.0
+            Net_disposable_income_Ndi__c: 70000.0,
+			MostRecentAccount__c: '2022-06-24'
           };
           accountsToCreate.push(account);
         }
@@ -66,47 +67,35 @@ const assignBranch = () => {
   } else return null;
 }
 const customerRetentionCreditRenewalInformation = (isCustomerRetentionCreditRenewal) => {
+  isCustomerRetentionCreditRenewal = (isCustomerRetentionCreditRenewal === 'true');
+  // (SF) Flag_Contract_Expiration_Date__c = if(ADDMONTHS(Contract_Expiration_Date__c,3) <= Today() ,true,false)
+  let contractExpirationDate = isCustomerRetentionCreditRenewal ? fakeData.returnDataFormatted(fakeData.setPastDate(3)) : fakeData.returnDataFormatted(new Date());
+  // (SF) Flag_RfavailablePercent__c = IF(RfavailablePercent__c >= RfavailablePercent_Fixed_Value__c,True,False)
+  let RfAvailablePercent = isCustomerRetentionCreditRenewal ? 10.00 : 0.00;
+  let RfAvailablePercentFixedValue = isCustomerRetentionCreditRenewal ? 5.00 : 0.00;
+  // (SF) Flag_Credit_Limit__c = IF(Credit_Spending_limit__c > Outstanding_balance__c, True,False)
+  let creditSpendingLimit = isCustomerRetentionCreditRenewal ? 25000 : 0;
+  let outstandingBalance = isCustomerRetentionCreditRenewal ? 15000 : 0;
   return {
-    // (SF) Flag_Contract_Expiration_Date__c = if(ADDMONTHS(Contract_Expiration_Date__c,3) <= Today() ,true,false)
-    Contract_Expiration_Date__c: isCustomerRetentionCreditRenewal ? returnDataFormatted(fakeData.setPastDate(3)) : returnDataFormatted(new Date()),
-    // (SF) Flag_RfavailablePercent__c = IF(RfavailablePercent__c >= RfavailablePercent_Fixed_Value__c,True,False)
-    RfavailablePercent__c : isCustomerRetentionCreditRenewal ? 10.00 : 0.00,
-    RfavailablePercent_Fixed_Value__c: isCustomerRetentionCreditRenewal ? 5.00 : 0.00,
-    // (SF) Flag_Credit_Limit__c = IF(Credit_Spending_limit__c > Outstanding_balance__c, True,False)
-    Credit_Spending_limit__c: isCustomerRetentionCreditRenewal ? 25000 : 0,
-    Outstanding_balance__c: isCustomerRetentionCreditRenewal ? 15000 : 0,
+    Contract_Expiration_Date__c: contractExpirationDate,
+    RfavailablePercent__c : RfAvailablePercent,
+    RfavailablePercent_Fixed_Value__c: RfAvailablePercentFixedValue,
+    Credit_Spending_limit__c: creditSpendingLimit,
+    Outstanding_balance__c: outstandingBalance,
     Customer_Retention_Credit_Renewal__c: false,
   };
 }
 const disappearingCustomerInformation = (monthsInactive) => {
-  let isInactive = (monthsInactive && monthsInactive.length > 6);
+  let isInactive = (monthsInactive && Number(monthsInactive) > 6);
     // (SF) Flag_inactive_date_greater_than_18_month__c = Today() > Inactive_date_greater_than_18_months__c
     // (SF) Inactive_date_greater_than_18_months__c = addmonths(Date_that_becomes_inactive__c, 18)
     // (SF) Flag_inactive_date_between_6_18_months__c = And(Today() >= Inactive_date_greater_than_6_months__c, Today() < Inactive_date_greater_than_18_months__c)
     // (SF) Inactive_date_greater_than_6_months__c = addmonths(Date_that_becomes_inactive__c, 6)
   return {
     Flag_for_inactive__c: isInactive,
-    Date_that_becomes_inactive__c: isInactive ? fakeData.setPastDate(monthsInactive): '',
+    Date_that_becomes_inactive__c: isInactive ? fakeData.returnDataFormatted(fakeData.setPastDate(monthsInactive)): '',
     Disappearing_Customers_18__c: false,
     Disappearing_Customers_6_18_months__c: false
   }
-}
-const padTo2Digits = (num) => {
-	return num.toString().padStart(2, '0');
-}
-const returnDataFormatted = (date) => {
-	return (
-		[
-			date.getFullYear(),
-			padTo2Digits(date.getMonth() + 1),
-			padTo2Digits(date.getDate()),
-		].join('-') +
-		' ' +
-		[
-			padTo2Digits(date.getHours()),
-			padTo2Digits(date.getMinutes()),
-			padTo2Digits(date.getSeconds()),
-		].join(':')
-	);
 }
 export { unicomerFakeData }

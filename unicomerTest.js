@@ -2,6 +2,7 @@ import { Database } from "./database.js";
 import { OAuht2 } from "./oauth.js";
 import { JSForce } from "./jsforce.js";
 import { unicomerFakeData } from "./fakeData/unicomerTest.js";
+import { createCustomerData } from "./fakeData/marketingCloud.js";
 
 const oauth2 = new OAuht2();
 const jsForce = new JSForce(oauth2.unicomerDev1);
@@ -28,8 +29,8 @@ const getBranchesFromSalesforce = () => {
     console.log(error);
   })
 }
-const createFakeAccountsInSalesforce = (numberOfAccounts, isCustomerRetentionCreditRenewal, monthsInactive) => {
-  fakeData.createFakePersonAccouts(numberOfAccounts, isCustomerRetentionCreditRenewal, monthsInactive).then((fakeAccounts) => {
+const createFakeAccountsInSalesforce = (numberOfAccounts, isCustomerRetentionCreditRenewal, flagForPreApproved, monthsInactive) => {
+  fakeData.createFakePersonAccouts(numberOfAccounts, isCustomerRetentionCreditRenewal, flagForPreApproved, monthsInactive).then((fakeAccounts) => {
     database.createRecords(fakeAccounts, 'Account', 'CustomerID__c').then((localRecords) => {
       jsForce.CRUDRecords('Account', 'insert', localRecords).then((results) => {
         if (results.ids.length > 0) {
@@ -96,5 +97,6 @@ const createFakeAccountsInSalesforce = (numberOfAccounts, isCustomerRetentionCre
 
 export {
   getBranchesFromSalesforce,
-  createFakeAccountsInSalesforce
+  createFakeAccountsInSalesforce,
+  createCustomerData
 }
