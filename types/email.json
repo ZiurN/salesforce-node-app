@@ -1,0 +1,1 @@
+[{"_id":"6515cfd82f89c6b96d1f8a86","calculated":false,"label":"Email","name":"PersonEmail","nillable":true,"picklistValues":[],"type":"email"},{"_id":"6515cfd82f89c6b96d1f8bb1","calculated":false,"label":"Email address","name":"Email_address__c","nillable":true,"picklistValues":[],"type":"email"}]

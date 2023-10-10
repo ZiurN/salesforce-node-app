@@ -1,0 +1,1 @@
+[{"_id":"6515cfd82f89c6b96d1f8bc2","calculated":false,"label":"RfavailablePercent Fixed Value","name":"RfavailablePercent_Fixed_Value__c","nillable":true,"picklistValues":[],"type":"percent"},{"_id":"6515cfd82f89c6b96d1f8bc3","calculated":false,"label":"RfavailablePercent","name":"RfavailablePercent__c","nillable":true,"picklistValues":[],"type":"percent"}]

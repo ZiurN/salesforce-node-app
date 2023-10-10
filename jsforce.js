@@ -1,4 +1,6 @@
 import jsforce from 'jsforce';
+import request from 'request';
+import fs from 'fs';
 
 class JSForce {
   constructor(oauth2) {
@@ -82,6 +84,40 @@ class JSForce {
           reject(err);
         });
       });
+    }
+    getRecordsByQuery = (query) => {
+      return new Promise((resolve, reject) => {
+        this.login().then((conn) => {
+          conn.query(query, function(err, result) {
+            if (err) { return console.error(err) }
+            console.log("total : " + result.totalSize)
+            console.log("fetched : " + result.records.length)
+            resolve(result.records)
+          });
+        }).catch((err) => {
+          reject(err)
+        });
+      });
+    }
+    getFieldsMedatada = (SObjectName) => {
+      return new Promise((resolve, reject) => {
+        this.login().then((conn) => {
+          var options = {
+            'method': 'GET',
+            'url': conn.instanceUrl + '/services/data/v59.0/sobjects/'+ SObjectName + '/describe/',
+            'headers': {
+              'Authorization': 'Bearer ' + conn.accessToken
+            }
+          };
+          request(options, function (error, response) {
+            if (error) reject(error)
+            fs.writeFileSync('response.json', response.body.replace(/\\"/g, '"').replace(/"@"/g, '\\"@\\"'), () => {console.log('OK')})
+            resolve(JSON.parse(response.body.replace(/\\"/g, '"').replace(/"@"/g, '\\"@\\"')))
+          });
+        }).catch((err) => {
+          reject(err)
+        });
+      })
     }
 }
 
