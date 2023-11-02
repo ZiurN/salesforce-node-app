@@ -7,7 +7,7 @@ import { accountFieldsSelected } from "./extras.js"
 import fs from 'fs'
 
 const oauth2 = new OAuht2();
-const jsForce = new JSForce(oauth2.unicomerDev1);
+const jsForce = new JSForce(oauth2.unicomerHotFix);
 const database = new Database();
 const fakeData = new HVSFakeData(database);
 const B2BfakeData =  new B2BFakeData()

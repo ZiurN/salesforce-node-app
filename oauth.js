@@ -40,17 +40,17 @@ class OAuht2 {
       username : 'jeferson@ziurfreelance.com',
       password : '@ZiuR11235pOFAcldC96as8ahzcgN5Y9I8'
     }
-	this.unicomerHotFix = {
-		oauth2 : {
-		  loginUrl : 'https://test.salesforce.com',
-		  clientId : '3MVG9eMnfmfDO5NDmXW4W0sFRz8epR72JL_7xhKfMqhuti2su0pFuz9bEXTWCc0Ta6PvPBBw0SXJTcA69jW4l',
-		  clientSecret : 'F1D5252BB294D13F523CDE65ADAC5CC74EF2B40DF4945ED536B2C379C03AF15A',
-		  redirectUri : 'http://localhost:8080'
-		},
-		username : 'integracion_sf@unicomer.com.hotfix',
-		password : 'UNIcomer@2022CyWF52cNB5mYVLISoM6hsJnDO'
-	  }
-  }
+    this.unicomerHotFix = {
+      oauth2 : {
+        loginUrl : 'https://test.salesforce.com',
+        clientId : '3MVG9eMnfmfDO5NDmXW4W0sFRz8epR72JL_7xhKfMqhuti2su0pFuz9bEXTWCc0Ta6PvPBBw0SXJTcA69jW4l',
+        clientSecret : 'F1D5252BB294D13F523CDE65ADAC5CC74EF2B40DF4945ED536B2C379C03AF15A',
+        redirectUri : 'http://localhost:8080'
+      },
+      username : 'integracion_sf@unicomer.com.hotfix',
+      password : 'UNIcomer@2022CyWF52cNB5mYVLISoM6hsJnDO'
+      }
+    }
 }
 
 export {OAuht2}
