@@ -1,109 +1,62 @@
-import { join, dirname } from 'path';
-import { Low, JSONFile } from 'lowdb';
-import { fileURLToPath } from 'url';
+import { MongoClient, ServerApiVersion } from 'mongodb'
 
-const __dirname = dirname(fileURLToPath(import.meta.url));
+const uri = "mongodb+srv://jeferson:jef123456@cluster0.fv8lsqm.mongodb.net/?retryWrites=true&w=majority";
 
 class Database {
-  constructor (database) {
-    this.database = database;
-    this.file = join(__dirname, './db/'+ this.database + '.json');
-    this.adapter = new JSONFile(this.file);
-    this.db = new Low(this.adapter);
-  }
-  /** Methods */
-  createRecords  = (recordsToAdd, tableName, idField) => {
-    return new Promise((resolve, reject) => {
-      let rejectMessage = 'There are no '+ tableName +' to add';
-      if (!recordsToAdd || recordsToAdd.length === 0) { reject(rejectMessage) }
-      this.db.read().then(() => {
-      this.db.data ||= { tableName: [] }
-      let records = this.db.data[tableName];
-      if (records.length > 0) {
-        recordsToAdd = recordsToAdd.filter((recordToAdd => {
-        let isValid = true;
-        for (let i = 0 ; i < records.length ; i++) {
-          if (records[i][idField] === recordToAdd[idField]) {
-          isValid = false;
-          break;
-          }
-          return isValid;
-        }
-        }));
+  constructor () {
+    this.client = new MongoClient(uri, {
+      serverApi: {
+        version: ServerApiVersion.v1,
+        strict: true,
+        deprecationErrors: true,
       }
-      if (recordsToAdd && recordsToAdd.length > 0) {
-        records.push(...recordsToAdd);
-      } else {
-        reject(rejectMessage);
-      }
-      try {
-        this.db.write();
-        resolve(recordsToAdd);
-      } catch (error) {
-        reject(error);
-      }
-      });
     });
   }
-  getAllRecords = (tableName) => {
-    return new Promise((resolve, reject) => {
-      this.db.read().then(() => {
-      const records = this.db.data[tableName];
-      if (records && records.length > 0) {
-        resolve(records);
-      } else {
-        resolve([]);
-      }
-      }).catch(error => {
-      console.log(error); reject(error)
-      });
-    });
+  async insertData (database, collection, dataList) {
+    try {
+      await this.client.connect()
+      console.log("You successfully connected to MongoDB!")
+      await this.client.db(database).collection(collection).insertMany(dataList)
+    } catch (err) {
+      console.log(err)
+    } finally {
+      await this.client.close();
+    }
   }
-  updateRecordsWithoutId = (recordsToUpdate, tableName, idField) => {
-    this.db.read().then(() => {
-      const records = this.db.data[tableName];
-      let updatedRecords = records.map(record => {
-        for (let i = 0 ; i < recordsToUpdate.length ; i++) {
-          if (record[idField] === recordsToUpdate[i][idField] && !record.Id) {
-          record = {...record,...recordsToUpdate[i]}
-          break;
+  async upsertData (database, collection, dataList) {
+    try {
+      let updateRecordsList = []
+      dataList.forEach(data => {
+        let updateObject = {
+          updateOne: {
+            'filter': {'Id': data.Id},
+            'update': {$set: data},
+            'upsert': true,
+            'collection': collection
           }
         }
-        return record;
+        updateRecordsList.push(updateObject)
       });
-      this.db.data[tableName] = updatedRecords;
-      this.db.write();
-    }).catch(error => {
-      console.log(error);
-    });
+      await this.client.connect()
+      console.log("You successfully connected to MongoDB!")
+      await this.client.db(database).collection(collection).bulkWrite(updateRecordsList)
+    } catch (err) {
+      console.log(err)
+    } finally {
+      await this.client.close();
+    }
   }
-  updateRecordsLocally = (recordsToUpdate, tableName, idField) => {
-    this.db.read().then(() => {
-      const records = this.db.data[tableName];
-      let updatedRecords = records.map(record => {
-      for (let i = 0 ; i < recordsToUpdate.length ; i++) {
-        if (record[idField] === recordsToUpdate[i][idField]) {
-        record = {...record,...recordsToUpdate[i]}
-        break;
-        }
-      }
-      return record;
-      });
-      this.db.data[tableName] = updatedRecords;
-      this.db.write();
-    }).catch(error => {
-      console.log(error);
-    });
-  }
-  getCounts = () => {
-    return new Promise((resolve, reject) => {
-      this.db.read().then(() => {
-      const { accounts, contacts, cases } = this.db.data;
-      console.log("Accounts: " + accounts.length);
-      console.log("Contacts: " + contacts.length);
-      console.log("Cases: " + cases.length);
-      }).catch(error => {console.log(error); reject(error)})
-    });
+  async findData (database, collection, filter, project) {
+    try {
+      await this.client.connect()
+      console.log("You successfully connected to MongoDB!")
+      const results = await this.client.db(database).collection(collection).find(filter).project(project).toArray();
+      return results;
+    } catch (err) {
+      console.log(err)
+    } finally {
+      await this.client.close();
+    }
   }
 }
 export { Database }

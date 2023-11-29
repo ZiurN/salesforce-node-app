@@ -26,5 +26,23 @@ class FakeData {
       firstName + lastName + Math.round(Math.random() * 1000) + '@test.com';
     return emailAdress.toLowerCase();
   }
+  padTo2Digits = (num) => {
+	return num.toString().padStart(2, '0');
+  }
+  returnDataFormatted = (date) => {
+    return (
+      [
+      date.getFullYear(),
+      this.padTo2Digits(date.getMonth() + 1),
+      this.padTo2Digits(date.getDate()),
+      ].join('-') +
+      ' ' +
+      [
+      this.padTo2Digits(date.getHours()),
+      this.padTo2Digits(date.getMinutes()),
+      this.padTo2Digits(date.getSeconds()),
+      ].join(':')
+    );
+  }
 }
 export { FakeData }
