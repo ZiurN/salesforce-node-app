@@ -3,7 +3,8 @@ import { MongoClient, ServerApiVersion } from 'mongodb'
 const uri = "mongodb+srv://jeferson:jef123456@cluster0.fv8lsqm.mongodb.net/?retryWrites=true&w=majority";
 
 class Database {
-  constructor () {
+  constructor (database) {
+    this.database = database;
     this.client = new MongoClient(uri, {
       serverApi: {
         version: ServerApiVersion.v1,
@@ -12,18 +13,18 @@ class Database {
       }
     });
   }
-  async insertData (database, collection, dataList) {
+  async insertData (collection, dataList) {
     try {
       await this.client.connect()
       console.log("You successfully connected to MongoDB!")
-      await this.client.db(database).collection(collection).insertMany(dataList)
+      await this.client.db(this.database).collection(collection).insertMany(dataList)
     } catch (err) {
       console.log(err)
     } finally {
       await this.client.close();
     }
   }
-  async upsertData (database, collection, dataList) {
+  async upsertData (collection, dataList) {
     try {
       let updateRecordsList = []
       dataList.forEach(data => {
@@ -39,18 +40,18 @@ class Database {
       });
       await this.client.connect()
       console.log("You successfully connected to MongoDB!")
-      await this.client.db(database).collection(collection).bulkWrite(updateRecordsList)
+      await this.client.db(this.database).collection(collection).bulkWrite(updateRecordsList)
     } catch (err) {
       console.log(err)
     } finally {
       await this.client.close();
     }
   }
-  async findData (database, collection, filter, project) {
+  async findData (collection, filter, project) {
     try {
       await this.client.connect()
       console.log("You successfully connected to MongoDB!")
-      const results = await this.client.db(database).collection(collection).find(filter).project(project).toArray();
+      const results = await this.client.db(this.database).collection(collection).find(filter).project(project).toArray();
       return results;
     } catch (err) {
       console.log(err)
