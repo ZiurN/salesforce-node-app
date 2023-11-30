@@ -49,8 +49,18 @@ class OAuht2 {
       },
       username : 'integracion_sf@unicomer.com.hotfix',
       password : 'UNIcomer@2022CyWF52cNB5mYVLISoM6hsJnDO'
-      }
+      },
+    this.bciUatMinorCO = {
+      oauth2 : {
+        loginUrl : 'https//test.salesforce.com',
+        clientId : '3MVG9Gmy2zmPB01qo17kWgVA2Ckfz1WA_SuBP6kEzKI1J6XDcVi3Sh_4gjl82xjnYNYJwWJQ.M5.LDjTEzMhD',
+        clientSecret : '6ED0BF1262A271A93F0113FCFB60A34A6D6D4495707BB3682DC5FEB5ACE25659',
+        redirectUri : 'https://login.salesforce.com/services/oauth2/success'
+      },
+      username : 'jeferson.ruizo@externos.bci.cl.uatminorco',
+      password : 'jef123456qxPOQErys1ZaUOg1E1Yqtzku'
     }
+  }
 }
 
 export {OAuht2}
