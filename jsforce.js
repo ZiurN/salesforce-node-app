@@ -111,12 +111,11 @@ class JSForce {
           };
           request(options, function (error, response) {
             if (error) reject(error)
-            fs.writeFileSync('response.json', response.body.replace(/\\"/g, '"').replace(/"@"/g, '\\"@\\"'), () => {console.log('OK')})
-            resolve(JSON.parse(response.body.replace(/\\"/g, '"').replace(/"@"/g, '\\"@\\"')))
-          });
+            resolve(response.body)
+          })
         }).catch((err) => {
           reject(err)
-        });
+        })
       })
     }
 }

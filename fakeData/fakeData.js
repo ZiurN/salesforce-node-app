@@ -1,3 +1,5 @@
+import { faker } from '@faker-js/faker';
+
 class FakeData {
   constructor () {
     this.date = new Date();
@@ -43,6 +45,25 @@ class FakeData {
       this.padTo2Digits(date.getSeconds()),
       ].join(':')
     );
+  }
+  createBasicFakeAccount = (isPersonAccount) => { 
+    if (isPersonAccount) {
+      let sex = faker.name.sex()
+      let lastName = faker.name.lastName()
+      let firstName = faker.name.firstName(sex)
+      let personalInfo = {
+        LastName: lastName,
+        FirstName: firstName,
+        PersonMobilePhone: faker.phone.number('9########'),
+        PersonEmail: this.createFakeEmail(firstName, lastName),
+        Salutation: sex == 'male' ? 'Mr.' : 'Mrs.',
+        PersonBirthdate: faker.date.between('1940-01-01T00:00:00.000Z', '2005-01-01T00:00:00.000Z')
+      }
+      let account = {
+        ...personalInfo
+      }
+      return account;
+    }
   }
 }
 export { FakeData }

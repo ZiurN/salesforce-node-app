@@ -49,16 +49,26 @@ class OAuht2 {
       },
       username : 'integracion_sf@unicomer.com.hotfix',
       password : 'UNIcomer@2022CyWF52cNB5mYVLISoM6hsJnDO'
-      },
+    },
     this.bciUatMinorCO = {
       oauth2 : {
-        loginUrl : 'https//test.salesforce.com',
-        clientId : '3MVG9Gmy2zmPB01qo17kWgVA2Ckfz1WA_SuBP6kEzKI1J6XDcVi3Sh_4gjl82xjnYNYJwWJQ.M5.LDjTEzMhD',
-        clientSecret : '6ED0BF1262A271A93F0113FCFB60A34A6D6D4495707BB3682DC5FEB5ACE25659',
+        loginUrl : 'https://bancodecreditoeinversiones--uatminorco.sandbox.my.salesforce.com/',
+        clientId : '3MVG9Gmy2zmPB01qo17kWgVA2Ckfz1WA_SuBPaUM_E8LyRMn6aGf7mFjsdmnodsH4iANIyRax7aj2fq.qgx8f',
+        clientSecret : '542E7CEF86708539155CF8AB82C61C2647CF6A228C8A7ED19B2CECD89DE168D1',
         redirectUri : 'https://login.salesforce.com/services/oauth2/success'
       },
       username : 'jeferson.ruizo@externos.bci.cl.uatminorco',
       password : 'jef123456qxPOQErys1ZaUOg1E1Yqtzku'
+    },
+    this.bci1001 = {
+      oauth2 : {
+        loginUrl : 'https//test.salesforce.com',
+        clientId : '3MVG9MX2WYUwuVwN413zXvBy1RcgC10Z8SG3nlYgzlPnHFGz3E_6PHm06F.RT05efuESiODL3R5dpJChgrQrt',
+        clientSecret : 'AC29F2E9D3E95BD525D8525C7755C32CFD26B69D29C50966CB45266120DD9351',
+        redirectUri : 'https://login.salesforce.com/services/oauth2/success'
+      },
+      username : 'jeferson.ruizo@externos.bci.cl.1001',
+      password : 'jef123456o9VymoHbaq1R4Wwh7jSs0z8Lz'
     }
   }
 }
