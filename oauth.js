@@ -62,7 +62,7 @@ class OAuht2 {
     },
     this.bci1001 = {
       oauth2 : {
-        loginUrl : 'https//test.salesforce.com',
+        loginUrl : 'https://bancodecreditoeinversiones--1001.sandbox.my.salesforce.com/',
         clientId : '3MVG9MX2WYUwuVwN413zXvBy1RcgC10Z8SG3nlYgzlPnHFGz3E_6PHm06F.RT05efuESiODL3R5dpJChgrQrt',
         clientSecret : 'AC29F2E9D3E95BD525D8525C7755C32CFD26B69D29C50966CB45266120DD9351',
         redirectUri : 'https://login.salesforce.com/services/oauth2/success'

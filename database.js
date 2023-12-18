@@ -44,7 +44,7 @@ class Database {
     } catch (err) {
       console.log(err)
     } finally {
-      await this.client.close();
+      await this.client.close()
     }
   }
   async findData (collection, filter, project) {
@@ -52,7 +52,7 @@ class Database {
       await this.client.connect()
       console.log("You successfully connected to MongoDB!")
       const results = await this.client.db(this.database).collection(collection).find(filter).project(project).toArray();
-      return results;
+      return results
     } catch (err) {
       console.log(err)
     } finally {

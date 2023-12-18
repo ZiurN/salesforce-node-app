@@ -65,5 +65,11 @@ class FakeData {
       return account;
     }
   }
+  returnFakeName = () => {
+    let sex = faker.name.sex()
+    let lastName = faker.name.lastName()
+    let firstName = faker.name.firstName(sex)
+    return {sex, lastName, firstName}
+  }
 }
 export { FakeData }
