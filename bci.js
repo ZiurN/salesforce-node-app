@@ -35,13 +35,9 @@ const getUsersByRoleInheritance = (roleName) => {
     Id: 1,
     LastName: 1,
     FirstName: 1,
-    LastName: 1,
-    FirstName: 1,
     Name: 1,
     'Profile.Name': 1,
     bci_Codigo_Sucursal__c: 1,
-    Alias: 1,
-    Title: 1
     Alias: 1,
     Title: 1
   }
@@ -232,8 +228,6 @@ export {
   getBranchByBranchCode,
   getUsersByRoleInheritance,
   updateAccountsToBeUsed,
-  assingAccountsToUsers,
-  createChequesProtestosPorFormaForUser,
   assingAccountsToUsers,
   createChequesProtestosPorFormaForUser,
 }
