@@ -73,10 +73,14 @@ class JSForce {
         });
       });
     }
-    getRecordsByFieldsList = (sObjectName, queryfielsdList, fields) => {
+    getRecordsByFieldsList = (sObjectName, queryfielsdList, fields, limit) => {
       return new Promise((resolve, reject) => {
         this.login().then((conn) => {
-          conn.sobject(sObjectName).find(queryfielsdList, fields).execute((err, records) => {
+          let finder = conn.sobject(sObjectName).find(queryfielsdList, fields);
+          if (limit && limit > 0) {
+            finder.limit(limit);
+          }
+          finder.execute((err, records) => {
           if (err) { reject(console.error(err)); }
           resolve(records);
           });

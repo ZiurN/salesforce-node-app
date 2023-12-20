@@ -158,8 +158,28 @@ const assingAccountsToUsers = (previewOwnerAlias) => {
       console.log(err)
     })
 }
+const createChequesProtestadosPorFormaForUser = (userAlias, quantity) => {
+  let arg = {
+    userAlias: userAlias,
+    quantity: quantity,
+    builder: fakeData.createFakeChequesProtestadosForma,
+    databaseName: 'bci_ChequeProtestadoForma',
+    intefaceName: null
+  }
+  createChequesForUser(arg)
+}
+const createChequesProtestadosPorFondoForUser = (userAlias, quantity, intefaceName) => {
+  let arg = {
+    userAlias: userAlias,
+    quantity: quantity,
+    builder: fakeData.createFakeChequesProtestadosFondo,
+    databaseName: 'bci_ChequeProtestadoFondo',
+    intefaceName: intefaceName
+  }
+  createChequesForUser(arg)
+}
 
-const createChequesProtestosPorFormaForUser = (userAlias, quantity) => {
+const createChequesForUser = ({userAlias, quantity, builder, databaseName, intefaceName}) => {
   let financialAccountFilters = {
     $and: [
       {'FinServ__PrimaryOwner__r.Owner.Alias': userAlias},
@@ -171,7 +191,7 @@ const createChequesProtestosPorFormaForUser = (userAlias, quantity) => {
     FinServ__FinancialAccountNumber__c: 1,
     FinServ__PrimaryOwner__c: 1,
   }
-  jsForce.getRecordsByFieldsList(DevNames.finalcialAccountDevName, financialAccountFilters, financialAccountFields)
+  jsForce.getRecordsByFieldsList(DevNames.finalcialAccountDevName, financialAccountFilters, financialAccountFields, quantity)
     .then(financialAccounts => {
       console.log('Cuentas Corrientes Encontradas: ' + financialAccounts.length)
       if(financialAccounts.length == 0) {
@@ -189,23 +209,26 @@ const createChequesProtestosPorFormaForUser = (userAlias, quantity) => {
       }
       database.findData('bci_User', {Alias: userAlias}, userFields).then((users) => {
         console.log('USUARIOS ENCONTRADOS: ' + users.length)
-        database.findData('bci_ChequeProtestadoForma', {'cuenta.numero': {$in: financialAccountNumbersList}}, {'cuenta.numero': 1, 'cheque.serial': 1})
-          .then((chequesProtestados) => {
+        database.findData(databaseName, {'cuenta.numero': {$in: financialAccountNumbersList}}, {'cuenta.numero': 1, 'cheque.serial': 1})
+          .then((chequesProtestadosInDB) => {
             let chequesProtestadosGroupedByAccountNumber = {}
-            if(chequesProtestados.length > 0) {
-              chequesProtestadosGroupedByAccountNumber = Object.groupBy(chequesProtestados, cheque => {
+            if(chequesProtestadosInDB.length > 0) {
+              chequesProtestadosGroupedByAccountNumber = Object.groupBy(chequesProtestadosInDB, cheque => {
                 return cheque.cuenta.numero
               })
             }
-            let chequesProtestosPorFormaToInsert = []
+            let chequesProtestados = []
             Object.keys(financialAccountsGroupedByAccount).forEach((key) => {
               let financialAccounts = financialAccountsGroupedByAccount[key]
               let financialAccountNumbers = financialAccounts.map(financialAccount => financialAccount.FinServ__FinancialAccountNumber__c)
-              let chequesProtestosPorForma = fakeData.createFakeChequesProtestadosForma(financialAccountNumbers, chequesProtestadosGroupedByAccountNumber, quantity, users[0])
-              chequesProtestosPorFormaToInsert.push(...chequesProtestosPorForma)
+              if (intefaceName) {
+                chequesProtestados.push(...builder(financialAccountNumbers, chequesProtestadosGroupedByAccountNumber, users[0], intefaceName))
+              } else {
+                chequesProtestados.push(...builder(financialAccountNumbers, chequesProtestadosGroupedByAccountNumber, users[0]))
+              }
             });
-            console.log('N° DE CHEQUES A INSERTAR: ' + chequesProtestosPorFormaToInsert.length)
-            database.insertData('bci_ChequeProtestadoForma', chequesProtestosPorFormaToInsert)
+            console.log('N° DE CHEQUES A INSERTAR: ' + chequesProtestados.length)
+            database.insertData(databaseName, chequesProtestados)
             .then(
               console.log('CHEQUES INSERTADOS CORRECTAMENTE')
             ).catch((err) => {
@@ -221,7 +244,6 @@ const createChequesProtestosPorFormaForUser = (userAlias, quantity) => {
     .catch((err) => {
       console.log(err)
     })
-
 }
 
 export {
@@ -229,5 +251,6 @@ export {
   getUsersByRoleInheritance,
   updateAccountsToBeUsed,
   assingAccountsToUsers,
-  createChequesProtestosPorFormaForUser,
+  createChequesProtestadosPorFormaForUser,
+  createChequesProtestadosPorFondoForUser
 }
