@@ -28,25 +28,32 @@ class FakeData {
       firstName + lastName + Math.round(Math.random() * 1000) + '@test.com';
     return emailAdress.toLowerCase();
   }
-  padTo2Digits = (num) => {
-	return num.toString().padStart(2, '0');
+  padToNDigits = (num, N) => {
+	  return num.toString().padStart(N, '0');
   }
-  returnDataFormatted = (date) => {
+  returnDataTimeFormatted = (date) => {
     return (
       [
-      date.getFullYear(),
-      this.padTo2Digits(date.getMonth() + 1),
-      this.padTo2Digits(date.getDate()),
+        date.getFullYear(),
+        this.padToNDigits(date.getMonth() + 1, 2),
+        this.padToNDigits(date.getDate(), 2),
       ].join('-') +
       ' ' +
       [
-      this.padTo2Digits(date.getHours()),
-      this.padTo2Digits(date.getMinutes()),
-      this.padTo2Digits(date.getSeconds()),
+        this.padToNDigits(date.getHours(), 2),
+        this.padToNDigits(date.getMinutes(), 2),
+        this.padToNDigits(date.getSeconds(), 2),
       ].join(':')
     );
   }
-  createBasicFakeAccount = (isPersonAccount) => { 
+  returnDataFormatted = (date) => {
+    return [
+      date.getFullYear(),
+      this.padToNDigits(date.getMonth() + 1, 2),
+      this.padToNDigits(date.getDate(), 2),
+    ].join('-')
+  }
+  createBasicFakeAccount = (isPersonAccount) => {
     if (isPersonAccount) {
       let sex = faker.name.sex()
       let lastName = faker.name.lastName()
