@@ -29,30 +29,125 @@ const getBranchByBranchCode = (branchCode) => {
       console.log(err)
     })
 }
-
-const getUsersByRoleInheritance = (roleName) => {
+const getRecordTypes = () => {
+  let fields = {
+    Id: 1,
+    Name: 1,
+    DeveloperName: 1,
+    SobjectType: 1
+  }
+  jsForce.getRecordsByFieldsList('RecordType', {}, fields)
+    .then((records) => {
+      database.upsertData('bci_RecordType', records)
+    })
+    .catch((err) => {
+      console.log(err)
+    })
+}
+const getUserRoles = () => {
+  let userRoleFields = {
+    Id: 1,
+    Name: 1,
+    DeveloperName: 1,
+    ParentRoleId: 1,
+    RollupDescription: 1
+  }
+  jsForce.getRecordsByFieldsList(DevNames.userRoleDevName, {}, userRoleFields)
+    .then((userRoles) => {
+      database.upsertData('bci_UserRole', userRoles).then((result) => {
+        database.findData('bci_UserRole', {}, {Id: 1, ParentRoleId: 1}).then((userRoles) => {
+          let userRolesToUpdate = []
+          userRoles.forEach(userRole => {
+            if (userRole.ParentRoleId == null) return
+            let parentRole = userRoles.find(role => role.Id == userRole.ParentRoleId)
+            if (parentRole) {
+              userRole._parentRoleId = parentRole._id
+              userRolesToUpdate.push(userRole)
+            }
+          })
+          if (userRolesToUpdate.length == 0) return
+          database.upsertData('bci_UserRole', userRolesToUpdate)
+        })
+        .catch((err) => {
+          console.log(err)
+        })
+      })
+    })
+    .catch((err) => {
+      console.log(err)
+    })
+}
+const activeCommercialUsers = (roleName, getLevelUsers) => {
+  let initialUsers = getCommercialUsersByRoleInheritance(roleName, getLevelUsers)
+  if (initialUsers.length == 0) return
+  let usersToBeChecked = [...initialUsers]
+  initialUsers.forEach(user => {
+    if (user.UserRole.Name !== null && user.UserRole.Name !== undefined  && user.UserRole.Name !== '') {
+      usersToBeChecked = [...usersToBeChecked, getCommercialUsersByRoleInheritance(user.UserRole.Name, getLevelUsers)]
+    }
+  })
+  if (usersToUpdate.length == 0) return
+  jsForce.CRUDRecords(DevNames.userDevName, 'Update', usersToUpdate)
+    .then(result => {
+      console.log(result)
+    })
+    .catch((err) => {
+      console.log(err)
+    })
+}
+const getCommercialUsersByRoleInheritance = async (roleName, getLevelUsers) => {
   let userFields = {
+    IsActive: 1,
     Id: 1,
     LastName: 1,
     FirstName: 1,
     Name: 1,
     'Profile.Name': 1,
+    'ProfileId': 1,
+    'UserRole.Name': 1,
+    'UserRole.DeveloperName': 1,
+    'UserRole.Id': 1,
+    'UserRole.ParentRoleId': 1,
     bci_Codigo_Sucursal__c: 1,
     Alias: 1,
     Title: 1
   }
+  let andQueryFilters = [
+    ...DevNames.commercialUsersStandardFilters,
+    { 'UserRole.Name': { $nlike: '%PLATAFORMA%' } },
+    { Title: { $nlike: '%EJECUTIVO INTEGRAL%' } },
+    { Title: { $nlike: '%ASISTENTE%' } }
+  ]
   let filters = {
-    $and : [
-      {$or : [
-        {'UserRole.Name': roleName},
-        {'Manager.UserRole.Name': roleName }
-      ]},
-      {IsActive: true}
-    ]
+    $and : andQueryFilters
+  }
+  if (getLevelUsers) {
+    let parentRoleFilters = {
+      $or : [
+        { Name: roleName },
+        { DeveloperName: roleName }
+      ]
+    }
+    let parentRoles = await database.findData('bci_UserRole', parentRoleFilters, {Id: 1, ParentRoleId: 1})
+    if (parentRoles.length == 0) return []
+    let roles = await getChildrenRolesFromParentRoleName(parentRoles)
+    if (roles.length == 0) return []
+    let rolesIds = roles.map(role => role.Id)
+    filters.$and.push({'UserRole.Id': {$in: rolesIds}})
+  } else {
+    filters.$and.push({$or: [
+      {'UserRole.Name': roleName},
+      {'UserRole.DeveloperName': roleName}
+    ]})
   }
   jsForce.getRecordsByFieldsList(DevNames.userDevName, filters, userFields)
     .then((users) => {
-      database.upsertData('bci_User', users)
+      if (users.length === 0) console.log('No se encontraron usuarios')
+      else {
+        console.log('Usuarios encontrados: ' + users.length)
+        database.upsertData('bci_User', users)
+        return users
+      }
     })
     .catch((err) => {
       console.log(err)
@@ -60,7 +155,6 @@ const getUsersByRoleInheritance = (roleName) => {
 }
 const updateAccountsToBeUsed = (branchCode, firstNameForFiltering) => {
   database.findData('bci_Sucursal', {bci_cod_suc__c: branchCode}).then((branches) => {
-    console.log(branches)
     let filters = {
       FirstName : firstNameForFiltering,
       isPersonAccount: true
@@ -102,8 +196,7 @@ const updateAccountsToBeUsed = (branchCode, firstNameForFiltering) => {
       })
   })
 }
-
-const assingAccountsToUsers = (previewOwnerAlias) => {
+const assignAccountsToUsers = (previewOwnerAlias) => {
   let userFilters = {
     $and : [
       { 'Profile.Name': 'Ejecutivo Comercial' },
@@ -116,7 +209,6 @@ const assingAccountsToUsers = (previewOwnerAlias) => {
   }
   database.findData('bci_User', userFilters, userFields)
     .then((users) => {
-      console.log(users)
       let accountFilters = {
         'bci_id_sf_sucursal__r.bci_cod_suc__c': '334',
         isPersonAccount: true,
@@ -158,6 +250,20 @@ const assingAccountsToUsers = (previewOwnerAlias) => {
       console.log(err)
     })
 }
+// const assignRoleToCommercialUsers = (roleName, numberOfUsers) => {
+//   database.findData('bci_UserRole', {Name: roleName}, {Id: 1})
+//     .then((roles) => {
+//       if (roles.length == 0 || roles.length > 1) console.log('No se encontró el rol o se encontraron varios roles')
+//       let userFilters = {
+//         $and : [
+//           ...DevNames.commercialUsersStandardFilters,
+//           { 'UserRole.Name': null }
+//         ]
+//       }
+//       jsForce.getRecordsByFieldsList(DevNames.userDevName, {}, {Id: 1, Name: 1, UserRole: 1}, numberOfUsers)
+//     })
+//   jsForce.getRecordsByFieldsList(DevNames.userDevName, {}, {Id: 1, Name: 1, 'UserRole.Name': 1, 'UserRole.DeveloperName': 1})
+// }
 const createChequesProtestadosPorFormaForUser = (userAlias, quantity) => {
   let arg = {
     userAlias: userAlias,
@@ -178,7 +284,6 @@ const createChequesProtestadosPorFondoForUser = (userAlias, quantity, intefaceNa
   }
   createChequesForUser(arg)
 }
-
 const createChequesForUser = ({userAlias, quantity, builder, databaseName, intefaceName}) => {
   let financialAccountFilters = {
     $and: [
@@ -207,8 +312,10 @@ const createChequesForUser = ({userAlias, quantity, builder, databaseName, intef
         bci_Codigo_Sucursal__c: 1,
         Alias: 1
       }
-      database.findData('bci_User', {Alias: userAlias}, userFields).then((users) => {
+      database.findData('bci_User', {Alias: userAlias}, userFields)
+        .then((users) => {
         console.log('USUARIOS ENCONTRADOS: ' + users.length)
+        if(users.length == 0) return;
         database.findData(databaseName, {'cuenta.numero': {$in: financialAccountNumbersList}}, {'cuenta.numero': 1, 'cheque.serial': 1})
           .then((chequesProtestadosInDB) => {
             let chequesProtestadosGroupedByAccountNumber = {}
@@ -229,9 +336,10 @@ const createChequesForUser = ({userAlias, quantity, builder, databaseName, intef
             });
             console.log('N° DE CHEQUES A INSERTAR: ' + chequesProtestados.length)
             database.insertData(databaseName, chequesProtestados)
-            .then(
+            .then(result => {
+              console.log(result)
               console.log('CHEQUES INSERTADOS CORRECTAMENTE')
-            ).catch((err) => {
+            }).catch((err) => {
               console.log(err)
             })
           }).catch((err) => {
@@ -245,12 +353,81 @@ const createChequesForUser = ({userAlias, quantity, builder, databaseName, intef
       console.log(err)
     })
 }
+const createCasesForUser = (recordType, userAlias) => {
+  let accountFields = {
+    Id: 1,
+  }
+  let accountfilters = {
+    isPersonAccount: true,
+    'Owner.Alias': userAlias
+  }
+  jsForce.getRecordsByFieldsList(DevNames.accountDevName, accountfilters, accountFields).then((accounts) => {
+    let rtFilters = {
+      $and : [
+        {SobjectType: 'Case'},
+        {$or : [
+          {DeveloperName: recordType},
+          {Name: recordType}
+        ]}
+      ]
+    }
+    database.findData('bci_RecordType', rtFilters, {Id: 1}).then((recordTypes) => {
+      if (recordTypes.length == 0) {
+        console.log('No se encontró el record type')
+        return
+      }
+      if (recordTypes.length > 1) {
+        console.log('Se encontraron varios tipos de registros')
+        return
+      }
+      let casesToCreate = []
+      accounts.forEach(account => {
+        let caseToCreate = {
+          Subject: 'Caso de Prueba',
+          Status: 'Nuevo',
+          Origin: 'Web',
+          RecordTypeId: recordType.Id,
+          AccountId: account.Id
+        }
+        casesToCreate.push(caseToCreate)
+      })
+      jsForce.CRUDRecords(DevNames.caseDevName, 'Create', casesToCreate).then((result) => {
+        console.log(result)
+      })
+    });
+  }).catch((err) => {
+    console.log(err)
+  })
+}
+const getChildrenRolesFromParentRoleName = (parentRoles) => {
+  return new Promise((resolve, reject) => {
+    let idList = []
+    parentRoles.forEach(parentRole => {
+      idList.push(parentRole.Id)
+    })
+    database.findData('bci_UserRole', { ParentRoleId: { $in: idList}}, {Id: 1})
+      .then(childrenRoles => {
+        if (childrenRoles.length == 0) resolve(parentRoles)
+        else {
+          getChildrenRolesFromParentRoleName(childrenRoles)
+            .then((grandChildrenRoles) => {
+              resolve([...parentRoles, ...grandChildrenRoles])
+            })
+        }
+      })
+      .catch(err => {reject(err)})
+  })
+}
 
 export {
   getBranchByBranchCode,
-  getUsersByRoleInheritance,
+  getRecordTypes,
+  getUserRoles,
+  activeCommercialUsers,
+  getCommercialUsersByRoleInheritance,
   updateAccountsToBeUsed,
-  assingAccountsToUsers,
+  assignAccountsToUsers,
   createChequesProtestadosPorFormaForUser,
-  createChequesProtestadosPorFondoForUser
+  createChequesProtestadosPorFondoForUser,
+  createCasesForUser
 }
