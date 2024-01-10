@@ -5,6 +5,8 @@ let userDevName = 'User'
 let finalcialAccountDevName = 'FinServ__FinancialAccount__c'
 let caseDevName = 'Case'
 let userRoleDevName = 'UserRole'
+let recordTypeDevName = 'RecordType'
+let BusinessHoursDevName = 'BusinessHours'
 /** LISTAS */
 let commercialProfiles = [
   'Asistente Comercial',
@@ -27,6 +29,8 @@ export {
     finalcialAccountDevName,
     caseDevName,
     userRoleDevName,
+    recordTypeDevName,
+    BusinessHoursDevName,
     commercialProfiles,
     commercialUsersStandardFilters
 }
