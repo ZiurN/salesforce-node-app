@@ -3,6 +3,7 @@ import { faker } from '@faker-js/faker';
 class FakeData {
   constructor () {
     this.date = new Date();
+    this.faker = faker;
   }
   returnRandomIndex = (array) => {
     return Math.floor(Math.random()*array.length);
@@ -22,6 +23,9 @@ class FakeData {
     futureDate.setFullYear(this.date.getFullYear() + yearsAhead);
     futureDate.setMonth(this.date.getMonth() + monthsAhead);
     return futureDate;
+  }
+  returnRandomDateBetweenGivenDates = (start, end) => {
+    return new Date(start.getTime() + Math.random() * (end.getTime() - start.getTime()));
   }
   createFakeEmail = (firstName, lastName) => {
     let emailAdress =

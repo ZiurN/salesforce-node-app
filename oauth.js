@@ -67,8 +67,8 @@ class OAuht2 {
         clientSecret : 'AC29F2E9D3E95BD525D8525C7755C32CFD26B69D29C50966CB45266120DD9351',
         redirectUri : 'https://login.salesforce.com/services/oauth2/success'
       },
-      username : 'jeferson.ruizo@externos.bci.cl.1001',
-      password : 'jef123456o9VymoHbaq1R4Wwh7jSs0z8Lz'
+      username : 'matias.serrano@bci.cl.1001',
+      password : 'jef123456ZjDYqMDbasbwj6G3TpL79WSzQ'
     }
   }
 }
