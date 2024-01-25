@@ -140,96 +140,98 @@ let registerFieldByFinacialAccountType = {
   bci_cartera_dinamica: 'bci_ind_cartera_dinamica__c'
 }
 const retrieveFinancialAccounts = () => {
-  database.findData('bci_Account', { isPersonAccount: true }, {Id: 1})
-    .then((accounts) => {
-      let accountIds = accounts.map(account => account.Id)
-      let financialAccountFilters = {
-        FinServ__PrimaryOwner__c: {$in: accountIds},
-      }
-      let finalcialAccountfields = {
-        Id: 1,
-        OwnerId: 1,
-        Name: 1,
-        RecordTypeId: 1,
-        'RecordType.Name': 1,
-        'RecordType.DeveloperName': 1,
-        FinServ__FinancialAccountNumber__c: 1,
-        FinServ__FinancialAccountSource__c: 1,
-        FinServ__FinancialAccountType__c: 1,
-        FinServ__OwnerType__c: 1,
-        FinServ__PrimaryOwner__c: 1,
-        'FinServ__PrimaryOwner__r.bci_cli_rut__c': 1,
-        'FinServ__PrimaryOwner__r.Name': 1,
-        FinServ__RecordTypeName__c: 1,
-        FinServ__Status__c: 1,
-        bci_BiPersonal__c: 1,
-        bci_ind_tipo_mov__c: 1,
-        bci_ind_var_precio__c: 1,
-        bci_mon_act__c: 1,
-        bci_mon_cuota__c: 1,
-        bci_mon_inv_ini__c: 1,
-        bci_mon_tot_tasa_spread__c: 1,
-        bci_moneda__c: 1,
-        bci_tasa__c: 1,
-        bci_ult_chq_cobrados__c: 1,
-        bci_id_financialaccount__c: 1,
-        bci_aux_detalle_mora__c: 1,
-        bci_cnt_dias_mora__c: 1,
-        bci_flg_pago_transito__c: 1,
-        bci_prod_code__c: 1,
-        bci_fec_primer_venc__c: 1,
-        bci_nom_ejecutivo_comex__c: 1,
-        bci_nom_ejecutivo_leasing__c: 1,
-        bci_num_rentas_act_vs_total__c: 1,
-        bci_cod_cartera_inv__c: 1,
-        bci_cod_cuenta_inv__c: 1,
-        bci_cod_prod_inv__c: 1,
-        bci_cod_regimen_tributario__c: 1,
-        bci_cod_tipo_cartera__c: 1,
-        bci_fec_ven__c: 1,
-        bci_num_cuenta_tdc__c: 1
-      }
-      jsForce.getRecordsByFieldsList(DevNames.finalcialAccountDevName, financialAccountFilters, finalcialAccountfields)
-        .then((financialAccounts) => {
-          database.upsertData('bci_FinancialAccount', financialAccounts)
-            .then((results) => {
-              let financialAccountsGroupedByAccount = Object.groupBy(financialAccounts, financialAccount => {
-                return financialAccount.FinServ__PrimaryOwner__c
-              })
-              let accountsToUpdate = []
-              for (const accountId in financialAccountsGroupedByAccount) {
-                let financialAccounts = financialAccountsGroupedByAccount[accountId]
-                let accountToUpdate = {
-                  Id: accountId,
-                }
-                financialAccounts.forEach(financialAccount => {
-                  let field = registerFieldByFinacialAccountType[financialAccount.RecordType.DeveloperName]
-                  if (field && !accountToUpdate[field]) {
-                    accountToUpdate[field] = true
+  return new Promise((resolve, reject) => {
+    database.findData('bci_Account', { isPersonAccount: true }, {Id: 1})
+      .then((accounts) => {
+        let accountIds = accounts.map(account => account.Id)
+        let financialAccountFilters = {
+          FinServ__PrimaryOwner__c: {$in: accountIds},
+        }
+        let finalcialAccountfields = {
+          Id: 1,
+          OwnerId: 1,
+          Name: 1,
+          RecordTypeId: 1,
+          'RecordType.Name': 1,
+          'RecordType.DeveloperName': 1,
+          FinServ__FinancialAccountNumber__c: 1,
+          FinServ__FinancialAccountSource__c: 1,
+          FinServ__FinancialAccountType__c: 1,
+          FinServ__OwnerType__c: 1,
+          FinServ__PrimaryOwner__c: 1,
+          'FinServ__PrimaryOwner__r.bci_cli_rut__c': 1,
+          'FinServ__PrimaryOwner__r.Name': 1,
+          FinServ__RecordTypeName__c: 1,
+          FinServ__Status__c: 1,
+          bci_BiPersonal__c: 1,
+          bci_ind_tipo_mov__c: 1,
+          bci_ind_var_precio__c: 1,
+          bci_mon_act__c: 1,
+          bci_mon_cuota__c: 1,
+          bci_mon_inv_ini__c: 1,
+          bci_mon_tot_tasa_spread__c: 1,
+          bci_moneda__c: 1,
+          bci_tasa__c: 1,
+          bci_ult_chq_cobrados__c: 1,
+          bci_id_financialaccount__c: 1,
+          bci_aux_detalle_mora__c: 1,
+          bci_cnt_dias_mora__c: 1,
+          bci_flg_pago_transito__c: 1,
+          bci_prod_code__c: 1,
+          bci_fec_primer_venc__c: 1,
+          bci_nom_ejecutivo_comex__c: 1,
+          bci_nom_ejecutivo_leasing__c: 1,
+          bci_num_rentas_act_vs_total__c: 1,
+          bci_cod_cartera_inv__c: 1,
+          bci_cod_cuenta_inv__c: 1,
+          bci_cod_prod_inv__c: 1,
+          bci_cod_regimen_tributario__c: 1,
+          bci_cod_tipo_cartera__c: 1,
+          bci_fec_ven__c: 1,
+          bci_num_cuenta_tdc__c: 1
+        }
+        jsForce.getRecordsByFieldsList(DevNames.finalcialAccountDevName, financialAccountFilters, finalcialAccountfields)
+          .then((financialAccounts) => {
+            database.upsertData('bci_FinancialAccount', financialAccounts)
+              .then((results) => {
+                let financialAccountsGroupedByAccount = Object.groupBy(financialAccounts, financialAccount => {
+                  return financialAccount.FinServ__PrimaryOwner__c
+                })
+                let accountsToUpdate = []
+                for (const accountId in financialAccountsGroupedByAccount) {
+                  let financialAccounts = financialAccountsGroupedByAccount[accountId]
+                  let accountToUpdate = {
+                    Id: accountId,
                   }
-                })
-                accountsToUpdate.push(accountToUpdate)
+                  financialAccounts.forEach(financialAccount => {
+                    let field = registerFieldByFinacialAccountType[financialAccount.RecordType.DeveloperName]
+                    if (field && !accountToUpdate[field]) {
+                      accountToUpdate[field] = true
+                    }
+                  })
+                  accountsToUpdate.push(accountToUpdate)
+                }
+                if (accountsToUpdate.length == 0) resolve('No hay cuentas cliente para actualizar')
+                jsForce.CRUDRecords(DevNames.accountDevName, 'Update', accountsToUpdate)
+                  .then(result => {
+                    resolve(result)
+                  })
+                  .catch((err) => {
+                    reject(err)
+                  })
               }
-              if (accountsToUpdate.length == 0) return
-              jsForce.CRUDRecords(DevNames.accountDevName, 'Update', accountsToUpdate)
-                .then(result => {
-                  console.log(result)
-                })
-                .catch((err) => {
-                  console.log(err)
-                })
-            }
-            ).catch((err) => {
-              console.log(err)
-            })
-        })
-        .catch((err) => {
-          console.log(err)
-        })
-    })
-    .catch((err) => {
-      console.log(err)
-    })
+              ).catch((err) => {
+                reject(err)
+              })
+          })
+          .catch((err) => {
+            reject(err)
+          })
+      })
+      .catch((err) => {
+        reject(err)
+      })
+  })
 }
 const retrieveFinancialCards = () => {
   database.findData('bci_Account', { isPersonAccount: true }, {Id: 1})
@@ -859,7 +861,7 @@ const getChildrenRolesFromParentRoleName = (parentRoles) => {
       .catch(err => {reject(err)})
   })
 }
-const createFinancialAccountForAccount = (accountRut, recordType) => {
+const createFinancialAccountForAccount = (accountRut, recordTypeName, quantity, createLEM, createLSG) => {
   database.findData('bci_Account', {bci_cli_rut__c: Number(accountRut)}, {Id: 1})
     .then((accounts) => {
       if (accounts.length == 0) {
@@ -871,8 +873,8 @@ const createFinancialAccountForAccount = (accountRut, recordType) => {
         $and : [
           {SobjectType: 'FinServ__FinancialAccount__c'},
           {$or : [
-            {DeveloperName: recordType},
-            {Name: recordType}
+            {DeveloperName: recordTypeName},
+            {Name: recordTypeName}
           ]}
         ]
       }
@@ -883,19 +885,126 @@ const createFinancialAccountForAccount = (accountRut, recordType) => {
             return
           }
           let recordType = recordTypes[0]
-          let cardNumber = faker.faker.finance.creditCardNumber().replace(/-/g, '').substring(0, 16)
-          let lastDayOfMonth = new Date(new Date().getFullYear(), new Date().getMonth() + 1, 0)
-          let financialAccountToCreate = {
-            FinServ__PrimaryOwner__c: account.Id,
-            FinServ__FinancialAccountNumber__c: cardNumber,
-            bci_num_cuenta_tdc__c: cardNumber,
-            RecordTypeId: recordType.Id,
-            bci_fec_ven__c: faker.returnDataFormatted(faker.returnRandomDateBetweenGivenDates(new Date(), lastDayOfMonth)),
-            bci_mto_total_pagar__c: faker.faker.datatype.number({ max: 1000 })*1000
+          let finalcialAccountsToCreate = []
+          for (let i = 0; i < quantity; i++) {
+            let financialAccountToCreate = {
+              FinServ__PrimaryOwner__c: account.Id,
+              RecordTypeId: recordType.Id,
+            }
+            if (recordTypeName == 'BCI Tarjeta de Credito' || recordTypeName == 'bci_tarjeta_de_credito') {
+              let lastDayOfMonth = new Date(new Date().getFullYear(), new Date().getMonth() + 1, 0)
+              let cardNumber = faker.faker.finance.creditCardNumber().replace(/-/g, '').substring(0, 16)
+              financialAccountToCreate.FinServ__FinancialAccountNumber__c = cardNumber
+              financialAccountToCreate.bci_fec_ven__c = returnRandomDateBetweenGivenDates(new Date(), lastDayOfMonth)
+              financialAccountToCreate.bci_mto_total_pagar__c = faker.faker.finance.amount(10000, 1000000, 0)
+            }
+            if (recordTypeName == 'BCI Cuenta' || recordTypeName == 'bci_cuenta') {
+              let amount =  faker.faker.finance.amount(10000, 1000000, 0)
+              financialAccountToCreate.FinServ__FinancialAccountNumber__c = faker.faker.finance.account(12)
+              financialAccountToCreate.FinServ__FinancialAccountType__c = 'CUENTA CORRIENTE'
+              financialAccountToCreate.bci_sdo_cont_ayer__c = amount
+              financialAccountToCreate.FinServ__Balance__c = amount
+              financialAccountToCreate.FinServ__OpenDate__c = faker.returnDataTimeFormatted(faker.setPastDate(Math.floor(Math.random()*48)))
+            }
+            finalcialAccountsToCreate.push(financialAccountToCreate)
           }
-          jsForce.CRUDRecords(DevNames.finalcialAccountDevName, 'Insert', [financialAccountToCreate])
+          jsForce.CRUDRecords(DevNames.finalcialAccountDevName, 'Insert', finalcialAccountsToCreate)
             .then(result => {
               console.log(result)
+              retrieveFinancialAccounts()
+                .then(retrieveResult => {
+                  if ((recordTypeName == 'BCI Cuenta' || recordTypeName == 'bci_cuenta') && (createLEM || createLSG)) {
+                    if (result.ids.length == 0) {
+                      console.log('No hay Ids de cuentas')
+                      return
+                    }
+                    let financialAccountIds = result.ids.map(result => result.Id)
+                    let financialAccountFilters = {
+                      Id: {$in: financialAccountIds}
+                    }
+                    database.findData('bci_FinancialAccount', financialAccountFilters, {Id: 1})
+                      .then(cuentasCorrientes => {
+                        if (cuentasCorrientes && cuentasCorrientes.length == 0) {
+                          console.log('No se encontraron cuentas')
+                          return
+                        }
+                        let recordTypesFilters = {
+                          $and : [
+                            {SobjectType: 'FinServ__FinancialAccount__c'},
+                            {$or : [
+                              {DeveloperName: 'bci_linea_emergencia'},
+                              {DeveloperName: 'bci_linea_sobregiro'},
+                            ]}
+                          ]
+                        }
+                        database.findData('bci_RecordType', recordTypesFilters, {Id: 1, DeveloperName: 1})
+                          .then(lineasRecordTypes => {
+                            if (lineasRecordTypes.length == 0) {
+                              console.log('No se encontraron record types para los productos LSG y LEM')
+                              return
+                            }
+                            let sobreGiroRT = lineasRecordTypes.find(lineaRecordType => lineaRecordType.DeveloperName == 'bci_linea_sobregiro')
+                            let emergenciaRT = lineasRecordTypes.find(lineaRecordType => lineaRecordType.DeveloperName == 'bci_linea_emergencia')
+                            let lineasToCreate = []
+                            cuentasCorrientes.forEach(cuentaCorriente => {
+                              let lineaToCreate = {
+                                bci_cuenta_rel__c: cuentaCorriente.Id,
+                                FinServ__PrimaryOwner__c: account.Id,
+                              }
+                              if (createLEM) {
+                                let amount = faker.faker.finance.amount(10000, 1000000, 0)
+                                let LEMToCreate = {
+                                  ...lineaToCreate,
+                                  RecordTypeId: emergenciaRT.Id,
+                                  FinServ__FinancialAccountNumber__c: 'LEM' + faker.faker.finance.account(12),
+                                  FinServ__Balance__c: amount,
+                                  FinServ__TotalCreditLimit__c: amount
+                                }
+                                lineasToCreate.push(LEMToCreate)
+                              }
+                              if (createLSG) {
+                                let amount = faker.faker.finance.amount(10000, 1000000, 0)
+                                let LSGToCreate = {
+                                  ...lineaToCreate,
+                                  RecordTypeId: sobreGiroRT.Id,
+                                  FinServ__FinancialAccountNumber__c: 'LSG' + faker.faker.finance.account(12),
+                                  FinServ__Balance__c: amount,
+                                  FinServ__TotalCreditLimit__c: amount
+                                }
+                                lineasToCreate.push(LSGToCreate)
+                              }
+                            })
+                            console.log(lineasToCreate)
+                            jsForce.CRUDRecords(DevNames.finalcialAccountDevName, 'Insert', lineasToCreate)
+                              .then(result => {
+                                console.log(result)
+                                retrieveFinancialAccounts()
+                                  .then(retrieveResult => {
+                                    console.log(retrieveResult)
+                                  })
+                                  .catch((err) => {
+                                    console.log(err)
+                                  })
+                              })
+                              .catch((err) => {
+                                console.log(err)
+                              })
+                          })
+                          .catch((err) => {
+                            console.log(err)
+                          })
+                      })
+                      .catch((err) => {
+                        console.log(err)
+                      })
+                  }
+                })
+                .catch(err => {
+                  console.log(err)
+                })
+            })
+            .catch((err) => {
+              console.log(err)
             })
         })
     })
@@ -917,5 +1026,6 @@ export {
   createChequesProtestadosPorFondoForUser,
   createCasesForUser,
   createContactabilidadTasksForAccount,
-  setProximosVencimientosForAccount
+  setProximosVencimientosForAccount,
+  createFinancialAccountForAccount
 }
