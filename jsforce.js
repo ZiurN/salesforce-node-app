@@ -35,7 +35,7 @@ class JSForce {
               let queryObj = {};
               if (rets[i].success) {
                 queryObj.Id = rets[i].id;
-                ids.push(queryObj);
+                ids.push(queryObj.Id);
               } else {
                 queryObj.error = "#" + (i+1) + " error occurred, message = " + rets[i].errors.join(', ');
                 errors.push(queryObj);

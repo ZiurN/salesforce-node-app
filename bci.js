@@ -1,7 +1,7 @@
-import { Database } from "./database.js"
-import { OAuht2 } from "./oauth.js"
-import { JSForce } from "./jsforce.js"
-import * as DevNames from "./devNames.js"
+import { Database } from './database.js'
+import { OAuht2 } from './oauth.js'
+import { JSForce } from './jsforce.js'
+import * as DevNames from './devNames.js'
 import { FakeData } from './fakeData/fakeData.js'
 import { bciFakeData } from './fakeData/bci.js'
 
@@ -78,7 +78,7 @@ const retrieveUserRoles = (userRolesList) => {
     })
 }
 let accountFilters = {
-  isPersonAccount: true
+  isPersonAccount: false
 }
 const retrieveAccounts = (filters = accountFilters) => {
   let fields = {
@@ -114,6 +114,11 @@ const retrieveAccounts = (filters = accountFilters) => {
   }
   jsForce.getRecordsByFieldsList(DevNames.accountDevName, filters, fields)
   .then((records) => {
+    if (records.length == 0) {
+      console.log('No se encontraron cuentas')
+      return
+    }
+    console.log('registros encontrados: ' + records.length)
     database.upsertData('bci_Account', records)
   })
   .catch((err) => {
@@ -139,13 +144,22 @@ let registerFieldByFinacialAccountType = {
   BCI_SegurosRelacionados: 'bci_ind_seguros__c',
   bci_cartera_dinamica: 'bci_ind_cartera_dinamica__c'
 }
-const retrieveFinancialAccounts = () => {
+const retrieveFinancialAccounts = (accountFilters, financialAccountsFilters) => {
   return new Promise((resolve, reject) => {
-    database.findData('bci_Account', { isPersonAccount: true }, {Id: 1})
+    let tpm_accountFilters = {
+      isPersonAccount: true
+    }
+    if (accountFilters) {
+      tpm_accountFilters = { $and : [tpm_accountFilters, ...accountFilters]}
+    }
+    database.findData('bci_Account', tpm_accountFilters, {Id: 1})
       .then((accounts) => {
         let accountIds = accounts.map(account => account.Id)
-        let financialAccountFilters = {
+        let tmp_financialAccountFilters = {
           FinServ__PrimaryOwner__c: {$in: accountIds},
+        }
+        if (financialAccountsFilters) {
+          tmp_financialAccountFilters = { $and : [tmp_financialAccountFilters, ...financialAccountsFilters]}
         }
         let finalcialAccountfields = {
           Id: 1,
@@ -190,7 +204,7 @@ const retrieveFinancialAccounts = () => {
           bci_fec_ven__c: 1,
           bci_num_cuenta_tdc__c: 1
         }
-        jsForce.getRecordsByFieldsList(DevNames.finalcialAccountDevName, financialAccountFilters, finalcialAccountfields)
+        jsForce.getRecordsByFieldsList(DevNames.finalcialAccountDevName, tmp_financialAccountFilters, finalcialAccountfields)
           .then((financialAccounts) => {
             database.upsertData('bci_FinancialAccount', financialAccounts)
               .then((results) => {
@@ -611,21 +625,21 @@ const createChequesProtestadosPorFormaForUser = (userAlias, quantity) => {
     quantity: quantity,
     builder: fakeData.createFakeChequesProtestadosForma,
     databaseName: 'bci_ChequeProtestadoForma',
-    intefaceName: null
+    interfaceName: null
   }
   createChequesForUser(arg)
 }
-const createChequesProtestadosPorFondoForUser = (userAlias, quantity, intefaceName) => {
+const createChequesProtestadosPorFondoForUser = (userAlias, quantity, interfaceName) => {
   let arg = {
     userAlias: userAlias,
     quantity: quantity,
     builder: fakeData.createFakeChequesProtestadosFondo,
     databaseName: 'bci_ChequeProtestadoFondo',
-    intefaceName: intefaceName
+    interfaceName: interfaceName
   }
   createChequesForUser(arg)
 }
-const createChequesForUser = ({userAlias, quantity, builder, databaseName, intefaceName}) => {
+const createChequesForUser = ({userAlias, quantity, builder, databaseName, interfaceName}) => {
   let financialAccountFilters = {
     $and: [
       {'FinServ__PrimaryOwner__r.Owner.Alias': userAlias},
@@ -669,8 +683,8 @@ const createChequesForUser = ({userAlias, quantity, builder, databaseName, intef
             Object.keys(financialAccountsGroupedByAccount).forEach((key) => {
               let financialAccounts = financialAccountsGroupedByAccount[key]
               let financialAccountNumbers = financialAccounts.map(financialAccount => financialAccount.FinServ__FinancialAccountNumber__c)
-              if (intefaceName) {
-                chequesProtestados.push(...builder(financialAccountNumbers, chequesProtestadosGroupedByAccountNumber, users[0], intefaceName))
+              if (interfaceName) {
+                chequesProtestados.push(...builder(financialAccountNumbers, chequesProtestadosGroupedByAccountNumber, users[0], interfaceName))
               } else {
                 chequesProtestados.push(...builder(financialAccountNumbers, chequesProtestadosGroupedByAccountNumber, users[0]))
               }
@@ -721,18 +735,18 @@ const createCasesForUser = (recordType, userAlias) => {
         console.log('Se encontraron varios tipos de registros')
         return
       }
-      let casesToCreate = []
+      let casesToBeCreated = []
       accounts.forEach(account => {
-        let caseToCreate = {
+        let caseToBeCreated = {
           Subject: 'Caso de Prueba',
           Status: 'Nuevo',
           Origin: 'Web',
           RecordTypeId: recordType.Id,
           AccountId: account.Id
         }
-        casesToCreate.push(caseToCreate)
+        casesToBeCreated.push(caseToBeCreated)
       })
-      jsForce.CRUDRecords(DevNames.caseDevName, 'Create', casesToCreate).then((result) => {
+      jsForce.CRUDRecords(DevNames.caseDevName, 'Create', casesToBeCreated).then((result) => {
         console.log(result)
       })
     });
@@ -768,11 +782,11 @@ const createContactabilidadTasksForAccount = (accountRut, quantity ) => {
                 return
               }
               let accountCase = cases[0]
-              let TasksToCreate = []
+              let TasksToBeCreated = []
               for (let i = 0; i < quantity; i++) {
                 let tipoGestion = DevNames.tipoGestion['TELEFONICO'][faker.returnRandomIndex(DevNames.tipoGestion['TELEFONICO'])]
                 let subject = 'Ingreso de gestión: ' + tipoGestion
-                let taskToCreate = {
+                let taskToBeCreated = {
                   /** Estas asignaciones no funcionan */
                   //WhoId: account.Id,
                   //AccountId: account.Id,
@@ -791,10 +805,10 @@ const createContactabilidadTasksForAccount = (accountRut, quantity ) => {
                   ActivityDate: '2024-01-12T19:30:47.000+0000',
                   OwnerId: accountCase.OwnerId
                 }
-                console.log(taskToCreate)
-                TasksToCreate.push(taskToCreate)
+                console.log(taskToBeCreated)
+                TasksToBeCreated.push(taskToBeCreated)
               }
-              jsForce.CRUDRecords(DevNames.taskDevName, 'insert', TasksToCreate)
+              jsForce.CRUDRecords(DevNames.taskDevName, 'insert', TasksToBeCreated)
                 .then(result => {
                   console.log(result)
                 })
@@ -861,8 +875,13 @@ const getChildrenRolesFromParentRoleName = (parentRoles) => {
       .catch(err => {reject(err)})
   })
 }
-const createFinancialAccountForAccount = (accountRut, recordTypeName, quantity, createLEM, createLSG) => {
-  database.findData('bci_Account', {bci_cli_rut__c: Number(accountRut)}, {Id: 1})
+const createFinancialAccountForAccount = (accountRut, recordTypeName, quantity, inDefault, createLSG, createLEM) => {
+  let accountFields = {
+    Id: 1,
+    bci_cli_rut__c: 1,
+    bci_cli_dv__c: 1
+  }
+  database.findData('bci_Account', {bci_cli_rut__c: Number(accountRut)}, accountFields)
     .then((accounts) => {
       if (accounts.length == 0) {
         console.log('No se encontró la cuenta')
@@ -885,128 +904,375 @@ const createFinancialAccountForAccount = (accountRut, recordTypeName, quantity, 
             return
           }
           let recordType = recordTypes[0]
-          let finalcialAccountsToCreate = []
-          for (let i = 0; i < quantity; i++) {
-            let financialAccountToCreate = {
-              FinServ__PrimaryOwner__c: account.Id,
-              RecordTypeId: recordType.Id,
-            }
-            if (recordTypeName == 'BCI Tarjeta de Credito' || recordTypeName == 'bci_tarjeta_de_credito') {
-              let lastDayOfMonth = new Date(new Date().getFullYear(), new Date().getMonth() + 1, 0)
-              let cardNumber = faker.faker.finance.creditCardNumber().replace(/-/g, '').substring(0, 16)
-              financialAccountToCreate.FinServ__FinancialAccountNumber__c = cardNumber
-              financialAccountToCreate.bci_fec_ven__c = returnRandomDateBetweenGivenDates(new Date(), lastDayOfMonth)
-              financialAccountToCreate.bci_mto_total_pagar__c = faker.faker.finance.amount(10000, 1000000, 0)
-            }
-            if (recordTypeName == 'BCI Cuenta' || recordTypeName == 'bci_cuenta') {
-              let amount =  faker.faker.finance.amount(10000, 1000000, 0)
-              financialAccountToCreate.FinServ__FinancialAccountNumber__c = faker.faker.finance.account(12)
-              financialAccountToCreate.FinServ__FinancialAccountType__c = 'CUENTA CORRIENTE'
-              financialAccountToCreate.bci_sdo_cont_ayer__c = amount
-              financialAccountToCreate.FinServ__Balance__c = amount
-              financialAccountToCreate.FinServ__OpenDate__c = faker.returnDataTimeFormatted(faker.setPastDate(Math.floor(Math.random()*48)))
-            }
-            finalcialAccountsToCreate.push(financialAccountToCreate)
+          let isTC = recordTypeName == 'BCI Tarjeta de Credito' || recordTypeName == 'bci_tarjeta_de_credito'
+          let isCuentaCorriente = recordTypeName == 'BCI Cuenta' || recordTypeName == 'bci_cuenta'
+          let isCHIP = recordTypeName == 'BCI Credito Hipotecario' || recordTypeName == 'bci_credito_hipotecario'
+          let isLeasing = recordTypeName == 'BCI Leasing' || recordTypeName == 'bci_leasing'
+          let args = {
+            account: account,
+            recordType: recordType,
+            quantity: quantity,
+            createLEM: createLEM === 'true',
+            createLSG: createLSG === 'true',
+            inDefault: inDefault === 'true'
           }
-          jsForce.CRUDRecords(DevNames.finalcialAccountDevName, 'Insert', finalcialAccountsToCreate)
-            .then(result => {
-              console.log(result)
-              retrieveFinancialAccounts()
-                .then(retrieveResult => {
-                  if ((recordTypeName == 'BCI Cuenta' || recordTypeName == 'bci_cuenta') && (createLEM || createLSG)) {
-                    if (result.ids.length == 0) {
-                      console.log('No hay Ids de cuentas')
-                      return
-                    }
-                    let financialAccountIds = result.ids.map(result => result.Id)
-                    let financialAccountFilters = {
-                      Id: {$in: financialAccountIds}
-                    }
-                    database.findData('bci_FinancialAccount', financialAccountFilters, {Id: 1})
-                      .then(cuentasCorrientes => {
-                        if (cuentasCorrientes && cuentasCorrientes.length == 0) {
-                          console.log('No se encontraron cuentas')
-                          return
-                        }
-                        let recordTypesFilters = {
-                          $and : [
-                            {SobjectType: 'FinServ__FinancialAccount__c'},
-                            {$or : [
-                              {DeveloperName: 'bci_linea_emergencia'},
-                              {DeveloperName: 'bci_linea_sobregiro'},
-                            ]}
-                          ]
-                        }
-                        database.findData('bci_RecordType', recordTypesFilters, {Id: 1, DeveloperName: 1})
-                          .then(lineasRecordTypes => {
-                            if (lineasRecordTypes.length == 0) {
-                              console.log('No se encontraron record types para los productos LSG y LEM')
-                              return
-                            }
-                            let sobreGiroRT = lineasRecordTypes.find(lineaRecordType => lineaRecordType.DeveloperName == 'bci_linea_sobregiro')
-                            let emergenciaRT = lineasRecordTypes.find(lineaRecordType => lineaRecordType.DeveloperName == 'bci_linea_emergencia')
-                            let lineasToCreate = []
-                            cuentasCorrientes.forEach(cuentaCorriente => {
-                              let lineaToCreate = {
-                                bci_cuenta_rel__c: cuentaCorriente.Id,
-                                FinServ__PrimaryOwner__c: account.Id,
-                              }
-                              if (createLEM) {
-                                let amount = faker.faker.finance.amount(10000, 1000000, 0)
-                                let LEMToCreate = {
-                                  ...lineaToCreate,
-                                  RecordTypeId: emergenciaRT.Id,
-                                  FinServ__FinancialAccountNumber__c: 'LEM' + faker.faker.finance.account(12),
-                                  FinServ__Balance__c: amount,
-                                  FinServ__TotalCreditLimit__c: amount
-                                }
-                                lineasToCreate.push(LEMToCreate)
-                              }
-                              if (createLSG) {
-                                let amount = faker.faker.finance.amount(10000, 1000000, 0)
-                                let LSGToCreate = {
-                                  ...lineaToCreate,
-                                  RecordTypeId: sobreGiroRT.Id,
-                                  FinServ__FinancialAccountNumber__c: 'LSG' + faker.faker.finance.account(12),
-                                  FinServ__Balance__c: amount,
-                                  FinServ__TotalCreditLimit__c: amount
-                                }
-                                lineasToCreate.push(LSGToCreate)
-                              }
-                            })
-                            console.log(lineasToCreate)
-                            jsForce.CRUDRecords(DevNames.finalcialAccountDevName, 'Insert', lineasToCreate)
-                              .then(result => {
-                                console.log(result)
-                                retrieveFinancialAccounts()
-                                  .then(retrieveResult => {
-                                    console.log(retrieveResult)
-                                  })
-                                  .catch((err) => {
-                                    console.log(err)
-                                  })
-                              })
-                              .catch((err) => {
-                                console.log(err)
-                              })
-                          })
-                          .catch((err) => {
-                            console.log(err)
-                          })
-                      })
-                      .catch((err) => {
-                        console.log(err)
-                      })
-                  }
-                })
-                .catch(err => {
-                  console.log(err)
-                })
-            })
-            .catch((err) => {
-              console.log(err)
-            })
+          if (isTC) {
+            createCreditCardsForAccount(args)
+          }
+          if (isCuentaCorriente) {
+            createCuentasCorrientesForAccount(args)
+          }
+          if (isCHIP) {
+            createCHIPsForAccount(args)
+          }
+          if (isLeasing) {
+            createLeasingsForAccount(args)
+          }
+          retrieveFinancialAccounts([{ Id: account.Id }])
         })
+    })
+}
+const createCreditCardsForAccount = ({account, recordType, quantity, inDefault}) => {
+  let creditCardsToBeCreated = []
+  let registrosDeudaMora = []
+  for (let i = 0; i < quantity; i++) {
+    let lastDayOfMonth = new Date(new Date().getFullYear(), new Date().getMonth() + 1, 0)
+    let cardNumber = faker.faker.finance.creditCardNumber().replace(/-/g, '').substring(0, 16)
+    let creditCard = {
+      FinServ__PrimaryOwner__c: account.Id,
+      RecordTypeId: recordType.Id,
+      FinServ__FinancialAccountNumber__c: cardNumber,
+      bci_num_cuenta_tdc__c: cardNumber,
+      bci_fec_ven__c: faker.returnDataTimeFormatted(faker.returnRandomDateBetweenGivenDates(new Date(), lastDayOfMonth))
+    }
+    let montoInicial = Number(faker.faker.finance.amount(400000, 1000000, 0))
+    if (inDefault) {
+      let diasEnMora = faker.faker.datatype.number({min: 3, max: 89})
+      let mora1A30Dias = montoInicial
+      let mora31A60Dias = diasEnMora > 30 ? mora1A30Dias + Number(faker.faker.finance.amount(10000, 1000000, 0)) : 0
+      let mora61A90Dias = diasEnMora > 60 ? mora31A60Dias + Number(faker.faker.finance.amount(10000, 1000000, 0)) : 0
+      let registroDeudaMora = {
+        detalleDeudaMora: {
+          mora1A30Dias: mora1A30Dias,
+          mora31A60Dias: mora31A60Dias,
+          mora61A90Dias: mora61A90Dias
+        }
+      }
+      let montoTotalAPagar = 0
+      let detalleDeudaMora = registroDeudaMora.detalleDeudaMora
+      Object.keys(detalleDeudaMora).forEach(key => {
+        montoTotalAPagar += detalleDeudaMora[key]
+      })
+      registroDeudaMora.montoTotalAPagar = montoTotalAPagar
+      registrosDeudaMora.push(registroDeudaMora)
+      creditCard.bci_mto_total_pagar__c = montoTotalAPagar
+      creditCard.bci_cnt_dias_mora__c = diasEnMora
+    }
+    creditCardsToBeCreated.push(creditCard)
+  }
+  jsForce.CRUDRecords(DevNames.finalcialAccountDevName, 'Insert', creditCardsToBeCreated)
+    .then(result => {
+      console.log(result)
+      if (result.ids.length == 0) {
+        console.log('No hay Ids de cuentas')
+        return
+      }
+      let financialAccountIds = result.ids
+      let plasticCardsToBeCreated = []
+      financialAccountIds.forEach((financialAccountId, idx) => {
+        let plasticCard = {
+          FinServ__AccountHolder__c: account.Id,
+          FinServ__FinancialAccount__c: financialAccountId,
+          FinServ__Active__c: true,
+          FinServ__OwnershipType__c: 'Primary',
+          bci_num_tarjeta__c: creditCardsToBeCreated[idx].FinServ__FinancialAccountNumber__c,
+          bci_mon_int_aut__c: Math.floor(creditCardsToBeCreated[idx].bci_mto_total_pagar__c * (1/900)),
+          bci_mon_nac_aut__c: creditCardsToBeCreated[idx].bci_mto_total_pagar__c,
+          bci_glosa_est__c: 'ACTIVADA'
+        }
+        plasticCardsToBeCreated.push(plasticCard)
+      })
+      jsForce.CRUDRecords(DevNames.cardDevName, 'Insert', plasticCardsToBeCreated)
+        .then(result => {
+          console.log(result)
+          if (registrosDeudaMora.length == 0) return
+          database.insertData('bci_RegistroDeudaMora', registrosDeudaMora)
+        })
+        .catch((err) => {
+          console.log(err)
+        })
+    })
+    .catch((err) => {
+      console.log(err)
+    })
+
+}
+const createCuentasCorrientesForAccount = ({account, recordType, quantity, createLEM, createLSG, inDefault}) => {
+  let cuentasCorrientesToBeCreated = []
+  for (let i = 0; i < quantity; i++) {
+    let amount =  faker.faker.finance.amount(10000, 1000000, 0)
+    let cuentaCorrienteToBeCreated = {
+      FinServ__PrimaryOwner__c: account.Id,
+      RecordTypeId: recordType.Id,
+      FinServ__FinancialAccountNumber__c: faker.faker.finance.account(12),
+      FinServ__FinancialAccountType__c: 'CUENTA CORRIENTE',
+      bci_sdo_cont_ayer__c: amount,
+      FinServ__Balance__c: amount,
+      FinServ__OpenDate__c: faker.returnDataTimeFormatted(faker.setPastDate(Math.floor(Math.random()*48)))
+    }
+    cuentasCorrientesToBeCreated.push(cuentaCorrienteToBeCreated)
+  }
+  jsForce.CRUDRecords(DevNames.finalcialAccountDevName, 'Insert', cuentasCorrientesToBeCreated)
+    .then(result => {
+      console.log(result)
+      if (result.ids.length == 0) {
+        console.log('No hay Ids de cuentas')
+        return
+      }
+      if (createLEM || createLSG) {
+        let recordTypesFilters = {
+          $and : [
+            {SobjectType: 'FinServ__FinancialAccount__c'},
+            {$or : [
+              {DeveloperName: 'bci_linea_emergencia'},
+              {DeveloperName: 'bci_linea_sobregiro'},
+            ]}
+          ]
+        }
+        database.findData('bci_RecordType', recordTypesFilters, {Id: 1, DeveloperName: 1})
+          .then(lineasRecordTypes => {
+            let sobreGiroRT = lineasRecordTypes.find(lineaRecordType => lineaRecordType.DeveloperName == 'bci_linea_sobregiro')
+            let emergenciaRT = lineasRecordTypes.find(lineaRecordType => lineaRecordType.DeveloperName == 'bci_linea_emergencia')
+            let lineasToBeCreated = []
+            let registrosDeudaMora = []
+            result.ids.forEach((cuentaCorrienteId, idx) => {
+              let cuentaCorriente = cuentasCorrientesToBeCreated[idx]
+              let lineaToBeCreated = {
+                bci_cuenta_rel__c: cuentaCorrienteId,
+                FinServ__PrimaryOwner__c: account.Id,
+                FinServ__OpenDate__c: cuentaCorriente.FinServ__OpenDate__c
+              }
+              if (createLEM) {
+                let amount = faker.faker.finance.amount(10000, 1000000, 0)
+                let LEMToBeCreated = {
+                  ...lineaToBeCreated,
+                  RecordTypeId: emergenciaRT.Id,
+                  FinServ__FinancialAccountNumber__c: 'LEM' + faker.faker.finance.account(12),
+                  FinServ__Balance__c: amount,
+                  FinServ__TotalCreditLimit__c: amount
+                }
+                lineasToBeCreated.push(LEMToBeCreated)
+              }
+              if (createLSG) {
+                let amount = faker.faker.finance.amount(10000, 1000000, 0)
+                let LSGToBeCreated = {
+                  ...lineaToBeCreated,
+                  RecordTypeId: sobreGiroRT.Id,
+                  FinServ__FinancialAccountNumber__c: 'LSG' + faker.faker.finance.account(12),
+                  FinServ__Balance__c: amount,
+                  FinServ__TotalCreditLimit__c: amount
+                }
+                if (inDefault) {
+                  let deudaTotal = amount - (amount*(faker.faker.finance.amount(1000, amount)))
+                  let diasEnMora = faker.faker.datatype.number(30, 89)
+                  let registroDeudaMora = {
+                    numeroCuentaCorriente: cuentaCorriente.FinServ__FinancialAccountNumber__c,
+                    numeroCuentaSobregiro: LSGToBeCreated.FinServ__FinancialAccountNumber__c,
+                    codigoGarantia: "SIN",
+                    rut: account.bci_cli_rut__c,
+                    dv: account.bci_cli_dv__c,
+                    rutAval: 0,
+                    dvAval:  '',
+                    valorSpread: 1.8,
+                    valorAutorizado: null,
+                    porcentajePago: 0,
+                    fechaVencimiento: faker.returnDataTimeFormatted(faker.setPastDate(diasEnMora/30)),
+                    codigoComision: 0,
+                    montoUtilizado: 0,
+                    interes: deudaTotal*0.01,
+                    deudaTotal: deudaTotal,
+                    periodoPago: 1,
+                    seguroDesgravamen: "S",
+                    codigoTipoPlan: "Y",
+                    seguroCesantia: "N",
+                    porcentaje: 0,
+                    estadoCuentaCorriente: "VIG",
+                    fechaApertura: cuentaCorriente.FinServ__OpenDate__c,
+                    tipo: 0,
+                    fechaInicio: faker.returnDataTimeFormatted(faker.setPastDate(diasEnMora/30)),
+                    fechaFin: null,
+                    tipoBanco: null,
+                    indicador: 0,
+                    porcentajeDescuento: 0,
+                    tasa: 0,
+                    cuenta: null
+                  }
+                  registrosDeudaMora.push(registroDeudaMora)
+                  LSGToBeCreated.bci_mto_total_pagar__c = deudaTotal
+                  LSGToBeCreated.bci_cnt_dias_mora__c = diasEnMora
+                }
+                lineasToBeCreated.push(LSGToBeCreated)
+              }
+            })
+            jsForce.CRUDRecords(DevNames.finalcialAccountDevName, 'Insert', lineasToBeCreated)
+              .then(result => {
+                console.log(result)
+                if (registrosDeudaMora.length == 0) return
+                database.insertData('bci_RegistroDeudaMora', registrosDeudaMora)
+              })
+              .catch((err) => {
+                console.log(err)
+              })
+          })
+          .catch((err) => {
+            console.log(err)
+          })
+      }
+    })
+    .catch((err) => {
+      console.log(err)
+    })
+}
+const createCHIPsForAccount = ({account, recordType, quantity, inDefault}) => {
+  let chipsToBeCreated = []
+  let registrosDeudaMora = []
+  for (let i = 0; i < quantity; i++) {
+    let amount = faker.faker.finance.amount(8000, 600000)*1000
+    let openDate = faker.setPastDate(Math.floor(Math.random()*120))
+    let numberOfinstallments = 20*12 // REVISAR
+    let today = new Date()
+    // Pendiente ver en qué campos se guarda el valor total del crédito y la fecha de finalización
+    let chipToBeCreated = {
+      FinServ__PrimaryOwner__c: account.Id,
+      RecordTypeId: recordType.Id,
+      FinServ__FinancialAccountNumber__c: '00' + faker.faker.finance.account(8),
+      FinServ__FinancialAccountType__c: 'CHIP',
+      FinServ__OpenDate__c: faker.returnDataTimeFormatted(openDate)
+    }
+    let numberOfMonthsSinceCreation = today.getMonth() - openDate.getMonth() + (12 * (today.getFullYear() - openDate.getFullYear()))
+    if (inDefault && numberOfMonthsSinceCreation > 1) {
+      let diasEnMora = numberOfMonthsSinceCreation > 3 ? faker.faker.datatype.number({min: 1, max: 89}) : faker.faker.datatype.number(28*(numberOfMonthsSinceCreation))
+      let nroCuotasInDefault = Math.floor(diasEnMora / 30) + 1
+      let defaultDate = faker.setPastDate(diasEnMora/30)
+      let detalleDeudaMora = []
+      let nroUltimaCuota = numberOfMonthsSinceCreation - nroCuotasInDefault
+      let loanAmount = Math.floor(amount / numberOfinstallments)
+      for (let i = 0; i < nroCuotasInDefault; i++) {
+        let seguroDesgravamen = Math.floor(loanAmount * 0.05)
+        let seguroIncendio = Math.floor(loanAmount * 0.05)
+        let interes = Math.floor(loanAmount * (nroCuotasInDefault - i)*0.02)
+        let detalle = {
+          numeroCuota: nroUltimaCuota + i,
+          valorCuota: loanAmount,
+          fechaVencimiento: faker.setPastDate(Math.floor(Math.random()*3)),
+          interes: interes,
+          interesPenal: 0,
+          gastoCobranza: 0,
+          valorComision: 0,
+          seguroAdicionales: 0,
+          subTotal: loanAmount,
+          seguroDesgravamen: seguroDesgravamen,
+          seguroIncendio: seguroIncendio,
+          totalSeguros: seguroDesgravamen + seguroIncendio,
+          totalDividendo: loanAmount + interes + seguroDesgravamen + seguroIncendio
+        }
+        detalleDeudaMora.push(detalle)
+      }
+      let deudaMoraTotal = detalleDeudaMora.reduce((total, detalle) => {
+        return total + detalle.totalDividendo
+      }, 0)
+      console.log(deudaMoraTotal)
+      let registroDeudaMora = {
+        numeroOperacion: chipToBeCreated.FinServ__FinancialAccountNumber__c,
+        defaultDate,
+        detalleDeudaMora,
+        deudaMoraTotal,
+      }
+      registrosDeudaMora.push(registroDeudaMora)
+      console.log(detalleDeudaMora)
+      console.log(deudaMoraTotal)
+      chipToBeCreated.bci_mto_total_pagar__c = deudaMoraTotal
+      chipToBeCreated.bci_cnt_dias_mora__c = diasEnMora
+    }
+    chipsToBeCreated.push(chipToBeCreated)
+  }
+  jsForce.CRUDRecords(DevNames.finalcialAccountDevName, 'Insert', chipsToBeCreated)
+    .then(result => {
+      console.log(result)
+      if (registrosDeudaMora.length > 0) {
+        database.insertData('bci_RegistroDeudaMora', registrosDeudaMora)
+      }
+    })
+    .catch((err) => {
+      console.log(err)
+    })
+}
+const createLeasingsForAccount = ({account, recordType, quantity, inDefault}) => {
+  let leasingsToBeCreated = []
+  let registrosDeudaMora = []
+  for (let i = 0; i < quantity; i++) {
+    let amount = faker.faker.finance.amount(8000, 600000)*1000
+    let openDate = faker.setPastDate(Math.floor(Math.random()*120))
+    let numberOfinstallments = 20*12 // REVISAR
+    let today = new Date()
+    // Pendiente ver en qué campos se guarda el valor total del crédito y la fecha de finalización
+    let leasingToBeCreated = {
+      FinServ__PrimaryOwner__c: account.Id,
+      RecordTypeId: recordType.Id,
+      FinServ__FinancialAccountNumber__c: faker.faker.finance.account(8),
+      FinServ__FinancialAccountType__c: 'Leasing',
+      FinServ__OpenDate__c: faker.returnDataTimeFormatted(openDate),
+      bci_trm_mora__c: 'Mora'
+    }
+    let numberOfMonthsSinceCreation = today.getMonth() - openDate.getMonth() + (12 * (today.getFullYear() - openDate.getFullYear()))
+    if (inDefault && numberOfMonthsSinceCreation > 1) {
+      let diasEnMora = numberOfMonthsSinceCreation > 3 ? faker.faker.datatype.number({min: 1, max: 89}) : faker.faker.datatype.number(28*(numberOfMonthsSinceCreation))
+      let nroCuotasInDefault = Math.floor(diasEnMora / 30) + 1
+      let defaultDate = faker.setPastDate(diasEnMora/30)
+      let cuotas = []
+      let nroUltimaCuota = numberOfMonthsSinceCreation - nroCuotasInDefault
+      let loanAmount = Math.floor(amount / numberOfinstallments)
+      for (let i = 0; i < nroCuotasInDefault; i++) {
+        let iva = Math.floor(loanAmount * 0.14)
+        let cuotaBruta = Math.floor(loanAmount + iva)
+        let interes = Math.floor(loanAmount * (nroCuotasInDefault - i)*0.02)
+        let detalle = {
+          numeroCuota: nroUltimaCuota + i,
+          cuota_neta: loanAmount,
+          fec_venc: faker.setPastDate(Math.floor(Math.random()*3)),
+          moneda: '$',
+          pago_parcial: 0,
+          iva: iva,
+          cuota_bruta: cuotaBruta,
+          interes: interes,
+          gasto_cobranza: 143650,
+          monto_total: cuotaBruta + interes + 143650
+        }
+        cuotas.push(detalle)
+      }
+      let deudaMoraTotal = cuotas.reduce((total, detalle) => {
+        return total + detalle.monto_total
+      }, 0)
+      let registroDeudaMora = {
+        numOperacion: leasingToBeCreated.FinServ__FinancialAccountNumber__c,
+        defaultDate,
+        cuotas,
+      }
+      registrosDeudaMora.push(registroDeudaMora)
+      leasingToBeCreated.bci_mto_total_pagar__c = deudaMoraTotal
+      leasingToBeCreated.bci_cnt_dias_mora__c = diasEnMora
+    }
+    leasingsToBeCreated.push(leasingToBeCreated)
+  }
+  jsForce.CRUDRecords(DevNames.finalcialAccountDevName, 'Insert', leasingsToBeCreated)
+    .then(result => {
+      console.log(result)
+      if (registrosDeudaMora.length > 0) {
+        database.insertData('bci_RegistroDeudaMora', registrosDeudaMora)
+      }
+    })
+    .catch((err) => {
+      console.log(err)
     })
 }
 export {
