@@ -875,7 +875,7 @@ const getChildrenRolesFromParentRoleName = (parentRoles) => {
       .catch(err => {reject(err)})
   })
 }
-const createFinancialAccountForAccount = (accountRut, recordTypeName, quantity, inDefault, createLSG, createLEM) => {
+const createFinancialAccountForAccount = (accountRut, recordTypeName, quantity, inDefault, createLSG, createLEM, installments) => {
   let accountFields = {
     Id: 1,
     bci_cli_rut__c: 1,
@@ -908,13 +908,15 @@ const createFinancialAccountForAccount = (accountRut, recordTypeName, quantity, 
           let isCuentaCorriente = recordTypeName == 'BCI Cuenta' || recordTypeName == 'bci_cuenta'
           let isCHIP = recordTypeName == 'BCI Credito Hipotecario' || recordTypeName == 'bci_credito_hipotecario'
           let isLeasing = recordTypeName == 'BCI Leasing' || recordTypeName == 'bci_leasing'
+          let isCC = recordTypeName == 'BCI Credito Consumo' || recordTypeName == 'bci_credito_consumo'
           let args = {
             account: account,
             recordType: recordType,
             quantity: quantity,
             createLEM: createLEM === 'true',
             createLSG: createLSG === 'true',
-            inDefault: inDefault === 'true'
+            inDefault: inDefault === 'true',
+            installments: installments
           }
           if (isTC) {
             createCreditCardsForAccount(args)
@@ -927,6 +929,9 @@ const createFinancialAccountForAccount = (accountRut, recordTypeName, quantity, 
           }
           if (isLeasing) {
             createLeasingsForAccount(args)
+          }
+          if (isCC) {
+            createCreditosConsumoForAccount(args)
           }
           retrieveFinancialAccounts([{ Id: account.Id }])
         })
@@ -1007,7 +1012,7 @@ const createCreditCardsForAccount = ({account, recordType, quantity, inDefault})
     })
 
 }
-const createCuentasCorrientesForAccount = ({account, recordType, quantity, createLEM, createLSG, inDefault}) => {
+const createCuentasCorrientesForAccount = ({account, recordType, quantity, createLEM, createLSG, inDefault, installments}) => {
   let cuentasCorrientesToBeCreated = []
   for (let i = 0; i < quantity; i++) {
     let amount =  faker.faker.finance.amount(10000, 1000000, 0)
@@ -1151,16 +1156,15 @@ const createCHIPsForAccount = ({account, recordType, quantity, inDefault}) => {
     }
     let numberOfMonthsSinceCreation = today.getMonth() - openDate.getMonth() + (12 * (today.getFullYear() - openDate.getFullYear()))
     if (inDefault && numberOfMonthsSinceCreation > 1) {
-      let diasEnMora = numberOfMonthsSinceCreation > 3 ? faker.faker.datatype.number({min: 1, max: 89}) : faker.faker.datatype.number(28*(numberOfMonthsSinceCreation))
-      let nroCuotasInDefault = Math.floor(diasEnMora / 30) + 1
+      let diasEnMora = faker.faker.datatype.number({min: 30 * (installments - 1) , max: 30 * installments})
       let defaultDate = faker.setPastDate(diasEnMora/30)
       let detalleDeudaMora = []
-      let nroUltimaCuota = numberOfMonthsSinceCreation - nroCuotasInDefault
+      let nroUltimaCuota = numberOfMonthsSinceCreation - installments
       let loanAmount = Math.floor(amount / numberOfinstallments)
-      for (let i = 0; i < nroCuotasInDefault; i++) {
+      for (let i = 0; i < installments; i++) {
         let seguroDesgravamen = Math.floor(loanAmount * 0.05)
         let seguroIncendio = Math.floor(loanAmount * 0.05)
-        let interes = Math.floor(loanAmount * (nroCuotasInDefault - i)*0.02)
+        let interes = Math.floor(loanAmount * (installments - i)*0.02)
         let detalle = {
           numeroCuota: nroUltimaCuota + i,
           valorCuota: loanAmount,
@@ -1197,6 +1201,72 @@ const createCHIPsForAccount = ({account, recordType, quantity, inDefault}) => {
     chipsToBeCreated.push(chipToBeCreated)
   }
   jsForce.CRUDRecords(DevNames.finalcialAccountDevName, 'Insert', chipsToBeCreated)
+    .then(result => {
+      console.log(result)
+      if (registrosDeudaMora.length > 0) {
+        database.insertData('bci_RegistroDeudaMora', registrosDeudaMora)
+      }
+    })
+    .catch((err) => {
+      console.log(err)
+    })
+}
+const createCreditosConsumoForAccount = ({account, recordType, quantity, inDefault, installments}) => {
+  let CCsToBeCreated = []
+  let registrosDeudaMora = []
+  for (let i = 0; i < quantity; i++) {
+    let amount = faker.faker.finance.amount(8000, 600000)*1000
+    let openDate = faker.setPastDate(Math.floor(Math.random()*120))
+    let numberOfinstallments = 20*12 // REVISAR
+    let today = new Date()
+    // Pendiente ver en qué campos se guarda el valor total del crédito y la fecha de finalización
+    let CCToBeCreated = {
+      FinServ__PrimaryOwner__c: account.Id,
+      RecordTypeId: recordType.Id,
+      FinServ__FinancialAccountNumber__c: '00' + faker.faker.finance.account(8),
+      FinServ__OpenDate__c: faker.returnDataTimeFormatted(openDate)
+    }
+    let numberOfMonthsSinceCreation = installments + (today.getMonth() - openDate.getMonth() + (12 * (today.getFullYear() - openDate.getFullYear())))
+    if (inDefault && numberOfMonthsSinceCreation > 1) {
+      let diasEnMora = faker.faker.datatype.number({min: 30 * (installments - 1) , max: 30 * installments})
+      let defaultDate = faker.setPastDate(diasEnMora/30)
+      let detalleMorosidad = []
+      let nroUltimaCuota = numberOfMonthsSinceCreation - installments
+      let loanAmount = Math.floor(amount / numberOfinstallments)
+      for (let i = 0; i < installments; i++) {
+        let interes = Math.floor(loanAmount * (installments - i)*0.02)
+        let detalle = {
+          numCuota: nroUltimaCuota + i,
+          valorCuota: loanAmount,
+          fechaVencimiento: faker.setPastDate(Math.floor(Math.random()*3)),
+          intereses: interes,
+          interesGenerado: 0,
+          gastoCobranza: 0,
+          valorComision: 0,
+          interesesMora: interes * 0.02,
+          totalCuota: loanAmount + interes + (interes * 0.02)
+        }
+        detalleMorosidad.push(detalle)
+      }
+      let deudaMoraTotal = detalleMorosidad.reduce((total, detalle) => {
+        return total + detalle.totalCuota
+      }, 0)
+      console.log(deudaMoraTotal)
+      let registroDeudaMora = {
+        numeroOperacion: CCToBeCreated.FinServ__FinancialAccountNumber__c,
+        defaultDate,
+        detalleMorosidad,
+        deudaMoraTotal,
+      }
+      registrosDeudaMora.push(registroDeudaMora)
+      console.log(detalleMorosidad)
+      console.log(deudaMoraTotal)
+      CCToBeCreated.bci_mto_total_pagar__c = deudaMoraTotal
+      CCToBeCreated.bci_cnt_dias_mora__c = diasEnMora
+    }
+    CCsToBeCreated.push(CCToBeCreated)
+  }
+  jsForce.CRUDRecords(DevNames.finalcialAccountDevName, 'Insert', CCsToBeCreated)
     .then(result => {
       console.log(result)
       if (registrosDeudaMora.length > 0) {
