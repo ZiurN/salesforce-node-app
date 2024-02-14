@@ -3,6 +3,8 @@ import { faker } from '@faker-js/faker';
 class FakeData {
   constructor () {
     this.date = new Date();
+    this.lastDayOfMonth = new Date(this.date.getFullYear(), this.date.getMonth() + 1, 0);
+    this.firstDayOfMonth = new Date(this.date.getFullYear(), this.date.getMonth(), 1);
     this.faker = faker;
   }
   returnRandomIndex = (array) => {

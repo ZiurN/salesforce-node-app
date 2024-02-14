@@ -173,6 +173,7 @@ const retrieveFinancialAccounts = (accountFilters, financialAccountsFilters) => 
           FinServ__FinancialAccountType__c: 1,
           FinServ__OwnerType__c: 1,
           FinServ__PrimaryOwner__c: 1,
+          FinServ__Balance__c: 1,
           'FinServ__PrimaryOwner__r.bci_cli_rut__c': 1,
           'FinServ__PrimaryOwner__r.Name': 1,
           FinServ__RecordTypeName__c: 1,
@@ -786,6 +787,7 @@ const createContactabilidadTasksForAccount = (accountRut, quantity ) => {
               for (let i = 0; i < quantity; i++) {
                 let tipoGestion = DevNames.tipoGestion['TELEFONICO'][faker.returnRandomIndex(DevNames.tipoGestion['TELEFONICO'])]
                 let subject = 'Ingreso de gestión: ' + tipoGestion
+                let createdDate = faker.returnDataTimeFormatted(faker.returnRandomDateBetweenGivenDates(faker.firstDayOfMonth, new Date()))
                 let taskToBeCreated = {
                   /** Estas asignaciones no funcionan */
                   //WhoId: account.Id,
@@ -801,8 +803,8 @@ const createContactabilidadTasksForAccount = (accountRut, quantity ) => {
                   bci_can_gestion__c: 'TELEFONICO',
                   bci_tipo_gestion__c: tipoGestion,
                   bci_ind_msj_cobranza__c: true,
-                  CreatedDate: '2024-01-12T19:30:47.000+0000',
-                  ActivityDate: '2024-01-12T19:30:47.000+0000',
+                  CreatedDate: createdDate.replace(' ', 'T'),
+                  ActivityDate: createdDate,
                   OwnerId: accountCase.OwnerId
                 }
                 console.log(taskToBeCreated)
@@ -909,6 +911,7 @@ const createFinancialAccountForAccount = (accountRut, recordTypeName, quantity, 
           let isCHIP = recordTypeName == 'BCI Credito Hipotecario' || recordTypeName == 'bci_credito_hipotecario'
           let isLeasing = recordTypeName == 'BCI Leasing' || recordTypeName == 'bci_leasing'
           let isCC = recordTypeName == 'BCI Credito Consumo' || recordTypeName == 'bci_credito_consumo'
+          let isComex = recordTypeName == 'BCI Credito Comex' || recordTypeName == 'bci_credito_comex'
           let args = {
             account: account,
             recordType: recordType,
@@ -932,6 +935,9 @@ const createFinancialAccountForAccount = (accountRut, recordTypeName, quantity, 
           }
           if (isCC) {
             createCreditosConsumoForAccount(args)
+          }
+          if (isComex) {
+            createComexForAccount(args)
           }
           retrieveFinancialAccounts([{ Id: account.Id }])
         })
@@ -1012,7 +1018,7 @@ const createCreditCardsForAccount = ({account, recordType, quantity, inDefault})
     })
 
 }
-const createCuentasCorrientesForAccount = ({account, recordType, quantity, createLEM, createLSG, inDefault, installments}) => {
+const createCuentasCorrientesForAccount = ({account, recordType, quantity, createLEM, createLSG, inDefault}) => {
   let cuentasCorrientesToBeCreated = []
   for (let i = 0; i < quantity; i++) {
     let amount =  faker.faker.finance.amount(10000, 1000000, 0)
@@ -1078,7 +1084,7 @@ const createCuentasCorrientesForAccount = ({account, recordType, quantity, creat
                   FinServ__TotalCreditLimit__c: amount
                 }
                 if (inDefault) {
-                  let deudaTotal = amount - (amount*(faker.faker.finance.amount(1000, amount)))
+                  let deudaTotal = Number(amount) - (faker.faker.finance.amount(1000, amount))
                   let diasEnMora = faker.faker.datatype.number(30, 89)
                   let registroDeudaMora = {
                     numeroCuentaCorriente: cuentaCorriente.FinServ__FinancialAccountNumber__c,
@@ -1114,6 +1120,8 @@ const createCuentasCorrientesForAccount = ({account, recordType, quantity, creat
                   }
                   registrosDeudaMora.push(registroDeudaMora)
                   LSGToBeCreated.bci_mto_total_pagar__c = deudaTotal
+                  LSGToBeCreated.bci_monto_utilizado__c = amount - deudaTotal
+                  LSGToBeCreated.bci_mon_interes__c = deudaTotal*0.01
                   LSGToBeCreated.bci_cnt_dias_mora__c = diasEnMora
                 }
                 lineasToBeCreated.push(LSGToBeCreated)
@@ -1138,7 +1146,7 @@ const createCuentasCorrientesForAccount = ({account, recordType, quantity, creat
       console.log(err)
     })
 }
-const createCHIPsForAccount = ({account, recordType, quantity, inDefault}) => {
+const createCHIPsForAccount = ({account, recordType, quantity, inDefault, installments}) => {
   let chipsToBeCreated = []
   let registrosDeudaMora = []
   for (let i = 0; i < quantity; i++) {
@@ -1335,6 +1343,42 @@ const createLeasingsForAccount = ({account, recordType, quantity, inDefault}) =>
     leasingsToBeCreated.push(leasingToBeCreated)
   }
   jsForce.CRUDRecords(DevNames.finalcialAccountDevName, 'Insert', leasingsToBeCreated)
+    .then(result => {
+      console.log(result)
+      if (registrosDeudaMora.length > 0) {
+        database.insertData('bci_RegistroDeudaMora', registrosDeudaMora)
+      }
+    })
+    .catch((err) => {
+      console.log(err)
+    })
+}
+const createComexForAccount = ({account, recordType, quantity, inDefault}) => {
+  let comexsToBeCreated = []
+  let registrosDeudaMora = []
+  for (let i = 0; i < quantity; i++) {
+    let amount = faker.faker.finance.amount(8000, 600000)*1000
+    let openDate = faker.setPastDate(Math.floor(Math.random()*120))
+    let comexToBeCreated = {
+      FinServ__PrimaryOwner__c: account.Id,
+      RecordTypeId: recordType.Id,
+      FinServ__FinancialAccountNumber__c: faker.faker.finance.account(8),
+      FinServ__FinancialAccountType__c: 'Comex',
+      FinServ__OpenDate__c: faker.returnDataTimeFormatted(openDate)
+    }
+    comexsToBeCreated.push(comexToBeCreated)
+    if (inDefault) {
+      registrosDeudaMora.push({
+        cuota: {
+          montoTotal: amount,
+          interes: amount * 0.01,
+          fechaVencimiento: faker.setFutureDate(30),
+        },
+        mensajeSinMora: null
+      })
+    }
+  }
+  jsForce.CRUDRecords(DevNames.finalcialAccountDevName, 'Insert', comexsToBeCreated)
     .then(result => {
       console.log(result)
       if (registrosDeudaMora.length > 0) {
