@@ -63,12 +63,12 @@ class OAuht2 {
     this.bci1001 = {
       oauth2 : {
         loginUrl : 'https://bancodecreditoeinversiones--1001.sandbox.my.salesforce.com/',
-        clientId : '3MVG9MX2WYUwuVwN413zXvBy1RcgC10Z8SG3nlYgzlPnHFGz3E_6PHm06F.RT05efuESiODL3R5dpJChgrQrt',
-        clientSecret : 'AC29F2E9D3E95BD525D8525C7755C32CFD26B69D29C50966CB45266120DD9351',
+        clientId : '3MVG9GiqKapCZBwHxZ2B4d2lrKzgpEp5Ra017dvhtzcT_eqWdWe8TYhVfkngJbf1N.fy54GIFwCcFuWOLXn.N',
+        clientSecret : '77A18F6649FCB7545641B3BDC2615317B71A4AEC9FD6801D5CDC86C2C3313A40',
         redirectUri : 'https://login.salesforce.com/services/oauth2/success'
       },
       username : 'jeferson.ruizo@externos.bci.cl.1001',
-      password : 'jef123456o9VymoHbaq1R4Wwh7jSs0z8Lz'
+      password : 'jef123456VOp8uMecUHJXSS0E8wEELWro'
     }
   }
 }

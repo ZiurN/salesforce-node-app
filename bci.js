@@ -4,29 +4,67 @@ import { JSForce } from './jsforce.js'
 import * as DevNames from './devNames.js'
 import { FakeData } from './fakeData/fakeData.js'
 import { bciFakeData } from './fakeData/bci.js'
+import { bciSalesforce} from './Salesforce/bciSalesforce.js'
 
 const oauth2 = new OAuht2()
 const jsForce = new JSForce(oauth2.bci1001)
 const database = new Database('bci1001')
 const faker = new FakeData()
 const fakeData = new bciFakeData()
+const crmBci = new bciSalesforce(oauth2.bci1001)
 
-const retrieveBranches = (branchCodes) => {
-  let fields = {
-    Id: 1,
-    Name: 1,
-    bci_id_sucursal__c: 1,
-    bci_cod_suc__c: 1
-  }
-  let filters = branchCodes ? { bci_cod_suc__c: { $in : branchCodes } } : {}
-  jsForce.getRecordsByFieldsList(DevNames.branchDevName, filters, fields)
-    .then((records) => {
-      database.upsertData('bci_Sucursal', records)
+const syncBranchesFromSalesforce = (branchCodes) => {
+  crmBci.retrieveBranches(branchCodes)
+    .then(records => {
+      if (typeof records === 'object' && records.length > 0){
+        database.upsertData('bci_Sucursal', records)
+      } else {
+        console.log('No hay registros para sincronizar')
+      }
     })
-    .catch((err) => {
-      console.log(err)
-    })
+    .catch(err => console.log(err))
 }
+const syncBranchesFromDatabase = (insert, branchCodes) => {
+  let filters = branchCodes ? { bci_cod_suc__c: { $in : branchCodes } } : {}
+  database.findData('bci_Sucursal', filters, crmBci.branchFields)
+   .then(records => {
+    if (typeof records === 'object' && records.length > 0) {
+      let recordsToInsert = records.map(record => {
+        let recordToInsert = {...record}
+        delete recordToInsert.Id
+        delete recordToInsert._id
+        return recordToInsert
+      })
+      jsForce.CRUDRecords(DevNames.branchDevName, insert ? 'insert' : 'upsert', recordsToInsert)
+        .then(result => {
+          if (typeof result === 'object' && (result.ids || result.errors)) {
+            if (result.errors.length > 0) {
+              result.errors.forEach(error => {
+                console.log(error)
+              })
+            }
+            if (result.ids.length > 0) {
+              let sfIds = result.ids;
+              let recordsToUpdateInDatabase = recordsToInsert.map((record, idx) => {
+                record.Id = sfIds[idx]
+                return record
+              })
+              database.upsertData('bci_Sucursal', recordsToUpdateInDatabase, 'bci_cod_suc__c')
+                .then(result => {
+                  console.log(result)
+                })
+                .catch(err => console.log(err))
+            }
+          } else {
+            console.log('Algo salió mal al intentar sincronizar las sucursales con la base de datos')
+          }
+        })
+        .catch(err => console.log(err))
+    }
+   })
+   .catch(err => console.log(err))
+}
+
 const retrieveRecordTypes = (recordTypes) => {
   let fields = {
     Id: 1,
@@ -1152,9 +1190,9 @@ const createCHIPsForAccount = ({account, recordType, quantity, inDefault, instal
   for (let i = 0; i < quantity; i++) {
     let amount = faker.faker.finance.amount(8000, 600000)*1000
     let openDate = faker.setPastDate(Math.floor(Math.random()*120))
-    let numberOfinstallments = 20*12 // REVISAR
+    let numberOfinstallments = 20*12 //REVISAR
     let today = new Date()
-    // Pendiente ver en qué campos se guarda el valor total del crédito y la fecha de finalización
+    ///Pendiente ver en qué campos se guarda el valor total del crédito y la fecha de finalización
     let chipToBeCreated = {
       FinServ__PrimaryOwner__c: account.Id,
       RecordTypeId: recordType.Id,
@@ -1225,9 +1263,9 @@ const createCreditosConsumoForAccount = ({account, recordType, quantity, inDefau
   for (let i = 0; i < quantity; i++) {
     let amount = faker.faker.finance.amount(8000, 600000)*1000
     let openDate = faker.setPastDate(Math.floor(Math.random()*120))
-    let numberOfinstallments = 20*12 // REVISAR
+    let numberOfinstallments = 20*12 //REVISAR
     let today = new Date()
-    // Pendiente ver en qué campos se guarda el valor total del crédito y la fecha de finalización
+    //Pendiente ver en qué campos se guarda el valor total del crédito y la fecha de finalización
     let CCToBeCreated = {
       FinServ__PrimaryOwner__c: account.Id,
       RecordTypeId: recordType.Id,
@@ -1291,9 +1329,9 @@ const createLeasingsForAccount = ({account, recordType, quantity, inDefault}) =>
   for (let i = 0; i < quantity; i++) {
     let amount = faker.faker.finance.amount(8000, 600000)*1000
     let openDate = faker.setPastDate(Math.floor(Math.random()*120))
-    let numberOfinstallments = 20*12 // REVISAR
+    let numberOfinstallments = 20*12 //REVISAR
     let today = new Date()
-    // Pendiente ver en qué campos se guarda el valor total del crédito y la fecha de finalización
+    //Pendiente ver en qué campos se guarda el valor total del crédito y la fecha de finalización
     let leasingToBeCreated = {
       FinServ__PrimaryOwner__c: account.Id,
       RecordTypeId: recordType.Id,
@@ -1390,7 +1428,8 @@ const createComexForAccount = ({account, recordType, quantity, inDefault}) => {
     })
 }
 export {
-  retrieveBranches,
+  syncBranchesFromSalesforce,
+  syncBranchesFromDatabase,
   retrieveRecordTypes,
   retrieveUserRoles,
   retrieveAccounts,

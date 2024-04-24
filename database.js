@@ -24,13 +24,15 @@ class Database {
       await this.client.close();
     }
   }
-  async upsertData (collection, dataList) {
+  async upsertData (collection, dataList, upsertField = 'Id') {
     try {
       let updateRecordsList = []
       dataList.forEach(data => {
+        let filter = {}
+        filter[upsertField] = data[upsertField]
         let updateObject = {
           updateOne: {
-            'filter': {'Id': data.Id},
+            'filter': filter,
             'update': {$set: data},
             'upsert': true,
             'collection': collection
