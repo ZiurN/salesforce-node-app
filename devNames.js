@@ -42,7 +42,6 @@ let tipoGestion = {
 }
 /** FILTROS */
 let commercialUsersStandardFilters = [
-  { Title: { $nlike: '%EJECUTIVO INTEGRAL%' } },
   { 'Profile.Name' : { $in: commercialProfiles } },
 ]
 export {

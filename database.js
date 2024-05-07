@@ -42,7 +42,8 @@ class Database {
       });
       await this.client.connect()
       console.log("You successfully connected to MongoDB!")
-      await this.client.db(this.database).collection(collection).bulkWrite(updateRecordsList)
+      let result = await this.client.db(this.database).collection(collection).bulkWrite(updateRecordsList)
+      return result
     } catch (err) {
       console.log(err)
     } finally {

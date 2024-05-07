@@ -4,440 +4,39 @@ import { JSForce } from './jsforce.js'
 import * as DevNames from './devNames.js'
 import { FakeData } from './fakeData/fakeData.js'
 import { bciFakeData } from './fakeData/bci.js'
-import { bciSalesforce} from './Salesforce/bciSalesforce.js'
+import { bciSalesforce} from './CRM/bciSalesforce.js'
+import { DataMigration } from './dataMigration/dataMigration.js'
+import { BciDataMigration } from './dataMigration/bciDataMigration.js'
 
 const oauth2 = new OAuht2()
 const jsForce = new JSForce(oauth2.bci1001)
 const database = new Database('bci1001')
 const faker = new FakeData()
 const fakeData = new bciFakeData()
-const crmBci = new bciSalesforce(oauth2.bci1001)
+const crmBci1001 = new bciSalesforce(oauth2.bci1001)
+const crmBciUATMinorCO = new bciSalesforce(oauth2.bciUatMinorCO)
+const dataMigration = new DataMigration(database, crmBci1001, crmBciUATMinorCO)
+const bciDataMigration = new BciDataMigration(database, crmBci1001, crmBciUATMinorCO)
 
 const syncBranchesFromSalesforce = (branchCodes) => {
-  crmBci.retrieveBranches(branchCodes)
-    .then(records => {
-      if (typeof records === 'object' && records.length > 0){
-        database.upsertData('bci_Sucursal', records)
-      } else {
-        console.log('No hay registros para sincronizar')
-      }
-    })
-    .catch(err => console.log(err))
+  let filters = branchCodes ? { bci_cod_suc__c: { $in : branchCodes } } : {}
+  dataMigration.syncSOBjectsFromSalesforce(crmBci1001.retrieveBranches(filters), 'bci_Sucursal')
 }
 const syncBranchesFromDatabase = (insert, branchCodes) => {
   let filters = branchCodes ? { bci_cod_suc__c: { $in : branchCodes } } : {}
-  database.findData('bci_Sucursal', filters, crmBci.branchFields)
-   .then(records => {
-    if (typeof records === 'object' && records.length > 0) {
-      let recordsToInsert = records.map(record => {
-        let recordToInsert = {...record}
-        delete recordToInsert.Id
-        delete recordToInsert._id
-        return recordToInsert
-      })
-      jsForce.CRUDRecords(DevNames.branchDevName, insert ? 'insert' : 'upsert', recordsToInsert)
-        .then(result => {
-          if (typeof result === 'object' && (result.ids || result.errors)) {
-            if (result.errors.length > 0) {
-              result.errors.forEach(error => {
-                console.log(error)
-              })
-            }
-            if (result.ids.length > 0) {
-              let sfIds = result.ids;
-              let recordsToUpdateInDatabase = recordsToInsert.map((record, idx) => {
-                record.Id = sfIds[idx]
-                return record
-              })
-              database.upsertData('bci_Sucursal', recordsToUpdateInDatabase, 'bci_cod_suc__c')
-                .then(result => {
-                  console.log(result)
-                })
-                .catch(err => console.log(err))
-            }
-          } else {
-            console.log('Algo salió mal al intentar sincronizar las sucursales con la base de datos')
-          }
-        })
-        .catch(err => console.log(err))
-    }
-   })
-   .catch(err => console.log(err))
+  let fields = crmBci1001.branchFields
+  let colletion = 'bci_Sucursal'
+  let SObjectDevName = DevNames.branchDevName
+  let upsertField = 'bci_id_sucursal__c'
+  dataMigration.syncSOBjectsFromDatabase(fields, colletion, SObjectDevName, upsertField, insert, filters)
 }
-
-const retrieveRecordTypes = (recordTypes) => {
-  let fields = {
-    Id: 1,
-    Name: 1,
-    DeveloperName: 1,
-    SobjectType: 1
-  }
-  let filters = recordTypes ? { $or: [ { DeveloperName: { $in : recordTypes } },  { Name: { $in : recordTypes } }] } : {}
-  jsForce.getRecordsByFieldsList(DevNames.recordTypeDevName, filters, fields)
-    .then((records) => {
-      database.upsertData('bci_RecordType', records)
-    })
-    .catch((err) => {
-      console.log(err)
-    })
-}
-const retrieveUserRoles = (userRolesList) => {
-  let userRoleFields = {
-    Id: 1,
-    Name: 1,
-    DeveloperName: 1,
-    ParentRoleId: 1,
-    RollupDescription: 1
-  }
-  let filters = userRolesList ? { $or: [ { DeveloperName: { $in : userRolesList } },  { Name: { $in : userRolesList } }] } : {}
-  jsForce.getRecordsByFieldsList(DevNames.userRoleDevName, filters, userRoleFields)
-    .then((userRoles) => {
-      database.upsertData('bci_UserRole', userRoles).then((result) => {
-        database.findData('bci_UserRole', {}, {Id: 1, ParentRoleId: 1}).then((userRoles) => {
-          let userRolesToUpdate = []
-          userRoles.forEach(userRole => {
-            if (userRole.ParentRoleId == null) return
-            let parentRole = userRoles.find(role => role.Id == userRole.ParentRoleId)
-            if (parentRole) {
-              userRole._parentRoleId = parentRole._id
-              userRolesToUpdate.push(userRole)
-            }
-          })
-          if (userRolesToUpdate.length == 0) return
-          database.upsertData('bci_UserRole', userRolesToUpdate)
-        })
-        .catch((err) => {
-          console.log(err)
-        })
-      })
-    })
-    .catch((err) => {
-      console.log(err)
-    })
-}
-let accountFilters = {
-  isPersonAccount: false
-}
-const retrieveAccounts = (filters = accountFilters) => {
-  let fields = {
-    Id: 1,
-    Name: 1,
-    LastName: 1,
-    FirstName: 1,
-    RecordTypeId: 1,
-    OwnerId: 1,
-    IsPersonAccount: 1,
-    PersonContactId: 1,
-    bci_cli_cic__c: 1,
-    bci_cli_dv__c: 1,
-    bci_cli_mora__c: 1,
-    bci_cli_rut__c: 1,
-    bci_estado_mora__c: 1,
-    bci_id_sf_sucursal__c: 1,
-    bci_ind_acciones__c: 1,
-    bci_ind_cre_consumo__c: 1,
-    bci_ind_cre_hipotecario__c: 1,
-    bci_ind_cuenta__c: 1,
-    bci_ind_dep_plazo__c: 1,
-    bci_ind_fon_mutuos__c: 1,
-    bci_ind_garantia__c: 1,
-    bci_ind_lin_emergencia__c: 1,
-    bci_ind_lin_sobregiro__c: 1,
-    bci_ind_margen__c: 1,
-    bci_ind_pag_aut_cuenta__c: 1,
-    bci_ind_seguros__c: 1,
-    bci_ind_tar_credito__c: 1,
-    bci_mon_mora__c: 1,
-    bci_rut_com__c: 1
-  }
-  jsForce.getRecordsByFieldsList(DevNames.accountDevName, filters, fields)
-  .then((records) => {
-    if (records.length == 0) {
-      console.log('No se encontraron cuentas')
-      return
-    }
-    console.log('registros encontrados: ' + records.length)
-    database.upsertData('bci_Account', records)
-  })
-  .catch((err) => {
-    console.log(err)
-  })
-}
-let registerFieldByFinacialAccountType = {
-  bci_acciones: 'bci_ind_acciones__c',
-  bci_credito_consumo: 'bci_ind_cre_consumo__c',
-  bci_credito_hipotecario: 'bci_ind_cre_hipotecario__c',
-  bci_cuenta: 'bci_ind_cuenta__c',
-  bci_deposito_plazo: 'bci_ind_dep_plazo__c',
-  bci_fondos_mutuos: 'bci_ind_fon_mutuos__c',
-  bci_garantia: 'bci_ind_garantia__c',
-  bci_linea_emergencia: 'bci_ind_lin_emergencia__c',
-  bci_linea_sobregiro: 'bci_ind_lin_sobregiro__c',
-  bci_margen: 'bci_ind_margen__c',
-  bci_pago_automatico_cuenta: 'bci_ind_pag_aut_cuenta__c',
-  bci_seguros: 'bci_ind_seguros__c',
-  bci_tarjeta_de_credito: 'bci_ind_tar_credito__c',
-  bci_credito_comex: 'bci_ind_cre_comex__c',
-  bci_factoring: 'bci_ind_factoring__c',
-  BCI_SegurosRelacionados: 'bci_ind_seguros__c',
-  bci_cartera_dinamica: 'bci_ind_cartera_dinamica__c'
-}
-const retrieveFinancialAccounts = (accountFilters, financialAccountsFilters) => {
-  return new Promise((resolve, reject) => {
-    let tpm_accountFilters = {
-      isPersonAccount: true
-    }
-    if (accountFilters) {
-      tpm_accountFilters = { $and : [tpm_accountFilters, ...accountFilters]}
-    }
-    database.findData('bci_Account', tpm_accountFilters, {Id: 1})
-      .then((accounts) => {
-        let accountIds = accounts.map(account => account.Id)
-        let tmp_financialAccountFilters = {
-          FinServ__PrimaryOwner__c: {$in: accountIds},
-        }
-        if (financialAccountsFilters) {
-          tmp_financialAccountFilters = { $and : [tmp_financialAccountFilters, ...financialAccountsFilters]}
-        }
-        let finalcialAccountfields = {
-          Id: 1,
-          OwnerId: 1,
-          Name: 1,
-          RecordTypeId: 1,
-          'RecordType.Name': 1,
-          'RecordType.DeveloperName': 1,
-          FinServ__FinancialAccountNumber__c: 1,
-          FinServ__FinancialAccountSource__c: 1,
-          FinServ__FinancialAccountType__c: 1,
-          FinServ__OwnerType__c: 1,
-          FinServ__PrimaryOwner__c: 1,
-          FinServ__Balance__c: 1,
-          'FinServ__PrimaryOwner__r.bci_cli_rut__c': 1,
-          'FinServ__PrimaryOwner__r.Name': 1,
-          FinServ__RecordTypeName__c: 1,
-          FinServ__Status__c: 1,
-          bci_BiPersonal__c: 1,
-          bci_ind_tipo_mov__c: 1,
-          bci_ind_var_precio__c: 1,
-          bci_mon_act__c: 1,
-          bci_mon_cuota__c: 1,
-          bci_mon_inv_ini__c: 1,
-          bci_mon_tot_tasa_spread__c: 1,
-          bci_moneda__c: 1,
-          bci_tasa__c: 1,
-          bci_ult_chq_cobrados__c: 1,
-          bci_id_financialaccount__c: 1,
-          bci_aux_detalle_mora__c: 1,
-          bci_cnt_dias_mora__c: 1,
-          bci_flg_pago_transito__c: 1,
-          bci_prod_code__c: 1,
-          bci_fec_primer_venc__c: 1,
-          bci_nom_ejecutivo_comex__c: 1,
-          bci_nom_ejecutivo_leasing__c: 1,
-          bci_num_rentas_act_vs_total__c: 1,
-          bci_cod_cartera_inv__c: 1,
-          bci_cod_cuenta_inv__c: 1,
-          bci_cod_prod_inv__c: 1,
-          bci_cod_regimen_tributario__c: 1,
-          bci_cod_tipo_cartera__c: 1,
-          bci_fec_ven__c: 1,
-          bci_num_cuenta_tdc__c: 1
-        }
-        jsForce.getRecordsByFieldsList(DevNames.finalcialAccountDevName, tmp_financialAccountFilters, finalcialAccountfields)
-          .then((financialAccounts) => {
-            database.upsertData('bci_FinancialAccount', financialAccounts)
-              .then((results) => {
-                let financialAccountsGroupedByAccount = Object.groupBy(financialAccounts, financialAccount => {
-                  return financialAccount.FinServ__PrimaryOwner__c
-                })
-                let accountsToUpdate = []
-                for (const accountId in financialAccountsGroupedByAccount) {
-                  let financialAccounts = financialAccountsGroupedByAccount[accountId]
-                  let accountToUpdate = {
-                    Id: accountId,
-                  }
-                  financialAccounts.forEach(financialAccount => {
-                    let field = registerFieldByFinacialAccountType[financialAccount.RecordType.DeveloperName]
-                    if (field && !accountToUpdate[field]) {
-                      accountToUpdate[field] = true
-                    }
-                  })
-                  accountsToUpdate.push(accountToUpdate)
-                }
-                if (accountsToUpdate.length == 0) resolve('No hay cuentas cliente para actualizar')
-                jsForce.CRUDRecords(DevNames.accountDevName, 'Update', accountsToUpdate)
-                  .then(result => {
-                    resolve(result)
-                  })
-                  .catch((err) => {
-                    reject(err)
-                  })
-              }
-              ).catch((err) => {
-                reject(err)
-              })
-          })
-          .catch((err) => {
-            reject(err)
-          })
-      })
-      .catch((err) => {
-        reject(err)
-      })
-  })
-}
-const retrieveFinancialCards = () => {
-  database.findData('bci_Account', { isPersonAccount: true }, {Id: 1})
-    .then((accounts) => {
-      let accountIds = accounts.map(account => account.Id)
-      let cardsFilters = {
-        FinServ__AccountHolder__c: {$in: accountIds},
-      }
-      let cardsFields = {
-        Id: 1,
-        Name: 1,
-        RecordTypeId: 1,
-        'RecordType.Name': 1,
-        'RecordType.DeveloperName': 1,
-        FinServ__FinancialAccount__c: 1,
-        FinServ__Active__c: 1,
-        FinServ__OwnershipType__c: 1,
-        FinServ__ValidUntil__c: 1,
-        bci_est_tarjeta__c: 1,
-        bci_id_tarjeta__c: 1,
-        bci_mon_int_aut__c: 1,
-        bci_mon_nac_aut__c: 1,
-        bci_num_tarjeta__c: 1,
-        bci_tip_producto__c: 1
-      }
-      jsForce.getRecordsByFieldsList(DevNames.cardDevName, cardsFilters, cardsFields)
-        .then((cards) => {
-          database.upsertData('bci_Card', cards)
-            .then(results => {
-              let financialAccountFields = {
-                Id: 1,
-                FinServ__PrimaryOwner__c: 1,
-                bci_num_cuenta_tdc__c: 1
-              }
-              database.findData('bci_FinancialAccount', { 'RecordType.DeveloperName': 'bci_tarjeta_de_credito' }, financialAccountFields)
-                .then((financialAccounts) => {
-                  if (financialAccounts.length == 0) {
-                    console.log('No se encontraron cuentas de tarjetas de crédito')
-                    return
-                  }
-                  let financialTCsWithoutCards = financialAccounts.filter(financialAccount => {
-                    return !cards.find(card => card.FinServ__FinancialAccount__c == financialAccount.Id)
-                  })
-                  if (financialTCsWithoutCards.length == 0) {
-                    console.log('No se encontraron tarjetas sin plástico registrado')
-                    return
-                  }
-                  let cardsToBeCreated = []
-                  financialTCsWithoutCards.forEach(financialTC => {
-                    let card = {
-                      FinServ__AccountHolder__c: financialTC.FinServ__PrimaryOwner__c,
-                      FinServ__FinancialAccount__c: financialTC.Id,
-                      FinServ__Active__c: true,
-                      FinServ__OwnershipType__c: 'Primary',
-                      bci_num_tarjeta__c: financialTC.bci_num_cuenta_tdc__c,
-                      bci_mon_int_aut__c: 5000,
-                      bci_mon_nac_aut__c: 5900000,
-                      bci_est_tarjeta__c: 'Activa ',
-                      bci_glosa_est__c: 'ACTIVADA'
-                    }
-                    cardsToBeCreated.push(card)
-                  })
-                  jsForce.CRUDRecords(DevNames.cardDevName, 'Insert', cardsToBeCreated)
-                    .then(result => {
-                      console.log(result)
-                    })
-                    .catch((err) => {
-                      console.log(err)
-                    })
-                }).catch((err) => {
-                  console.log(err)
-                })
-            })
-            .catch((err) => {
-              console.log(err)
-            })
-        })
-        .catch((err) => {
-          console.log(err)
-        })
-    }).catch((err) => {
-      console.log(err)
-    })
-}
-const retrieveBusinessHours = () => {
-  let fields = {
-    Id: 1,
-    Name: 1,
-    IsActive: 1,
-    IsDefault: 1,
-    SundayStartTime: 1,
-    SundayEndTime: 1,
-    MondayStartTime: 1,
-    MondayEndTime: 1,
-    TuesdayStartTime: 1,
-    TuesdayEndTime: 1,
-    WednesdayStartTime: 1,
-    WednesdayEndTime: 1,
-    ThursdayStartTime: 1,
-    ThursdayEndTime: 1,
-    FridayStartTime: 1,
-    FridayEndTime: 1,
-    SaturdayStartTime: 1,
-    SaturdayEndTime: 1
-  }
-  jsForce.getRecordsByFieldsList('BusinessHours', {}, fields)
-    .then((records) => {
-      database.upsertData('bci_BusinessHours', records)
-    })
-    .catch((err) => {
-      console.log(err)
-    })
-}
-const activeCommercialUsers = (roleName, getLevelUsers) => {
-  let initialUsers = getCommercialUsersByRoleInheritance(roleName, getLevelUsers)
-  if (initialUsers.length == 0) return
-  let usersToBeChecked = [...initialUsers]
-  initialUsers.forEach(user => {
-    if (user.UserRole.Name !== null && user.UserRole.Name !== undefined  && user.UserRole.Name !== '') {
-      usersToBeChecked = [...usersToBeChecked, getCommercialUsersByRoleInheritance(user.UserRole.Name, getLevelUsers)]
-    }
-  })
-  if (usersToUpdate.length == 0) return
-  jsForce.CRUDRecords(DevNames.userDevName, 'Update', usersToUpdate)
-    .then(result => {
-      console.log(result)
-    })
-    .catch((err) => {
-      console.log(err)
-    })
-}
-const getCommercialUsersByRoleInheritance = async (roleName, getLevelUsers) => {
-  let userFields = {
-    IsActive: 1,
-    Id: 1,
-    LastName: 1,
-    FirstName: 1,
-    Name: 1,
-    'Profile.Name': 1,
-    'ProfileId': 1,
-    'UserRole.Name': 1,
-    'UserRole.DeveloperName': 1,
-    'UserRole.Id': 1,
-    'UserRole.ParentRoleId': 1,
-    bci_Codigo_Sucursal__c: 1,
-    Alias: 1,
-    Title: 1
-  }
+const syncCommercialUsersByRoleInheritanceFromSalesforce = async (roleName, getLevelUsers) => {
   let andQueryFilters = [
     ...DevNames.commercialUsersStandardFilters,
     { 'UserRole.Name': { $nlike: '%PLATAFORMA%' } },
     { Title: { $nlike: '%EJECUTIVO INTEGRAL%' } },
-    { Title: { $nlike: '%ASISTENTE%' } }
+    { Title: { $nlike: '%ASISTENTE%' } },
+    { IsActive: true }
   ]
   let filters = {
     $and : andQueryFilters
@@ -452,7 +51,6 @@ const getCommercialUsersByRoleInheritance = async (roleName, getLevelUsers) => {
     let parentRoles = await database.findData('bci_UserRole', parentRoleFilters, {Id: 1, ParentRoleId: 1})
     if (parentRoles.length == 0) return []
     let roles = await getChildrenRolesFromParentRoleName(parentRoles)
-    if (roles.length == 0) return []
     let rolesIds = roles.map(role => role.Id)
     filters.$and.push({'UserRole.Id': {$in: rolesIds}})
   } else {
@@ -461,19 +59,57 @@ const getCommercialUsersByRoleInheritance = async (roleName, getLevelUsers) => {
       {'UserRole.DeveloperName': roleName}
     ]})
   }
-  jsForce.getRecordsByFieldsList(DevNames.userDevName, filters, userFields)
-    .then((users) => {
-      if (users.length === 0) console.log('No se encontraron usuarios')
-      else {
-        console.log('Usuarios encontrados: ' + users.length)
-        database.upsertData('bci_User', users)
-        return users
-      }
-    })
-    .catch((err) => {
-      console.log(err)
-    })
+  dataMigration.syncSOBjectsFromSalesforce(crmBci1001.retrieveUsers(filters), 'bci_User')
 }
+const getChildrenRolesFromParentRoleName = (parentRoles) => {
+  return new Promise((resolve, reject) => {
+    let idList = parentRoles.map(parentRole => parentRole.Id)
+    database.findData('bci_UserRole', { ParentRoleId: { $in: idList}}, {Id: 1})
+      .then(childrenRoles => {
+        if (childrenRoles.length == 0) resolve(parentRoles)
+        else {
+          getChildrenRolesFromParentRoleName(childrenRoles)
+            .then((returnedChildrenRoles) => {
+              resolve([...parentRoles, ...returnedChildrenRoles])
+            })
+        }
+      })
+      .catch(err => {reject(err)})
+  })
+}
+const syncUsersFromDatabase = (insert, filters) => {
+  let fields = crmBci1001.userFields
+  delete fields.Name
+  filters = filters ? filters : {}
+  let collection = 'bci_User'
+  let SObjectDevName = DevNames.userDevName
+  let upsertField = 'bci_usr_rut__c'
+  dataMigration.syncSOBjectsFromDatabase(fields, collection, SObjectDevName, upsertField, insert, filters)
+}
+const syncAccountsBetweenOrgs = () => {
+  let filters = [
+    { isPersonAccount: true },
+    { bci_cli_rut__c : { $ne: null } },
+  ]
+  bciDataMigration.syncAccountsToBeMigrated({ $and: filters })
+}
+const syncAccountsFromSalesforce = (filters) => {
+  filters = filters ? filters : {}
+  dataMigration.syncSOBjectsFromSalesforce(crmBci1001.retrieveAccounts(filters), 'bci_Account')
+}
+const syncAccountsFromDatabase = (insert, filters) => {
+  filters = filters ? filters : {}
+  let fields = crmBci1001.accountFields
+  delete fields.Name
+  delete fields.IsPersonAccount
+  delete fields.PersonContactId
+  delete fields.bci_estado_mora__c
+  let collection = 'bci_Account'
+  let SObjectDevName = DevNames.accountDevName
+  let upsertField = 'bci_cli_rut__c'
+  dataMigration.syncSOBjectsFromDatabase(fields, collection, SObjectDevName, upsertField, insert, filters)
+}
+
 const updateAccountsToBeUsed = (branchCode, firstNameForFiltering) => {
   database.findData('bci_Sucursal', {bci_cod_suc__c: branchCode}).then((branches) => {
     let filters = {
@@ -895,25 +531,6 @@ const setProximosVencimientosForAccount = (accountRut) => {
     .catch((err) => {
       console.log(err)
     })
-}
-const getChildrenRolesFromParentRoleName = (parentRoles) => {
-  return new Promise((resolve, reject) => {
-    let idList = []
-    parentRoles.forEach(parentRole => {
-      idList.push(parentRole.Id)
-    })
-    database.findData('bci_UserRole', { ParentRoleId: { $in: idList}}, {Id: 1})
-      .then(childrenRoles => {
-        if (childrenRoles.length == 0) resolve(parentRoles)
-        else {
-          getChildrenRolesFromParentRoleName(childrenRoles)
-            .then((grandChildrenRoles) => {
-              resolve([...parentRoles, ...grandChildrenRoles])
-            })
-        }
-      })
-      .catch(err => {reject(err)})
-  })
 }
 const createFinancialAccountForAccount = (accountRut, recordTypeName, quantity, inDefault, createLSG, createLEM, installments) => {
   let accountFields = {
@@ -1430,21 +1047,25 @@ const createComexForAccount = ({account, recordType, quantity, inDefault}) => {
 export {
   syncBranchesFromSalesforce,
   syncBranchesFromDatabase,
-  retrieveRecordTypes,
-  retrieveUserRoles,
-  retrieveAccounts,
-  retrieveFinancialAccounts,
-  retrieveFinancialCards,
-  retrieveBusinessHours,
-  activeCommercialUsers,
-  getCommercialUsersByRoleInheritance,
-  updateAccountsToBeUsed,
-  reAssignAccountsToUsers,
-  assignAccountsWithoutBranch,
-  createChequesProtestadosPorFormaForUser,
-  createChequesProtestadosPorFondoForUser,
-  createCasesForUser,
-  createContactabilidadTasksForAccount,
-  setProximosVencimientosForAccount,
-  createFinancialAccountForAccount
+  syncCommercialUsersByRoleInheritanceFromSalesforce,
+  syncUsersFromDatabase,
+  syncAccountsBetweenOrgs,
+  syncAccountsFromSalesforce,
+  syncAccountsFromDatabase
+  // retrieveUserRoles,
+  // retrieveAccounts,
+  // retrieveFinancialAccounts,
+  // retrieveFinancialCards,
+  // retrieveBusinessHours,
+  // activeCommercialUsers,
+  // getCommercialUsersByRoleInheritance,
+  // updateAccountsToBeUsed,
+  // reAssignAccountsToUsers,
+  // assignAccountsWithoutBranch,
+  // createChequesProtestadosPorFormaForUser,
+  // createChequesProtestadosPorFondoForUser,
+  // createCasesForUser,
+  // createContactabilidadTasksForAccount,
+  // setProximosVencimientosForAccount,
+  // createFinancialAccountForAccount
 }

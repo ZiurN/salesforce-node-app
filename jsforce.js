@@ -22,14 +22,16 @@ class JSForce {
         });
       });
     }
-    CRUDRecords = (sObjectName, CRUDOperation, records) => {
+    CRUDRecords = (sObjectName, CRUDOperation, records, upsertField) => {
       return new Promise((resolve, reject) => {
         this.login().then((conn) => {
           let results = {};
           let ids = [];
           let errors = [];
+          let options = upsertField ? {extIdField: upsertField} : { extIdField: 'Id'}
+          options = CRUDOperation.toLowerCase() === 'upsert' ? options : {};
           conn.bulk.pollTimeout = 250000; // Bulk timeout can be specified globally on the connection object
-          conn.bulk.load(sObjectName, CRUDOperation, records, function(err, rets) {
+          conn.bulk.load(sObjectName, CRUDOperation, options, records, function(err, rets) {
             if (err) { reject(console.error(err)); }
             for (var i=0; i < rets.length; i++) {
               let queryObj = {};
@@ -122,6 +124,34 @@ class JSForce {
         })
       })
     }
+    getMetadata = () => {
+      return new Promise((resolve, reject) => {
+        this.login().then((conn) => {
+          conn.metadata.describe('39.0', function(err, metadata) {
+            if (err) { return console.error('err', err); }
+            for (var i=0; i < metadata.length; i++) {
+              var meta = metadata[i];
+              console.log("organizationNamespace: " + meta.organizationNamespace);
+              console.log("partialSaveAllowed: " + meta.partialSaveAllowed);
+              console.log("testRequired: " + meta.testRequired);
+              console.log("metadataObjects count: " + metadataObjects.length);
+            }
+            resolve(metadata)
+          });
+        }).catch((err) => {
+          reject(err)
+        });
+      });
+    }
 }
+
+import { OAuht2 } from './oauth.js';
+const test = new JSForce(OAuht2.ziurfreelance);
+
+test.getMetadata().then((metadata) => {
+  fs.createWriteStream('metadata.json', JSON.stringify(metadata))
+}).catch((err) => {
+  console.error(err)
+})
 
 export { JSForce }
