@@ -1,0 +1,2054 @@
+model Account {
+id String @id
+Name String
+Type String
+ParentId Account @relation("AccountAccountParent", fields: [id_AccountAccountId1], references: [id])
+id_AccountAccountId1 String
+BillingStreet String
+BillingCity String
+BillingState String
+BillingPostalCode String
+BillingCountry String
+BillingLatitude Decimal
+BillingLongitude Decimal
+BillingGeocodeAccuracy String
+ShippingStreet String
+ShippingCity String
+ShippingState String
+ShippingPostalCode String
+ShippingCountry String
+ShippingLatitude Decimal
+ShippingLongitude Decimal
+ShippingGeocodeAccuracy String
+Phone String
+Fax String
+AccountNumber String
+Website String
+Sic String
+Industry String
+AnnualRevenue Decimal
+NumberOfEmployees Int
+Ownership String
+TickerSymbol String
+Description String
+Rating String
+Site String
+CurrencyIsoCode String
+OwnerId User @relation("AccountUserOwner", fields: [id_AccountUserId1], references: [id])
+id_AccountUserId1 String
+Jigsaw String
+CleanStatus String
+AccountSource String
+DunsNumber String
+Tradestyle String
+NaicsCode String
+NaicsDesc String
+YearStarted String
+SicDesc String
+DandbCompanyId DandBCompany @relation("AccountDandBCompanyDandbCompany", fields: [id_AccountDandBCompanyId1], references: [id])
+id_AccountDandBCompanyId1 String
+CustomerPriority__c String
+SLA__c String
+Active__c String
+NumberofLocations__c Decimal
+UpsellOpportunity__c String
+SLASerialNumber__c String
+SLAExpirationDate__c DateTime
+FiscalAddress__c String
+FiscalStreet__c String
+FiscalCity__c String
+FiscalState__c String
+FiscalCountry__c String
+FiscalLatitude__c Decimal
+FiscalLongitude__c Decimal
+Customer_ID__c String
+Onboarding_Status__c String
+Language_Preference__c String
+AlternativePaymentMethodAccountAccount AlternativePaymentMethod[] @relation("AlternativePaymentMethodAccountAccount")
+AssetAccountAccount Asset[] @relation("AssetAccountAccount")
+AssetAccountAssetProvidedBy Asset[] @relation("AssetAccountAssetProvidedBy")
+AssetAccountAssetServicedBy Asset[] @relation("AssetAccountAssetServicedBy")
+AuthorizationFormConsentAccountConsentGiver AuthorizationFormConsent[] @relation("AuthorizationFormConsentAccountConsentGiver")
+AuthorizationFormConsentAccountRelatedRecord AuthorizationFormConsent[] @relation("AuthorizationFormConsentAccountRelatedRecord")
+CardPaymentMethodAccountAccount CardPaymentMethod[] @relation("CardPaymentMethodAccountAccount")
+CaseAccountAccount Case[] @relation("CaseAccountAccount")
+CommSubscriptionConsentAccountConsentGiver CommSubscriptionConsent[] @relation("CommSubscriptionConsentAccountConsentGiver")
+ContactAccountAccount Contact[] @relation("ContactAccountAccount")
+ContactPointAddressAccountParent ContactPointAddress[] @relation("ContactPointAddressAccountParent")
+ContactPointEmailAccountParent ContactPointEmail[] @relation("ContactPointEmailAccountParent")
+ContactPointPhoneAccountParent ContactPointPhone[] @relation("ContactPointPhoneAccountParent")
+ContactRequestAccountWhat ContactRequest[] @relation("ContactRequestAccountWhat")
+ContractAccountAccount Contract[] @relation("ContractAccountAccount")
+DigitalWalletAccountAccount DigitalWallet[] @relation("DigitalWalletAccountAccount")
+DuplicateRecordItemAccountRecord DuplicateRecordItem[] @relation("DuplicateRecordItemAccountRecord")
+EmailMessageAccountRelatedTo EmailMessage[] @relation("EmailMessageAccountRelatedTo")
+EventAccountWhat Event[] @relation("EventAccountWhat")
+MessagingEndUserAccountAccount MessagingEndUser[] @relation("MessagingEndUserAccountAccount")
+OpportunityAccountAccount Opportunity[] @relation("OpportunityAccountAccount")
+OrderAccountAccount Order[] @relation("OrderAccountAccount")
+PaymentAccountAccount Payment[] @relation("PaymentAccountAccount")
+PaymentAuthAdjustmentAccountAccount PaymentAuthAdjustment[] @relation("PaymentAuthAdjustmentAccountAccount")
+PaymentAuthorizationAccountAccount PaymentAuthorization[] @relation("PaymentAuthorizationAccountAccount")
+RefundAccountAccount Refund[] @relation("RefundAccountAccount")
+ScorecardAssociationAccountTargetEntity ScorecardAssociation[] @relation("ScorecardAssociationAccountTargetEntity")
+SurveySubjectAccountSubject SurveySubject[] @relation("SurveySubjectAccountSubject")
+TaskAccountWhat Task[] @relation("TaskAccountWhat")
+}
+model AlternativePaymentMethod {
+id String @id
+
+NickName String
+GatewayToken String
+GatewayTokenDetails String
+Email String
+AccountId Account @relation("AlternativePaymentMethodAccountAccount", fields: [id_AlternativePaymentMethodAccountId1], references: [id])
+id_AlternativePaymentMethodAccountId1 String
+Status String
+CompanyName String
+PaymentMethodStreet String
+PaymentMethodCity String
+PaymentMethodState String
+PaymentMethodPostalCode String
+PaymentMethodCountry String
+PaymentMethodLatitude Decimal
+PaymentMethodLongitude Decimal
+PaymentMethodGeocodeAccuracy String
+Comments String
+MacAddress String
+Phone String
+IpAddress String
+AuditEmail String
+IsAutoPayEnabled Boolean
+PaymentMethodType String
+BillingFirstName String
+BillingLastName String
+BillingName String
+}
+model AppUsageAssignment {
+id String @id
+}
+model Asset {
+id String @id
+ContactId Contact @relation("AssetContactContact", fields: [id_AssetContactId1], references: [id])
+id_AssetContactId1 String
+AccountId Account @relation("AssetAccountAccount", fields: [id_AssetAccountId1], references: [id])
+id_AssetAccountId1 String
+ParentId Asset @relation("AssetAssetParent", fields: [id_AssetAssetId1], references: [id])
+id_AssetAssetId1 String
+Product2Id Product2 @relation("AssetProduct2Product2", fields: [id_AssetProduct2Id1], references: [id])
+id_AssetProduct2Id1 String
+IsCompetitorProduct Boolean
+CurrencyIsoCode String
+Name String
+SerialNumber String
+InstallDate DateTime
+PurchaseDate DateTime
+UsageEndDate DateTime
+Status String
+Price Decimal
+Quantity Decimal
+Description String
+OwnerId User @relation("AssetUserOwner", fields: [id_AssetUserId1], references: [id])
+id_AssetUserId1 String
+AssetProvidedById Account @relation("AssetAccountAssetProvidedBy", fields: [id_AssetAccountId2], references: [id])
+id_AssetAccountId2 String
+AssetServicedById Account @relation("AssetAccountAssetServicedBy", fields: [id_AssetAccountId3], references: [id])
+id_AssetAccountId3 String
+IsInternal Boolean
+Street String
+City String
+State String
+PostalCode String
+Country String
+Latitude Decimal
+Longitude Decimal
+GeocodeAccuracy String
+AssetRelationshipAssetRelatedAsset AssetRelationship[] @relation("AssetRelationshipAssetRelatedAsset")
+CaseAssetAsset Case[] @relation("CaseAssetAsset")
+EmailMessageAssetRelatedTo EmailMessage[] @relation("EmailMessageAssetRelatedTo")
+EventAssetWhat Event[] @relation("EventAssetWhat")
+SurveySubjectAssetSubject SurveySubject[] @relation("SurveySubjectAssetSubject")
+TaskAssetWhat Task[] @relation("TaskAssetWhat")
+}
+model AssetRelationship {
+id String @id
+CurrencyIsoCode String
+RelatedAssetId Asset @relation("AssetRelationshipAssetRelatedAsset", fields: [id_AssetRelationshipAssetId1], references: [id])
+id_AssetRelationshipAssetId1 String
+FromDate DateTime
+ToDate DateTime
+RelationshipType String
+EventAssetRelationshipWhat Event[] @relation("EventAssetRelationshipWhat")
+TaskAssetRelationshipWhat Task[] @relation("TaskAssetRelationshipWhat")
+}
+model AssociatedLocation {
+id String @id
+CurrencyIsoCode String
+LocationId Location @relation("AssociatedLocationLocationLocation", fields: [id_AssociatedLocationLocationId1], references: [id])
+id_AssociatedLocationLocationId1 String
+Type String
+ActiveFrom DateTime
+ActiveTo DateTime
+}
+model AuthorizationForm {
+id String @id
+
+Name String
+RevisionNumber String
+EffectiveFromDate DateTime
+EffectiveToDate DateTime
+DefaultAuthFormTextId AuthorizationFormText @relation("AuthorizationFormAuthorizationFormTextDefaultAuthFormText", fields: [id_AuthorizationFormAuthorizationFormTextId1], references: [id])
+id_AuthorizationFormAuthorizationFormTextId1 String
+IsSignatureRequired Boolean
+}
+model AuthorizationFormConsent {
+id String @id
+
+Name String
+
+AuthorizationFormTextId AuthorizationFormText @relation("AuthorizationFormConsentAuthorizationFormTextAuthorizationFormText", fields: [id_AuthorizationFormConsentAuthorizationFormTextId1], references: [id])
+id_AuthorizationFormConsentAuthorizationFormTextId1 String
+ConsentCapturedSource String
+ConsentCapturedSourceType String
+ConsentCapturedDateTime DateTime
+Status String
+DocumentVersionId ContentVersion @relation("AuthorizationFormConsentContentVersionDocumentVersion", fields: [id_AuthorizationFormConsentContentVersionId1], references: [id])
+id_AuthorizationFormConsentContentVersionId1 String
+RelatedRecordId Account @relation("AuthorizationFormConsentAccountRelatedRecord", fields: [id_AuthorizationFormConsentAccountId1], references: [id])
+id_AuthorizationFormConsentAccountId1 String
+}
+model AuthorizationFormDataUse {
+id String @id
+
+Name String
+AuthorizationFormId AuthorizationForm @relation("AuthorizationFormDataUseAuthorizationFormAuthorizationForm", fields: [id_AuthorizationFormDataUseAuthorizationFormId1], references: [id])
+id_AuthorizationFormDataUseAuthorizationFormId1 String
+DataUsePurposeId DataUsePurpose @relation("AuthorizationFormDataUseDataUsePurposeDataUsePurpose", fields: [id_AuthorizationFormDataUseDataUsePurposeId1], references: [id])
+id_AuthorizationFormDataUseDataUsePurposeId1 String
+}
+model AuthorizationFormText {
+id String @id
+Name String
+FullAuthorizationFormUrl String
+SummaryAuthFormText String
+Locale String
+LocaleSelection String
+ContentDocumentId ContentDocument @relation("AuthorizationFormTextContentDocumentContentDocument", fields: [id_AuthorizationFormTextContentDocumentId1], references: [id])
+id_AuthorizationFormTextContentDocumentId1 String
+AuthorizationFormConsentAuthorizationFormTextAuthorizationFormText AuthorizationFormConsent[] @relation("AuthorizationFormConsentAuthorizationFormTextAuthorizationFormText")
+}
+model BusinessBrand {
+id String @id
+
+Name String
+OrgId String
+ParentId BusinessBrand @relation("BusinessBrandBusinessBrandParent", fields: [id_BusinessBrandBusinessBrandId1], references: [id])
+id_BusinessBrandBusinessBrandId1 String
+CommSubscriptionConsentBusinessBrandBusinessBrand CommSubscriptionConsent[] @relation("CommSubscriptionConsentBusinessBrandBusinessBrand")
+ContactPointConsentBusinessBrandBusinessBrand ContactPointConsent[] @relation("ContactPointConsentBusinessBrandBusinessBrand")
+ContactPointTypeConsentBusinessBrandBusinessBrand ContactPointTypeConsent[] @relation("ContactPointTypeConsentBusinessBrandBusinessBrand")
+PartyConsentBusinessBrandBusinessBrand PartyConsent[] @relation("PartyConsentBusinessBrandBusinessBrand")
+}
+model BusinessProcess {
+id String @id
+Name String
+Description String
+}
+model Campaign {
+id String @id
+Name String
+ParentId Campaign @relation("CampaignCampaignParent", fields: [id_CampaignCampaignId1], references: [id])
+id_CampaignCampaignId1 String
+Type String
+Status String
+StartDate DateTime
+EndDate DateTime
+CurrencyIsoCode String
+ExpectedRevenue Decimal
+BudgetedCost Decimal
+ActualCost Decimal
+ExpectedResponse String
+NumberSent Decimal
+IsActive Boolean
+Description String
+OwnerId User @relation("CampaignUserOwner", fields: [id_CampaignUserId1], references: [id])
+id_CampaignUserId1 String
+CampaignMemberRecordTypeId RecordType @relation("CampaignRecordTypeCampaignMemberRecordType", fields: [id_CampaignRecordTypeId1], references: [id])
+id_CampaignRecordTypeId1 String
+DB_Campaign_Tactic__c String
+EmailMessageCampaignRelatedTo EmailMessage[] @relation("EmailMessageCampaignRelatedTo")
+EventCampaignWhat Event[] @relation("EventCampaignWhat")
+ListEmailCampaignCampaign ListEmail[] @relation("ListEmailCampaignCampaign")
+OpportunityCampaignCampaign Opportunity[] @relation("OpportunityCampaignCampaign")
+SurveySubjectCampaignSubject SurveySubject[] @relation("SurveySubjectCampaignSubject")
+TaskCampaignWhat Task[] @relation("TaskCampaignWhat")
+}
+model CardPaymentMethod {
+id String @id
+ExpiryMonth Int
+ExpiryYear Int
+StartMonth Int
+StartYear Int
+AccountId Account @relation("CardPaymentMethodAccountAccount", fields: [id_CardPaymentMethodAccountId1], references: [id])
+id_CardPaymentMethodAccountId1 String
+PaymentMethodStreet String
+PaymentMethodCity String
+PaymentMethodState String
+PaymentMethodPostalCode String
+PaymentMethodCountry String
+PaymentMethodLatitude Decimal
+PaymentMethodLongitude Decimal
+PaymentMethodGeocodeAccuracy String
+NickName String
+CardHolderName String
+Email String
+Comments String
+Status String
+CardHolderFirstName String
+CardHolderLastName String
+CompanyName String
+GatewayToken String
+GatewayTokenDetails String
+MacAddress String
+Phone String
+IpAddress String
+AuditEmail String
+GatewayResultCode String
+GatewayResultCodeDescription String
+SfResultCode String
+GatewayDate DateTime
+GatewayTokenEncrypted String
+IsAutoPayEnabled Boolean
+PaymentMethodType String
+}
+model Case {
+id String @id
+ContactId Contact @relation("CaseContactContact", fields: [id_CaseContactId1], references: [id])
+id_CaseContactId1 String
+AccountId Account @relation("CaseAccountAccount", fields: [id_CaseAccountId1], references: [id])
+id_CaseAccountId1 String
+AssetId Asset @relation("CaseAssetAsset", fields: [id_CaseAssetId1], references: [id])
+id_CaseAssetId1 String
+
+ParentId Case @relation("CaseCaseParent", fields: [id_CaseCaseId1], references: [id])
+id_CaseCaseId1 String
+SuppliedName String
+SuppliedEmail String
+SuppliedPhone String
+SuppliedCompany String
+Type String
+Status String
+Reason String
+Origin String
+Subject String
+Priority String
+Description String
+IsEscalated Boolean
+CurrencyIsoCode String
+
+Comments String
+EngineeringReqNumber__c String
+SLAViolation__c String
+Product__c String
+PotentialLiability__c String
+Case_ExternalId__c String
+ContactRequestCaseWhat ContactRequest[] @relation("ContactRequestCaseWhat")
+EmailMessageCaseRelatedTo EmailMessage[] @relation("EmailMessageCaseRelatedTo")
+EventCaseWhat Event[] @relation("EventCaseWhat")
+MessagingSessionCaseCase MessagingSession[] @relation("MessagingSessionCaseCase")
+ProcessExceptionCaseCase ProcessException[] @relation("ProcessExceptionCaseCase")
+SurveySubjectCaseSubject SurveySubject[] @relation("SurveySubjectCaseSubject")
+TaskCaseWhat Task[] @relation("TaskCaseWhat")
+}
+model CaseComment {
+id String @id
+IsPublished Boolean
+CommentBody String
+}
+model Case_Study__c {
+id String @id
+
+Name String
+CurrencyIsoCode String
+DuplicateRecordItemCase_Study__cRecord DuplicateRecordItem[] @relation("DuplicateRecordItemCase_Study__cRecord")
+ProcessExceptionCase_Study__cAttachedTo ProcessException[] @relation("ProcessExceptionCase_Study__cAttachedTo")
+SurveySubjectCase_Study__cSubject SurveySubject[] @relation("SurveySubjectCase_Study__cSubject")
+Test_User__cCase_Study__cCase_Study__r Test_User__c[] @relation("Test_User__cCase_Study__cCase_Study__r")
+}
+model CollaborationGroupRecord {
+id String @id
+}
+model Color_By_Account__c {
+id String @id
+Name String
+CurrencyIsoCode String
+Color_Code__c String
+Loaded_Date__c DateTime
+DuplicateRecordItemColor_By_Account__cRecord DuplicateRecordItem[] @relation("DuplicateRecordItemColor_By_Account__cRecord")
+ProcessExceptionColor_By_Account__cAttachedTo ProcessException[] @relation("ProcessExceptionColor_By_Account__cAttachedTo")
+SurveySubjectColor_By_Account__cSubject SurveySubject[] @relation("SurveySubjectColor_By_Account__cSubject")
+}
+model CommSubscription {
+id String @id
+
+Name String
+CurrencyIsoCode String
+}
+model CommSubscriptionChannelType {
+id String @id
+
+Name String
+CurrencyIsoCode String
+CommunicationSubscriptionId CommSubscription @relation("CommSubscriptionChannelTypeCommSubscriptionCommunicationSubscription", fields: [id_CommSubscriptionChannelTypeCommSubscriptionId1], references: [id])
+id_CommSubscriptionChannelTypeCommSubscriptionId1 String
+EngagementChannelTypeId EngagementChannelType @relation("CommSubscriptionChannelTypeEngagementChannelTypeEngagementChannelType", fields: [id_CommSubscriptionChannelTypeEngagementChannelTypeId1], references: [id])
+id_CommSubscriptionChannelTypeEngagementChannelTypeId1 String
+
+}
+model CommSubscriptionConsent {
+id String @id
+
+Name String
+CurrencyIsoCode String
+
+
+EffectiveFromDate DateTime
+ConsentCapturedDateTime DateTime
+ConsentCapturedSource String
+CommSubscriptionChannelTypeId CommSubscriptionChannelType @relation("CommSubscriptionConsentCommSubscriptionChannelTypeCommSubscriptionChannelType", fields: [id_CommSubscriptionConsentCommSubscriptionChannelTypeId1], references: [id])
+id_CommSubscriptionConsentCommSubscriptionChannelTypeId1 String
+
+BusinessBrandId BusinessBrand @relation("CommSubscriptionConsentBusinessBrandBusinessBrand", fields: [id_CommSubscriptionConsentBusinessBrandId1], references: [id])
+id_CommSubscriptionConsentBusinessBrandId1 String
+PrivacyConsentStatus String
+DataUsePurposeId DataUsePurpose @relation("CommSubscriptionConsentDataUsePurposeDataUsePurpose", fields: [id_CommSubscriptionConsentDataUsePurposeId1], references: [id])
+id_CommSubscriptionConsentDataUsePurposeId1 String
+EngagementChannelTypeId EngagementChannelType @relation("CommSubscriptionConsentEngagementChannelTypeEngagementChannelType", fields: [id_CommSubscriptionConsentEngagementChannelTypeId1], references: [id])
+id_CommSubscriptionConsentEngagementChannelTypeId1 String
+EventCommSubscriptionConsentWhat Event[] @relation("EventCommSubscriptionConsentWhat")
+TaskCommSubscriptionConsentWhat Task[] @relation("TaskCommSubscriptionConsentWhat")
+}
+model CommSubscriptionTiming {
+id String @id
+CurrencyIsoCode String
+Unit String
+}
+model ConsumptionSchedule {
+id String @id
+
+Name String
+CurrencyIsoCode String
+IsActive Boolean
+Description String
+BillingTerm Int
+BillingTermUnit String
+Type String
+UnitOfMeasure String
+RatingMethod String
+MatchingAttribute String
+}
+model Contact {
+id String @id
+AccountId Account @relation("ContactAccountAccount", fields: [id_ContactAccountId1], references: [id])
+id_ContactAccountId1 String
+LastName String
+FirstName String
+Salutation String
+OtherStreet String
+OtherCity String
+OtherState String
+OtherPostalCode String
+OtherCountry String
+OtherLatitude Decimal
+OtherLongitude Decimal
+OtherGeocodeAccuracy String
+MailingStreet String
+MailingCity String
+MailingState String
+MailingPostalCode String
+MailingCountry String
+MailingLatitude Decimal
+MailingLongitude Decimal
+MailingGeocodeAccuracy String
+Phone String
+Fax String
+MobilePhone String
+HomePhone String
+OtherPhone String
+AssistantPhone String
+ReportsToId Contact @relation("ContactContactReportsTo", fields: [id_ContactContactId1], references: [id])
+id_ContactContactId1 String
+Email String
+Title String
+Department String
+AssistantName String
+LeadSource String
+Birthdate DateTime
+Description String
+CurrencyIsoCode String
+OwnerId User @relation("ContactUserOwner", fields: [id_ContactUserId1], references: [id])
+id_ContactUserId1 String
+EmailBouncedReason String
+EmailBouncedDate DateTime
+Jigsaw String
+CleanStatus String
+IndividualId Individual @relation("ContactIndividualIndividual", fields: [id_ContactIndividualId1], references: [id])
+id_ContactIndividualId1 String
+Level__c String
+Languages__c String
+Top_Secret__c String
+AuthorizationFormConsentContactConsentGiver AuthorizationFormConsent[] @relation("AuthorizationFormConsentContactConsentGiver")
+CaseContactContact Case[] @relation("CaseContactContact")
+CommSubscriptionConsentContactConsentGiver CommSubscriptionConsent[] @relation("CommSubscriptionConsentContactConsentGiver")
+ContactContactReportsTo Contact[] @relation("ContactContactReportsTo")
+ContactRequestContactWho ContactRequest[] @relation("ContactRequestContactWho")
+ContractContactCustomerSigned Contract[] @relation("ContractContactCustomerSigned")
+DuplicateRecordItemContactRecord DuplicateRecordItem[] @relation("DuplicateRecordItemContactRecord")
+EventContactWho Event[] @relation("EventContactWho")
+MessagingEndUserContactContact MessagingEndUser[] @relation("MessagingEndUserContactContact")
+OrderContactCustomerAuthorizedBy Order[] @relation("OrderContactCustomerAuthorizedBy")
+OrderContactBillToContact Order[] @relation("OrderContactBillToContact")
+OrderContactShipToContact Order[] @relation("OrderContactShipToContact")
+QuoteContactContact Quote[] @relation("QuoteContactContact")
+SurveySubjectContactSubject SurveySubject[] @relation("SurveySubjectContactSubject")
+TaskContactWho Task[] @relation("TaskContactWho")
+UserContactContact User[] @relation("UserContactContact")
+}
+model ContactPointAddress {
+id String @id
+
+Name String
+
+ActiveFromDate DateTime
+ActiveToDate DateTime
+BestTimeToContactEndTime String
+BestTimeToContactStartTime String
+BestTimeToContactTimezone String
+IsPrimary Boolean
+ContactPointPhoneId ContactPointPhone @relation("ContactPointAddressContactPointPhoneContactPointPhone", fields: [id_ContactPointAddressContactPointPhoneId1], references: [id])
+id_ContactPointAddressContactPointPhoneId1 String
+AddressType String
+Street String
+City String
+State String
+PostalCode String
+Country String
+Latitude Decimal
+Longitude Decimal
+GeocodeAccuracy String
+IsDefault Boolean
+PreferenceRank Int
+UsageType String
+ContactPointConsentContactPointAddressContactPoint ContactPointConsent[] @relation("ContactPointConsentContactPointAddressContactPoint")
+}
+model ContactPointConsent {
+id String @id
+
+Name String
+
+DataUsePurposeId DataUsePurpose @relation("ContactPointConsentDataUsePurposeDataUsePurpose", fields: [id_ContactPointConsentDataUsePurposeId1], references: [id])
+id_ContactPointConsentDataUsePurposeId1 String
+PrivacyConsentStatus String
+EffectiveFrom DateTime
+EffectiveTo DateTime
+CaptureDate DateTime
+CaptureContactPointType String
+CaptureSource String
+DoubleConsentCaptureDate DateTime
+
+BusinessBrandId BusinessBrand @relation("ContactPointConsentBusinessBrandBusinessBrand", fields: [id_ContactPointConsentBusinessBrandId1], references: [id])
+id_ContactPointConsentBusinessBrandId1 String
+}
+model ContactPointEmail {
+id String @id
+
+
+ActiveFromDate DateTime
+ActiveToDate DateTime
+BestTimeToContactEndTime String
+BestTimeToContactStartTime String
+BestTimeToContactTimezone String
+IsPrimary Boolean
+EmailAddress String
+EmailMailBox String
+EmailDomain String
+EmailLatestBounceDateTime DateTime
+EmailLatestBounceReasonText String
+ContactPointConsentContactPointEmailContactPoint ContactPointConsent[] @relation("ContactPointConsentContactPointEmailContactPoint")
+}
+model ContactPointPhone {
+id String @id
+
+
+ActiveFromDate DateTime
+ActiveToDate DateTime
+BestTimeToContactEndTime String
+BestTimeToContactStartTime String
+BestTimeToContactTimezone String
+IsPrimary Boolean
+AreaCode String
+TelephoneNumber String
+ExtensionNumber String
+PhoneType String
+IsSmsCapable Boolean
+FormattedInternationalPhoneNumber String
+FormattedNationalPhoneNumber String
+IsFaxCapable Boolean
+IsPersonalPhone Boolean
+IsBusinessPhone Boolean
+ContactPointAddressContactPointPhoneContactPointPhone ContactPointAddress[] @relation("ContactPointAddressContactPointPhoneContactPointPhone")
+ContactPointConsentContactPointPhoneContactPoint ContactPointConsent[] @relation("ContactPointConsentContactPointPhoneContactPoint")
+}
+model ContactPointTypeConsent {
+id String @id
+
+Name String
+PartyId Individual @relation("ContactPointTypeConsentIndividualParty", fields: [id_ContactPointTypeConsentIndividualId1], references: [id])
+id_ContactPointTypeConsentIndividualId1 String
+ContactPointType String
+DataUsePurposeId DataUsePurpose @relation("ContactPointTypeConsentDataUsePurposeDataUsePurpose", fields: [id_ContactPointTypeConsentDataUsePurposeId1], references: [id])
+id_ContactPointTypeConsentDataUsePurposeId1 String
+PrivacyConsentStatus String
+EffectiveFrom DateTime
+EffectiveTo DateTime
+CaptureDate DateTime
+CaptureContactPointType String
+CaptureSource String
+DoubleConsentCaptureDate DateTime
+
+BusinessBrandId BusinessBrand @relation("ContactPointTypeConsentBusinessBrandBusinessBrand", fields: [id_ContactPointTypeConsentBusinessBrandId1], references: [id])
+id_ContactPointTypeConsentBusinessBrandId1 String
+}
+model ContactRequest {
+id String @id
+
+CurrencyIsoCode String
+
+
+PreferredPhone String
+PreferredChannel String
+Status String
+RequestReason String
+RequestDescription String
+EventContactRequestWhat Event[] @relation("EventContactRequestWhat")
+TaskContactRequestWhat Task[] @relation("TaskContactRequestWhat")
+}
+model ContentDocument {
+id String @id
+ImageContentDocumentContentDocument Image[] @relation("ImageContentDocumentContentDocument")
+}
+model ContentVersion {
+id String @id
+ContentUrl String
+Title String
+Description String
+ReasonForChange String
+SharingOption String
+SharingPrivacy String
+CurrencyIsoCode String
+OwnerId User @relation("ContentVersionUserOwner", fields: [id_ContentVersionUserId1], references: [id])
+id_ContentVersionUserId1 String
+TagCsv String
+VersionData String
+ExternalDocumentInfo1 String
+ExternalDocumentInfo2 String
+
+}
+model Contract {
+id String @id
+AccountId Account @relation("ContractAccountAccount", fields: [id_ContractAccountId1], references: [id])
+id_ContractAccountId1 String
+CurrencyIsoCode String
+Pricebook2Id Pricebook2 @relation("ContractPricebook2Pricebook2", fields: [id_ContractPricebook2Id1], references: [id])
+id_ContractPricebook2Id1 String
+OwnerExpirationNotice String
+StartDate DateTime
+BillingStreet String
+BillingCity String
+BillingState String
+BillingPostalCode String
+BillingCountry String
+BillingLatitude Decimal
+BillingLongitude Decimal
+BillingGeocodeAccuracy String
+ContractTerm Int
+OwnerId User @relation("ContractUserOwner", fields: [id_ContractUserId1], references: [id])
+id_ContractUserId1 String
+Status String
+CompanySignedId User @relation("ContractUserCompanySigned", fields: [id_ContractUserId2], references: [id])
+id_ContractUserId2 String
+CompanySignedDate DateTime
+CustomerSignedId Contact @relation("ContractContactCustomerSigned", fields: [id_ContractContactId1], references: [id])
+id_ContractContactId1 String
+CustomerSignedTitle String
+CustomerSignedDate DateTime
+SpecialTerms String
+Description String
+EventContractWhat Event[] @relation("EventContractWhat")
+OrderContractContract Order[] @relation("OrderContractContract")
+QuoteContractContract Quote[] @relation("QuoteContractContract")
+TaskContractWhat Task[] @relation("TaskContractWhat")
+}
+model Customer {
+id String @id
+
+Name String
+PartyId Individual @relation("CustomerIndividualParty", fields: [id_CustomerIndividualId1], references: [id])
+id_CustomerIndividualId1 String
+TotalLifeTimeValue Int
+CustomerStatusType String
+ContactPointConsentCustomerPartyRole ContactPointConsent[] @relation("ContactPointConsentCustomerPartyRole")
+ContactPointTypeConsentCustomerPartyRole ContactPointTypeConsent[] @relation("ContactPointTypeConsentCustomerPartyRole")
+PartyConsentCustomerPartyRole PartyConsent[] @relation("PartyConsentCustomerPartyRole")
+}
+model DandBCompany {
+id String @id
+Name String
+CurrencyIsoCode String
+DunsNumber String
+Street String
+City String
+State String
+PostalCode String
+Country String
+GeocodeAccuracyStandard String
+Phone String
+Fax String
+CountryAccessCode String
+PublicIndicator String
+StockSymbol String
+StockExchange String
+SalesVolume Decimal
+URL String
+OutOfBusiness String
+EmployeesTotal Decimal
+FipsMsaCode String
+FipsMsaDesc String
+TradeStyle1 String
+YearStarted String
+MailingStreet String
+MailingCity String
+MailingState String
+MailingPostalCode String
+MailingCountry String
+MailingGeocodeAccuracy String
+Latitude String
+Longitude String
+PrimarySic String
+PrimarySicDesc String
+SecondSic String
+SecondSicDesc String
+ThirdSic String
+ThirdSicDesc String
+FourthSic String
+FourthSicDesc String
+FifthSic String
+FifthSicDesc String
+SixthSic String
+SixthSicDesc String
+PrimaryNaics String
+PrimaryNaicsDesc String
+SecondNaics String
+SecondNaicsDesc String
+ThirdNaics String
+ThirdNaicsDesc String
+FourthNaics String
+FourthNaicsDesc String
+FifthNaics String
+FifthNaicsDesc String
+SixthNaics String
+SixthNaicsDesc String
+OwnOrRent String
+EmployeesHere Decimal
+EmployeesHereReliability String
+SalesVolumeReliability String
+CurrencyCode String
+LegalStatus String
+GlobalUltimateTotalEmployees Decimal
+EmployeesTotalReliability String
+MinorityOwned String
+WomenOwned String
+SmallBusiness String
+MarketingSegmentationCluster String
+ImportExportAgent String
+Subsidiary String
+TradeStyle2 String
+TradeStyle3 String
+TradeStyle4 String
+TradeStyle5 String
+NationalId String
+NationalIdType String
+UsTaxId String
+GeoCodeAccuracy String
+FamilyMembers Int
+MarketingPreScreen String
+GlobalUltimateDunsNumber String
+GlobalUltimateBusinessName String
+ParentOrHqDunsNumber String
+ParentOrHqBusinessName String
+DomesticUltimateDunsNumber String
+DomesticUltimateBusinessName String
+LocationStatus String
+CompanyCurrencyIsoCode String
+Description String
+FortuneRank Int
+IncludedInSnP500 String
+PremisesMeasure Int
+PremisesMeasureReliability String
+PremisesMeasureUnit String
+EmployeeQuantityGrowthRate Decimal
+SalesTurnoverGrowthRate Decimal
+PrimarySic8 String
+PrimarySic8Desc String
+SecondSic8 String
+SecondSic8Desc String
+ThirdSic8 String
+ThirdSic8Desc String
+FourthSic8 String
+FourthSic8Desc String
+FifthSic8 String
+FifthSic8Desc String
+SixthSic8 String
+SixthSic8Desc String
+PriorYearEmployees Int
+PriorYearRevenue Decimal
+LeadDandBCompanyDandbCompany Lead[] @relation("LeadDandBCompanyDandbCompany")
+}
+model DataUseLegalBasis {
+id String @id
+
+Name String
+Source String
+Description String
+}
+model DataUsePurpose {
+id String @id
+
+Name String
+LegalBasisId DataUseLegalBasis @relation("DataUsePurposeDataUseLegalBasisLegalBasis", fields: [id_DataUsePurposeDataUseLegalBasisId1], references: [id])
+id_DataUsePurposeDataUseLegalBasisId1 String
+Description String
+CanDataSubjectOptOut Boolean
+CommSubscriptionConsentDataUsePurposeDataUsePurpose CommSubscriptionConsent[] @relation("CommSubscriptionConsentDataUsePurposeDataUsePurpose")
+ContactPointConsentDataUsePurposeDataUsePurpose ContactPointConsent[] @relation("ContactPointConsentDataUsePurposeDataUsePurpose")
+ContactPointTypeConsentDataUsePurposeDataUsePurpose ContactPointTypeConsent[] @relation("ContactPointTypeConsentDataUsePurposeDataUsePurpose")
+PartyConsentDataUsePurposeDataUsePurpose PartyConsent[] @relation("PartyConsentDataUsePurposeDataUsePurpose")
+}
+model DigitalWallet {
+id String @id
+NickName String
+GatewayToken String
+GatewayTokenDetails String
+Email String
+AccountId Account @relation("DigitalWalletAccountAccount", fields: [id_DigitalWalletAccountId1], references: [id])
+id_DigitalWalletAccountId1 String
+Status String
+CompanyName String
+PaymentMethodStreet String
+PaymentMethodCity String
+PaymentMethodState String
+PaymentMethodPostalCode String
+PaymentMethodCountry String
+PaymentMethodLatitude Decimal
+PaymentMethodLongitude Decimal
+PaymentMethodGeocodeAccuracy String
+Comments String
+MacAddress String
+Phone String
+IpAddress String
+AuditEmail String
+GatewayTokenEncrypted String
+IsAutoPayEnabled Boolean
+PaymentMethodType String
+}
+model DuplicateRecordItem {
+id String @id
+CurrencyIsoCode String
+
+}
+model DuplicateRecordSet {
+id String @id
+CurrencyIsoCode String
+
+}
+model EmailMessage {
+id String @id
+TextBody String
+HtmlBody String
+Headers String
+Subject String
+FromName String
+FromAddress String
+ValidatedFromAddress String
+ToAddress String
+CcAddress String
+BccAddress String
+Status String
+MessageDate DateTime
+ReplyToEmailMessageId EmailMessage @relation("EmailMessageEmailMessageReplyToEmailMessage", fields: [id_EmailMessageEmailMessageId1], references: [id])
+id_EmailMessageEmailMessageId1 String
+MessageIdentifier String
+ThreadIdentifier String
+ClientThreadIdentifier String
+
+IsTracked Boolean
+FirstOpenedDate DateTime
+LastOpenedDate DateTime
+IsBounced Boolean
+
+EmailMessageEmailMessageReplyToEmailMessage EmailMessage[] @relation("EmailMessageEmailMessageReplyToEmailMessage")
+}
+model EngagementChannelType {
+id String @id
+
+Name String
+CurrencyIsoCode String
+ContactPointType String
+CommSubscriptionConsentEngagementChannelTypeEngagementChannelType CommSubscriptionConsent[] @relation("CommSubscriptionConsentEngagementChannelTypeEngagementChannelType")
+}
+model EnhancedLetterhead {
+id String @id
+Name String
+Description String
+LetterheadHeader String
+LetterheadFooter String
+}
+model Event {
+id String @id
+
+
+Subject String
+Location String
+IsAllDayEvent Boolean
+ActivityDateTime DateTime
+ActivityDate DateTime
+DurationInMinutes Int
+StartDateTime DateTime
+EndDateTime DateTime
+Description String
+
+CurrencyIsoCode String
+IsPrivate Boolean
+ShowAs String
+RecurrenceStartDateTime DateTime
+RecurrenceEndDateOnly DateTime
+RecurrenceTimeZoneSidKey String
+RecurrenceType String
+RecurrenceInterval Int
+RecurrenceDayOfWeekMask Int
+RecurrenceDayOfMonth Int
+RecurrenceInstance String
+RecurrenceMonthOfYear String
+ReminderDateTime DateTime
+IsReminderSet Boolean
+isLeadAssociated__c Boolean
+Description__c String
+TaskName__c String
+}
+model ExternalEvent {
+id String @id
+CurrencyIsoCode String
+ExternalId String
+Title String
+Location String
+Notes String
+Time String
+}
+model House__c {
+id String @id
+
+Name String
+CurrencyIsoCode String
+State__c String
+Bedroom__c Decimal
+Zip__c String
+Picture__c String
+City__c String
+Bathrooms__c Decimal
+Address__c String
+Price__c Decimal
+DuplicateRecordItemHouse__cRecord DuplicateRecordItem[] @relation("DuplicateRecordItemHouse__cRecord")
+EmailMessageHouse__cRelatedTo EmailMessage[] @relation("EmailMessageHouse__cRelatedTo")
+EventHouse__cWhat Event[] @relation("EventHouse__cWhat")
+ProcessExceptionHouse__cAttachedTo ProcessException[] @relation("ProcessExceptionHouse__cAttachedTo")
+SurveySubjectHouse__cSubject SurveySubject[] @relation("SurveySubjectHouse__cSubject")
+TaskHouse__cWhat Task[] @relation("TaskHouse__cWhat")
+}
+model Idea {
+id String @id
+Title String
+CurrencyIsoCode String
+Body String
+Categories String
+Status String
+}
+model Image {
+id String @id
+
+Name String
+CurrencyIsoCode String
+ImageViewType String
+IsActive Boolean
+ImageClass String
+ImageClassObjectType String
+ContentDocumentId ContentDocument @relation("ImageContentDocumentContentDocument", fields: [id_ImageContentDocumentId1], references: [id])
+id_ImageContentDocumentId1 String
+CapturedAngle String
+Title String
+AlternateText String
+Url String
+EventImageWhat Event[] @relation("EventImageWhat")
+TaskImageWhat Task[] @relation("TaskImageWhat")
+}
+model Individual {
+id String @id
+OwnerId User @relation("IndividualUserOwner", fields: [id_IndividualUserId1], references: [id])
+id_IndividualUserId1 String
+LastName String
+FirstName String
+Salutation String
+HasOptedOutTracking Boolean
+HasOptedOutProfiling Boolean
+HasOptedOutProcessing Boolean
+HasOptedOutSolicit Boolean
+ShouldForget Boolean
+SendIndividualData Boolean
+CanStorePiiElsewhere Boolean
+HasOptedOutGeoTracking Boolean
+BirthDate DateTime
+DeathDate DateTime
+ConvictionsCount Int
+ChildrenCount Int
+MilitaryService String
+IsHomeOwner Boolean
+Occupation String
+Website String
+IndividualsAge String
+ConsumerCreditScore Int
+ConsumerCreditScoreProviderName String
+InfluencerRating Int
+CommSubscriptionConsentIndividualConsentGiver CommSubscriptionConsent[] @relation("CommSubscriptionConsentIndividualConsentGiver")
+ContactIndividualIndividual Contact[] @relation("ContactIndividualIndividual")
+ContactPointAddressIndividualParent ContactPointAddress[] @relation("ContactPointAddressIndividualParent")
+ContactPointEmailIndividualParent ContactPointEmail[] @relation("ContactPointEmailIndividualParent")
+ContactPointPhoneIndividualParent ContactPointPhone[] @relation("ContactPointPhoneIndividualParent")
+ContactPointTypeConsentIndividualParty ContactPointTypeConsent[] @relation("ContactPointTypeConsentIndividualParty")
+CustomerIndividualParty Customer[] @relation("CustomerIndividualParty")
+DuplicateRecordItemIndividualRecord DuplicateRecordItem[] @relation("DuplicateRecordItemIndividualRecord")
+LeadIndividualIndividual Lead[] @relation("LeadIndividualIndividual")
+PartyConsentIndividualParty PartyConsent[] @relation("PartyConsentIndividualParty")
+SellerIndividualParty Seller[] @relation("SellerIndividualParty")
+UserIndividualIndividual User[] @relation("UserIndividualIndividual")
+}
+model Lead {
+id String @id
+LastName String
+FirstName String
+Salutation String
+Title String
+Company String
+Street String
+City String
+State String
+PostalCode String
+Country String
+Latitude Decimal
+Longitude Decimal
+GeocodeAccuracy String
+Phone String
+MobilePhone String
+Fax String
+Email String
+Website String
+Description String
+LeadSource String
+Status String
+Industry String
+Rating String
+CurrencyIsoCode String
+AnnualRevenue Decimal
+NumberOfEmployees Int
+
+IsUnreadByOwner Boolean
+Jigsaw String
+CleanStatus String
+CompanyDunsNumber String
+DandbCompanyId DandBCompany @relation("LeadDandBCompanyDandbCompany", fields: [id_LeadDandBCompanyId1], references: [id])
+id_LeadDandBCompanyId1 String
+IndividualId Individual @relation("LeadIndividualIndividual", fields: [id_LeadIndividualId1], references: [id])
+id_LeadIndividualId1 String
+SICCode__c String
+ProductInterest__c String
+Primary__c String
+CurrentGenerators__c String
+NumberofLocations__c Decimal
+TaskId__c String
+TaskName__c String
+TaskDescription__c String
+Salario__c Decimal
+Fecha_de_Nacimiento__c DateTime
+Monto_Solicitado__c Decimal
+Monto_Ofertado__c Decimal
+DuplicateRecordItemLeadRecord DuplicateRecordItem[] @relation("DuplicateRecordItemLeadRecord")
+EventLeadWho Event[] @relation("EventLeadWho")
+MessagingEndUserLeadLead MessagingEndUser[] @relation("MessagingEndUserLeadLead")
+MessagingSessionLeadLead MessagingSession[] @relation("MessagingSessionLeadLead")
+SurveySubjectLeadSubject SurveySubject[] @relation("SurveySubjectLeadSubject")
+TaskLeadWho Task[] @relation("TaskLeadWho")
+}
+model LegalEntity {
+id String @id
+
+Name String
+CurrencyIsoCode String
+CompanyName String
+Description String
+Status String
+LegalEntityStreet String
+LegalEntityCity String
+LegalEntityState String
+LegalEntityPostalCode String
+LegalEntityCountry String
+LegalEntityLatitude Decimal
+LegalEntityLongitude Decimal
+LegalEntityGeocodeAccuracy String
+EventLegalEntityWhat Event[] @relation("EventLegalEntityWhat")
+TaskLegalEntityWhat Task[] @relation("TaskLegalEntityWhat")
+}
+model LinkedArticle {
+id String @id
+Name String
+CurrencyIsoCode String
+}
+model ListEmail {
+id String @id
+
+Name String
+CurrencyIsoCode String
+Subject String
+HtmlBody String
+TextBody String
+FromName String
+FromAddress String
+Status String
+ScheduledDate DateTime
+CampaignId Campaign @relation("ListEmailCampaignCampaign", fields: [id_ListEmailCampaignId1], references: [id])
+id_ListEmailCampaignId1 String
+EventListEmailWhat Event[] @relation("EventListEmailWhat")
+TaskListEmailWhat Task[] @relation("TaskListEmailWhat")
+}
+model Location {
+id String @id
+
+Name String
+CurrencyIsoCode String
+LocationType String
+IsMobile Boolean
+IsInventoryLocation Boolean
+ExternalReference String
+ShouldSyncWithOci Boolean
+
+EmailMessageLocationRelatedTo EmailMessage[] @relation("EmailMessageLocationRelatedTo")
+EventLocationWhat Event[] @relation("EventLocationWhat")
+TaskLocationWhat Task[] @relation("TaskLocationWhat")
+}
+model LocationGroup {
+id String @id
+
+LocationGroupName String
+CurrencyIsoCode String
+ExternalReference String
+IsEnabled Boolean
+ShouldSyncWithOci Boolean
+Description String
+}
+model LocationGroupAssignment {
+id String @id
+CurrencyIsoCode String
+}
+model Macro {
+id String @id
+
+Name String
+CurrencyIsoCode String
+Description String
+}
+model MessagingEndUser {
+id String @id
+
+Name String
+CurrencyIsoCode String
+HasInitialResponseSent Boolean
+AccountId Account @relation("MessagingEndUserAccountAccount", fields: [id_MessagingEndUserAccountId1], references: [id])
+id_MessagingEndUserAccountId1 String
+ContactId Contact @relation("MessagingEndUserContactContact", fields: [id_MessagingEndUserContactId1], references: [id])
+id_MessagingEndUserContactId1 String
+MessagingConsentStatus String
+LeadId Lead @relation("MessagingEndUserLeadLead", fields: [id_MessagingEndUserLeadId1], references: [id])
+id_MessagingEndUserLeadId1 String
+}
+model MessagingSession {
+id String @id
+
+CurrencyIsoCode String
+CaseId Case @relation("MessagingSessionCaseCase", fields: [id_MessagingSessionCaseId1], references: [id])
+id_MessagingSessionCaseId1 String
+LeadId Lead @relation("MessagingSessionLeadLead", fields: [id_MessagingSessionLeadId1], references: [id])
+id_MessagingSessionLeadId1 String
+OpportunityId Opportunity @relation("MessagingSessionOpportunityOpportunity", fields: [id_MessagingSessionOpportunityId1], references: [id])
+id_MessagingSessionOpportunityId1 String
+AcceptTime DateTime
+TargetUserId User @relation("MessagingSessionUserTargetUser", fields: [id_MessagingSessionUserId1], references: [id])
+id_MessagingSessionUserId1 String
+ChannelGroup String
+ChannelIntent String
+ChannelLocale String
+SurveySubjectMessagingSessionSubject SurveySubject[] @relation("SurveySubjectMessagingSessionSubject")
+}
+model Note {
+id String @id
+Title String
+IsPrivate Boolean
+Body String
+OwnerId User @relation("NoteUserOwner", fields: [id_NoteUserId1], references: [id])
+id_NoteUserId1 String
+}
+model Opportunity {
+id String @id
+AccountId Account @relation("OpportunityAccountAccount", fields: [id_OpportunityAccountId1], references: [id])
+id_OpportunityAccountId1 String
+RecordTypeId RecordType @relation("OpportunityRecordTypeRecordType", fields: [id_OpportunityRecordTypeId1], references: [id])
+id_OpportunityRecordTypeId1 String
+IsPrivate Boolean
+Name String
+Description String
+StageName String
+Amount Decimal
+Probability String
+TotalOpportunityQuantity Decimal
+CloseDate DateTime
+Type String
+NextStep String
+LeadSource String
+ForecastCategoryName String
+CurrencyIsoCode String
+CampaignId Campaign @relation("OpportunityCampaignCampaign", fields: [id_OpportunityCampaignId1], references: [id])
+id_OpportunityCampaignId1 String
+Pricebook2Id Pricebook2 @relation("OpportunityPricebook2Pricebook2", fields: [id_OpportunityPricebook2Id1], references: [id])
+id_OpportunityPricebook2Id1 String
+OwnerId User @relation("OpportunityUserOwner", fields: [id_OpportunityUserId1], references: [id])
+id_OpportunityUserId1 String
+SyncedQuoteId Quote @relation("OpportunityQuoteSyncedQuote", fields: [id_OpportunityQuoteId1], references: [id])
+id_OpportunityQuoteId1 String
+DeliveryInstallationStatus__c String
+TrackingNumber__c String
+OrderNumber__c String
+CurrentGenerators__c String
+MainCompetitors__c String
+DB_Competitor__c String
+EmailMessageOpportunityRelatedTo EmailMessage[] @relation("EmailMessageOpportunityRelatedTo")
+EventOpportunityWhat Event[] @relation("EventOpportunityWhat")
+MessagingSessionOpportunityOpportunity MessagingSession[] @relation("MessagingSessionOpportunityOpportunity")
+QuoteOpportunityOpportunity Quote[] @relation("QuoteOpportunityOpportunity")
+SurveySubjectOpportunitySubject SurveySubject[] @relation("SurveySubjectOpportunitySubject")
+TaskOpportunityWhat Task[] @relation("TaskOpportunityWhat")
+}
+model Order {
+id String @id
+
+ContractId Contract @relation("OrderContractContract", fields: [id_OrderContractId1], references: [id])
+id_OrderContractId1 String
+AccountId Account @relation("OrderAccountAccount", fields: [id_OrderAccountId1], references: [id])
+id_OrderAccountId1 String
+Pricebook2Id Pricebook2 @relation("OrderPricebook2Pricebook2", fields: [id_OrderPricebook2Id1], references: [id])
+id_OrderPricebook2Id1 String
+EffectiveDate DateTime
+EndDate DateTime
+Status String
+Description String
+CustomerAuthorizedById Contact @relation("OrderContactCustomerAuthorizedBy", fields: [id_OrderContactId1], references: [id])
+id_OrderContactId1 String
+CustomerAuthorizedDate DateTime
+CompanyAuthorizedById User @relation("OrderUserCompanyAuthorizedBy", fields: [id_OrderUserId1], references: [id])
+id_OrderUserId1 String
+CompanyAuthorizedDate DateTime
+Type String
+BillingStreet String
+BillingCity String
+BillingState String
+BillingPostalCode String
+BillingCountry String
+BillingLatitude Decimal
+BillingLongitude Decimal
+BillingGeocodeAccuracy String
+ShippingStreet String
+ShippingCity String
+ShippingState String
+ShippingPostalCode String
+ShippingCountry String
+ShippingLatitude Decimal
+ShippingLongitude Decimal
+ShippingGeocodeAccuracy String
+Name String
+PoDate DateTime
+PoNumber String
+OrderReferenceNumber String
+BillToContactId Contact @relation("OrderContactBillToContact", fields: [id_OrderContactId2], references: [id])
+id_OrderContactId2 String
+ShipToContactId Contact @relation("OrderContactShipToContact", fields: [id_OrderContactId3], references: [id])
+id_OrderContactId3 String
+CurrencyIsoCode String
+EventOrderWhat Event[] @relation("EventOrderWhat")
+PaymentGroupOrderSourceObject PaymentGroup[] @relation("PaymentGroupOrderSourceObject")
+ProcessExceptionOrderAttachedTo ProcessException[] @relation("ProcessExceptionOrderAttachedTo")
+SurveySubjectOrderSubject SurveySubject[] @relation("SurveySubjectOrderSubject")
+TaskOrderWhat Task[] @relation("TaskOrderWhat")
+}
+model PartyConsent {
+id String @id
+
+Name String
+CurrencyIsoCode String
+PartyId Individual @relation("PartyConsentIndividualParty", fields: [id_PartyConsentIndividualId1], references: [id])
+id_PartyConsentIndividualId1 String
+Action String
+PrivacyConsentStatus String
+CaptureDate DateTime
+CaptureContactPointType String
+CaptureSource String
+
+BusinessBrandId BusinessBrand @relation("PartyConsentBusinessBrandBusinessBrand", fields: [id_PartyConsentBusinessBrandId1], references: [id])
+id_PartyConsentBusinessBrandId1 String
+DataUsePurposeId DataUsePurpose @relation("PartyConsentDataUsePurposeDataUsePurpose", fields: [id_PartyConsentDataUsePurposeId1], references: [id])
+id_PartyConsentDataUsePurposeId1 String
+EventPartyConsentWhat Event[] @relation("EventPartyConsentWhat")
+TaskPartyConsentWhat Task[] @relation("TaskPartyConsentWhat")
+}
+model Payment {
+id String @id
+CurrencyIsoCode String
+PaymentGroupId PaymentGroup @relation("PaymentPaymentGroupPaymentGroup", fields: [id_PaymentPaymentGroupId1], references: [id])
+id_PaymentPaymentGroupId1 String
+AccountId Account @relation("PaymentAccountAccount", fields: [id_PaymentAccountId1], references: [id])
+id_PaymentAccountId1 String
+PaymentAuthorizationId PaymentAuthorization @relation("PaymentPaymentAuthorizationPaymentAuthorization", fields: [id_PaymentPaymentAuthorizationId1], references: [id])
+id_PaymentPaymentAuthorizationId1 String
+Date DateTime
+CancellationDate DateTime
+Amount Decimal
+Status String
+Type String
+GatewayRefNumber String
+GatewayResultCode String
+SfResultCode String
+GatewayDate DateTime
+CancellationGatewayRefNumber String
+CancellationGatewayResultCode String
+CancellationSfResultCode String
+CancellationGatewayDate DateTime
+Comments String
+EffectiveDate DateTime
+CancellationEffectiveDate DateTime
+GatewayResultCodeDescription String
+GatewayRefDetails String
+IpAddress String
+MacAddress String
+Phone String
+Email String
+PaymentGatewayId PaymentGateway @relation("PaymentPaymentGatewayPaymentGateway", fields: [id_PaymentPaymentGatewayId1], references: [id])
+id_PaymentPaymentGatewayId1 String
+
+ProcessExceptionPaymentAttachedTo ProcessException[] @relation("ProcessExceptionPaymentAttachedTo")
+}
+model PaymentAuthAdjustment {
+id String @id
+CurrencyIsoCode String
+PaymentAuthorizationId PaymentAuthorization @relation("PaymentAuthAdjustmentPaymentAuthorizationPaymentAuthorization", fields: [id_PaymentAuthAdjustmentPaymentAuthorizationId1], references: [id])
+id_PaymentAuthAdjustmentPaymentAuthorizationId1 String
+ProcessingMode String
+Amount Decimal
+Status String
+Type String
+Date DateTime
+GatewayDate DateTime
+EffectiveDate DateTime
+Comments String
+GatewayRefNumber String
+GatewayResultCode String
+SfResultCode String
+AccountId Account @relation("PaymentAuthAdjustmentAccountAccount", fields: [id_PaymentAuthAdjustmentAccountId1], references: [id])
+id_PaymentAuthAdjustmentAccountId1 String
+GatewayRefDetails String
+GatewayResultCodeDescription String
+IpAddress String
+MacAddress String
+Phone String
+Email String
+}
+model PaymentAuthorization {
+id String @id
+CurrencyIsoCode String
+PaymentGroupId PaymentGroup @relation("PaymentAuthorizationPaymentGroupPaymentGroup", fields: [id_PaymentAuthorizationPaymentGroupId1], references: [id])
+id_PaymentAuthorizationPaymentGroupId1 String
+AccountId Account @relation("PaymentAuthorizationAccountAccount", fields: [id_PaymentAuthorizationAccountId1], references: [id])
+id_PaymentAuthorizationAccountId1 String
+Date DateTime
+GatewayDate DateTime
+ExpirationDate DateTime
+EffectiveDate DateTime
+Amount Decimal
+Status String
+
+Comments String
+GatewayRefDetails String
+GatewayRefNumber String
+GatewayResultCode String
+SfResultCode String
+GatewayAuthCode String
+GatewayResultCodeDescription String
+IpAddress String
+MacAddress String
+Phone String
+Email String
+PaymentGatewayId PaymentGateway @relation("PaymentAuthorizationPaymentGatewayPaymentGateway", fields: [id_PaymentAuthorizationPaymentGatewayId1], references: [id])
+id_PaymentAuthorizationPaymentGatewayId1 String
+PaymentAuthAdjustmentPaymentAuthorizationPaymentAuthorization PaymentAuthAdjustment[] @relation("PaymentAuthAdjustmentPaymentAuthorizationPaymentAuthorization")
+PaymentGatewayLogPaymentAuthorizationReferencedEntity PaymentGatewayLog[] @relation("PaymentGatewayLogPaymentAuthorizationReferencedEntity")
+ProcessExceptionPaymentAuthorizationAttachedTo ProcessException[] @relation("ProcessExceptionPaymentAuthorizationAttachedTo")
+}
+model PaymentGateway {
+id String @id
+PaymentGatewayName String
+
+
+Status String
+Comments String
+ExternalReference String
+PaymentAuthorizationPaymentGatewayPaymentGateway PaymentAuthorization[] @relation("PaymentAuthorizationPaymentGatewayPaymentGateway")
+PaymentGatewayLogPaymentGatewayPaymentGateway PaymentGatewayLog[] @relation("PaymentGatewayLogPaymentGatewayPaymentGateway")
+RefundPaymentGatewayPaymentGateway Refund[] @relation("RefundPaymentGatewayPaymentGateway")
+}
+model PaymentGatewayLog {
+id String @id
+CurrencyIsoCode String
+
+SfRefNumber String
+InteractionStatus String
+GatewayAuthCode String
+GatewayRefNumber String
+SfResultCode String
+GatewayResultCode String
+GatewayResultCodeDescription String
+GatewayDate DateTime
+GatewayMessage String
+GatewayAvsCode String
+PaymentGatewayId PaymentGateway @relation("PaymentGatewayLogPaymentGatewayPaymentGateway", fields: [id_PaymentGatewayLogPaymentGatewayId1], references: [id])
+id_PaymentGatewayLogPaymentGatewayId1 String
+IsNotification String
+Request String
+Response String
+}
+model PaymentGroup {
+id String @id
+CurrencyIsoCode String
+SourceObjectId Order @relation("PaymentGroupOrderSourceObject", fields: [id_PaymentGroupOrderId1], references: [id])
+id_PaymentGroupOrderId1 String
+PaymentAuthorizationPaymentGroupPaymentGroup PaymentAuthorization[] @relation("PaymentAuthorizationPaymentGroupPaymentGroup")
+RefundPaymentGroupPaymentGroup Refund[] @relation("RefundPaymentGroupPaymentGroup")
+}
+model Pricebook2 {
+id String @id
+Name String
+CurrencyIsoCode String
+IsActive Boolean
+Description String
+OpportunityPricebook2Pricebook2 Opportunity[] @relation("OpportunityPricebook2Pricebook2")
+OrderPricebook2Pricebook2 Order[] @relation("OrderPricebook2Pricebook2")
+QuotePricebook2Pricebook2 Quote[] @relation("QuotePricebook2Pricebook2")
+}
+model PrivacyRTBFRequest {
+id String @id
+
+CurrencyIsoCode String
+JobRecord String
+
+Status String
+Description String
+EventPrivacyRTBFRequestWhat Event[] @relation("EventPrivacyRTBFRequestWhat")
+TaskPrivacyRTBFRequestWhat Task[] @relation("TaskPrivacyRTBFRequestWhat")
+}
+model ProcessException {
+id String @id
+
+CurrencyIsoCode String
+
+Message String
+Status String
+Category String
+Severity String
+Priority String
+CaseId Case @relation("ProcessExceptionCaseCase", fields: [id_ProcessExceptionCaseId1], references: [id])
+id_ProcessExceptionCaseId1 String
+ExternalReference String
+Description String
+EventProcessExceptionWhat Event[] @relation("EventProcessExceptionWhat")
+TaskProcessExceptionWhat Task[] @relation("TaskProcessExceptionWhat")
+}
+model Product2 {
+id String @id
+Name String
+ProductCode String
+Description String
+IsActive Boolean
+Family String
+CurrencyIsoCode String
+
+ExternalId String
+DisplayUrl String
+QuantityUnitOfMeasure String
+StockKeepingUnit String
+Macaron_Flavor__c String
+Shirt__c String
+EmailMessageProduct2RelatedTo EmailMessage[] @relation("EmailMessageProduct2RelatedTo")
+EventProduct2What Event[] @relation("EventProduct2What")
+SurveySubjectProduct2Subject SurveySubject[] @relation("SurveySubjectProduct2Subject")
+TaskProduct2What Task[] @relation("TaskProduct2What")
+}
+model QuickText {
+id String @id
+
+Name String
+CurrencyIsoCode String
+Message String
+Category String
+Channel String
+IsInsertable Boolean
+SourceType String
+}
+model Quote {
+id String @id
+
+Name String
+CurrencyIsoCode String
+OpportunityId Opportunity @relation("QuoteOpportunityOpportunity", fields: [id_QuoteOpportunityId1], references: [id])
+id_QuoteOpportunityId1 String
+Pricebook2Id Pricebook2 @relation("QuotePricebook2Pricebook2", fields: [id_QuotePricebook2Id1], references: [id])
+id_QuotePricebook2Id1 String
+ContactId Contact @relation("QuoteContactContact", fields: [id_QuoteContactId1], references: [id])
+id_QuoteContactId1 String
+ShippingHandling Decimal
+Tax Decimal
+Status String
+ExpirationDate DateTime
+Description String
+BillingStreet String
+BillingCity String
+BillingState String
+BillingPostalCode String
+BillingCountry String
+BillingLatitude Decimal
+BillingLongitude Decimal
+BillingGeocodeAccuracy String
+ShippingStreet String
+ShippingCity String
+ShippingState String
+ShippingPostalCode String
+ShippingCountry String
+ShippingLatitude Decimal
+ShippingLongitude Decimal
+ShippingGeocodeAccuracy String
+QuoteToStreet String
+QuoteToCity String
+QuoteToState String
+QuoteToPostalCode String
+QuoteToCountry String
+QuoteToLatitude Decimal
+QuoteToLongitude Decimal
+QuoteToGeocodeAccuracy String
+AdditionalStreet String
+AdditionalCity String
+AdditionalState String
+AdditionalPostalCode String
+AdditionalCountry String
+AdditionalLatitude Decimal
+AdditionalLongitude Decimal
+AdditionalGeocodeAccuracy String
+BillingName String
+ShippingName String
+QuoteToName String
+AdditionalName String
+Email String
+Phone String
+Fax String
+ContractId Contract @relation("QuoteContractContract", fields: [id_QuoteContractId1], references: [id])
+id_QuoteContractId1 String
+EventQuoteWhat Event[] @relation("EventQuoteWhat")
+OpportunityQuoteSyncedQuote Opportunity[] @relation("OpportunityQuoteSyncedQuote")
+TaskQuoteWhat Task[] @relation("TaskQuoteWhat")
+}
+model QuoteLineItem {
+id String @id
+Quantity Decimal
+UnitPrice Decimal
+Discount String
+Description String
+ServiceDate DateTime
+SortOrder Int
+}
+model RecordType {
+id String @id
+Name String
+DeveloperName String
+Description String
+BusinessProcessId BusinessProcess @relation("RecordTypeBusinessProcessnull", fields: [id_RecordTypeBusinessProcessId1], references: [id])
+id_RecordTypeBusinessProcessId1 String
+OpportunityRecordTypeRecordType Opportunity[] @relation("OpportunityRecordTypeRecordType")
+}
+model Refund {
+id String @id
+CurrencyIsoCode String
+Type String
+PaymentGroupId PaymentGroup @relation("RefundPaymentGroupPaymentGroup", fields: [id_RefundPaymentGroupId1], references: [id])
+id_RefundPaymentGroupId1 String
+Amount Decimal
+AccountId Account @relation("RefundAccountAccount", fields: [id_RefundAccountId1], references: [id])
+id_RefundAccountId1 String
+
+Comments String
+Status String
+GatewayRefNumber String
+GatewayResultCode String
+GatewayResultCodeDescription String
+SfResultCode String
+GatewayDate DateTime
+IpAddress String
+MacAddress String
+Phone String
+Email String
+EffectiveDate DateTime
+Date DateTime
+CancellationEffectiveDate DateTime
+CancellationDate DateTime
+CancellationGatewayRefNumber String
+CancellationGatewayResultCode String
+CancellationSfResultCode String
+CancellationGatewayDate DateTime
+PaymentGatewayId PaymentGateway @relation("RefundPaymentGatewayPaymentGateway", fields: [id_RefundPaymentGatewayId1], references: [id])
+id_RefundPaymentGatewayId1 String
+ProcessExceptionRefundAttachedTo ProcessException[] @relation("ProcessExceptionRefundAttachedTo")
+}
+model Scorecard {
+id String @id
+
+Name String
+CurrencyIsoCode String
+Description String
+TargetEntity String
+}
+model ScorecardAssociation {
+id String @id
+CurrencyIsoCode String
+TargetEntityId Account @relation("ScorecardAssociationAccountTargetEntity", fields: [id_ScorecardAssociationAccountId1], references: [id])
+id_ScorecardAssociationAccountId1 String
+}
+model ScorecardMetric {
+id String @id
+Name String
+CurrencyIsoCode String
+Description String
+Category String
+
+}
+model SearchPromotionRule {
+id String @id
+Query String
+
+}
+model Seller {
+id String @id
+
+Name String
+PartyId Individual @relation("SellerIndividualParty", fields: [id_SellerIndividualId1], references: [id])
+id_SellerIndividualId1 String
+SalesAmount Int
+SellerType String
+SellerTier String
+ActiveFromDate DateTime
+ActiveToDate DateTime
+ContactPointConsentSellerPartyRole ContactPointConsent[] @relation("ContactPointConsentSellerPartyRole")
+ContactPointTypeConsentSellerPartyRole ContactPointTypeConsent[] @relation("ContactPointTypeConsentSellerPartyRole")
+PartyConsentSellerPartyRole PartyConsent[] @relation("PartyConsentSellerPartyRole")
+}
+model Session_Speaker__c {
+id String @id
+CurrencyIsoCode String
+DuplicateRecordItemSession_Speaker__cRecord DuplicateRecordItem[] @relation("DuplicateRecordItemSession_Speaker__cRecord")
+ProcessExceptionSession_Speaker__cAttachedTo ProcessException[] @relation("ProcessExceptionSession_Speaker__cAttachedTo")
+SurveySubjectSession_Speaker__cSubject SurveySubject[] @relation("SurveySubjectSession_Speaker__cSubject")
+}
+model Session__c {
+id String @id
+
+Name String
+CurrencyIsoCode String
+Session_Date__c DateTime
+Description__c String
+Level__c String
+DuplicateRecordItemSession__cRecord DuplicateRecordItem[] @relation("DuplicateRecordItemSession__cRecord")
+ProcessExceptionSession__cAttachedTo ProcessException[] @relation("ProcessExceptionSession__cAttachedTo")
+SurveySubjectSession__cSubject SurveySubject[] @relation("SurveySubjectSession__cSubject")
+}
+model Solution {
+id String @id
+SolutionName String
+IsPublished Boolean
+IsPublishedInPublicKb Boolean
+Status String
+SolutionNote String
+OwnerId User @relation("SolutionUserOwner", fields: [id_SolutionUserId1], references: [id])
+id_SolutionUserId1 String
+CurrencyIsoCode String
+EventSolutionWhat Event[] @relation("EventSolutionWhat")
+SurveySubjectSolutionSubject SurveySubject[] @relation("SurveySubjectSolutionSubject")
+TaskSolutionWhat Task[] @relation("TaskSolutionWhat")
+}
+model Speaker__c {
+id String @id
+
+CurrencyIsoCode String
+First_Name__c String
+Last_Name__c String
+Email__c String
+Bio__c String
+Picture_Path__c String
+DuplicateRecordItemSpeaker__cRecord DuplicateRecordItem[] @relation("DuplicateRecordItemSpeaker__cRecord")
+ProcessExceptionSpeaker__cAttachedTo ProcessException[] @relation("ProcessExceptionSpeaker__cAttachedTo")
+SurveySubjectSpeaker__cSubject SurveySubject[] @relation("SurveySubjectSpeaker__cSubject")
+}
+model StreamingChannel {
+id String @id
+
+Name String
+CurrencyIsoCode String
+Description String
+}
+model SurveyInvitation {
+id String @id
+
+Name String
+CurrencyIsoCode String
+OptionsAllowParticipantAccessTheirResponse Boolean
+OptionsCollectAnonymousResponse Boolean
+OptionsAllowGuestUserResponse Boolean
+InviteExpiryDateTime DateTime
+IsDefault Boolean
+}
+model SurveySubject {
+id String @id
+Name String
+CurrencyIsoCode String
+
+}
+model Task {
+id String @id
+
+
+Subject String
+ActivityDate DateTime
+Status String
+Priority String
+
+Description String
+CurrencyIsoCode String
+CallDurationInSeconds Int
+CallType String
+CallDisposition String
+CallObject String
+ReminderDateTime DateTime
+IsReminderSet Boolean
+RecurrenceStartDateOnly DateTime
+RecurrenceEndDateOnly DateTime
+RecurrenceTimeZoneSidKey String
+RecurrenceType String
+RecurrenceInterval Int
+RecurrenceDayOfWeekMask Int
+RecurrenceDayOfMonth Int
+RecurrenceInstance String
+RecurrenceMonthOfYear String
+RecurrenceRegeneratedType String
+isLeadAssociated__c Boolean
+Description__c String
+TaskName__c String
+}
+model Test_User__c {
+id String @id
+
+Name String
+CurrencyIsoCode String
+Password__c String
+Email__c String
+Nickname__c String
+Case_Study__c Case_Study__c @relation("Test_User__cCase_Study__cCase_Study__r", fields: [id_Test_User__cCase_Study__cId1], references: [id])
+id_Test_User__cCase_Study__cId1 String
+DuplicateRecordItemTest_User__cRecord DuplicateRecordItem[] @relation("DuplicateRecordItemTest_User__cRecord")
+ProcessExceptionTest_User__cAttachedTo ProcessException[] @relation("ProcessExceptionTest_User__cAttachedTo")
+SurveySubjectTest_User__cSubject SurveySubject[] @relation("SurveySubjectTest_User__cSubject")
+}
+model User {
+id String @id
+Username String
+LastName String
+FirstName String
+CompanyName String
+Division String
+Department String
+Title String
+Street String
+City String
+State String
+PostalCode String
+Country String
+Latitude Decimal
+Longitude Decimal
+GeocodeAccuracy String
+Email String
+EmailPreferencesAutoBcc Boolean
+EmailPreferencesAutoBccStayInTouch Boolean
+EmailPreferencesStayInTouchReminder Boolean
+SenderEmail String
+SenderName String
+Signature String
+StayInTouchSubject String
+StayInTouchSignature String
+StayInTouchNote String
+Phone String
+Fax String
+MobilePhone String
+Alias String
+CommunityNickname String
+IsActive Boolean
+TimeZoneSidKey String
+
+LocaleSidKey String
+ReceivesInfoEmails Boolean
+ReceivesAdminInfoEmails Boolean
+EmailEncodingKey String
+DefaultCurrencyIsoCode String
+CurrencyIsoCode String
+
+LanguageLocaleKey String
+EmployeeNumber String
+
+ManagerId User @relation("UserUserManager", fields: [id_UserUserId1], references: [id])
+id_UserUserId1 String
+UserPermissionsMarketingUser Boolean
+UserPermissionsOfflineUser Boolean
+UserPermissionsCallCenterAutoLogin Boolean
+UserPermissionsSFContentUser Boolean
+UserPermissionsKnowledgeUser Boolean
+UserPermissionsInteractionUser Boolean
+UserPermissionsSupportUser Boolean
+UserPermissionsJigsawProspectingUser Boolean
+UserPermissionsSiteforceContributorUser Boolean
+UserPermissionsSiteforcePublisherUser Boolean
+UserPermissionsWorkDotComUserFeature Boolean
+ForecastEnabled Boolean
+UserPreferencesActivityRemindersPopup Boolean
+UserPreferencesEventRemindersCheckboxDefault Boolean
+UserPreferencesTaskRemindersCheckboxDefault Boolean
+UserPreferencesReminderSoundOff Boolean
+UserPreferencesDisableAllFeedsEmail Boolean
+UserPreferencesDisableFollowersEmail Boolean
+UserPreferencesDisableProfilePostEmail Boolean
+UserPreferencesDisableChangeCommentEmail Boolean
+UserPreferencesDisableLaterCommentEmail Boolean
+UserPreferencesDisProfPostCommentEmail Boolean
+UserPreferencesContentNoEmail Boolean
+UserPreferencesContentEmailAsAndWhen Boolean
+UserPreferencesApexPagesDeveloperMode Boolean
+UserPreferencesReceiveNoNotificationsAsApprover Boolean
+UserPreferencesReceiveNotificationsAsDelegatedApprover Boolean
+UserPreferencesHideCSNGetChatterMobileTask Boolean
+UserPreferencesDisableMentionsPostEmail Boolean
+UserPreferencesDisMentionsCommentEmail Boolean
+UserPreferencesHideCSNDesktopTask Boolean
+UserPreferencesHideChatterOnboardingSplash Boolean
+UserPreferencesHideSecondChatterOnboardingSplash Boolean
+UserPreferencesDisCommentAfterLikeEmail Boolean
+UserPreferencesDisableLikeEmail Boolean
+UserPreferencesSortFeedByComment Boolean
+UserPreferencesDisableMessageEmail Boolean
+UserPreferencesJigsawListUser Boolean
+UserPreferencesDisableBookmarkEmail Boolean
+UserPreferencesDisableSharePostEmail Boolean
+UserPreferencesEnableAutoSubForFeeds Boolean
+UserPreferencesDisableFileShareNotificationsForApi Boolean
+UserPreferencesShowTitleToExternalUsers Boolean
+UserPreferencesShowManagerToExternalUsers Boolean
+UserPreferencesShowEmailToExternalUsers Boolean
+UserPreferencesShowWorkPhoneToExternalUsers Boolean
+UserPreferencesShowMobilePhoneToExternalUsers Boolean
+UserPreferencesShowFaxToExternalUsers Boolean
+UserPreferencesShowStreetAddressToExternalUsers Boolean
+UserPreferencesShowCityToExternalUsers Boolean
+UserPreferencesShowStateToExternalUsers Boolean
+UserPreferencesShowPostalCodeToExternalUsers Boolean
+UserPreferencesShowCountryToExternalUsers Boolean
+UserPreferencesShowProfilePicToGuestUsers Boolean
+UserPreferencesShowTitleToGuestUsers Boolean
+UserPreferencesShowCityToGuestUsers Boolean
+UserPreferencesShowStateToGuestUsers Boolean
+UserPreferencesShowPostalCodeToGuestUsers Boolean
+UserPreferencesShowCountryToGuestUsers Boolean
+UserPreferencesShowForecastingChangeSignals Boolean
+UserPreferencesLiveAgentMiawSetupDeflection Boolean
+UserPreferencesHideS1BrowserUI Boolean
+UserPreferencesDisableEndorsementEmail Boolean
+UserPreferencesPathAssistantCollapsed Boolean
+UserPreferencesCacheDiagnostics Boolean
+UserPreferencesShowEmailToGuestUsers Boolean
+UserPreferencesShowManagerToGuestUsers Boolean
+UserPreferencesShowWorkPhoneToGuestUsers Boolean
+UserPreferencesShowMobilePhoneToGuestUsers Boolean
+UserPreferencesShowFaxToGuestUsers Boolean
+UserPreferencesShowStreetAddressToGuestUsers Boolean
+UserPreferencesLightningExperiencePreferred Boolean
+UserPreferencesPreviewLightning Boolean
+UserPreferencesHideEndUserOnboardingAssistantModal Boolean
+UserPreferencesHideLightningMigrationModal Boolean
+UserPreferencesHideSfxWelcomeMat Boolean
+UserPreferencesHideBiggerPhotoCallout Boolean
+UserPreferencesGlobalNavBarWTShown Boolean
+UserPreferencesGlobalNavGridMenuWTShown Boolean
+UserPreferencesCreateLEXAppsWTShown Boolean
+UserPreferencesFavoritesWTShown Boolean
+UserPreferencesRecordHomeSectionCollapseWTShown Boolean
+UserPreferencesRecordHomeReservedWTShown Boolean
+UserPreferencesFavoritesShowTopFavorites Boolean
+UserPreferencesExcludeMailAppAttachments Boolean
+UserPreferencesSuppressTaskSFXReminders Boolean
+UserPreferencesSuppressEventSFXReminders Boolean
+UserPreferencesPreviewCustomTheme Boolean
+UserPreferencesHasCelebrationBadge Boolean
+UserPreferencesUserDebugModePref Boolean
+UserPreferencesSRHOverrideActivities Boolean
+UserPreferencesNewLightningReportRunPageEnabled Boolean
+UserPreferencesReverseOpenActivitiesView Boolean
+UserPreferencesHasSentWarningEmail Boolean
+UserPreferencesHasSentWarningEmail238 Boolean
+UserPreferencesHasSentWarningEmail240 Boolean
+UserPreferencesNativeEmailClient Boolean
+UserPreferencesShowForecastingRoundedAmounts Boolean
+ContactId Contact @relation("UserContactContact", fields: [id_UserContactId1], references: [id])
+id_UserContactId1 String
+
+Extension String
+FederationIdentifier String
+AboutMe String
+DigestFrequency String
+DefaultGroupNotificationFrequency String
+JigsawImportLimitOverride Int
+IndividualId Individual @relation("UserIndividualIndividual", fields: [id_UserIndividualId1], references: [id])
+id_UserIndividualId1 String
+Phone_UUID__c String
+DB_Region__c String
+AlternativePaymentMethodUserOwner AlternativePaymentMethod[] @relation("AlternativePaymentMethodUserOwner")
+AssetUserOwner Asset[] @relation("AssetUserOwner")
+AuthorizationFormUserOwner AuthorizationForm[] @relation("AuthorizationFormUserOwner")
+AuthorizationFormConsentUserOwner AuthorizationFormConsent[] @relation("AuthorizationFormConsentUserOwner")
+AuthorizationFormConsentUserConsentGiver AuthorizationFormConsent[] @relation("AuthorizationFormConsentUserConsentGiver")
+AuthorizationFormDataUseUserOwner AuthorizationFormDataUse[] @relation("AuthorizationFormDataUseUserOwner")
+BusinessBrandUserOwner BusinessBrand[] @relation("BusinessBrandUserOwner")
+CampaignUserOwner Campaign[] @relation("CampaignUserOwner")
+CaseUserOwner Case[] @relation("CaseUserOwner")
+Case_Study__cUserOwner Case_Study__c[] @relation("Case_Study__cUserOwner")
+CommSubscriptionUserOwner CommSubscription[] @relation("CommSubscriptionUserOwner")
+CommSubscriptionChannelTypeUserOwner CommSubscriptionChannelType[] @relation("CommSubscriptionChannelTypeUserOwner")
+CommSubscriptionConsentUserOwner CommSubscriptionConsent[] @relation("CommSubscriptionConsentUserOwner")
+CommSubscriptionConsentUserConsentGiver CommSubscriptionConsent[] @relation("CommSubscriptionConsentUserConsentGiver")
+ConsumptionScheduleUserOwner ConsumptionSchedule[] @relation("ConsumptionScheduleUserOwner")
+ContactUserOwner Contact[] @relation("ContactUserOwner")
+ContactPointAddressUserOwner ContactPointAddress[] @relation("ContactPointAddressUserOwner")
+ContactPointConsentUserOwner ContactPointConsent[] @relation("ContactPointConsentUserOwner")
+ContactPointEmailUserOwner ContactPointEmail[] @relation("ContactPointEmailUserOwner")
+ContactPointPhoneUserOwner ContactPointPhone[] @relation("ContactPointPhoneUserOwner")
+ContactPointTypeConsentUserOwner ContactPointTypeConsent[] @relation("ContactPointTypeConsentUserOwner")
+ContactRequestUserOwner ContactRequest[] @relation("ContactRequestUserOwner")
+ContactRequestUserWho ContactRequest[] @relation("ContactRequestUserWho")
+ContentVersionUserOwner ContentVersion[] @relation("ContentVersionUserOwner")
+ContractUserOwner Contract[] @relation("ContractUserOwner")
+ContractUserCompanySigned Contract[] @relation("ContractUserCompanySigned")
+CustomerUserOwner Customer[] @relation("CustomerUserOwner")
+DataUseLegalBasisUserOwner DataUseLegalBasis[] @relation("DataUseLegalBasisUserOwner")
+DataUsePurposeUserOwner DataUsePurpose[] @relation("DataUsePurposeUserOwner")
+EngagementChannelTypeUserOwner EngagementChannelType[] @relation("EngagementChannelTypeUserOwner")
+EventUserOwner Event[] @relation("EventUserOwner")
+House__cUserOwner House__c[] @relation("House__cUserOwner")
+ImageUserOwner Image[] @relation("ImageUserOwner")
+IndividualUserOwner Individual[] @relation("IndividualUserOwner")
+LeadUserOwner Lead[] @relation("LeadUserOwner")
+LegalEntityUserOwner LegalEntity[] @relation("LegalEntityUserOwner")
+ListEmailUserOwner ListEmail[] @relation("ListEmailUserOwner")
+LocationUserOwner Location[] @relation("LocationUserOwner")
+LocationGroupUserOwner LocationGroup[] @relation("LocationGroupUserOwner")
+MacroUserOwner Macro[] @relation("MacroUserOwner")
+MessagingEndUserUserOwner MessagingEndUser[] @relation("MessagingEndUserUserOwner")
+MessagingSessionUserOwner MessagingSession[] @relation("MessagingSessionUserOwner")
+MessagingSessionUserTargetUser MessagingSession[] @relation("MessagingSessionUserTargetUser")
+NoteUserOwner Note[] @relation("NoteUserOwner")
+OpportunityUserOwner Opportunity[] @relation("OpportunityUserOwner")
+OrderUserOwner Order[] @relation("OrderUserOwner")
+OrderUserCompanyAuthorizedBy Order[] @relation("OrderUserCompanyAuthorizedBy")
+PartyConsentUserOwner PartyConsent[] @relation("PartyConsentUserOwner")
+PrivacyRTBFRequestUserOwner PrivacyRTBFRequest[] @relation("PrivacyRTBFRequestUserOwner")
+ProcessExceptionUserOwner ProcessException[] @relation("ProcessExceptionUserOwner")
+QuickTextUserOwner QuickText[] @relation("QuickTextUserOwner")
+QuoteUserOwner Quote[] @relation("QuoteUserOwner")
+ScorecardUserOwner Scorecard[] @relation("ScorecardUserOwner")
+SellerUserOwner Seller[] @relation("SellerUserOwner")
+Session__cUserOwner Session__c[] @relation("Session__cUserOwner")
+SolutionUserOwner Solution[] @relation("SolutionUserOwner")
+Speaker__cUserOwner Speaker__c[] @relation("Speaker__cUserOwner")
+StreamingChannelUserOwner StreamingChannel[] @relation("StreamingChannelUserOwner")
+SurveyInvitationUserOwner SurveyInvitation[] @relation("SurveyInvitationUserOwner")
+SurveySubjectUserSubject SurveySubject[] @relation("SurveySubjectUserSubject")
+TaskUserOwner Task[] @relation("TaskUserOwner")
+Test_User__cUserOwner Test_User__c[] @relation("Test_User__cUserOwner")
+UserUserManager User[] @relation("UserUserManager")
+UserProvisioningRequestUserOwner UserProvisioningRequest[] @relation("UserProvisioningRequestUserOwner")
+UserProvisioningRequestUserSalesforceUser UserProvisioningRequest[] @relation("UserProvisioningRequestUserSalesforceUser")
+UserProvisioningRequestUserManager UserProvisioningRequest[] @relation("UserProvisioningRequestUserManager")
+Waypoint__cUserOwner Waypoint__c[] @relation("Waypoint__cUserOwner")
+}
+model UserProvisioningRequest {
+id String @id
+
+SalesforceUserId User @relation("UserProvisioningRequestUserSalesforceUser", fields: [id_UserProvisioningRequestUserId1], references: [id])
+id_UserProvisioningRequestUserId1 String
+ExternalUserId String
+AppName String
+State String
+Operation String
+ScheduleDate DateTime
+
+
+
+ApprovalStatus String
+ManagerId User @relation("UserProvisioningRequestUserManager", fields: [id_UserProvisioningRequestUserId2], references: [id])
+id_UserProvisioningRequestUserId2 String
+RetryCount Int
+ParentId UserProvisioningRequest @relation("UserProvisioningRequestUserProvisioningRequestParent", fields: [id_UserProvisioningRequestUserProvisioningRequestId1], references: [id])
+id_UserProvisioningRequestUserProvisioningRequestId1 String
+}
+model Waypoint__c {
+id String @id
+
+Name String
+CurrencyIsoCode String
+DuplicateRecordItemWaypoint__cRecord DuplicateRecordItem[] @relation("DuplicateRecordItemWaypoint__cRecord")
+EmailMessageWaypoint__cRelatedTo EmailMessage[] @relation("EmailMessageWaypoint__cRelatedTo")
+EventWaypoint__cWhat Event[] @relation("EventWaypoint__cWhat")
+ProcessExceptionWaypoint__cAttachedTo ProcessException[] @relation("ProcessExceptionWaypoint__cAttachedTo")
+SurveySubjectWaypoint__cSubject SurveySubject[] @relation("SurveySubjectWaypoint__cSubject")
+TaskWaypoint__cWhat Task[] @relation("TaskWaypoint__cWhat")
+}
