@@ -1,4 +1,4 @@
-class OAuht2 {
+class OAuth2 {
   constructor() {
     this.ziurfreelance = {
       oauth2 : {
@@ -8,7 +8,7 @@ class OAuht2 {
         redirectUri : 'https://login.salesforce.com/services/oauht2/callback'
       },
       username : 'jeferson@ziurfreelance.com',
-      password : '@ZiuR11235pOFAcldC96as8ahzcgN5Y9I8'
+      password : '@ZiuR11235qa9zUYViTDTOiqWrHjPgv6j8'
     }
     this.avbramBlair = {
       oauth2 : {
@@ -23,4 +23,4 @@ class OAuht2 {
   }
 }
 
-export {OAuht2}
+export { OAuth2 }
