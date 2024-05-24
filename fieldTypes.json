@@ -1,0 +1,17 @@
+[
+  "id",
+  "boolean",
+  "reference",
+  "string",
+  "picklist",
+  "textarea",
+  "double",
+  "address",
+  "phone",
+  "email",
+  "date",
+  "datetime",
+  "url",
+  "multipicklist",
+  "percent"
+]

@@ -55,6 +55,15 @@ class Metadata {
         .catch(err => reject(err))
     })
   }
+  retrieveFields(sObjectDevName) {
+    return new Promise((resolve, reject) => {
+      if (!this.jsforce1 || !sObjectDevName) reject('No se ha configurado un CRM para obtener los campos');
+      this.jsforce1.getSObjectsMetadata(sObjectDevName)
+        .then(responseBody => JSON.parse(responseBody))
+        .then(metadata => {resolve(metadata.fields)})
+        .catch(err => reject(err))
+    })
+  }
 }
 
 export { Metadata }
