@@ -24,13 +24,15 @@ class Database {
       await this.client.close();
     }
   }
-  async upsertData (collection, dataList) {
+  async upsertData (collection, dataList, upsertField = 'Id') {
     try {
       let updateRecordsList = []
       dataList.forEach(data => {
+        let filter = {}
+        filter[upsertField] = data[upsertField]
         let updateObject = {
           updateOne: {
-            'filter': {'Id': data.Id},
+            'filter': filter,
             'update': {$set: data},
             'upsert': true,
             'collection': collection
@@ -40,11 +42,12 @@ class Database {
       });
       await this.client.connect()
       console.log("You successfully connected to MongoDB!")
-      await this.client.db(this.database).collection(collection).bulkWrite(updateRecordsList)
+      let result = await this.client.db(this.database).collection(collection).bulkWrite(updateRecordsList)
+      return result
     } catch (err) {
       console.log(err)
     } finally {
-      await this.client.close();
+      await this.client.close()
     }
   }
   async findData (collection, filter, project) {
@@ -52,7 +55,7 @@ class Database {
       await this.client.connect()
       console.log("You successfully connected to MongoDB!")
       const results = await this.client.db(this.database).collection(collection).find(filter).project(project).toArray();
-      return results;
+      return results
     } catch (err) {
       console.log(err)
     } finally {

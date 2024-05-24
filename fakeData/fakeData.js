@@ -1,6 +1,11 @@
+import { faker } from '@faker-js/faker';
+
 class FakeData {
   constructor () {
     this.date = new Date();
+    this.lastDayOfMonth = new Date(this.date.getFullYear(), this.date.getMonth() + 1, 0);
+    this.firstDayOfMonth = new Date(this.date.getFullYear(), this.date.getMonth(), 1);
+    this.faker = faker;
   }
   returnRandomIndex = (array) => {
     return Math.floor(Math.random()*array.length);
@@ -21,28 +26,63 @@ class FakeData {
     futureDate.setMonth(this.date.getMonth() + monthsAhead);
     return futureDate;
   }
+  returnRandomDateBetweenGivenDates = (start, end) => {
+    return new Date(start.getTime() + Math.random() * (end.getTime() - start.getTime()));
+  }
   createFakeEmail = (firstName, lastName) => {
     let emailAdress =
       firstName + lastName + Math.round(Math.random() * 1000) + '@test.com';
     return emailAdress.toLowerCase();
   }
-  padTo2Digits = (num) => {
-	return num.toString().padStart(2, '0');
+  padToNDigits = (num, N) => {
+	  return num.toString().padStart(N, '0');
   }
-  returnDataFormatted = (date) => {
+  returnDataTimeFormatted = (date) => {
     return (
       [
-      date.getFullYear(),
-      this.padTo2Digits(date.getMonth() + 1),
-      this.padTo2Digits(date.getDate()),
+        date.getFullYear(),
+        this.padToNDigits(date.getMonth() + 1, 2),
+        this.padToNDigits(date.getDate(), 2),
       ].join('-') +
       ' ' +
       [
-      this.padTo2Digits(date.getHours()),
-      this.padTo2Digits(date.getMinutes()),
-      this.padTo2Digits(date.getSeconds()),
+        this.padToNDigits(date.getHours(), 2),
+        this.padToNDigits(date.getMinutes(), 2),
+        this.padToNDigits(date.getSeconds(), 2),
       ].join(':')
     );
+  }
+  returnDataFormatted = (date) => {
+    return [
+      date.getFullYear(),
+      this.padToNDigits(date.getMonth() + 1, 2),
+      this.padToNDigits(date.getDate(), 2),
+    ].join('-')
+  }
+  createBasicFakeAccount = (isPersonAccount) => {
+    if (isPersonAccount) {
+      let sex = faker.name.sex()
+      let lastName = faker.name.lastName()
+      let firstName = faker.name.firstName(sex)
+      let personalInfo = {
+        LastName: lastName,
+        FirstName: firstName,
+        PersonMobilePhone: faker.phone.number('9########'),
+        PersonEmail: this.createFakeEmail(firstName, lastName),
+        Salutation: sex == 'male' ? 'Mr.' : 'Mrs.',
+        PersonBirthdate: faker.date.between('1940-01-01T00:00:00.000Z', '2005-01-01T00:00:00.000Z')
+      }
+      let account = {
+        ...personalInfo
+      }
+      return account;
+    }
+  }
+  returnFakeName = () => {
+    let sex = faker.name.sex()
+    let lastName = faker.name.lastName()
+    let firstName = faker.name.firstName(sex)
+    return {sex, lastName, firstName}
   }
 }
 export { FakeData }
