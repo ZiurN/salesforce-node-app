@@ -1,5 +1,3 @@
-
-
 import { OAuth2 } from './oauth.js'
 import { Metadata } from './metadata/metadata.js'
 import { deletedFields } from './devNames.js'
