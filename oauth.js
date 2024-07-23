@@ -40,6 +40,16 @@ class OAuth2 {
       username : 'autumn@ablairlaw.com',
       password : 'Suzanne201883Ralpc2ibiFZ1oqgX8nGBzv'
     }
+	this.ABATesting = {
+		oauth2 : {
+		  loginUrl : 'https://avramblairandassociates--testing.sandbox.my.salesforce.com/',
+		  clientId : '3MVG9KshNav2_Jdqol.L8ocSml_xRMW5_ZcFlXGd58UKukMBtSCgY38pH6GuBmWuYHPffyGubB06Deeq4tDhq',
+		  clientSecret : 'D3148E76D7440769EDC44B4047F0423A78398BA7247CC7BB20920B5A2AE4022B',
+		  redirectUri : 'https://login.salesforce.com/services/oauth2/success'
+		},
+		username : 'autumn@ablairlaw.com.testing',
+		password : 'Suzanne201883Ralpc2ibiFZ1oqgX8nGBzv'
+	  }
   }
 }
 

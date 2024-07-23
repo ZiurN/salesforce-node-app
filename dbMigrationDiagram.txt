@@ -1,0 +1,582 @@
+Table Contact {
+  qbdialer__Dials__c  double
+  qbdialer__LastCallTime__c  datetime
+  qbdialer__ResponseTime__c  double
+  Medical_Record_Request__c  reference
+  mkto71_Lead_Score__c  double
+  ANI__c  phone
+  Address_2__c  textarea
+  Bankruptcy_Information__c  textarea
+  Boolean_Pradaxa__c  boolean
+  Caller_Address__c  textarea
+  Callers_Email__c  email
+  Callers_Name__c  string
+  Campaign_Name__c  string
+  Campaign__c  reference
+  Child_s_Date_of_Birth__c  date
+  Chromium_or_Cobalt_testing__c  picklist
+  Claim_Filed__c  boolean
+  Client_Current_Status__c  textarea
+  Client_SSN__c  string
+  Company__c  string
+  Contacted_an_Attorney_in_the_Past__c  picklist
+  Created_By__c  reference
+  Current_Packet__c  picklist
+  DX_Treatment_Info_Blood_Issues__c  textarea
+  Date_Client_Confirmed_Returning_Packet__c  date
+  Date_Device_Inserted__c  date
+  Date_Echosign_Received__c  date
+  Date_Echosign_Sent__c  date
+  Date_Engagement_Letter_Received__c  date
+  Date_Engagement_Sent__c  date
+  Date_Execution_Handoff_Letter_Sent__c  date
+  Date_HIPAA_Received__c  date
+  Date_HIPAA_Sent_to_Firm__c  date
+  Date_Packet_Received__c  date
+  Date_Packet_Sent__c  date
+  Date_Qualified__c  date
+  Date_Rejection_Letter_Sent__c  date
+  Date_Sent_to_Lawfirm__c  date
+  Date_UTC_Letter_Sent__c  date
+  Date_removed__c  date
+  Days_Since_Qualified__c  double
+  Death_Case__c  boolean
+  Drug_Start_Date__c  date
+  Dx_with_UTI_at_the_same_time__c  picklist
+  Echosign_URL__c  string
+  Echosign_URL_cap__c  string
+  Engagement_Received__c  string
+  Estate_Status__c  string
+  Executor_Address__c  textarea
+  Executor_Email__c  email
+  Executor_Name__c  string
+  Executor_Phone_Number__c  phone
+  Executor_Relationship_to_IP__c  picklist
+  Filter_removed__c  picklist
+  Gender__c  picklist
+  Guardian_Relationship_to_IP__c  picklist
+  Guardians_Address__c  textarea
+  Guardians_Email__c  email
+  Guardians_Name__c  string
+  Guardians_Phone_Number__c  phone
+  Gynecomastia__c  picklist
+  Home_Phone__c  phone
+  How_Packet_Sent__c  multipicklist
+  Injured_Male_s_Age__c  double
+  Injured_Party_Email__c  email
+  Injured_Party_Name__c  string
+  Intake_3_Address__c  textarea
+  Invokana_Injury_Dx__c  multipicklist
+  Lead_Age__c  double
+  Lead_Id__c  string
+  Leads_within_Dates__c  boolean
+  Levaquin_Injury_Dx__c  picklist
+  Living_Or_Deceased__c  picklist
+  Make_Model_Year__c  string
+  Media_Buy__c  reference
+  Middle_Name__c  string
+  Mobile__c  phone
+  Notes_for_Caller__c  textarea
+  OBGYN_Name_and_Address__c  textarea
+  Oncologist_Name_and_Address__c  textarea
+  Other_Make_Model_Year__c  string
+  Other_Packet_Problems__c  textarea
+  Other__c  textarea
+  Output_Address__c  string
+  POA__c  boolean
+  Packet_Has_Problems__c  boolean
+  Packet_Problems__c  multipicklist
+  Parent_Intake__c  reference
+  Parent_Lead__c  reference
+  Permanent_or_Temporary__c  picklist
+  Phone_number_is_DNC__c  boolean
+  Physical_HIPAA_Received2__c  boolean
+  Project__c  reference
+  Qualify_Agent__c  picklist
+  Reason_Taken_Off_Medication__c  string
+  Received_a_Settlement_for_this_Accident__c  picklist
+  Record_History__c  textarea
+  Referred_to_MB_for_Discovery__c  boolean
+  Reject_Type__c  picklist
+  Rejected_By_Co_Counsel__c  boolean
+  Rejection_Reason__c  multipicklist
+  Residence_State_of_Injured_at_accident__c  picklist
+  Send_Physical_HIPAA__c  boolean
+  Send_UTC_Letter__c  boolean
+  Sent_to_Call_Center__c  boolean
+  State_Risperdal_was_prescribed__c  string
+  Status__c  picklist
+  Status_of_Communication_with_Lead__c  textarea
+  Sub_Buy__c  reference
+  Surgery_Gynecomastia__c  picklist
+  TVM__c  picklist
+  Talc_Injury_Dx__c  multipicklist
+  Time_Between_Calls__c  double
+  Time_Zone__c  string
+  Took_Drug_During__c  picklist
+  Took_Drug__c  picklist
+  Took_drug_in_1st_Trimester_with_victim__c  picklist
+  Venue_State__c  textarea
+  Viable_Email__c  string
+  Victim_Date_of_Birth__c  date
+  Victim_Name__c  textarea
+  Victim_SSN__c  string
+  treatment_surgery_required_Dates__c  textarea
+  Project_Name__c  string
+  Pre_Existing_Condition__c  multipicklist
+  Did_you_have_a_pre_existing_condition__c  picklist
+  Other_pre_existing_condition__c  textarea
+  Weight_before_drug_lbs__c  double
+  Weight_after_consuming_drug__c  double
+  Date_symptoms_resolved__c  date
+  Caller_Middle_Name__c  string
+  Weight_loss_in_lbs__c  double
+  DX_after_taking_the_drug__c  multipicklist
+  Other_DX__c  textarea
+  of_body_weight_lost__c  percent
+  Folder_Created__c  boolean
+  How_many_separate_hospital_visits__c  double
+  Conditions_Improve_After_Stopping_Drug__c  picklist
+  Death_Certificate__c  picklist
+  Executor_or_Administrator__c  picklist
+  Probate_Set_Up__c  picklist
+  Date_symptoms_began__c  date
+  Did_symptoms_occur_while_on_drug__c  picklist
+  Are_you_a_citizen_or_legal_resident__c  picklist
+  Represented_by_attorney_firm__c  picklist
+  Census_Info_complete__c  boolean
+  Registration_complete__c  boolean
+  Level_of_Flooding_and_Damage_to_Property__c  textarea
+  Does_Property_Owner_Have_Flood_Insurance__c  picklist
+  If_Yes_Has_Claim_Been_Filed__c  picklist
+  Property_Value_Listed_on_HCAD__c  textarea
+  Property_Owner_on_HCAD__c  textarea
+  Date_Lincoln_HIPAA_Received__c  datetime
+  Date_Defendant_HIPAA_Received__c  datetime
+  Type_Of_SGLT2_Inhibitor__c  multipicklist
+  Case_tolled__c  picklist
+  Lincoln_Report_Created__c  date
+  Did_you_ever_contact_the_J_J_PAF__c  picklist
+  Did_you_ever_receive_a_CAREPATH_card__c  picklist
+  of_Kids__c  double
+  Date_Sent_To_Selectronic__c  date
+  Injury_Level__c  picklist
+  Financial_institution__c  string
+  Currently_taking_the_drug__c  picklist
+  Case_review_status__c  picklist
+  Reviewed_by_Attorney__c  picklist
+  Reviewed_by_Selectronic__c  picklist
+  Own_A_Honda__c  picklist
+  Notified_of_recall__c  picklist
+  FB_Ad_ID__c  picklist
+  Removal_date__c  date
+  Implant_facility_and_surgeon_information__c  textarea
+  Removal_facility_and_surgeon_information__c  textarea
+  Date_HITECH_Release_Rec_d__c  date
+  Physical_HITECH_Release__c  boolean
+  Physical_HIPAA_Rec_d__c  boolean
+  Did_you_undergo_surgery__c  multipicklist
+  Front_End_Damage__c  picklist
+  GM_Make_Model_Year__c  picklist
+  Injuries_Of_Accident__c  multipicklist
+  Did_vehicle_crash_into_guardrail__c  picklist
+  Did_guardrail__c  picklist
+  Sync_To_Marketo__c  boolean
+  Website__c  url
+  of_hearing_loss_dx_with__c  picklist
+  VA_benefits_for_hearing_loss__c  picklist
+  Round__c  picklist
+  Which_ear_has_been_affected__c  picklist
+  Is_type_of_mesh_known_by_client__c  picklist
+  Disability_rating_for_hearing_loss__c  picklist
+  Disabilty_rating_for_tinnitus__c  picklist
+  UTM_Campaign__c  string
+  UTM_Medium__c  string
+  UTM_Source__c  string
+  Year_use_ended__c  string
+  Type_of_Talc__c  picklist
+  Is_Echosign_Recieved__c  double
+  Dosage__c  picklist
+  SOL1_Injury_Rule__c  date
+  Packet_Problem_Text__c  string
+  SOL_2_Discovery_SOL__c  date
+  SOL_3_Death__c  date
+  Census_Received__c  boolean
+  TwilioSF__Last_Message_Status_Date__c  datetime
+  TwilioSF__Last_Message_Status__c  picklist
+  TwilioSF__Unformatted_Mobile__c  string
+  TwilioSF__Unformatted_Phone__c  string
+  Archer_Auths__c  multipicklist
+  Safesite__c  boolean
+  Reviewed_By_WH__c  picklist
+  Date_CTA_Received__c  date
+  Preservation_letters_sent__c  boolean
+  Date_Executed_Claim_Form_Rec_d__c  date
+  Date_Release_Rec_d__c  date
+  Notary_Requested__c  boolean
+  Release_Rec_d_with_Problem_s__c  boolean
+  SOL_4_SOR__c  date
+  MSA_List__c  boolean
+  Point_Award_Packet_Generated__c  boolean
+  Date_Award_Accepted__c  date
+  ACF_claim__c  boolean
+  Points_Awarded__c  double
+  VA_TriCare__c  boolean
+  Dismissed__c  boolean
+  Ran_Lincoln_Report__c  boolean
+  Date_Sent_To_SLP__c  date
+  First_Opioid_RX_Date__c  date
+  Date_PL_Sent__c  date
+  Proof__c  boolean
+  Date_sent_to_T_Scan__c  date
+  Knee_Hip__c  picklist
+  Which_side_was_the_affected_implant__c  picklist
+  Date_of_initial_implant__c  date
+  Facility_doctor_of_initial_implant__c  textarea
+  Facility_doctor_of_revision_implant__c  textarea
+  Type_of_implant__c  picklist
+  Complication_with_implant__c  multipicklist
+  X30_days_or_more_exposure__c  picklist
+  Reason_for_being_at_Camp_Lejeune__c  picklist
+  Lost_wages_or_early_retirement__c  multipicklist
+  Other_damages__c  textarea
+  Did_you_ever_suffer_from__c  multipicklist
+  Product_Use_Notes__c  textarea
+  BK_Claim_Filed__c  multipicklist
+  BK_claim_form_rec_d__c  date
+  Signed_Packet_Link__c  textarea
+  Case_Number__c  string
+  Date_Proof_of_Claim_Rec_d__c  date
+  Endo_Claim_No__c  string
+  Job_Industry_Field__c  multipicklist
+  Accident_Address__c  textarea
+  Date_dx_with_injury__c  date
+  Death_Related_to_Accident__c  picklist
+  Description_of_Accident__c  textarea
+  Injury_result_in_Hospital_Stay__c  picklist
+  State_of_Residence_at_Death__c  picklist
+  Amputation__c  picklist
+  Dates_of_Hospitalization__c  textarea
+  Has_POU__c  picklist
+  Accident_State__c  picklist
+  Has_POI__c  boolean
+  Product_used__c  multipicklist
+  Cause_of_Death__c  textarea
+  Date_of_Death__c  date
+  Neuromuscular_Problems_DX__c  picklist
+  Postoperative_Pathology_Report__c  picklist
+  Risperdal_while_Underage__c  picklist
+  Took_Drug_before_5_1_2015__c  picklist
+  Did_you_have_an_accident__c  picklist
+  Took_Valsartan_between_Jan_12_July_18__c  picklist
+  Cancer_Dx_with__c  multipicklist
+  Dx_with_NHL__c  picklist
+  No_Cancer_DX__c  boolean
+  Diabetes__c  picklist
+  Is_there_a_family_history_of_cancer__c  picklist
+  Did_your_cancer_dx_impact_your_fertility__c  picklist
+  Why_did_you_stop_using_relaxers__c  textarea
+  Has_extended_family_dx_w_same_cancer__c  picklist
+  Current_Symptoms__c  multipicklist
+  Date_of_Gynecomastia_Diagnosis__c  date
+  Description_of_Injuries_Suffered__c  textarea
+  Injury_Descriptions__c  textarea
+  Injury_Severe__c  picklist
+  Injury_While_on_Drug__c  picklist
+  Injury__c  multipicklist
+  Type_of_Injury__c  multipicklist
+  Role__c  string  [note: 'DELETED']
+  Scope_of_Request__c  textarea  [note: 'DELETED']
+  mkto71_Acquisition_Date__c  datetime  [note: 'DELETED']
+  mkto71_Acquisition_Program__c  string  [note: 'DELETED']
+  Accident_Date__c  date  [note: 'DELETED']
+  Additional_Current_Symptoms__c  textarea  [note: 'DELETED']
+  Additional_Medical_Providers__c  textarea  [note: 'DELETED']
+  Adult_Client__c  boolean  [note: 'DELETED']
+  Antibiotic_Drug_Used__c  picklist  [note: 'DELETED']
+  Any_muscle_soft_tissue_damage__c  picklist  [note: 'DELETED']
+  Any_other_orthopedic_doctors__c  textarea  [note: 'DELETED']
+  Autopsy_Performed__c  picklist  [note: 'DELETED']
+  Bankruptcy2__c  picklist  [note: 'DELETED']
+  Born_With_Following_Defects__c  textarea  [note: 'DELETED']
+  Breast_Development__c  picklist  [note: 'DELETED']
+  Cancer_Cell_Type__c  picklist  [note: 'DELETED']
+  Complications_Notes__c  textarea  [note: 'DELETED']
+  Condition_Treated__c  multipicklist  [note: 'DELETED']
+  Contact_Information__c  string  [note: 'DELETED']
+  Currently_represented_by_attorney__c  picklist  [note: 'DELETED']
+  Date_Hospitalized__c  date  [note: 'DELETED']
+  Date_Physical_HIPPA_Sent__c  date  [note: 'DELETED']
+  Date_of_Deceased__c  date  [note: 'DELETED']
+  Date_of_Injury_Accident__c  date  [note: 'DELETED']
+  Date_of_Revision_Surgery__c  date  [note: 'DELETED']
+  Date_of_Scheduled_Revision__c  date  [note: 'DELETED']
+  Delivery_Hospital__c  string  [note: 'DELETED']
+  Descendants__c  textarea  [note: 'DELETED']
+  Descendents_Name_DOB__c  textarea  [note: 'DELETED']
+  Describe_if_Yes__c  textarea  [note: 'DELETED']
+  Diagnosing_Treating_Doctor__c  textarea  [note: 'DELETED']
+  Did_Airbag_Deploy__c  picklist  [note: 'DELETED']
+  Did_you_Have_Hip_Replacement_Surgery__c  picklist  [note: 'DELETED']
+  Did_you_suffer_from_Metal_Toxicity__c  picklist  [note: 'DELETED']
+  Did_you_suffer_from_other_injuries__c  textarea  [note: 'DELETED']
+  Doctor_that_put_in_the_IVC_Filter__c  textarea  [note: 'DELETED']
+  Doctor_who_DXed_with_Metallosis__c  textarea  [note: 'DELETED']
+  Doctor_who_implanted_initial_hip__c  textarea  [note: 'DELETED']
+  Doctor_who_repaired_replaced_initial_hip__c  textarea  [note: 'DELETED']
+  Drug_Stop_Date__c  date  [note: 'DELETED']
+  Emergency_Alternate_Contact_Information__c  textarea  [note: 'DELETED']
+  Family_History_of_Birth_Defects__c  string  [note: 'DELETED']
+  Father_SSN__c  double  [note: 'DELETED']
+  Have_Accident_Report__c  picklist  [note: 'DELETED']
+  Hip_Replacement_Surgery_AFTER_2006__c  picklist  [note: 'DELETED']
+  Hip_Replacement_Surgery_Date__c  date  [note: 'DELETED']
+  Hospital_Facility_IVC_Implanted__c  textarea  [note: 'DELETED']
+  Hospitalized__c  picklist  [note: 'DELETED']
+  IVC_Filter_Implanted__c  picklist  [note: 'DELETED']
+  IVC_Make_Model__c  string  [note: 'DELETED']
+  If_Yes_Describe__c  textarea  [note: 'DELETED']
+  Implanted_from_2002_Present__c  picklist  [note: 'DELETED']
+  Injured_Boy_s_Other_Medical_Conditions__c  multipicklist  [note: 'DELETED']
+  Injured_Party_1_Deceased__c  picklist  [note: 'DELETED']
+  Injured_Party_1_First_Last_Name__c  string  [note: 'DELETED']
+  Injured_Party_2_Deceased__c  picklist  [note: 'DELETED']
+  Injured_Party_2_First_Last_Name__c  string  [note: 'DELETED']
+  Injured_Party_3_Deceased__c  picklist  [note: 'DELETED']
+  Injured_Party_3_First_Last_Name__c  string  [note: 'DELETED']
+  Injured_Party_4_Deceased__c  picklist  [note: 'DELETED']
+  Injured_Party_4_First_Last_Name__c  string  [note: 'DELETED']
+  Injured_Party_Deceased__c  picklist  [note: 'DELETED']
+  Injured_Party_took_blood_thinner__c  multipicklist  [note: 'DELETED']
+  Injured__c  picklist  [note: 'DELETED']
+  Intake_1_Notes__c  textarea  [note: 'DELETED']
+  Intake_2_Notes__c  textarea  [note: 'DELETED']
+  Intake_Created_Date__c  datetime  [note: 'DELETED']
+  Local_Hour__c  double  [note: 'DELETED']
+  Local_Time_Difference__c  double  [note: 'DELETED']
+  Location_of_Surgery__c  textarea  [note: 'DELETED']
+  Location_of_Vehicle__c  string  [note: 'DELETED']
+  Maiden_Alias_Name__c  string  [note: 'DELETED']
+  Mesh_Insertion_After_1996__c  picklist  [note: 'DELETED']
+  Mesh_Insertion_Date__c  date  [note: 'DELETED']
+  Method_of_Insertion__c  picklist  [note: 'DELETED']
+  Mother_SSN__c  double  [note: 'DELETED']
+  Mother_Took_One_of_These_Drugs__c  picklist  [note: 'DELETED']
+  Mother_s_Alt_Phone_Number__c  string  [note: 'DELETED']
+  Mother_s_Email_Address__c  string  [note: 'DELETED']
+  Mother_s_Phone_Number__c  string  [note: 'DELETED']
+  Name_Location_of_Facility_for_Procedures__c  textarea  [note: 'DELETED']
+  Name_and_Address__c  textarea  [note: 'DELETED']
+  Nights_Hospitalized__c  double  [note: 'DELETED']
+  Notes_For_Injured_Party__c  textarea  [note: 'DELETED']
+  Notes__c  textarea  [note: 'DELETED']
+  Notes_for_Executor__c  textarea  [note: 'DELETED']
+  Notes_for_Guardian__c  textarea  [note: 'DELETED']
+  OBGYN_During_Pregnancy_with_Injured_Chil__c  textarea  [note: 'DELETED']
+  Other_Atypical__c  multipicklist  [note: 'DELETED']
+  Pediatrician_s__c  textarea  [note: 'DELETED']
+  Pharmacy_Info__c  textarea  [note: 'DELETED']
+  Prescriber_of_Drug__c  string  [note: 'DELETED']
+  Prescribing_Doctor_Information__c  textarea  [note: 'DELETED']
+  Primary_Care_Provider__c  textarea  [note: 'DELETED']
+  Primary_Surgery_Hospital_Info__c  textarea  [note: 'DELETED']
+  Procedure_Year__c  string  [note: 'DELETED']
+  Reason_Prescribed_IMPORT__c  string  [note: 'DELETED']
+  Reason_for__c  multipicklist  [note: 'DELETED']
+  Relation_to_victem__c  picklist  [note: 'DELETED']
+  Removal_Details__c  string  [note: 'DELETED']
+  Revision_Surgery__c  picklist  [note: 'DELETED']
+  Risperdal_Condition_Treated__c  multipicklist  [note: 'DELETED']
+  Risperdal_In_2007_or_Earlier__c  picklist  [note: 'DELETED']
+  Risperdal_Qualifying__c  multipicklist  [note: 'DELETED']
+  Smoked__c  picklist  [note: 'DELETED']
+  Smoker__c  picklist  [note: 'DELETED']
+  Spouse_Email__c  email  [note: 'DELETED']
+  State_Risperdal_was_ingested__c  string  [note: 'DELETED']
+  Subsequent_Surgery_Date__c  date  [note: 'DELETED']
+  Subsequent_Surgery_Details__c  textarea  [note: 'DELETED']
+  Subsequent_Surgery_Locations__c  textarea  [note: 'DELETED']
+  Surgeons__c  textarea  [note: 'DELETED']
+  Surgery_Date__c  date  [note: 'DELETED']
+  Surgery_Hospitals_and_Dates_of_Surgery__c  textarea  [note: 'DELETED']
+  Surgery_Type_2__c  picklist  [note: 'DELETED']
+  Surgery_w_Dates_related_to_defects__c  textarea  [note: 'DELETED']
+  Symptom_Notes__c  textarea  [note: 'DELETED']
+  Symptoms_After_Implant__c  picklist  [note: 'DELETED']
+  Took_Generic_during_pregnancy_with_injur__c  picklist  [note: 'DELETED']
+  Took_Wafarin_Coumadin_Prior_To_RX__c  picklist  [note: 'DELETED']
+  Took_Xarelto__c  picklist  [note: 'DELETED']
+  Treatment_Hospital_Facility__c  textarea  [note: 'DELETED']
+  Type_of_Risperidone_Taken__c  multipicklist  [note: 'DELETED']
+  Which_Drug__c  picklist  [note: 'DELETED']
+  Worked_for_a_company_more_than__c  picklist  [note: 'DELETED']
+  Worked_in_oil_and_gas_industry__c  picklist  [note: 'DELETED']
+  X1st_Date_of_Surgery__c  date  [note: 'DELETED']
+  X2nd_Date_of_Surgery__c  date  [note: 'DELETED']
+  X2nd_Mesh_Insertion_Date__c  date  [note: 'DELETED']
+  X3rd_Surgery_Date__c  date  [note: 'DELETED']
+  X4th_Surgery_Date__c  date  [note: 'DELETED']
+  Mesh_inserted_between_2005_and_2017__c  picklist  [note: 'DELETED']
+  Days_Hospitalized__c  picklist  [note: 'DELETED']
+  Date_of_DX__c  date  [note: 'DELETED']
+  Injured_Party_Middle_Name__c  string  [note: 'DELETED']
+  Experienced_Symptoms__c  multipicklist  [note: 'DELETED']
+  Property_owner__c  boolean  [note: 'DELETED']
+  Approximate_Day_and_Time_Property_Floode__c  textarea  [note: 'DELETED']
+  House_Flooded_Prior_to_Reservoir_Release__c  boolean  [note: 'DELETED']
+  Date_tolled__c  date  [note: 'DELETED']
+  How_long_married__c  string  [note: 'DELETED']
+  Job__c  picklist  [note: 'DELETED']
+  Kids_Ages__c  multipicklist  [note: 'DELETED']
+  Kids__c  picklist  [note: 'DELETED']
+  Married__c  picklist  [note: 'DELETED']
+  Prior_disability__c  picklist  [note: 'DELETED']
+  Years_on_job__c  double  [note: 'DELETED']
+  Amount_Of_money_lost__c  picklist  [note: 'DELETED']
+  Opt_In_Packet__c  picklist  [note: 'DELETED']
+  EI_Claims__c  picklist  [note: 'DELETED']
+  Type_of_Knee_Implant__c  picklist  [note: 'DELETED']
+  X1st_Surgery_Left_Knee__c  date  [note: 'DELETED']
+  X2nd_Surgery_Left_Knee__c  date  [note: 'DELETED']
+  X1st_Surgery_Right_Knee__c  date  [note: 'DELETED']
+  X2nd_Surgery_Right_Knee__c  date  [note: 'DELETED']
+  X1st_Surgery_Hospital_Surgeon_Left_Knee__c  textarea  [note: 'DELETED']
+  X2nd_Surgery_Hospital_Surgeon_Left_Knee__c  textarea  [note: 'DELETED']
+  X2nd_Surgery_Hospital_Surgeon_Right_Kne__c  textarea  [note: 'DELETED']
+  X1st_Surgery_Hospital_Surgeon_Right_Kne__c  textarea  [note: 'DELETED']
+  Injuries_after_impant__c  multipicklist  [note: 'DELETED']
+  Implant_date__c  date  [note: 'DELETED']
+  Work_Disability_After_Accident__c  picklist  [note: 'DELETED']
+  Serve_in_military_between_2003_2015__c  picklist  [note: 'DELETED']
+  Branch_of_military__c  picklist  [note: 'DELETED']
+  Confirmed_use_of_3M_earplugs__c  picklist  [note: 'DELETED']
+  X1st_Facility_Hosp_and_surgeons_info__c  textarea  [note: 'DELETED']
+  X2nd_Facility_Hosp_and_surgeons_info__c  textarea  [note: 'DELETED']
+  X3rd_Facility_Hosp_and_surgeons_info__c  textarea  [note: 'DELETED']
+  When_did_your_loved_one_pass_away__c  picklist  [note: 'DELETED']
+  State_of_death__c  picklist  [note: 'DELETED']
+  Year_use_began__c  string  [note: 'DELETED']
+  Date_PDTF__c  date  [note: 'DELETED']
+  Where_did_you_buy_your_hair_relaxer_kits__c  textarea  [note: 'DELETED']
+  Extended_Family_Notes__c  textarea  [note: 'DELETED']
+  Family_History_Notes__c  textarea  [note: 'DELETED']
+}
+
+Table Medical_History__c {
+  id string  [primary key]
+  TextArea_CauseOfDeath__c  textarea
+  Date_ofDeath__c  date
+  PickList_NeuromuscularProblemsDX__c  picklist
+  Bool_PostoperativePathologyReport__c  picklist
+  PickList_RisperdalWhileUnderage__c  picklist
+  Bool_TookDrugBefore512015__c  picklist
+  Bool_DidYouHaveAnAccident__c  picklist
+  Bool_TookValsartanBetweenJan12July18__c  picklist
+  PickList_CancerDxWith__c  multipicklist
+  PickList_DxWithNHL__c  picklist
+  Bool_NoCancerDx__c  boolean
+  Bool_HasDiabetes__c  picklist
+  PickList_IsThereAFamilyHistoryOfCancer__c  picklist
+  Bool_CancerDxImpactFertility__c  picklist
+  TextArea_WhyDidYouStopUsingRelaxers__c  textarea
+  PickList_HasExtendedFamilyDxSameCancer__c  picklist
+}
+
+Table Health_Event__c {
+  id string  [primary key]
+  Addr_Location__c  textarea
+  Date__c  date
+  PickList_WereThereDeaths__c  picklist
+  TextArea_Description__c  textarea
+  Bool_EventResultsInHospitalStay__c  picklist
+  Addr_ResidentAddressATDeath__c  picklist
+  PickList_Amputation__c  picklist
+  Date_HospitalizationStarts__c  textarea
+  Bool_HasPOU__c  picklist
+  Addr_Location__Street__s  picklist
+  Bool_HasPOI__c  boolean
+  MPickList_ProductUsed__c  multipicklist
+}
+
+Table Medical_Condition__c {
+  id string  [primary key]
+  MPickList_CurrentSymptoms__c  multipicklist
+  Date_OfDiagnosis__c  date
+  TextArea_Description__c  textarea
+  TextArea_Description__c  textarea
+  Name  picklist
+  Bool_InjuryWhileOnDrug__c  picklist
+  Name  multipicklist
+  Name  multipicklist
+}
+Ref: Health_Event__c.Addr_Location__c > Contact.Accident_Address__c
+
+Ref: Medical_History__c.TextArea_CauseOfDeath__c > Contact.Cause_of_Death__c
+
+Ref: Medical_Condition__c.MPickList_CurrentSymptoms__c > Contact.Current_Symptoms__c
+
+Ref: Health_Event__c.Date__c > Contact.Date_dx_with_injury__c
+
+Ref: Medical_History__c.Date_ofDeath__c > Contact.Date_of_Death__c
+
+Ref: Medical_Condition__c.Date_OfDiagnosis__c > Contact.Date_of_Gynecomastia_Diagnosis__c
+
+Ref: Health_Event__c.PickList_WereThereDeaths__c > Contact.Death_Related_to_Accident__c
+
+Ref: Health_Event__c.TextArea_Description__c > Contact.Description_of_Accident__c
+
+Ref: Medical_Condition__c.TextArea_Description__c > Contact.Description_of_Injuries_Suffered__c
+
+Ref: Medical_Condition__c.TextArea_Description__c > Contact.Injury_Descriptions__c
+
+Ref: Medical_Condition__c.Name > Contact.Injury_Severe__c
+
+Ref: Medical_Condition__c.Bool_InjuryWhileOnDrug__c > Contact.Injury_While_on_Drug__c
+
+Ref: Medical_Condition__c.Name > Contact.Injury__c
+
+Ref: Health_Event__c.Bool_EventResultsInHospitalStay__c > Contact.Injury_result_in_Hospital_Stay__c
+
+Ref: Medical_History__c.PickList_NeuromuscularProblemsDX__c > Contact.Neuromuscular_Problems_DX__c
+
+Ref: Medical_History__c.Bool_PostoperativePathologyReport__c > Contact.Postoperative_Pathology_Report__c
+
+Ref: Medical_History__c.PickList_RisperdalWhileUnderage__c > Contact.Risperdal_while_Underage__c
+
+Ref: Health_Event__c.Addr_ResidentAddressATDeath__c > Contact.State_of_Residence_at_Death__c
+
+Ref: Health_Event__c.PickList_Amputation__c > Contact.Amputation__c
+
+Ref: Health_Event__c.Date_HospitalizationStarts__c > Contact.Dates_of_Hospitalization__c
+
+Ref: Medical_History__c.Bool_TookDrugBefore512015__c > Contact.Took_Drug_before_5_1_2015__c
+
+Ref: Health_Event__c.Bool_HasPOU__c > Contact.Has_POU__c
+
+Ref: Medical_History__c.Bool_DidYouHaveAnAccident__c > Contact.Did_you_have_an_accident__c
+
+Ref: Health_Event__c.Addr_Location__Street__s > Contact.Accident_State__c
+
+Ref: Medical_History__c.Bool_TookValsartanBetweenJan12July18__c > Contact.Took_Valsartan_between_Jan_12_July_18__c
+
+Ref: Medical_History__c.PickList_CancerDxWith__c > Contact.Cancer_Dx_with__c
+
+Ref: Medical_History__c.PickList_DxWithNHL__c > Contact.Dx_with_NHL__c
+
+Ref: Medical_History__c.Bool_NoCancerDx__c > Contact.No_Cancer_DX__c
+
+Ref: Medical_History__c.Bool_HasDiabetes__c > Contact.Diabetes__c
+
+Ref: Medical_Condition__c.Name > Contact.Type_of_Injury__c
+
+Ref: Health_Event__c.Bool_HasPOI__c > Contact.Has_POI__c
+
+Ref: Health_Event__c.MPickList_ProductUsed__c > Contact.Product_used__c
+
+Ref: Medical_History__c.PickList_IsThereAFamilyHistoryOfCancer__c > Contact.Is_there_a_family_history_of_cancer__c
+
+Ref: Medical_History__c.Bool_CancerDxImpactFertility__c > Contact.Did_your_cancer_dx_impact_your_fertility__c
+
+Ref: Medical_History__c.TextArea_WhyDidYouStopUsingRelaxers__c > Contact.Why_did_you_stop_using_relaxers__c
+
+Ref: Medical_History__c.PickList_HasExtendedFamilyDxSameCancer__c > Contact.Has_extended_family_dx_w_same_cancer__c

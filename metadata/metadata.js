@@ -62,6 +62,50 @@ class Metadata {
         .then(responseBody => JSON.parse(responseBody))
         .then(metadata => {resolve(metadata.fields)})
         .catch(err => reject(err))
+    }
+  )}
+  createERFromSObjectListToDBDiagramFormat (sObjectList, justCustomFields) {
+    let defaultFields = [
+      'OwnerId',
+      'IsDeleted',
+      'CreatedDate',
+      'CreatedById',
+      'LastModifiedDate',
+      'LastModifiedById',
+      'SystemModstamp',
+      'LastActivityDate',
+      'LastViewedDate',
+      'LastReferencedDate',
+    ]
+    return new Promise ((resolve, reject) => {
+      if (!this.jsforce1 || !sObjectList) reject('No hay un CRM configurado o no se ha enviado la lista de objetos a comparar')
+      Promise.all(sObjectList.map(sObjectDevName => this.jsforce1.getSObjectsMetadata(sObjectDevName)))
+        .then(responseBodyList => responseBodyList.map(responseBody => JSON.parse(responseBody)))
+        .then(metadataList => {
+          let tables = []
+          metadataList.forEach(metadata => {
+            let table = {
+              name: metadata.name,
+              fields: metadata.fields.filter(field => {
+                if (field.name === 'FirstName') {
+                  console.log('justCustomFields: ' + justCustomFields)
+                  console.log('field.custom: ' + field.custom)
+                  console.log('!(defaultFields.includes(field.name): ' + !(defaultFields.includes(field.name)))
+                }
+                return (justCustomFields && field.custom) && !(defaultFields.includes(field.name))
+              }).map(field => {
+                return {
+                  name: field.name,
+                  isPrimaryKey: field.type === 'id',
+                  type: field.referenceTo.lenght >= 1 ? field.referenceTo[0] : field.type,
+                  referenceTo: field.referenceTo.lenght >= 1 ? field.referenceTo[0] : null
+                }
+              })
+            }
+            tables.push(table)
+          })
+          resolve(tables)
+        })
     })
   }
 }
