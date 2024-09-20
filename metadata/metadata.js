@@ -64,7 +64,7 @@ class Metadata {
         .catch(err => reject(err))
     }
   )}
-  createERFromSObjectListToDBDiagramFormat (sObjectList, justCustomFields) {
+  createERFromSObjectListToDBDiagramFormat (sObjectList, justCustomFields, justReferenceFields) {
     let defaultFields = [
       'OwnerId',
       'IsDeleted',
@@ -87,19 +87,28 @@ class Metadata {
             let table = {
               name: metadata.name,
               fields: metadata.fields.filter(field => {
-                if (field.name === 'FirstName') {
-                  console.log('justCustomFields: ' + justCustomFields)
-                  console.log('field.custom: ' + field.custom)
-                  console.log('!(defaultFields.includes(field.name): ' + !(defaultFields.includes(field.name)))
-                }
-                return (justCustomFields && field.custom) && !(defaultFields.includes(field.name))
+                let isIdField = field.type === 'id'
+                let isValidReference = field.type === 'reference' && !(defaultFields.includes(field.name))
+                if (isIdField) return true
+                if (justReferenceFields && justCustomFields) {
+                  return field.custom && isValidReference
+                } else if (justReferenceFields) {
+                  return isValidReference
+                } else if (justCustomFields) {
+                  return field.custom
+                } else {
+				  return true
+				}
               }).map(field => {
-                return {
+                if (field.name == 'BuyerGroupId') console.log(field.name, field.type, field.referenceTo, field.referenceTo.length)
+                let tmp_object = {
                   name: field.name,
                   isPrimaryKey: field.type === 'id',
-                  type: field.referenceTo.lenght >= 1 ? field.referenceTo[0] : field.type,
-                  referenceTo: field.referenceTo.lenght >= 1 ? field.referenceTo[0] : null
+                  type: field.referenceTo.length >= 1 ? field.referenceTo[0] : field.type,
+                  referenceTo: field.referenceTo.length >= 1 ? field.referenceTo : null
                 }
+                if (field.name == 'BuyerGroupId') console.log(tmp_object)
+                return tmp_object
               })
             }
             tables.push(table)

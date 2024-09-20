@@ -1,0 +1,3067 @@
+[
+	{
+		"name": "BuyerGroup",
+		"fields": [
+			{
+				"name": "Identificador__c",
+				"isPrimaryKey": false,
+				"type": "string",
+				"referenceTo": null
+			}
+		]
+	},
+	{
+		"name": "BuyerGroupMember",
+		"fields": [
+			{
+				"name": "BuyerGroupId",
+				"isPrimaryKey": false,
+				"type": "reference",
+				"referenceTo": null
+			},
+			{
+				"name": "BuyerId",
+				"isPrimaryKey": false,
+				"type": "reference",
+				"referenceTo": null
+			}
+		]
+	},
+	{
+		"name": "Account",
+		"fields": [
+			{
+				"name": "MasterRecordId",
+				"isPrimaryKey": false,
+				"type": "reference",
+				"referenceTo": null
+			},
+			{
+				"name": "RecordTypeId",
+				"isPrimaryKey": false,
+				"type": "reference",
+				"referenceTo": null
+			},
+			{
+				"name": "ParentId",
+				"isPrimaryKey": false,
+				"type": "reference",
+				"referenceTo": null
+			},
+			{
+				"name": "PersonContactId",
+				"isPrimaryKey": false,
+				"type": "reference",
+				"referenceTo": null
+			},
+			{
+				"name": "PersonIndividualId",
+				"isPrimaryKey": false,
+				"type": "reference",
+				"referenceTo": null
+			},
+			{
+				"name": "ActividadEconomica__c",
+				"isPrimaryKey": false,
+				"type": "string",
+				"referenceTo": null
+			},
+			{
+				"name": "AuditoriaDeImagen__c",
+				"isPrimaryKey": false,
+				"type": "double",
+				"referenceTo": null
+			},
+			{
+				"name": "CentroDeNegocios__c",
+				"isPrimaryKey": false,
+				"type": "string",
+				"referenceTo": null
+			},
+			{
+				"name": "Ciudad__c",
+				"isPrimaryKey": false,
+				"type": "picklist",
+				"referenceTo": null
+			},
+			{
+				"name": "ClienteExperto__c",
+				"isPrimaryKey": false,
+				"type": "double",
+				"referenceTo": null
+			},
+			{
+				"name": "CodigoDeudor__c",
+				"isPrimaryKey": false,
+				"type": "string",
+				"referenceTo": null
+			},
+			{
+				"name": "CodigoSolicitante__c",
+				"isPrimaryKey": false,
+				"type": "string",
+				"referenceTo": null
+			},
+			{
+				"name": "Comuna__c",
+				"isPrimaryKey": false,
+				"type": "picklist",
+				"referenceTo": null
+			},
+			{
+				"name": "Correo__c",
+				"isPrimaryKey": false,
+				"type": "email",
+				"referenceTo": null
+			},
+			{
+				"name": "Departamento__c",
+				"isPrimaryKey": false,
+				"type": "string",
+				"referenceTo": null
+			},
+			{
+				"name": "Direccion__c",
+				"isPrimaryKey": false,
+				"type": "string",
+				"referenceTo": null
+			},
+			{
+				"name": "EtiquetaDeLaCuenta__c",
+				"isPrimaryKey": false,
+				"type": "string",
+				"referenceTo": null
+			},
+			{
+				"name": "Flete__c",
+				"isPrimaryKey": false,
+				"type": "boolean",
+				"referenceTo": null
+			},
+			{
+				"name": "Holding__c",
+				"isPrimaryKey": false,
+				"type": "boolean",
+				"referenceTo": null
+			},
+			{
+				"name": "IdEstacion__c",
+				"isPrimaryKey": false,
+				"type": "string",
+				"referenceTo": null
+			},
+			{
+				"name": "IdNegocios__c",
+				"isPrimaryKey": false,
+				"type": "string",
+				"referenceTo": null
+			},
+			{
+				"name": "IdTienda__c",
+				"isPrimaryKey": false,
+				"type": "string",
+				"referenceTo": null
+			},
+			{
+				"name": "MedioDePago__c",
+				"isPrimaryKey": false,
+				"type": "multipicklist",
+				"referenceTo": null
+			},
+			{
+				"name": "NombreDeCuentaFacebook__c",
+				"isPrimaryKey": false,
+				"type": "string",
+				"referenceTo": null
+			},
+			{
+				"name": "NombreDeCuentaInstagram__c",
+				"isPrimaryKey": false,
+				"type": "string",
+				"referenceTo": null
+			},
+			{
+				"name": "NombreDeCuentaLinkedIn__c",
+				"isPrimaryKey": false,
+				"type": "string",
+				"referenceTo": null
+			},
+			{
+				"name": "NombreDeCuentaTwitter__c",
+				"isPrimaryKey": false,
+				"type": "string",
+				"referenceTo": null
+			},
+			{
+				"name": "NotaDeServicio__c",
+				"isPrimaryKey": false,
+				"type": "double",
+				"referenceTo": null
+			},
+			{
+				"name": "PrecioFlete__c",
+				"isPrimaryKey": false,
+				"type": "string",
+				"referenceTo": null
+			},
+			{
+				"name": "Region__c",
+				"isPrimaryKey": false,
+				"type": "picklist",
+				"referenceTo": null
+			},
+			{
+				"name": "RepresentanteLegal__c",
+				"isPrimaryKey": false,
+				"type": "reference",
+				"referenceTo": null
+			},
+			{
+				"name": "Rubro__c",
+				"isPrimaryKey": false,
+				"type": "picklist",
+				"referenceTo": null
+			},
+			{
+				"name": "RutCliente__c",
+				"isPrimaryKey": false,
+				"type": "string",
+				"referenceTo": null
+			},
+			{
+				"name": "TipoDeConcesionario__c",
+				"isPrimaryKey": false,
+				"type": "picklist",
+				"referenceTo": null
+			},
+			{
+				"name": "TipoDePartner__c",
+				"isPrimaryKey": false,
+				"type": "picklist",
+				"referenceTo": null
+			},
+			{
+				"name": "FechaUltimaMantencion__c",
+				"isPrimaryKey": false,
+				"type": "date",
+				"referenceTo": null
+			},
+			{
+				"name": "CargoEjecutivoProveedor__c",
+				"isPrimaryKey": false,
+				"type": "string",
+				"referenceTo": null
+			},
+			{
+				"name": "Correo2__c",
+				"isPrimaryKey": false,
+				"type": "email",
+				"referenceTo": null
+			},
+			{
+				"name": "CorreoEDS__c",
+				"isPrimaryKey": false,
+				"type": "email",
+				"referenceTo": null
+			},
+			{
+				"name": "EjecutivoProveedor__c",
+				"isPrimaryKey": false,
+				"type": "string",
+				"referenceTo": null
+			},
+			{
+				"name": "FechaHoraReclamoAux__c",
+				"isPrimaryKey": false,
+				"type": "datetime",
+				"referenceTo": null
+			},
+			{
+				"name": "GiroComercial__c",
+				"isPrimaryKey": false,
+				"type": "textarea",
+				"referenceTo": null
+			},
+			{
+				"name": "IdContactoPersonal__c",
+				"isPrimaryKey": false,
+				"type": "string",
+				"referenceTo": null
+			},
+			{
+				"name": "IdEstacionAux__c",
+				"isPrimaryKey": false,
+				"type": "string",
+				"referenceTo": null
+			},
+			{
+				"name": "AtrasosDiasDeFluctuaciones__c",
+				"isPrimaryKey": false,
+				"type": "double",
+				"referenceTo": null
+			},
+			{
+				"name": "NombreCalle__c",
+				"isPrimaryKey": false,
+				"type": "string",
+				"referenceTo": null
+			},
+			{
+				"name": "Numero__c",
+				"isPrimaryKey": false,
+				"type": "double",
+				"referenceTo": null
+			},
+			{
+				"name": "Piso__c",
+				"isPrimaryKey": false,
+				"type": "double",
+				"referenceTo": null
+			},
+			{
+				"name": "M2Diesel__c",
+				"isPrimaryKey": false,
+				"type": "double",
+				"referenceTo": null
+			},
+			{
+				"name": "RutEmpresa__c",
+				"isPrimaryKey": false,
+				"type": "string",
+				"referenceTo": null
+			},
+			{
+				"name": "TelefonoMovil__c",
+				"isPrimaryKey": false,
+				"type": "phone",
+				"referenceTo": null
+			},
+			{
+				"name": "TipoDeRegistro__c",
+				"isPrimaryKey": false,
+				"type": "string",
+				"referenceTo": null
+			},
+			{
+				"name": "Voltex__c",
+				"isPrimaryKey": false,
+				"type": "boolean",
+				"referenceTo": null
+			},
+			{
+				"name": "Almacen__c",
+				"isPrimaryKey": false,
+				"type": "string",
+				"referenceTo": null
+			},
+			{
+				"name": "CodDeudorAux__c",
+				"isPrimaryKey": false,
+				"type": "string",
+				"referenceTo": null
+			},
+			{
+				"name": "CodSolicitanteAux__c",
+				"isPrimaryKey": false,
+				"type": "string",
+				"referenceTo": null
+			},
+			{
+				"name": "CodigoPlanta__c",
+				"isPrimaryKey": false,
+				"type": "string",
+				"referenceTo": null
+			},
+			{
+				"name": "Estado__c",
+				"isPrimaryKey": false,
+				"type": "picklist",
+				"referenceTo": null
+			},
+			{
+				"name": "Planta__c",
+				"isPrimaryKey": false,
+				"type": "reference",
+				"referenceTo": null
+			},
+			{
+				"name": "SegmentoCliente__c",
+				"isPrimaryKey": false,
+				"type": "email",
+				"referenceTo": null
+			},
+			{
+				"name": "M2Gasolina__c",
+				"isPrimaryKey": false,
+				"type": "double",
+				"referenceTo": null
+			},
+			{
+				"name": "PorcentajeCrecimientoDiesel__c",
+				"isPrimaryKey": false,
+				"type": "percent",
+				"referenceTo": null
+			},
+			{
+				"name": "PorcentajeCrecimientoGasolina__c",
+				"isPrimaryKey": false,
+				"type": "percent",
+				"referenceTo": null
+			},
+			{
+				"name": "PorcentajeCrecimientoPOA__c",
+				"isPrimaryKey": false,
+				"type": "percent",
+				"referenceTo": null
+			},
+			{
+				"name": "PorcentajeCrecimientoTAE__c",
+				"isPrimaryKey": false,
+				"type": "percent",
+				"referenceTo": null
+			},
+			{
+				"name": "PorcentajeCumplimientoPOADiesel__c",
+				"isPrimaryKey": false,
+				"type": "percent",
+				"referenceTo": null
+			},
+			{
+				"name": "PorcentajeCumplimientoPOAGasolina__c",
+				"isPrimaryKey": false,
+				"type": "percent",
+				"referenceTo": null
+			},
+			{
+				"name": "PorcentajeCumplimientoPOA__c",
+				"isPrimaryKey": false,
+				"type": "percent",
+				"referenceTo": null
+			},
+			{
+				"name": "PorcentajeCumplimientoTAE__c",
+				"isPrimaryKey": false,
+				"type": "percent",
+				"referenceTo": null
+			},
+			{
+				"name": "VolumenTaeM3Mes__c",
+				"isPrimaryKey": false,
+				"type": "percent",
+				"referenceTo": null
+			},
+			{
+				"name": "Tipo_proveedor__c",
+				"isPrimaryKey": false,
+				"type": "picklist",
+				"referenceTo": null
+			},
+			{
+				"name": "comentarioEmisionFactura__c",
+				"isPrimaryKey": false,
+				"type": "textarea",
+				"referenceTo": null
+			},
+			{
+				"name": "comentarioRechazoSAP__c",
+				"isPrimaryKey": false,
+				"type": "textarea",
+				"referenceTo": null
+			},
+			{
+				"name": "condicionDePago__c",
+				"isPrimaryKey": false,
+				"type": "picklist",
+				"referenceTo": null
+			},
+			{
+				"name": "contactoComercial__c",
+				"isPrimaryKey": false,
+				"type": "reference",
+				"referenceTo": null
+			},
+			{
+				"name": "contactoPagoFacturas__c",
+				"isPrimaryKey": false,
+				"type": "reference",
+				"referenceTo": null
+			},
+			{
+				"name": "controlCobranza__c",
+				"isPrimaryKey": false,
+				"type": "picklist",
+				"referenceTo": null
+			},
+			{
+				"name": "correoElectronicoRecepcionFE__c",
+				"isPrimaryKey": false,
+				"type": "email",
+				"referenceTo": null
+			},
+			{
+				"name": "deudorParent__c",
+				"isPrimaryKey": false,
+				"type": "string",
+				"referenceTo": null
+			},
+			{
+				"name": "emailFacturasElectronicas__c",
+				"isPrimaryKey": false,
+				"type": "email",
+				"referenceTo": null
+			},
+			{
+				"name": "estadoSAP__c",
+				"isPrimaryKey": false,
+				"type": "picklist",
+				"referenceTo": null
+			},
+			{
+				"name": "evolveWorkFlowID__c",
+				"isPrimaryKey": false,
+				"type": "string",
+				"referenceTo": null
+			},
+			{
+				"name": "lastResponseEvolve__c",
+				"isPrimaryKey": false,
+				"type": "string",
+				"referenceTo": null
+			},
+			{
+				"name": "lineaNegocio__c",
+				"isPrimaryKey": false,
+				"type": "multipicklist",
+				"referenceTo": null
+			},
+			{
+				"name": "listaPrecios__c",
+				"isPrimaryKey": false,
+				"type": "reference",
+				"referenceTo": null
+			},
+			{
+				"name": "operaConHES__c",
+				"isPrimaryKey": false,
+				"type": "boolean",
+				"referenceTo": null
+			},
+			{
+				"name": "operaConOrdenCompra__c",
+				"isPrimaryKey": false,
+				"type": "boolean",
+				"referenceTo": null
+			},
+			{
+				"name": "operaVerificacionDocs__c",
+				"isPrimaryKey": false,
+				"type": "boolean",
+				"referenceTo": null
+			},
+			{
+				"name": "organizacionVentas__c",
+				"isPrimaryKey": false,
+				"type": "multipicklist",
+				"referenceTo": null
+			},
+			{
+				"name": "portalProveedores__c",
+				"isPrimaryKey": false,
+				"type": "url",
+				"referenceTo": null
+			},
+			{
+				"name": "tienePrecioEspecial__c",
+				"isPrimaryKey": false,
+				"type": "boolean",
+				"referenceTo": null
+			},
+			{
+				"name": "zonaVenta__c",
+				"isPrimaryKey": false,
+				"type": "string",
+				"referenceTo": null
+			},
+			{
+				"name": "PorcentajeCrecimientoVenta__c",
+				"isPrimaryKey": false,
+				"type": "percent",
+				"referenceTo": null
+			},
+			{
+				"name": "PorcentajeMargenBebidasCalientes__c",
+				"isPrimaryKey": false,
+				"type": "percent",
+				"referenceTo": null
+			},
+			{
+				"name": "PorcentajeMargenCigarrillos__c",
+				"isPrimaryKey": false,
+				"type": "percent",
+				"referenceTo": null
+			},
+			{
+				"name": "PorcentajeMargenComida__c",
+				"isPrimaryKey": false,
+				"type": "percent",
+				"referenceTo": null
+			},
+			{
+				"name": "PorcentajeMargenCooler__c",
+				"isPrimaryKey": false,
+				"type": "percent",
+				"referenceTo": null
+			},
+			{
+				"name": "PorcentajeMargenRetail__c",
+				"isPrimaryKey": false,
+				"type": "percent",
+				"referenceTo": null
+			},
+			{
+				"name": "PorcentajeRetail__c",
+				"isPrimaryKey": false,
+				"type": "percent",
+				"referenceTo": null
+			},
+			{
+				"name": "PorcentajeVentaBebidasCalientes__c",
+				"isPrimaryKey": false,
+				"type": "percent",
+				"referenceTo": null
+			},
+			{
+				"name": "PorcentajeVentaCigarrillos__c",
+				"isPrimaryKey": false,
+				"type": "percent",
+				"referenceTo": null
+			},
+			{
+				"name": "PorcentajeVentaComida__c",
+				"isPrimaryKey": false,
+				"type": "percent",
+				"referenceTo": null
+			},
+			{
+				"name": "PorcentajeVentaCooler__c",
+				"isPrimaryKey": false,
+				"type": "percent",
+				"referenceTo": null
+			},
+			{
+				"name": "VentaTotalMes__c",
+				"isPrimaryKey": false,
+				"type": "currency",
+				"referenceTo": null
+			},
+			{
+				"name": "IdCampanaUtm__c",
+				"isPrimaryKey": false,
+				"type": "string",
+				"referenceTo": null
+			},
+			{
+				"name": "ContactoAcademia__c",
+				"isPrimaryKey": false,
+				"type": "boolean",
+				"referenceTo": null
+			},
+			{
+				"name": "DescripcionClaseCliente__c",
+				"isPrimaryKey": false,
+				"type": "string",
+				"referenceTo": null
+			},
+			{
+				"name": "EstadoEDS__c",
+				"isPrimaryKey": false,
+				"type": "string",
+				"referenceTo": null
+			},
+			{
+				"name": "AceptoPoliticaDeTratamientoDeDatos__c",
+				"isPrimaryKey": false,
+				"type": "boolean",
+				"referenceTo": null
+			},
+			{
+				"name": "AntiguedadLaboral__c",
+				"isPrimaryKey": false,
+				"type": "string",
+				"referenceTo": null
+			},
+			{
+				"name": "EmisionDeLicencia__c",
+				"isPrimaryKey": false,
+				"type": "string",
+				"referenceTo": null
+			},
+			{
+				"name": "IdUsuarioConnectCar__c",
+				"isPrimaryKey": false,
+				"type": "string",
+				"referenceTo": null
+			},
+			{
+				"name": "RangoDeSueldo__c",
+				"isPrimaryKey": false,
+				"type": "string",
+				"referenceTo": null
+			},
+			{
+				"name": "SituacionLaboral__c",
+				"isPrimaryKey": false,
+				"type": "string",
+				"referenceTo": null
+			},
+			{
+				"name": "TerminosyCondiciones__c",
+				"isPrimaryKey": false,
+				"type": "boolean",
+				"referenceTo": null
+			},
+			{
+				"name": "TipoDeUsoAutomovil__c",
+				"isPrimaryKey": false,
+				"type": "string",
+				"referenceTo": null
+			},
+			{
+				"name": "VencimientoDeLicenciaActual__c",
+				"isPrimaryKey": false,
+				"type": "string",
+				"referenceTo": null
+			},
+			{
+				"name": "TipoDeTienda__c",
+				"isPrimaryKey": false,
+				"type": "picklist",
+				"referenceTo": null
+			},
+			{
+				"name": "CorreoJOpArcoprime__c",
+				"isPrimaryKey": false,
+				"type": "email",
+				"referenceTo": null
+			},
+			{
+				"name": "CopecPayEmail__c",
+				"isPrimaryKey": false,
+				"type": "email",
+				"referenceTo": null
+			},
+			{
+				"name": "EcommerceEmail__c",
+				"isPrimaryKey": false,
+				"type": "email",
+				"referenceTo": null
+			},
+			{
+				"name": "FechaUltimaCompraCombustible__c",
+				"isPrimaryKey": false,
+				"type": "datetime",
+				"referenceTo": null
+			},
+			{
+				"name": "FechaUltimaCompraPronto__c",
+				"isPrimaryKey": false,
+				"type": "datetime",
+				"referenceTo": null
+			},
+			{
+				"name": "FechaUltimaCompraPunto__c",
+				"isPrimaryKey": false,
+				"type": "datetime",
+				"referenceTo": null
+			},
+			{
+				"name": "FechaUltimaCompraScanAndGo__c",
+				"isPrimaryKey": false,
+				"type": "datetime",
+				"referenceTo": null
+			},
+			{
+				"name": "FechaUltimoAbonoCencoFull__c",
+				"isPrimaryKey": false,
+				"type": "datetime",
+				"referenceTo": null
+			},
+			{
+				"name": "FechaUltimoAbonoFullLatam__c",
+				"isPrimaryKey": false,
+				"type": "datetime",
+				"referenceTo": null
+			},
+			{
+				"name": "FechaUltimoAbonoLatamFull__c",
+				"isPrimaryKey": false,
+				"type": "datetime",
+				"referenceTo": null
+			},
+			{
+				"name": "FechaUltimoCanjePuntos__c",
+				"isPrimaryKey": false,
+				"type": "datetime",
+				"referenceTo": null
+			},
+			{
+				"name": "FidelidadEmail__c",
+				"isPrimaryKey": false,
+				"type": "email",
+				"referenceTo": null
+			},
+			{
+				"name": "Genero__c",
+				"isPrimaryKey": false,
+				"type": "picklist",
+				"referenceTo": null
+			},
+			{
+				"name": "IdUsuarioAppCopec__c",
+				"isPrimaryKey": false,
+				"type": "string",
+				"referenceTo": null
+			},
+			{
+				"name": "PtosTotales__c",
+				"isPrimaryKey": false,
+				"type": "double",
+				"referenceTo": null
+			},
+			{
+				"name": "PushTokenApp__c",
+				"isPrimaryKey": false,
+				"type": "string",
+				"referenceTo": null
+			},
+			{
+				"name": "AbonoCencoFull__c",
+				"isPrimaryKey": false,
+				"type": "boolean",
+				"referenceTo": null
+			},
+			{
+				"name": "AbonoFullCenco__c",
+				"isPrimaryKey": false,
+				"type": "boolean",
+				"referenceTo": null
+			},
+			{
+				"name": "AbonoFullLatam__c",
+				"isPrimaryKey": false,
+				"type": "boolean",
+				"referenceTo": null
+			},
+			{
+				"name": "AbonoLatamFull__c",
+				"isPrimaryKey": false,
+				"type": "boolean",
+				"referenceTo": null
+			},
+			{
+				"name": "CantCanjes__c",
+				"isPrimaryKey": false,
+				"type": "double",
+				"referenceTo": null
+			},
+			{
+				"name": "CantMisionCumplidaCombustible__c",
+				"isPrimaryKey": false,
+				"type": "double",
+				"referenceTo": null
+			},
+			{
+				"name": "CantMisionCumplidaPronto__c",
+				"isPrimaryKey": false,
+				"type": "double",
+				"referenceTo": null
+			},
+			{
+				"name": "CantRedenciones__c",
+				"isPrimaryKey": false,
+				"type": "double",
+				"referenceTo": null
+			},
+			{
+				"name": "CantidadRecargasBipUltimos6Meses__c",
+				"isPrimaryKey": false,
+				"type": "double",
+				"referenceTo": null
+			},
+			{
+				"name": "ComunaEdsHabitualCombustible__c",
+				"isPrimaryKey": false,
+				"type": "string",
+				"referenceTo": null
+			},
+			{
+				"name": "ComunaEdsHabitualLub__c",
+				"isPrimaryKey": false,
+				"type": "string",
+				"referenceTo": null
+			},
+			{
+				"name": "ComunaEdsHabitualPronto__c",
+				"isPrimaryKey": false,
+				"type": "string",
+				"referenceTo": null
+			},
+			{
+				"name": "ComunaEdsHabitualPunto__c",
+				"isPrimaryKey": false,
+				"type": "string",
+				"referenceTo": null
+			},
+			{
+				"name": "CuponesCombustibleDisponibles__c",
+				"isPrimaryKey": false,
+				"type": "double",
+				"referenceTo": null
+			},
+			{
+				"name": "CuponesProntoDisponibles__c",
+				"isPrimaryKey": false,
+				"type": "double",
+				"referenceTo": null
+			},
+			{
+				"name": "DiasVencimientoMisionCombustible__c",
+				"isPrimaryKey": false,
+				"type": "double",
+				"referenceTo": null
+			},
+			{
+				"name": "DiasVencimientoMisionPronto__c",
+				"isPrimaryKey": false,
+				"type": "double",
+				"referenceTo": null
+			},
+			{
+				"name": "DormidoCombustible__c",
+				"isPrimaryKey": false,
+				"type": "double",
+				"referenceTo": null
+			},
+			{
+				"name": "DormidoEcommerce__c",
+				"isPrimaryKey": false,
+				"type": "double",
+				"referenceTo": null
+			},
+			{
+				"name": "DormidoPronto__c",
+				"isPrimaryKey": false,
+				"type": "double",
+				"referenceTo": null
+			},
+			{
+				"name": "DormidoPunto__c",
+				"isPrimaryKey": false,
+				"type": "double",
+				"referenceTo": null
+			},
+			{
+				"name": "EcommerceMarketingAccept__c",
+				"isPrimaryKey": false,
+				"type": "boolean",
+				"referenceTo": null
+			},
+			{
+				"name": "EdsHabitualCombustible__c",
+				"isPrimaryKey": false,
+				"type": "double",
+				"referenceTo": null
+			},
+			{
+				"name": "EdsHabitualLub__c",
+				"isPrimaryKey": false,
+				"type": "double",
+				"referenceTo": null
+			},
+			{
+				"name": "EdsHabitualPronto__c",
+				"isPrimaryKey": false,
+				"type": "double",
+				"referenceTo": null
+			},
+			{
+				"name": "EdsHabitualPunto__c",
+				"isPrimaryKey": false,
+				"type": "double",
+				"referenceTo": null
+			},
+			{
+				"name": "EsBipActivo__c",
+				"isPrimaryKey": false,
+				"type": "boolean",
+				"referenceTo": null
+			},
+			{
+				"name": "EsBip__c",
+				"isPrimaryKey": false,
+				"type": "boolean",
+				"referenceTo": null
+			},
+			{
+				"name": "EsChiletur__c",
+				"isPrimaryKey": false,
+				"type": "boolean",
+				"referenceTo": null
+			},
+			{
+				"name": "EsCombustible__c",
+				"isPrimaryKey": false,
+				"type": "boolean",
+				"referenceTo": null
+			},
+			{
+				"name": "FechaUltimaCompraPorCategoriaEcommerce__c",
+				"isPrimaryKey": false,
+				"type": "datetime",
+				"referenceTo": null
+			},
+			{
+				"name": "EsEcommerce__c",
+				"isPrimaryKey": false,
+				"type": "boolean",
+				"referenceTo": null
+			},
+			{
+				"name": "EsHuellaActiva__c",
+				"isPrimaryKey": false,
+				"type": "boolean",
+				"referenceTo": null
+			},
+			{
+				"name": "EsHuellaDesactivada__c",
+				"isPrimaryKey": false,
+				"type": "boolean",
+				"referenceTo": null
+			},
+			{
+				"name": "EsLub__c",
+				"isPrimaryKey": false,
+				"type": "boolean",
+				"referenceTo": null
+			},
+			{
+				"name": "EsMuevoInteraccion__c",
+				"isPrimaryKey": false,
+				"type": "boolean",
+				"referenceTo": null
+			},
+			{
+				"name": "EsMuevoTransaccion__c",
+				"isPrimaryKey": false,
+				"type": "boolean",
+				"referenceTo": null
+			},
+			{
+				"name": "EsMuevo__c",
+				"isPrimaryKey": false,
+				"type": "boolean",
+				"referenceTo": null
+			},
+			{
+				"name": "EsPronto__c",
+				"isPrimaryKey": false,
+				"type": "boolean",
+				"referenceTo": null
+			},
+			{
+				"name": "EsPunto__c",
+				"isPrimaryKey": false,
+				"type": "boolean",
+				"referenceTo": null
+			},
+			{
+				"name": "EsReferidor__c",
+				"isPrimaryKey": false,
+				"type": "boolean",
+				"referenceTo": null
+			},
+			{
+				"name": "EsScanAndGo__c",
+				"isPrimaryKey": false,
+				"type": "boolean",
+				"referenceTo": null
+			},
+			{
+				"name": "EstadoCivil__c",
+				"isPrimaryKey": false,
+				"type": "picklist",
+				"referenceTo": null
+			},
+			{
+				"name": "EstadoMisionCombustible__c",
+				"isPrimaryKey": false,
+				"type": "double",
+				"referenceTo": null
+			},
+			{
+				"name": "EstadoMisionPronto__c",
+				"isPrimaryKey": false,
+				"type": "double",
+				"referenceTo": null
+			},
+			{
+				"name": "EstadoUsuario__c",
+				"isPrimaryKey": false,
+				"type": "double",
+				"referenceTo": null
+			},
+			{
+				"name": "FechaActualizacionFunnel__c",
+				"isPrimaryKey": false,
+				"type": "datetime",
+				"referenceTo": null
+			},
+			{
+				"name": "FechaCreacionEcommerce__c",
+				"isPrimaryKey": false,
+				"type": "datetime",
+				"referenceTo": null
+			},
+			{
+				"name": "FechaCreacionFull__c",
+				"isPrimaryKey": false,
+				"type": "datetime",
+				"referenceTo": null
+			},
+			{
+				"name": "FechaCreacionMuevo__c",
+				"isPrimaryKey": false,
+				"type": "datetime",
+				"referenceTo": null
+			},
+			{
+				"name": "FechaDesactivacionHuella__c",
+				"isPrimaryKey": false,
+				"type": "datetime",
+				"referenceTo": null
+			},
+			{
+				"name": "FechaMigracion__c",
+				"isPrimaryKey": false,
+				"type": "datetime",
+				"referenceTo": null
+			},
+			{
+				"name": "FechaPrimeraActivacionHuella__c",
+				"isPrimaryKey": false,
+				"type": "datetime",
+				"referenceTo": null
+			},
+			{
+				"name": "FechaPrimeraCompraScanAndGo__c",
+				"isPrimaryKey": false,
+				"type": "datetime",
+				"referenceTo": null
+			},
+			{
+				"name": "FechaUltimaActualizacionRegistro__c",
+				"isPrimaryKey": false,
+				"type": "datetime",
+				"referenceTo": null
+			},
+			{
+				"name": "FechaUltimaCompraEcommerce__c",
+				"isPrimaryKey": false,
+				"type": "datetime",
+				"referenceTo": null
+			},
+			{
+				"name": "FechaUltimaCompraPorCategoria__c",
+				"isPrimaryKey": false,
+				"type": "datetime",
+				"referenceTo": null
+			},
+			{
+				"name": "FechaUltimaRecargaAlt__c",
+				"isPrimaryKey": false,
+				"type": "datetime",
+				"referenceTo": null
+			},
+			{
+				"name": "FechaUltimaRecargaSpot__c",
+				"isPrimaryKey": false,
+				"type": "datetime",
+				"referenceTo": null
+			},
+			{
+				"name": "FechaUltimaRedencionCuponArcoprime__c",
+				"isPrimaryKey": false,
+				"type": "datetime",
+				"referenceTo": null
+			},
+			{
+				"name": "FechaUltimaRedencionCuponCombustible__c",
+				"isPrimaryKey": false,
+				"type": "datetime",
+				"referenceTo": null
+			},
+			{
+				"name": "FechaUltimaRedencionCupon__c",
+				"isPrimaryKey": false,
+				"type": "datetime",
+				"referenceTo": null
+			},
+			{
+				"name": "FechaUltimoAbonoFullCenco__c",
+				"isPrimaryKey": false,
+				"type": "datetime",
+				"referenceTo": null
+			},
+			{
+				"name": "FechaUltimoCanjePuntosArcoprime__c",
+				"isPrimaryKey": false,
+				"type": "datetime",
+				"referenceTo": null
+			},
+			{
+				"name": "FechaUltimoCanjePuntosCombustible__c",
+				"isPrimaryKey": false,
+				"type": "datetime",
+				"referenceTo": null
+			},
+			{
+				"name": "FechaUltimoUsoPromocionCombustible__c",
+				"isPrimaryKey": false,
+				"type": "datetime",
+				"referenceTo": null
+			},
+			{
+				"name": "FechaUltimoUsoPromocionTiendas__c",
+				"isPrimaryKey": false,
+				"type": "datetime",
+				"referenceTo": null
+			},
+			{
+				"name": "FormatoEdsHabitualCombustible__c",
+				"isPrimaryKey": false,
+				"type": "string",
+				"referenceTo": null
+			},
+			{
+				"name": "FormatoEdsHabitualLub__c",
+				"isPrimaryKey": false,
+				"type": "string",
+				"referenceTo": null
+			},
+			{
+				"name": "FormatoEdsHabitualPronto__c",
+				"isPrimaryKey": false,
+				"type": "string",
+				"referenceTo": null
+			},
+			{
+				"name": "FormatoEdsHabitualPunto__c",
+				"isPrimaryKey": false,
+				"type": "string",
+				"referenceTo": null
+			},
+			{
+				"name": "FrecuenciaPromedioBip__c",
+				"isPrimaryKey": false,
+				"type": "double",
+				"referenceTo": null
+			},
+			{
+				"name": "FugadoEcommerce__c",
+				"isPrimaryKey": false,
+				"type": "double",
+				"referenceTo": null
+			},
+			{
+				"name": "GrupoControlFuga__c",
+				"isPrimaryKey": false,
+				"type": "boolean",
+				"referenceTo": null
+			},
+			{
+				"name": "GrupoControlFunnel__c",
+				"isPrimaryKey": false,
+				"type": "boolean",
+				"referenceTo": null
+			},
+			{
+				"name": "GrupoFunnel__c",
+				"isPrimaryKey": false,
+				"type": "picklist",
+				"referenceTo": null
+			},
+			{
+				"name": "Hijos__c",
+				"isPrimaryKey": false,
+				"type": "double",
+				"referenceTo": null
+			},
+			{
+				"name": "MisionesCompletadasMesAnterior__c",
+				"isPrimaryKey": false,
+				"type": "double",
+				"referenceTo": null
+			},
+			{
+				"name": "NivelSocioeconomico__c",
+				"isPrimaryKey": false,
+				"type": "picklist",
+				"referenceTo": null
+			},
+			{
+				"name": "NumeroDeReferidos__c",
+				"isPrimaryKey": false,
+				"type": "double",
+				"referenceTo": null
+			},
+			{
+				"name": "AccionaKPIAccionista__c",
+				"isPrimaryKey": false,
+				"type": "percent",
+				"referenceTo": null
+			},
+			{
+				"name": "PuntosAcumuladosCombustibleMesAnterior__c",
+				"isPrimaryKey": false,
+				"type": "double",
+				"referenceTo": null
+			},
+			{
+				"name": "PuntosAcumuladosProntoMesAnterior__c",
+				"isPrimaryKey": false,
+				"type": "double",
+				"referenceTo": null
+			},
+			{
+				"name": "PuntosAcumuladosPuntoMesAnterior__c",
+				"isPrimaryKey": false,
+				"type": "double",
+				"referenceTo": null
+			},
+			{
+				"name": "PuntosUtilizadosMesAnterior__c",
+				"isPrimaryKey": false,
+				"type": "double",
+				"referenceTo": null
+			},
+			{
+				"name": "PuntosVencidosMesAnterior__c",
+				"isPrimaryKey": false,
+				"type": "double",
+				"referenceTo": null
+			},
+			{
+				"name": "RangoDeEdad__c",
+				"isPrimaryKey": false,
+				"type": "picklist",
+				"referenceTo": null
+			},
+			{
+				"name": "ReferidosFechaCreacionCanje__c",
+				"isPrimaryKey": false,
+				"type": "datetime",
+				"referenceTo": null
+			},
+			{
+				"name": "Sexo__c",
+				"isPrimaryKey": false,
+				"type": "picklist",
+				"referenceTo": null
+			},
+			{
+				"name": "TipoClienteRfmCombustible__c",
+				"isPrimaryKey": false,
+				"type": "picklist",
+				"referenceTo": null
+			},
+			{
+				"name": "TipoClienteRfmEcommerce__c",
+				"isPrimaryKey": false,
+				"type": "picklist",
+				"referenceTo": null
+			},
+			{
+				"name": "TipoClienteRfmPronto__c",
+				"isPrimaryKey": false,
+				"type": "picklist",
+				"referenceTo": null
+			},
+			{
+				"name": "TipoClienteRfmPunto__c",
+				"isPrimaryKey": false,
+				"type": "picklist",
+				"referenceTo": null
+			},
+			{
+				"name": "TipoFidelidad__c",
+				"isPrimaryKey": false,
+				"type": "picklist",
+				"referenceTo": null
+			},
+			{
+				"name": "UltimaEdsCompraCombustible__c",
+				"isPrimaryKey": false,
+				"type": "double",
+				"referenceTo": null
+			},
+			{
+				"name": "UltimaEdsCompraPronto__c",
+				"isPrimaryKey": false,
+				"type": "double",
+				"referenceTo": null
+			},
+			{
+				"name": "UsoPromocionCombustible__c",
+				"isPrimaryKey": false,
+				"type": "boolean",
+				"referenceTo": null
+			},
+			{
+				"name": "UsoPromocionTiendas__c",
+				"isPrimaryKey": false,
+				"type": "boolean",
+				"referenceTo": null
+			},
+			{
+				"name": "UsuarioPremiado__c",
+				"isPrimaryKey": false,
+				"type": "boolean",
+				"referenceTo": null
+			},
+			{
+				"name": "EsEcomercePorCategoria__c",
+				"isPrimaryKey": false,
+				"type": "multipicklist",
+				"referenceTo": null
+			},
+			{
+				"name": "FechaUltimaRedencionCuponPronto__c",
+				"isPrimaryKey": false,
+				"type": "datetime",
+				"referenceTo": null
+			},
+			{
+				"name": "FechaUltimaRedencionCuponPunto__c",
+				"isPrimaryKey": false,
+				"type": "datetime",
+				"referenceTo": null
+			},
+			{
+				"name": "FechaUltimoCanjePuntosPronto__c",
+				"isPrimaryKey": false,
+				"type": "datetime",
+				"referenceTo": null
+			},
+			{
+				"name": "FechaUltimoCanjePuntosPunto__c",
+				"isPrimaryKey": false,
+				"type": "datetime",
+				"referenceTo": null
+			},
+			{
+				"name": "SegmentoDeValorCategoria__c",
+				"isPrimaryKey": false,
+				"type": "picklist",
+				"referenceTo": null
+			},
+			{
+				"name": "ShareOfWalletCategoria__c",
+				"isPrimaryKey": false,
+				"type": "picklist",
+				"referenceTo": null
+			},
+			{
+				"name": "IdExternoGenerico__c",
+				"isPrimaryKey": false,
+				"type": "string",
+				"referenceTo": null
+			},
+			{
+				"name": "EsConnectCar__c",
+				"isPrimaryKey": false,
+				"type": "boolean",
+				"referenceTo": null
+			},
+			{
+				"name": "EsCopecVoltex__c",
+				"isPrimaryKey": false,
+				"type": "boolean",
+				"referenceTo": null
+			},
+			{
+				"name": "SincronizarSFMC__c",
+				"isPrimaryKey": false,
+				"type": "boolean",
+				"referenceTo": null
+			},
+			{
+				"name": "EMOAC_CantidadDeEmpalmes__c",
+				"isPrimaryKey": false,
+				"type": "double",
+				"referenceTo": null
+			},
+			{
+				"name": "EMOAC_CantidadDePlantas__c",
+				"isPrimaryKey": false,
+				"type": "double",
+				"referenceTo": null
+			},
+			{
+				"name": "EMOAC_ConsumoAnualDeTCAL__c",
+				"isPrimaryKey": false,
+				"type": "double",
+				"referenceTo": null
+			},
+			{
+				"name": "EMOAC_ConsumoEnergetico__c",
+				"isPrimaryKey": false,
+				"type": "picklist",
+				"referenceTo": null
+			},
+			{
+				"name": "EMOAC_CuantoPagaFactura__c",
+				"isPrimaryKey": false,
+				"type": "currency",
+				"referenceTo": null
+			},
+			{
+				"name": "EMOAC_CuentaPrincipal__c",
+				"isPrimaryKey": false,
+				"type": "reference",
+				"referenceTo": null
+			},
+			{
+				"name": "EMOAC_CustomerType__c",
+				"isPrimaryKey": false,
+				"type": "picklist",
+				"referenceTo": null
+			},
+			{
+				"name": "EMOAC_DocumentacionCliente__c",
+				"isPrimaryKey": false,
+				"type": "url",
+				"referenceTo": null
+			},
+			{
+				"name": "EMOAC_OtroTipoDeProyecto__c",
+				"isPrimaryKey": false,
+				"type": "string",
+				"referenceTo": null
+			},
+			{
+				"name": "EMOAC_RubroOSegmento__c",
+				"isPrimaryKey": false,
+				"type": "picklist",
+				"referenceTo": null
+			},
+			{
+				"name": "EMOAC_TipoDeNorma__c",
+				"isPrimaryKey": false,
+				"type": "multipicklist",
+				"referenceTo": null
+			},
+			{
+				"name": "EMOAC_TipoDeProyecto__c",
+				"isPrimaryKey": false,
+				"type": "multipicklist",
+				"referenceTo": null
+			},
+			{
+				"name": "EMOAC_UnidadDeConsumo__c",
+				"isPrimaryKey": false,
+				"type": "picklist",
+				"referenceTo": null
+			},
+			{
+				"name": "EMOAC_NegociosDeEficienciaEnerg_tica__c",
+				"isPrimaryKey": false,
+				"type": "double",
+				"referenceTo": null
+			},
+			{
+				"name": "EMOAC_NegociosDeProyectosElectricos__c",
+				"isPrimaryKey": false,
+				"type": "double",
+				"referenceTo": null
+			},
+			{
+				"name": "EMOAC_NegociosDeProyectosInmobiliarios__c",
+				"isPrimaryKey": false,
+				"type": "double",
+				"referenceTo": null
+			},
+			{
+				"name": "EMOAC_NegociosDeRemarcacion__c",
+				"isPrimaryKey": false,
+				"type": "double",
+				"referenceTo": null
+			},
+			{
+				"name": "EMOAC_NegociosDeSuministroElectrico__c",
+				"isPrimaryKey": false,
+				"type": "double",
+				"referenceTo": null
+			},
+			{
+				"name": "SourceLead__c",
+				"isPrimaryKey": false,
+				"type": "picklist",
+				"referenceTo": null
+			},
+			{
+				"name": "UrlUTM__c",
+				"isPrimaryKey": false,
+				"type": "string",
+				"referenceTo": null
+			},
+			{
+				"name": "Connect_Car__c",
+				"isPrimaryKey": false,
+				"type": "double",
+				"referenceTo": null
+			},
+			{
+				"name": "EMOAC__c",
+				"isPrimaryKey": false,
+				"type": "double",
+				"referenceTo": null
+			},
+			{
+				"name": "Oportunidad_Voltex__c",
+				"isPrimaryKey": false,
+				"type": "double",
+				"referenceTo": null
+			},
+			{
+				"name": "Via_Limpia__c",
+				"isPrimaryKey": false,
+				"type": "double",
+				"referenceTo": null
+			},
+			{
+				"name": "Connect_Car_true__c",
+				"isPrimaryKey": false,
+				"type": "boolean",
+				"referenceTo": null
+			},
+			{
+				"name": "EMOAC_true__c",
+				"isPrimaryKey": false,
+				"type": "boolean",
+				"referenceTo": null
+			},
+			{
+				"name": "Via_Limpia_true__c",
+				"isPrimaryKey": false,
+				"type": "boolean",
+				"referenceTo": null
+			},
+			{
+				"name": "Voltex_true__c",
+				"isPrimaryKey": false,
+				"type": "boolean",
+				"referenceTo": null
+			},
+			{
+				"name": "FechaUltimaTransaccionMuevo__c",
+				"isPrimaryKey": false,
+				"type": "datetime",
+				"referenceTo": null
+			},
+			{
+				"name": "TempModifiedDate__c",
+				"isPrimaryKey": false,
+				"type": "string",
+				"referenceTo": null
+			},
+			{
+				"name": "CantidadTrxBip30DiasAlt__c",
+				"isPrimaryKey": false,
+				"type": "double",
+				"referenceTo": null
+			},
+			{
+				"name": "CantidadTrxBip30DiasSpot__c",
+				"isPrimaryKey": false,
+				"type": "double",
+				"referenceTo": null
+			},
+			{
+				"name": "CicloDeVidaFull__c",
+				"isPrimaryKey": false,
+				"type": "picklist",
+				"referenceTo": null
+			},
+			{
+				"name": "ClienteHabitualZervo__c",
+				"isPrimaryKey": false,
+				"type": "boolean",
+				"referenceTo": null
+			},
+			{
+				"name": "ComunaEdsHabitualLavamax__c",
+				"isPrimaryKey": false,
+				"type": "string",
+				"referenceTo": null
+			},
+			{
+				"name": "EdsHabitualLavamax__c",
+				"isPrimaryKey": false,
+				"type": "double",
+				"referenceTo": null
+			},
+			{
+				"name": "EsArcoprimeCategoria__c",
+				"isPrimaryKey": false,
+				"type": "textarea",
+				"referenceTo": null
+			},
+			{
+				"name": "EsCopecPay__c",
+				"isPrimaryKey": false,
+				"type": "boolean",
+				"referenceTo": null
+			},
+			{
+				"name": "EsLavamax__c",
+				"isPrimaryKey": false,
+				"type": "boolean",
+				"referenceTo": null
+			},
+			{
+				"name": "EsZervo__c",
+				"isPrimaryKey": false,
+				"type": "boolean",
+				"referenceTo": null
+			},
+			{
+				"name": "FechaCreacionCopecpay__c",
+				"isPrimaryKey": false,
+				"type": "datetime",
+				"referenceTo": null
+			},
+			{
+				"name": "FechaPrimeraTrxBip__c",
+				"isPrimaryKey": false,
+				"type": "datetime",
+				"referenceTo": null
+			},
+			{
+				"name": "FormatoEdsHabitualLavamax__c",
+				"isPrimaryKey": false,
+				"type": "string",
+				"referenceTo": null
+			},
+			{
+				"name": "MedioPagoFavoritoCombustiblePostMuevo__c",
+				"isPrimaryKey": false,
+				"type": "picklist",
+				"referenceTo": null
+			},
+			{
+				"name": "MedioPagoFavoritoCombustible__c",
+				"isPrimaryKey": false,
+				"type": "picklist",
+				"referenceTo": null
+			},
+			{
+				"name": "MedioPagoFavoritoTiendaPostMuevo__c",
+				"isPrimaryKey": false,
+				"type": "picklist",
+				"referenceTo": null
+			},
+			{
+				"name": "MedioPagoFavoritoTienda__c",
+				"isPrimaryKey": false,
+				"type": "picklist",
+				"referenceTo": null
+			},
+			{
+				"name": "MedioPagoHabitualAutoservicio__c",
+				"isPrimaryKey": false,
+				"type": "picklist",
+				"referenceTo": null
+			},
+			{
+				"name": "MedioPagoHabitualCombustible__c",
+				"isPrimaryKey": false,
+				"type": "picklist",
+				"referenceTo": null
+			},
+			{
+				"name": "MedioPagoHabitualPronto__c",
+				"isPrimaryKey": false,
+				"type": "picklist",
+				"referenceTo": null
+			},
+			{
+				"name": "MedioPagoHabitualPunto__c",
+				"isPrimaryKey": false,
+				"type": "picklist",
+				"referenceTo": null
+			},
+			{
+				"name": "MedioRecargaCtaCopecpay__c",
+				"isPrimaryKey": false,
+				"type": "picklist",
+				"referenceTo": null
+			},
+			{
+				"name": "NCobrosP2pUltimos30Dias__c",
+				"isPrimaryKey": false,
+				"type": "double",
+				"referenceTo": null
+			},
+			{
+				"name": "NPagosP2pUltimos30Dias__c",
+				"isPrimaryKey": false,
+				"type": "double",
+				"referenceTo": null
+			},
+			{
+				"name": "NTefUltimos30Dias__c",
+				"isPrimaryKey": false,
+				"type": "string",
+				"referenceTo": null
+			},
+			{
+				"name": "ProntoCompraCocina__c",
+				"isPrimaryKey": false,
+				"type": "boolean",
+				"referenceTo": null
+			},
+			{
+				"name": "RecargaIntensaConTarjetas__c",
+				"isPrimaryKey": false,
+				"type": "boolean",
+				"referenceTo": null
+			},
+			{
+				"name": "RegionEdsHabitualCombustible__c",
+				"isPrimaryKey": false,
+				"type": "string",
+				"referenceTo": null
+			},
+			{
+				"name": "RegionEdsHabitualLavamax__c",
+				"isPrimaryKey": false,
+				"type": "string",
+				"referenceTo": null
+			},
+			{
+				"name": "RegionEdsHabitualLub__c",
+				"isPrimaryKey": false,
+				"type": "string",
+				"referenceTo": null
+			},
+			{
+				"name": "RegionEdsHabitualPronto__c",
+				"isPrimaryKey": false,
+				"type": "string",
+				"referenceTo": null
+			},
+			{
+				"name": "RegionEdsHabitualPunto__c",
+				"isPrimaryKey": false,
+				"type": "string",
+				"referenceTo": null
+			},
+			{
+				"name": "SaldoDiario__c",
+				"isPrimaryKey": false,
+				"type": "double",
+				"referenceTo": null
+			},
+			{
+				"name": "SaldoPromedioMensualCopecpay__c",
+				"isPrimaryKey": false,
+				"type": "double",
+				"referenceTo": null
+			},
+			{
+				"name": "SegmentoValorCliente__c",
+				"isPrimaryKey": false,
+				"type": "double",
+				"referenceTo": null
+			},
+			{
+				"name": "ShareOfWalletPorcentaje__c",
+				"isPrimaryKey": false,
+				"type": "percent",
+				"referenceTo": null
+			},
+			{
+				"name": "TasaUsoMuevoCombustible__c",
+				"isPrimaryKey": false,
+				"type": "percent",
+				"referenceTo": null
+			},
+			{
+				"name": "TasaUsoMuevoTienda__c",
+				"isPrimaryKey": false,
+				"type": "percent",
+				"referenceTo": null
+			},
+			{
+				"name": "TipoCargaUltimaCargaBip__c",
+				"isPrimaryKey": false,
+				"type": "picklist",
+				"referenceTo": null
+			},
+			{
+				"name": "UltimaCompraCombustibleCopecpay__c",
+				"isPrimaryKey": false,
+				"type": "datetime",
+				"referenceTo": null
+			},
+			{
+				"name": "UltimaCompraLavamax__c",
+				"isPrimaryKey": false,
+				"type": "datetime",
+				"referenceTo": null
+			},
+			{
+				"name": "UltimaCompraLub__c",
+				"isPrimaryKey": false,
+				"type": "datetime",
+				"referenceTo": null
+			},
+			{
+				"name": "UltimaCompraMuevo__c",
+				"isPrimaryKey": false,
+				"type": "datetime",
+				"referenceTo": null
+			},
+			{
+				"name": "UltimaCompraTiendaCopecpay__c",
+				"isPrimaryKey": false,
+				"type": "datetime",
+				"referenceTo": null
+			},
+			{
+				"name": "UltimaCompraZervo__c",
+				"isPrimaryKey": false,
+				"type": "datetime",
+				"referenceTo": null
+			},
+			{
+				"name": "UltimaEdsCompraPunto__c",
+				"isPrimaryKey": false,
+				"type": "double",
+				"referenceTo": null
+			},
+			{
+				"name": "UltimaRecargaCtaCopecpay__c",
+				"isPrimaryKey": false,
+				"type": "datetime",
+				"referenceTo": null
+			},
+			{
+				"name": "UltimaTefTerceros__c",
+				"isPrimaryKey": false,
+				"type": "datetime",
+				"referenceTo": null
+			},
+			{
+				"name": "UltimaTrxCopecpay__c",
+				"isPrimaryKey": false,
+				"type": "datetime",
+				"referenceTo": null
+			},
+			{
+				"name": "UltimoMedioPagoCombustible__c",
+				"isPrimaryKey": false,
+				"type": "picklist",
+				"referenceTo": null
+			},
+			{
+				"name": "UltimoMedioPagoPronto__c",
+				"isPrimaryKey": false,
+				"type": "picklist",
+				"referenceTo": null
+			},
+			{
+				"name": "UltimoMedioPagoPunto__c",
+				"isPrimaryKey": false,
+				"type": "picklist",
+				"referenceTo": null
+			},
+			{
+				"name": "UltimoPagoP2p__c",
+				"isPrimaryKey": false,
+				"type": "datetime",
+				"referenceTo": null
+			},
+			{
+				"name": "UtimaSesionCopecpay__c",
+				"isPrimaryKey": false,
+				"type": "datetime",
+				"referenceTo": null
+			},
+			{
+				"name": "UtimoCobroP2p__c",
+				"isPrimaryKey": false,
+				"type": "datetime",
+				"referenceTo": null
+			},
+			{
+				"name": "OrigenCreacion__c",
+				"isPrimaryKey": false,
+				"type": "picklist",
+				"referenceTo": null
+			},
+			{
+				"name": "PrediccionFuga__c",
+				"isPrimaryKey": false,
+				"type": "string",
+				"referenceTo": null
+			},
+			{
+				"name": "TipoClienteRfmTienda__c",
+				"isPrimaryKey": false,
+				"type": "picklist",
+				"referenceTo": null
+			},
+			{
+				"name": "AccionaKPICliente__c",
+				"isPrimaryKey": false,
+				"type": "percent",
+				"referenceTo": null
+			},
+			{
+				"name": "AccionaKPIComunidad__c",
+				"isPrimaryKey": false,
+				"type": "percent",
+				"referenceTo": null
+			},
+			{
+				"name": "AccionaKPIEquipoAmpliado__c",
+				"isPrimaryKey": false,
+				"type": "percent",
+				"referenceTo": null
+			},
+			{
+				"name": "AccionaKPIGlobal__c",
+				"isPrimaryKey": false,
+				"type": "percent",
+				"referenceTo": null
+			},
+			{
+				"name": "AccionaKPIMedioAmbiente__c",
+				"isPrimaryKey": false,
+				"type": "percent",
+				"referenceTo": null
+			},
+			{
+				"name": "AccionaKPICantidadEdsAcumulado__c",
+				"isPrimaryKey": false,
+				"type": "double",
+				"referenceTo": null
+			},
+			{
+				"name": "AccionaKPICantidadEdsCategMensual__c",
+				"isPrimaryKey": false,
+				"type": "double",
+				"referenceTo": null
+			},
+			{
+				"name": "AccionaKPICantidadEdsJZMensual__c",
+				"isPrimaryKey": false,
+				"type": "double",
+				"referenceTo": null
+			},
+			{
+				"name": "AccionaKPICantidadEdsMensual__c",
+				"isPrimaryKey": false,
+				"type": "double",
+				"referenceTo": null
+			},
+			{
+				"name": "AccionaKPICategoria__c",
+				"isPrimaryKey": false,
+				"type": "string",
+				"referenceTo": null
+			},
+			{
+				"name": "AccionaKPIJefeZona__c",
+				"isPrimaryKey": false,
+				"type": "string",
+				"referenceTo": null
+			},
+			{
+				"name": "AccionaKPIRankingEdsAcumulado__c",
+				"isPrimaryKey": false,
+				"type": "double",
+				"referenceTo": null
+			},
+			{
+				"name": "AccionaKPIRankingEdsCategMensual__c",
+				"isPrimaryKey": false,
+				"type": "double",
+				"referenceTo": null
+			},
+			{
+				"name": "AccionaKPIRankingEdsJZMensual__c",
+				"isPrimaryKey": false,
+				"type": "double",
+				"referenceTo": null
+			},
+			{
+				"name": "AccionaKPIRankingEdsMensual__c",
+				"isPrimaryKey": false,
+				"type": "double",
+				"referenceTo": null
+			},
+			{
+				"name": "Suscripcion__c",
+				"isPrimaryKey": false,
+				"type": "reference",
+				"referenceTo": null
+			},
+			{
+				"name": "EstadoSuscripcion__c",
+				"isPrimaryKey": false,
+				"type": "string",
+				"referenceTo": null
+			},
+			{
+				"name": "EsFluxSolarResidencial__c",
+				"isPrimaryKey": false,
+				"type": "boolean",
+				"referenceTo": null
+			},
+			{
+				"name": "Purchase_Order_Format__c",
+				"isPrimaryKey": false,
+				"type": "string",
+				"referenceTo": null
+			},
+			{
+				"name": "Ramp__c",
+				"isPrimaryKey": false,
+				"type": "boolean",
+				"referenceTo": null
+			},
+			{
+				"name": "B2B_ActividadEconomica__c",
+				"isPrimaryKey": false,
+				"type": "picklist",
+				"referenceTo": null
+			},
+			{
+				"name": "B2B_Origen_Lead__c",
+				"isPrimaryKey": false,
+				"type": "boolean",
+				"referenceTo": null
+			},
+			{
+				"name": "B2B_balance__c",
+				"isPrimaryKey": false,
+				"type": "boolean",
+				"referenceTo": null
+			},
+			{
+				"name": "B2B_combustibleIndustrial__c",
+				"isPrimaryKey": false,
+				"type": "boolean",
+				"referenceTo": null
+			},
+			{
+				"name": "B2B_comunaPuntoIndustrial__c",
+				"isPrimaryKey": false,
+				"type": "picklist",
+				"referenceTo": null
+			},
+			{
+				"name": "B2B_constitucionSociedad__c",
+				"isPrimaryKey": false,
+				"type": "boolean",
+				"referenceTo": null
+			},
+			{
+				"name": "B2B_cuponElectronico__c",
+				"isPrimaryKey": false,
+				"type": "boolean",
+				"referenceTo": null
+			},
+			{
+				"name": "B2B_denominacionSolicitante__c",
+				"isPrimaryKey": false,
+				"type": "string",
+				"referenceTo": null
+			},
+			{
+				"name": "B2B_direccionFacturacionLegal__c",
+				"isPrimaryKey": false,
+				"type": "string",
+				"referenceTo": null
+			},
+			{
+				"name": "B2B_direccionIP__c",
+				"isPrimaryKey": false,
+				"type": "string",
+				"referenceTo": null
+			},
+			{
+				"name": "B2B_direccionPost__c",
+				"isPrimaryKey": false,
+				"type": "string",
+				"referenceTo": null
+			},
+			{
+				"name": "B2B_direccionPuntoIndustrial__c",
+				"isPrimaryKey": false,
+				"type": "string",
+				"referenceTo": null
+			},
+			{
+				"name": "B2B_emoac__c",
+				"isPrimaryKey": false,
+				"type": "boolean",
+				"referenceTo": null
+			},
+			{
+				"name": "B2B_equipoResponsable__c",
+				"isPrimaryKey": false,
+				"type": "string",
+				"referenceTo": null
+			},
+			{
+				"name": "B2B_fluxsolar__c",
+				"isPrimaryKey": false,
+				"type": "boolean",
+				"referenceTo": null
+			},
+			{
+				"name": "B2B_georeferenciaPuntoIndustrial__c",
+				"isPrimaryKey": false,
+				"type": "string",
+				"referenceTo": null
+			},
+			{
+				"name": "B2B_idCuentaPrincipal__c",
+				"isPrimaryKey": false,
+				"type": "string",
+				"referenceTo": null
+			},
+			{
+				"name": "B2B_lubricanteIndustrial__c",
+				"isPrimaryKey": false,
+				"type": "boolean",
+				"referenceTo": null
+			},
+			{
+				"name": "B2B_lubricantesCarDealers__c",
+				"isPrimaryKey": false,
+				"type": "boolean",
+				"referenceTo": null
+			},
+			{
+				"name": "B2B_lubricantesDistribuidores__c",
+				"isPrimaryKey": false,
+				"type": "boolean",
+				"referenceTo": null
+			},
+			{
+				"name": "B2B_modificacionesConstitucionSociedad__c",
+				"isPrimaryKey": false,
+				"type": "boolean",
+				"referenceTo": null
+			},
+			{
+				"name": "B2B_muevoEmpresas__c",
+				"isPrimaryKey": false,
+				"type": "boolean",
+				"referenceTo": null
+			},
+			{
+				"name": "B2B_oficinaCartera__c",
+				"isPrimaryKey": false,
+				"type": "string",
+				"referenceTo": null
+			},
+			{
+				"name": "B2B_oficinaCopec__c",
+				"isPrimaryKey": false,
+				"type": "picklist",
+				"referenceTo": null
+			},
+			{
+				"name": "B2B_parentIdTexto__c",
+				"isPrimaryKey": false,
+				"type": "string",
+				"referenceTo": null
+			},
+			{
+				"name": "B2B_poderRepresentanteLegal__c",
+				"isPrimaryKey": false,
+				"type": "boolean",
+				"referenceTo": null
+			},
+			{
+				"name": "B2B_regionPuntoIndustrial__c",
+				"isPrimaryKey": false,
+				"type": "picklist",
+				"referenceTo": null
+			},
+			{
+				"name": "B2B_tae__c",
+				"isPrimaryKey": false,
+				"type": "boolean",
+				"referenceTo": null
+			},
+			{
+				"name": "B2B_tctPremium__c",
+				"isPrimaryKey": false,
+				"type": "boolean",
+				"referenceTo": null
+			},
+			{
+				"name": "B2B_tct__c",
+				"isPrimaryKey": false,
+				"type": "boolean",
+				"referenceTo": null
+			},
+			{
+				"name": "B2B_tipoCliente__c",
+				"isPrimaryKey": false,
+				"type": "picklist",
+				"referenceTo": null
+			},
+			{
+				"name": "B2B_viaLimpia__c",
+				"isPrimaryKey": false,
+				"type": "boolean",
+				"referenceTo": null
+			},
+			{
+				"name": "B2B_voltex__c",
+				"isPrimaryKey": false,
+				"type": "boolean",
+				"referenceTo": null
+			},
+			{
+				"name": "EsNuevo__c",
+				"isPrimaryKey": false,
+				"type": "boolean",
+				"referenceTo": null
+			},
+			{
+				"name": "Ultimate_Parent_Account_Tier__c",
+				"isPrimaryKey": false,
+				"type": "double",
+				"referenceTo": null
+			},
+			{
+				"name": "Ultimate_Parent_Account__c",
+				"isPrimaryKey": false,
+				"type": "string",
+				"referenceTo": null
+			},
+			{
+				"name": "ListOfNegociosCopec__c",
+				"isPrimaryKey": false,
+				"type": "string",
+				"referenceTo": null
+			},
+			{
+				"name": "Negocio_Copec__c",
+				"isPrimaryKey": false,
+				"type": "reference",
+				"referenceTo": null
+			},
+			{
+				"name": "Activo__pc",
+				"isPrimaryKey": false,
+				"type": "boolean",
+				"referenceTo": null
+			},
+			{
+				"name": "ApellidoMaterno__pc",
+				"isPrimaryKey": false,
+				"type": "string",
+				"referenceTo": null
+			},
+			{
+				"name": "Ciudad__pc",
+				"isPrimaryKey": false,
+				"type": "string",
+				"referenceTo": null
+			},
+			{
+				"name": "CodigoEstacion__pc",
+				"isPrimaryKey": false,
+				"type": "string",
+				"referenceTo": null
+			},
+			{
+				"name": "Comuna__pc",
+				"isPrimaryKey": false,
+				"type": "string",
+				"referenceTo": null
+			},
+			{
+				"name": "CorreoSecundario__pc",
+				"isPrimaryKey": false,
+				"type": "email",
+				"referenceTo": null
+			},
+			{
+				"name": "Direccion__pc",
+				"isPrimaryKey": false,
+				"type": "string",
+				"referenceTo": null
+			},
+			{
+				"name": "EnviarNotificacion__pc",
+				"isPrimaryKey": false,
+				"type": "boolean",
+				"referenceTo": null
+			},
+			{
+				"name": "Region__pc",
+				"isPrimaryKey": false,
+				"type": "string",
+				"referenceTo": null
+			},
+			{
+				"name": "Responsable__pc",
+				"isPrimaryKey": false,
+				"type": "boolean",
+				"referenceTo": null
+			},
+			{
+				"name": "RutContacto__pc",
+				"isPrimaryKey": false,
+				"type": "string",
+				"referenceTo": null
+			},
+			{
+				"name": "TipoDeContacto__pc",
+				"isPrimaryKey": false,
+				"type": "picklist",
+				"referenceTo": null
+			},
+			{
+				"name": "et4ae5__HasOptedOutOfMobile__pc",
+				"isPrimaryKey": false,
+				"type": "boolean",
+				"referenceTo": null
+			},
+			{
+				"name": "et4ae5__Mobile_Country_Code__pc",
+				"isPrimaryKey": false,
+				"type": "picklist",
+				"referenceTo": null
+			},
+			{
+				"name": "NombreJefeZona__pc",
+				"isPrimaryKey": false,
+				"type": "textarea",
+				"referenceTo": null
+			},
+			{
+				"name": "TipoDeCliente__pc",
+				"isPrimaryKey": false,
+				"type": "string",
+				"referenceTo": null
+			},
+			{
+				"name": "ContactoW2C__pc",
+				"isPrimaryKey": false,
+				"type": "boolean",
+				"referenceTo": null
+			},
+			{
+				"name": "IdCampanaUtm__pc",
+				"isPrimaryKey": false,
+				"type": "string",
+				"referenceTo": null
+			},
+			{
+				"name": "UrlUtm__pc",
+				"isPrimaryKey": false,
+				"type": "textarea",
+				"referenceTo": null
+			},
+			{
+				"name": "Tipo_Cliente__pc",
+				"isPrimaryKey": false,
+				"type": "picklist",
+				"referenceTo": null
+			},
+			{
+				"name": "NegociosCopec__pc",
+				"isPrimaryKey": false,
+				"type": "multipicklist",
+				"referenceTo": null
+			},
+			{
+				"name": "Funcion__pc",
+				"isPrimaryKey": false,
+				"type": "multipicklist",
+				"referenceTo": null
+			},
+			{
+				"name": "B2B_rutCliente__pc",
+				"isPrimaryKey": false,
+				"type": "string",
+				"referenceTo": null
+			},
+			{
+				"name": "AllowNotificacions__pc",
+				"isPrimaryKey": false,
+				"type": "boolean",
+				"referenceTo": null
+			}
+		]
+	},
+	{
+		"name": "Contact",
+		"fields": [
+			{
+				"name": "MasterRecordId",
+				"isPrimaryKey": false,
+				"type": "reference",
+				"referenceTo": null
+			},
+			{
+				"name": "AccountId",
+				"isPrimaryKey": false,
+				"type": "reference",
+				"referenceTo": null
+			},
+			{
+				"name": "RecordTypeId",
+				"isPrimaryKey": false,
+				"type": "reference",
+				"referenceTo": null
+			},
+			{
+				"name": "ReportsToId",
+				"isPrimaryKey": false,
+				"type": "reference",
+				"referenceTo": null
+			},
+			{
+				"name": "IndividualId",
+				"isPrimaryKey": false,
+				"type": "reference",
+				"referenceTo": null
+			},
+			{
+				"name": "Activo__c",
+				"isPrimaryKey": false,
+				"type": "boolean",
+				"referenceTo": null
+			},
+			{
+				"name": "ApellidoMaterno__c",
+				"isPrimaryKey": false,
+				"type": "string",
+				"referenceTo": null
+			},
+			{
+				"name": "Ciudad__c",
+				"isPrimaryKey": false,
+				"type": "string",
+				"referenceTo": null
+			},
+			{
+				"name": "CodigoEstacion__c",
+				"isPrimaryKey": false,
+				"type": "string",
+				"referenceTo": null
+			},
+			{
+				"name": "Comuna__c",
+				"isPrimaryKey": false,
+				"type": "string",
+				"referenceTo": null
+			},
+			{
+				"name": "CorreoSecundario__c",
+				"isPrimaryKey": false,
+				"type": "email",
+				"referenceTo": null
+			},
+			{
+				"name": "Direccion__c",
+				"isPrimaryKey": false,
+				"type": "string",
+				"referenceTo": null
+			},
+			{
+				"name": "EnviarNotificacion__c",
+				"isPrimaryKey": false,
+				"type": "boolean",
+				"referenceTo": null
+			},
+			{
+				"name": "Region__c",
+				"isPrimaryKey": false,
+				"type": "string",
+				"referenceTo": null
+			},
+			{
+				"name": "Responsable__c",
+				"isPrimaryKey": false,
+				"type": "boolean",
+				"referenceTo": null
+			},
+			{
+				"name": "RutContacto__c",
+				"isPrimaryKey": false,
+				"type": "string",
+				"referenceTo": null
+			},
+			{
+				"name": "TipoDeContacto__c",
+				"isPrimaryKey": false,
+				"type": "picklist",
+				"referenceTo": null
+			},
+			{
+				"name": "et4ae5__HasOptedOutOfMobile__c",
+				"isPrimaryKey": false,
+				"type": "boolean",
+				"referenceTo": null
+			},
+			{
+				"name": "et4ae5__Mobile_Country_Code__c",
+				"isPrimaryKey": false,
+				"type": "picklist",
+				"referenceTo": null
+			},
+			{
+				"name": "NombreJefeZona__c",
+				"isPrimaryKey": false,
+				"type": "textarea",
+				"referenceTo": null
+			},
+			{
+				"name": "TipoDeCliente__c",
+				"isPrimaryKey": false,
+				"type": "string",
+				"referenceTo": null
+			},
+			{
+				"name": "ContactoW2C__c",
+				"isPrimaryKey": false,
+				"type": "boolean",
+				"referenceTo": null
+			},
+			{
+				"name": "IdCampanaUtm__c",
+				"isPrimaryKey": false,
+				"type": "string",
+				"referenceTo": null
+			},
+			{
+				"name": "UrlUtm__c",
+				"isPrimaryKey": false,
+				"type": "textarea",
+				"referenceTo": null
+			},
+			{
+				"name": "Tipo_Cliente__c",
+				"isPrimaryKey": false,
+				"type": "picklist",
+				"referenceTo": null
+			},
+			{
+				"name": "NegociosCopec__c",
+				"isPrimaryKey": false,
+				"type": "multipicklist",
+				"referenceTo": null
+			},
+			{
+				"name": "Funcion__c",
+				"isPrimaryKey": false,
+				"type": "multipicklist",
+				"referenceTo": null
+			},
+			{
+				"name": "B2B_rutCliente__c",
+				"isPrimaryKey": false,
+				"type": "string",
+				"referenceTo": null
+			},
+			{
+				"name": "AllowNotificacions__c",
+				"isPrimaryKey": false,
+				"type": "boolean",
+				"referenceTo": null
+			}
+		]
+	},
+	{
+		"name": "User",
+		"fields": [
+			{
+				"name": "UserRoleId",
+				"isPrimaryKey": false,
+				"type": "reference",
+				"referenceTo": null
+			},
+			{
+				"name": "ProfileId",
+				"isPrimaryKey": false,
+				"type": "reference",
+				"referenceTo": null
+			},
+			{
+				"name": "DelegatedApproverId",
+				"isPrimaryKey": false,
+				"type": "reference",
+				"referenceTo": null
+			},
+			{
+				"name": "ManagerId",
+				"isPrimaryKey": false,
+				"type": "reference",
+				"referenceTo": null
+			},
+			{
+				"name": "ContactId",
+				"isPrimaryKey": false,
+				"type": "reference",
+				"referenceTo": null
+			},
+			{
+				"name": "AccountId",
+				"isPrimaryKey": false,
+				"type": "reference",
+				"referenceTo": null
+			},
+			{
+				"name": "CallCenterId",
+				"isPrimaryKey": false,
+				"type": "reference",
+				"referenceTo": null
+			},
+			{
+				"name": "IndividualId",
+				"isPrimaryKey": false,
+				"type": "reference",
+				"referenceTo": null
+			},
+			{
+				"name": "et4ae5__Default_ET_Page__c",
+				"isPrimaryKey": false,
+				"type": "string",
+				"referenceTo": null
+			},
+			{
+				"name": "et4ae5__Default_MID__c",
+				"isPrimaryKey": false,
+				"type": "string",
+				"referenceTo": null
+			},
+			{
+				"name": "et4ae5__ExactTargetForAppExchangeAdmin__c",
+				"isPrimaryKey": false,
+				"type": "boolean",
+				"referenceTo": null
+			},
+			{
+				"name": "et4ae5__ExactTargetForAppExchangeUser__c",
+				"isPrimaryKey": false,
+				"type": "boolean",
+				"referenceTo": null
+			},
+			{
+				"name": "et4ae5__ExactTargetUsername__c",
+				"isPrimaryKey": false,
+				"type": "string",
+				"referenceTo": null
+			},
+			{
+				"name": "et4ae5__ExactTarget_OAuth_Token__c",
+				"isPrimaryKey": false,
+				"type": "encryptedstring",
+				"referenceTo": null
+			},
+			{
+				"name": "et4ae5__ValidExactTargetAdmin__c",
+				"isPrimaryKey": false,
+				"type": "boolean",
+				"referenceTo": null
+			},
+			{
+				"name": "et4ae5__ValidExactTargetUser__c",
+				"isPrimaryKey": false,
+				"type": "boolean",
+				"referenceTo": null
+			},
+			{
+				"name": "sf_devops__GitHub_Primary_Email_Address__c",
+				"isPrimaryKey": false,
+				"type": "email",
+				"referenceTo": null
+			},
+			{
+				"name": "RutUsuario__c",
+				"isPrimaryKey": false,
+				"type": "string",
+				"referenceTo": null
+			},
+			{
+				"name": "Primary_User__c",
+				"isPrimaryKey": false,
+				"type": "boolean",
+				"referenceTo": null
+			},
+			{
+				"name": "FusionAuth_Id__c",
+				"isPrimaryKey": false,
+				"type": "string",
+				"referenceTo": null
+			},
+			{
+				"name": "Order_Limit_Period__c",
+				"isPrimaryKey": false,
+				"type": "picklist",
+				"referenceTo": null
+			},
+			{
+				"name": "Order_Limit__c",
+				"isPrimaryKey": false,
+				"type": "double",
+				"referenceTo": null
+			},
+			{
+				"name": "Attach_Files__c",
+				"isPrimaryKey": false,
+				"type": "boolean",
+				"referenceTo": null
+			},
+			{
+				"name": "Permit_Order_Creation__c",
+				"isPrimaryKey": false,
+				"type": "boolean",
+				"referenceTo": null
+			},
+			{
+				"name": "Require_Approval__c",
+				"isPrimaryKey": false,
+				"type": "boolean",
+				"referenceTo": null
+			},
+			{
+				"name": "B2B_negocio__c",
+				"isPrimaryKey": false,
+				"type": "multipicklist",
+				"referenceTo": null
+			}
+		]
+	},
+	{
+		"name": "OrderSummary",
+		"fields": [
+			{
+				"name": "OriginalOrderId",
+				"isPrimaryKey": false,
+				"type": "reference",
+				"referenceTo": null
+			},
+			{
+				"name": "AccountId",
+				"isPrimaryKey": false,
+				"type": "reference",
+				"referenceTo": null
+			},
+			{
+				"name": "ChangeOrderId",
+				"isPrimaryKey": false,
+				"type": "reference",
+				"referenceTo": null
+			},
+			{
+				"name": "SalesStoreId",
+				"isPrimaryKey": false,
+				"type": "reference",
+				"referenceTo": null
+			},
+			{
+				"name": "SalesChannelId",
+				"isPrimaryKey": false,
+				"type": "reference",
+				"referenceTo": null
+			},
+			{
+				"name": "BillToContactId",
+				"isPrimaryKey": false,
+				"type": "reference",
+				"referenceTo": null
+			},
+			{
+				"name": "Pricebook2Id",
+				"isPrimaryKey": false,
+				"type": "reference",
+				"referenceTo": null
+			},
+			{
+				"name": "InventoryTransferAttempts__c",
+				"isPrimaryKey": false,
+				"type": "double",
+				"referenceTo": null
+			},
+			{
+				"name": "Block_Reason__c",
+				"isPrimaryKey": false,
+				"type": "picklist",
+				"referenceTo": null
+			},
+			{
+				"name": "CodigoDeudor__c",
+				"isPrimaryKey": false,
+				"type": "string",
+				"referenceTo": null
+			},
+			{
+				"name": "External_Reference_Id__c",
+				"isPrimaryKey": false,
+				"type": "string",
+				"referenceTo": null
+			},
+			{
+				"name": "Has_Submitted_Cart_been_Updated__c",
+				"isPrimaryKey": false,
+				"type": "boolean",
+				"referenceTo": null
+			},
+			{
+				"name": "LastBlockedDate__c",
+				"isPrimaryKey": false,
+				"type": "date",
+				"referenceTo": null
+			},
+			{
+				"name": "OC_Blocked__c",
+				"isPrimaryKey": false,
+				"type": "boolean",
+				"referenceTo": null
+			},
+			{
+				"name": "Purchase_Order_Amount__c",
+				"isPrimaryKey": false,
+				"type": "double",
+				"referenceTo": null
+			},
+			{
+				"name": "Purchase_Order_File_Name__c",
+				"isPrimaryKey": false,
+				"type": "string",
+				"referenceTo": null
+			},
+			{
+				"name": "Submitter_Id__c",
+				"isPrimaryKey": false,
+				"type": "string",
+				"referenceTo": null
+			}
+		]
+	},
+	{
+		"name": "FulfillmentOrder",
+		"fields": [
+			{
+				"name": "AccountId",
+				"isPrimaryKey": false,
+				"type": "reference",
+				"referenceTo": null
+			},
+			{
+				"name": "DeliveryMethodId",
+				"isPrimaryKey": false,
+				"type": "reference",
+				"referenceTo": null
+			},
+			{
+				"name": "FulfilledFromLocationId",
+				"isPrimaryKey": false,
+				"type": "reference",
+				"referenceTo": null
+			},
+			{
+				"name": "OrderId",
+				"isPrimaryKey": false,
+				"type": "reference",
+				"referenceTo": null
+			},
+			{
+				"name": "OrderSummaryId",
+				"isPrimaryKey": false,
+				"type": "reference",
+				"referenceTo": null
+			},
+			{
+				"name": "InvoiceId",
+				"isPrimaryKey": false,
+				"type": "reference",
+				"referenceTo": null
+			},
+			{
+				"name": "BillToContactId",
+				"isPrimaryKey": false,
+				"type": "reference",
+				"referenceTo": null
+			},
+			{
+				"name": "Source__c",
+				"isPrimaryKey": false,
+				"type": "picklist",
+				"referenceTo": null
+			},
+			{
+				"name": "External_Reference_Id__c",
+				"isPrimaryKey": false,
+				"type": "string",
+				"referenceTo": null
+			},
+			{
+				"name": "LastPreparationDate__c",
+				"isPrimaryKey": false,
+				"type": "date",
+				"referenceTo": null
+			},
+			{
+				"name": "RejectedDate__c",
+				"isPrimaryKey": false,
+				"type": "datetime",
+				"referenceTo": null
+			},
+			{
+				"name": "SentConfirmationEmailDate__c",
+				"isPrimaryKey": false,
+				"type": "datetime",
+				"referenceTo": null
+			},
+			{
+				"name": "SentExpirationEmailDate__c",
+				"isPrimaryKey": false,
+				"type": "datetime",
+				"referenceTo": null
+			},
+			{
+				"name": "Transport_Number__c",
+				"isPrimaryKey": false,
+				"type": "string",
+				"referenceTo": null
+			},
+			{
+				"name": "VehicleLicense__c",
+				"isPrimaryKey": false,
+				"type": "string",
+				"referenceTo": null
+			},
+			{
+				"name": "OrderSummarySAPCode__c",
+				"isPrimaryKey": false,
+				"type": "string",
+				"referenceTo": null
+			}
+		]
+	}
+]
