@@ -33,17 +33,40 @@ export const retrieveFields = (sObjectDevName) => {
 
 export const createERFromSObjectListToDBDiagramFormat = () => {
   let sObjects = [
-	'Product2',
-	'ProductAttribute',
-	'ProductAttributeSet',
-	'ProductAttributeSetProduct',
-	'ProductAttributeSetItem',
-	'Product_Integration__c',
-	'CD_SKU_Integration__c'
+    'Product2',
+    'Product_Integration__c',
+    'ProductAttribute',
   ]
+  // let sObjects = [
+  //   'Order',
+  //   'FulfillmentOrder',
+  //   'OrderSummary',
+  //   'OrderItem',
+  //   'OrderItemSummary',
+  //   'Product2',
+  //   'Account',
+  //   'OrderDeliveryMethod',
+  //   'FulfillmentOrderLineItem'
+  // ]
+  // let sObjects = [
+  //   'LocationGroup',
+  //   'Product2',
+  //   'LocationGroupAssignment',
+  //   'Location',
+  //   'Account',
+  //   'Sales_Area_Integration__c',
+  //   'Product_Integration__c',
+  //   'Product_Org_Channel_Integration__c'
+  // ]
   let justCustomFields = false
-  let justReferenceFields = false
-  metadata.createERFromSObjectListToDBDiagramFormat(sObjects, justCustomFields, justReferenceFields)
+  let justReferenceFields = true
+  let useThoseFields = [
+    'Sales_Office__c',
+    'Sales_Org__c',
+    'Sector__c',
+    'Channel__c'
+  ]
+  metadata.createERFromSObjectListToDBDiagramFormat(sObjects, justCustomFields, justReferenceFields, useThoseFields)
   .then(tables => {
     let content = ''
     let references = []

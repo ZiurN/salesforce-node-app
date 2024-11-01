@@ -1,187 +1,83 @@
+Table LocationGroup {
+  Id  id
+}
 Table Product2 {
   Id  id
-  Name  string
-  ProductCode  string
-  Description  textarea
-  IsActive  boolean
-  CreatedDate  datetime
-  CreatedById  User
-  LastModifiedDate  datetime
-  LastModifiedById  User
-  SystemModstamp  datetime
-  Family  picklist
   TaxPolicyId  TaxPolicy
-  CurrencyIsoCode  picklist
   RecordTypeId  RecordType
   ExternalDataSourceId  ExternalDataSource
-  ExternalId  string
-  DisplayUrl  url
-  QuantityUnitOfMeasure  picklist
-  IsDeleted  boolean
-  IsArchived  boolean
-  LastViewedDate  datetime
-  LastReferencedDate  datetime
-  StockKeepingUnit  string
-  Type  picklist
-  ProductClass  picklist
-  anoModeloProducto__c  picklist
-  asientosPuertasProducto__c  string
-  combustibleProducto__c  picklist
-  kilometrajeActualProducto__c  double
-  marcaProducto__c  picklist
-  modeloProducto__c  picklist
-  motorProducto__c  string
-  patenteProducto__c  string
-  tipodevehiculoConnectCarProducto__c  picklist
-  transmisionVehiculoConnectCarProducto__c  picklist
-  vinConnectCarProducto__c  string
-  estadoVehiculo__c  picklist
-  Application__c  picklist
-  Brand__c  picklist
-  Critical_SKU__c  boolean
-  External_Reference_Id__c  string
-  Gross_Weight__c  string
-  Line_group__c  string
-  Line_name__c  picklist
-  Lob__c  string
-  Mix__c  picklist
-  Net_Weight__c  string
-  Sae__c  picklist
-  SalesOrg__c  string
   Sector__c  string
-  UM_Volume__c  string
-  UM_Weight__c  string
-  Volume__c  string
 }
-Table ProductAttribute {
+Table LocationGroupAssignment {
   Id  id
-  IsDeleted  boolean
-  Name  string
-  CurrencyIsoCode  picklist
-  CreatedDate  datetime
-  CreatedById  User
-  LastModifiedDate  datetime
-  LastModifiedById  User
-  SystemModstamp  datetime
-  ProductId  Product2
-  VariantParentId  Product2
-  Sequence  int
-  National_Imported__c  picklist
-  Packaging_Capacity__c  picklist
-  Packaging_Type__c  picklist
+  LocationId  Location
+  LocationGroupId  LocationGroup
 }
-Table ProductAttributeSet {
+Table Location {
   Id  id
-  IsDeleted  boolean
-  DeveloperName  string
-  Language  picklist
-  MasterLabel  string
-  NamespacePrefix  string
-  CreatedDate  datetime
-  CreatedById  User
-  LastModifiedDate  datetime
-  LastModifiedById  User
-  SystemModstamp  datetime
-  Description  textarea
+  ParentLocationId  Location
+  VisitorAddressId  Address
+  RootLocationId  Location
+  LogoId  ContentAsset
 }
-Table ProductAttributeSetProduct {
+Table Account {
   Id  id
-  IsDeleted  boolean
-  Name  string
-  CurrencyIsoCode  picklist
-  CreatedDate  datetime
-  CreatedById  User
-  LastModifiedDate  datetime
-  LastModifiedById  User
-  SystemModstamp  datetime
-  ProductAttributeSetId  ProductAttributeSet
-  ProductId  Product2
+  MasterRecordId  Account
+  RecordTypeId  RecordType
+  ParentId  Account
+  PersonContactId  Contact
+  PersonIndividualId  Individual
+  RepresentanteLegal__c  Contact
+  Planta__c  Account
+  contactoComercial__c  Contact
+  contactoPagoFacturas__c  Contact
+  listaPrecios__c  Pricebook2
+  EMOAC_CuentaPrincipal__c  Account
+  Suscripcion__c  Suscripcion__c
+  Negocio_Copec__c  B2B_Marcas_B2B__c
 }
-Table ProductAttributeSetItem {
+Table Sales_Area_Integration__c {
   Id  id
-  IsDeleted  boolean
-  CreatedDate  datetime
-  CreatedById  User
-  LastModifiedDate  datetime
-  LastModifiedById  User
-  SystemModstamp  datetime
-  ProductAttributeSetId  ProductAttributeSet
-  Field  picklist
-  Sequence  int
+  Account__c  Account
+  Channel__c  string
+  OficinaDeVenta__c  OficinaDeVenta__c
+  Sales_Office__c  string
+  Sales_Org__c  string
+  Sector__c  string
+  Zona__c  Zona__c
 }
 Table Product_Integration__c {
   Id  id
-  OwnerId  Group
-  IsDeleted  boolean
-  Name  string
-  CurrencyIsoCode  picklist
-  CreatedDate  datetime
-  CreatedById  User
-  LastModifiedDate  datetime
-  LastModifiedById  User
-  SystemModstamp  datetime
-  LastActivityDate  date
-  LastViewedDate  datetime
-  LastReferencedDate  datetime
-  Application__c  string
-  Brand__c  string
-  Capacity__c  string
-  Capacity_label__c  string
   ChildProduct__c  Product2
-  CreateNotification__c  boolean
-  Description__c  textarea
-  Gross_Weight__c  string
-  IsActive__c  boolean
-  Line_group__c  string
-  Line_name__c  string
-  Lob__c  string
-  Materia__c  string
-  Mix__c  string
-  Net_Weight__c  string
-  Packaging_type__c  string
-  Packaging_type_label__c  string
   ParentProduct__c  Product2
-  Production_origin__c  string
-  Production_origin_label__c  string
-  SKU__c  string
-  Sae__c  string
-  SalesOrg__c  string
   Sector__c  string
-  Status__c  picklist
-  UM_Volume__c  string
-  UM_Weight__c  string
-  Volume__c  string
 }
-Table CD_SKU_Integration__c {
+Table Product_Org_Channel_Integration__c {
   Id  id
-  OwnerId  Group
-  IsDeleted  boolean
-  Name  string
-  CurrencyIsoCode  picklist
-  CreatedDate  datetime
-  CreatedById  User
-  LastModifiedDate  datetime
-  LastModifiedById  User
-  SystemModstamp  datetime
-  LastViewedDate  datetime
-  LastReferencedDate  datetime
-  Account__c  Account
-  CD__c  string
+  Product_Integration__c  Product_Integration__c
   Channel__c  string
-  External_Reference_Id__c  string
-  Product__c  string
   Sales_Org__c  string
 }
-Ref: ProductAttribute.ProductId > Product2.Id
+Ref: LocationGroupAssignment.LocationId > Location.Id
 
-Ref: ProductAttribute.VariantParentId > Product2.Id
+Ref: LocationGroupAssignment.LocationGroupId > LocationGroup.Id
 
-Ref: ProductAttributeSetProduct.ProductAttributeSetId > ProductAttributeSet.Id
+Ref: Location.ParentLocationId > Location.Id
 
-Ref: ProductAttributeSetProduct.ProductId > Product2.Id
+Ref: Location.RootLocationId > Location.Id
 
-Ref: ProductAttributeSetItem.ProductAttributeSetId > ProductAttributeSet.Id
+Ref: Account.MasterRecordId > Account.Id
+
+Ref: Account.ParentId > Account.Id
+
+Ref: Account.Planta__c > Account.Id
+
+Ref: Account.EMOAC_CuentaPrincipal__c > Account.Id
+
+Ref: Sales_Area_Integration__c.Account__c > Account.Id
 
 Ref: Product_Integration__c.ChildProduct__c > Product2.Id
 
 Ref: Product_Integration__c.ParentProduct__c > Product2.Id
+
+Ref: Product_Org_Channel_Integration__c.Product_Integration__c > Product_Integration__c.Id

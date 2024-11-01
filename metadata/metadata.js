@@ -64,7 +64,7 @@ class Metadata {
         .catch(err => reject(err))
     }
   )}
-  createERFromSObjectListToDBDiagramFormat (sObjectList, justCustomFields, justReferenceFields) {
+  createERFromSObjectListToDBDiagramFormat (sObjectList, justCustomFields, justReferenceFields, useThoseFields) {
     let defaultFields = [
       'OwnerId',
       'IsDeleted',
@@ -89,7 +89,9 @@ class Metadata {
               fields: metadata.fields.filter(field => {
                 let isIdField = field.type === 'id'
                 let isValidReference = field.type === 'reference' && !(defaultFields.includes(field.name))
+                let useThisFieldAnyWay = useThoseFields.length > 0 && useThoseFields.includes(field.name)
                 if (isIdField) return true
+                if (useThisFieldAnyWay) return true
                 if (justReferenceFields && justCustomFields) {
                   return field.custom && isValidReference
                 } else if (justReferenceFields) {
@@ -97,8 +99,8 @@ class Metadata {
                 } else if (justCustomFields) {
                   return field.custom
                 } else {
-				  return true
-				}
+                  return true
+                }
               }).map(field => {
                 if (field.name == 'BuyerGroupId') console.log(field.name, field.type, field.referenceTo, field.referenceTo.length)
                 let tmp_object = {
