@@ -1,4 +1,4 @@
-import { JSForce } from '../jsforce.js'
+import { JSForce } from '../jsForce/jsforce.js'
 
 class Metadata {
   constructor(oauth2_1, oauth2_2) {
