@@ -3,9 +3,9 @@ import { Metadata } from './metadata/metadata.js'
 import fs from 'fs'
 
 const oauth2_1 = new OAuth2().copecDevelSolu1;
-const oauth2_2 = new OAuth2().injuryAlliance;
+const oauth2_2 = new OAuth2().copecIntegration2;
 
-const metadata = new Metadata(oauth2_1, oauth2_2);
+const metadata = new Metadata(oauth2_2, null);
 
 export const retrieveFields = (sObjectDevName) => {
   metadata.retrieveFields(sObjectDevName)
@@ -30,24 +30,24 @@ export const retrieveFields = (sObjectDevName) => {
     })
     .catch(err => console.error(err));
 }
-
 export const createERFromSObjectListToDBDiagramFormat = () => {
-  let sObjects = [
-    'Product2',
-    'Product_Integration__c',
-    'ProductAttribute',
-  ]
   // let sObjects = [
-  //   'Order',
-  //   'FulfillmentOrder',
-  //   'OrderSummary',
-  //   'OrderItem',
-  //   'OrderItemSummary',
   //   'Product2',
-  //   'Account',
-  //   'OrderDeliveryMethod',
-  //   'FulfillmentOrderLineItem'
+  //   'Product_Integration__c',
+  //   'ProductAttribute',
   // ]
+  let sObjects = [
+    'Order',
+    'FulfillmentOrder',
+    'OrderSummary',
+    'OrderItem',
+    'OrderItemSummary',
+    'Product2',
+    'Account',
+    'OrderDeliveryMethod',
+    'OrderDeliveryGroup',
+    'FulfillmentOrderLineItem'
+  ]
   // let sObjects = [
   //   'LocationGroup',
   //   'Product2',
@@ -89,6 +89,17 @@ export const createERFromSObjectListToDBDiagramFormat = () => {
     })
     content += references.join('\n')
     fs.writeFileSync('dbDiagrams.txt', content)
+  })
+  .catch(err => console.error(err))
+}
+export const createCDSKUIntegrations = () => {
+  metadata.jsforce1.getRecordsByQuery('SELECT Id FROM Account WHERE CodigoSolicitante__c = \'0000283445\' LIMIT 1')
+  .then(results => {
+    console.log(results)
+    return results[0].Id
+  })
+  .then(accountId => {
+    return metadata.jsforce1.getRecordsByQuery(`SELECT BuyerGroupId FROM BuyerGroupMember WHERE BuyerId = '${{accountId}}'`)
   })
   .catch(err => console.error(err))
 }

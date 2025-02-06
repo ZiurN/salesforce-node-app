@@ -1,5 +1,63 @@
-Table LocationGroup {
+Table Order {
   Id  id
+  ContractId  Contract
+  AccountId  Account
+  Pricebook2Id  Pricebook2
+  OriginalOrderId  Order
+  OpportunityId  Opportunity
+  QuoteId  Quote
+  CustomerAuthorizedById  Contact
+  CompanyAuthorizedById  User
+  BillToContactId  Contact
+  ShipToContactId  Contact
+  ActivatedById  User
+  RelatedOrderId  Order
+  SalesStoreId  WebStore
+  SalesChannelId  SalesChannel
+  ParentOrder__c  Order
+  RegisteredBy__c  User
+}
+Table FulfillmentOrder {
+  Id  id
+  AccountId  Account
+  DeliveryMethodId  OrderDeliveryMethod
+  FulfilledFromLocationId  Location
+  OrderId  Order
+  OrderSummaryId  OrderSummary
+  InvoiceId  Invoice
+  BillToContactId  Contact
+}
+Table OrderSummary {
+  Id  id
+  OriginalOrderId  Order
+  AccountId  Account
+  ChangeOrderId  Order
+  SalesStoreId  WebStore
+  SalesChannelId  SalesChannel
+  BillToContactId  Contact
+  Pricebook2Id  Pricebook2
+  RegisteredBy__c  User
+}
+Table OrderItem {
+  Id  id
+  Product2Id  Product2
+  OrderId  Order
+  PricebookEntryId  PricebookEntry
+  OriginalOrderItemId  OrderItem
+  OrderDeliveryGroupId  OrderDeliveryGroup
+  RelatedOrderItemId  OrderItem
+  ReservedAtLocationId  Location
+  Channel__c  string
+}
+Table OrderItemSummary {
+  Id  id
+  OrderSummaryId  OrderSummary
+  OriginalOrderItemId  OrderItem
+  OrderDeliveryGroupSummaryId  OrderDeliveryGroupSummary
+  Product2Id  Product2
+  ReservedAtLocationId  Location
+  PricebookEntryId  PricebookEntry
+  Channel__c  string
 }
 Table Product2 {
   Id  id
@@ -8,18 +66,6 @@ Table Product2 {
   ExternalDataSourceId  ExternalDataSource
   Sector__c  string
 }
-Table LocationGroupAssignment {
-  Id  id
-  LocationId  Location
-  LocationGroupId  LocationGroup
-}
-Table Location {
-  Id  id
-  ParentLocationId  Location
-  VisitorAddressId  Address
-  RootLocationId  Location
-  LogoId  ContentAsset
-}
 Table Account {
   Id  id
   MasterRecordId  Account
@@ -27,6 +73,7 @@ Table Account {
   ParentId  Account
   PersonContactId  Contact
   PersonIndividualId  Individual
+  OperatingHoursId  OperatingHours
   RepresentanteLegal__c  Contact
   Planta__c  Account
   contactoComercial__c  Contact
@@ -36,35 +83,60 @@ Table Account {
   Suscripcion__c  Suscripcion__c
   Negocio_Copec__c  B2B_Marcas_B2B__c
 }
-Table Sales_Area_Integration__c {
+Table OrderDeliveryMethod {
   Id  id
-  Account__c  Account
-  Channel__c  string
-  OficinaDeVenta__c  OficinaDeVenta__c
-  Sales_Office__c  string
-  Sales_Org__c  string
-  Sector__c  string
-  Zona__c  Zona__c
+  ProductId  Product2
 }
-Table Product_Integration__c {
+Table OrderDeliveryGroup {
   Id  id
-  ChildProduct__c  Product2
-  ParentProduct__c  Product2
-  Sector__c  string
+  OrderId  Order
+  OrderDeliveryMethodId  OrderDeliveryMethod
+  RelatedDeliveryGroupId  OrderDeliveryGroup
 }
-Table Product_Org_Channel_Integration__c {
+Table FulfillmentOrderLineItem {
   Id  id
-  Product_Integration__c  Product_Integration__c
-  Channel__c  string
-  Sales_Org__c  string
+  FulfillmentOrderId  FulfillmentOrder
+  OrderItemId  OrderItem
+  OrderItemSummaryId  OrderItemSummary
+  Product2Id  Product2
 }
-Ref: LocationGroupAssignment.LocationId > Location.Id
+Ref: Order.AccountId > Account.Id
 
-Ref: LocationGroupAssignment.LocationGroupId > LocationGroup.Id
+Ref: Order.OriginalOrderId > Order.Id
 
-Ref: Location.ParentLocationId > Location.Id
+Ref: Order.RelatedOrderId > Order.Id
 
-Ref: Location.RootLocationId > Location.Id
+Ref: Order.ParentOrder__c > Order.Id
+
+Ref: FulfillmentOrder.AccountId > Account.Id
+
+Ref: FulfillmentOrder.DeliveryMethodId > OrderDeliveryMethod.Id
+
+Ref: FulfillmentOrder.OrderId > Order.Id
+
+Ref: FulfillmentOrder.OrderSummaryId > OrderSummary.Id
+
+Ref: OrderSummary.OriginalOrderId > Order.Id
+
+Ref: OrderSummary.AccountId > Account.Id
+
+Ref: OrderSummary.ChangeOrderId > Order.Id
+
+Ref: OrderItem.Product2Id > Product2.Id
+
+Ref: OrderItem.OrderId > Order.Id
+
+Ref: OrderItem.OriginalOrderItemId > OrderItem.Id
+
+Ref: OrderItem.OrderDeliveryGroupId > OrderDeliveryGroup.Id
+
+Ref: OrderItem.RelatedOrderItemId > OrderItem.Id
+
+Ref: OrderItemSummary.OrderSummaryId > OrderSummary.Id
+
+Ref: OrderItemSummary.OriginalOrderItemId > OrderItem.Id
+
+Ref: OrderItemSummary.Product2Id > Product2.Id
 
 Ref: Account.MasterRecordId > Account.Id
 
@@ -74,10 +146,18 @@ Ref: Account.Planta__c > Account.Id
 
 Ref: Account.EMOAC_CuentaPrincipal__c > Account.Id
 
-Ref: Sales_Area_Integration__c.Account__c > Account.Id
+Ref: OrderDeliveryMethod.ProductId > Product2.Id
 
-Ref: Product_Integration__c.ChildProduct__c > Product2.Id
+Ref: OrderDeliveryGroup.OrderId > Order.Id
 
-Ref: Product_Integration__c.ParentProduct__c > Product2.Id
+Ref: OrderDeliveryGroup.OrderDeliveryMethodId > OrderDeliveryMethod.Id
 
-Ref: Product_Org_Channel_Integration__c.Product_Integration__c > Product_Integration__c.Id
+Ref: OrderDeliveryGroup.RelatedDeliveryGroupId > OrderDeliveryGroup.Id
+
+Ref: FulfillmentOrderLineItem.FulfillmentOrderId > FulfillmentOrder.Id
+
+Ref: FulfillmentOrderLineItem.OrderItemId > OrderItem.Id
+
+Ref: FulfillmentOrderLineItem.OrderItemSummaryId > OrderItemSummary.Id
+
+Ref: FulfillmentOrderLineItem.Product2Id > Product2.Id

@@ -20,6 +20,16 @@ class OAuth2 {
       username : 'jeferson.ruiz@wearesolu.copec.dev1',
       password : 'jef123456KY2EiFzbbNG0saQYHZN0Xydb'
     }
+    this.copecIntegration2 = {
+      oauth2 : {
+        loginUrl : 'https://copecneworg--integratio.sandbox.my.salesforce.com/',
+        clientId : '3MVG9y08DauEe.80Y.NnMFYaE0kuqZDDGskYCKthQcZJhM4mmGIgZC8Fptvt3HHaXeHQqFc0bdgDocdgN_Wmg',
+        clientSecret : '4AD2C7C8CEE3A78D277DCBE0BE85D9D28DBBA2E0EF8113C364DE4C8B19FA5CC6',
+        redirectUri : 'https://copecneworg.my.salesforce.com/lightning/page/home'
+      },
+      username : 'jeferson.ruiz@wearesolu.com.integration',
+      password : 'jef1234569F1WeWuo5sgtEwJ0OvyfwYGdi'
+    }
   }
 }
 
