@@ -102,14 +102,12 @@ class Metadata {
                   return true
                 }
               }).map(field => {
-                if (field.name == 'BuyerGroupId') console.log(field.name, field.type, field.referenceTo, field.referenceTo.length)
                 let tmp_object = {
                   name: field.name,
                   isPrimaryKey: field.type === 'id',
                   type: field.referenceTo.length >= 1 ? field.referenceTo[0] : field.type,
                   referenceTo: field.referenceTo.length >= 1 ? field.referenceTo : null
                 }
-                if (field.name == 'BuyerGroupId') console.log(tmp_object)
                 return tmp_object
               })
             }
