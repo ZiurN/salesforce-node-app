@@ -1,5 +1,5 @@
-import { JSForce } from './../jsforce.js'
-import * as DevNames from './../devNames.js';
+import { JSForce } from '../jsForce/jsforce.js'
+import * as DevNames from '../projects/BCI/devNames.js';
 
 class CRM {
   constructor(oauth2) {

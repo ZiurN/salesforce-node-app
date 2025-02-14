@@ -1,4 +1,4 @@
-import * as DevNames from '../devNames.js'
+import * as DevNames from '../projects/BCI/devNames.js'
 import { CRM } from './crm.js'
 
 class bciSalesforce extends CRM {

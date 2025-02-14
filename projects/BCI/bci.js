@@ -1,12 +1,12 @@
 import { Database } from './database.js'
 import { OAuht2 } from './oauth.js'
-import { JSForce } from './jsforce.js'
+import { JSForce } from '../../jsForce/jsforce.js'
 import * as DevNames from './devNames.js'
-import { FakeData } from './fakeData/fakeData.js'
-import { bciFakeData } from './fakeData/bci.js'
-import { bciSalesforce} from './CRM/bciSalesforce.js'
-import { DataMigration } from './dataMigration/dataMigration.js'
-import { BciDataMigration } from './dataMigration/bciDataMigration.js'
+import { FakeData } from '../../fakeData/fakeData.js'
+import { bciFakeData } from '../../fakeData/bci.js'
+import { bciSalesforce} from '../../CRM/bciSalesforce.js'
+import { DataMigration } from '../../dataMigration/dataMigration.js'
+import { BciDataMigration } from '../../dataMigration/bciDataMigration.js'
 
 const oauth2 = new OAuht2()
 const jsForce = new JSForce(oauth2.bci1001)
