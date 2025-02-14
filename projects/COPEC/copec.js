@@ -1,5 +1,5 @@
 import { OAuth2 } from './oauth.js'
-import { Metadata } from './metadata/metadata.js'
+import { Metadata } from '../../metadata/metadata.js'
 import fs from 'fs'
 
 const oauth2_1 = new OAuth2().copecDevelSolu1;
